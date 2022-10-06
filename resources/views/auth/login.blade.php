@@ -58,8 +58,7 @@
                                         style='font-size: 26px;
                                     font-weight: 700;
                                     color: #012970;
-                                    font-family: "Nunito", sans-serif;'>ITB
-                                        NOBEL INDONESIA</span>
+                                    font-family: "Nunito", sans-serif;'>KPN SEGAR </span>
                                 </a>
                             </div><!-- End Logo -->
 

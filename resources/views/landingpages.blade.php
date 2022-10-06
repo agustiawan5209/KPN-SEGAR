@@ -40,8 +40,9 @@
 
 <body>
 
+
     <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top">
+    <header id="header" class="header fixed-top bg-white ">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
             <a href="index.html" class="logo d-flex align-items-center">
@@ -257,7 +258,8 @@
 
                 <div class="row gy-4">
 
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up"
+                        data-aos-delay="100">
                         <div class="member">
                             <div class="member-img">
                                 <img src="landingpages/assets/img/team/team-1.jpg" class="img-fluid" alt="">
@@ -277,7 +279,8 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up"
+                        data-aos-delay="200">
                         <div class="member">
                             <div class="member-img">
                                 <img src="landingpages/assets/img/team/team-2.jpg" class="img-fluid" alt="">
@@ -297,7 +300,8 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up"
+                        data-aos-delay="300">
                         <div class="member">
                             <div class="member-img">
                                 <img src="landingpages/assets/img/team/team-3.jpg" class="img-fluid" alt="">
@@ -317,7 +321,8 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up"
+                        data-aos-delay="400">
                         <div class="member">
                             <div class="member-img">
                                 <img src="landingpages/assets/img/team/team-4.jpg" class="img-fluid" alt="">
@@ -358,35 +363,36 @@
 
                     <div class="col-lg-4">
                         <div class="post-box">
-                            <div class="post-img"><img src="landingpages/assets/img/blog/blog-1.jpg" class="img-fluid"
-                                    alt=""></div>
+                            <div class="post-img"><img src="landingpages/assets/img/blog/blog-1.jpg"
+                                    class="img-fluid" alt=""></div>
                             <span class="post-date">Tue, September 15</span>
-                            <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit
+                            <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur
+                                sit
                             </h3>
-                            <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read More</span><i
-                                    class="bi bi-arrow-right"></i></a>
+                            <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read
+                                    More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="post-box">
-                            <div class="post-img"><img src="landingpages/assets/img/blog/blog-2.jpg" class="img-fluid"
-                                    alt=""></div>
+                            <div class="post-img"><img src="landingpages/assets/img/blog/blog-2.jpg"
+                                    class="img-fluid" alt=""></div>
                             <span class="post-date">Fri, August 28</span>
                             <h3 class="post-title">Et repellendus molestiae qui est sed omnis voluptates magnam</h3>
-                            <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read More</span><i
-                                    class="bi bi-arrow-right"></i></a>
+                            <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read
+                                    More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="post-box">
-                            <div class="post-img"><img src="landingpages/assets/img/blog/blog-3.jpg" class="img-fluid"
-                                    alt=""></div>
+                            <div class="post-img"><img src="landingpages/assets/img/blog/blog-3.jpg"
+                                    class="img-fluid" alt=""></div>
                             <span class="post-date">Mon, July 11</span>
                             <h3 class="post-title">Quia assumenda est et veritatis aut quae</h3>
-                            <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read More</span><i
-                                    class="bi bi-arrow-right"></i></a>
+                            <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read
+                                    More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
 
@@ -432,7 +438,14 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('landingpages/assets/js/main.js') }}"></script>
+    <script>
+        $("#loaded").hide();
+        $(document).ajaxSend(function() {
+            $("#loaded").fadeIn(300);
 
+
+        });
+    </script>
 </body>
 
 </html>

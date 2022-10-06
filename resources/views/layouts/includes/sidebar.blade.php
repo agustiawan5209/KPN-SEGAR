@@ -80,35 +80,10 @@
 
 
          <li class="nav-item">
-             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+             <a class="nav-link collapsed"  @yield('asetbergerak')  href="{{ url('/data-asetbergerak') }}">
                  <i class="bi bi-journal-text"></i><span>Data Jenis Aset</span><i
                      class="bi bi-chevron-down ms-auto"></i>
              </a>
-             <ul id="forms-nav" class="nav-content collapse  @yield('forms-nav')" data-bs-parent="#sidebar-nav">
-
-                 <li>
-                     <a class=" @yield('asetbergerak')" href="{{ url('/data-asetbergerak') }}">
-                         <i class="bi bi-circle"></i><span>Data Aset Bergerak</span>
-                     </a>
-                 </li>
-
-                 <li>
-                     <a class=" @yield('asettidakbergerak')" href="{{ url('/data-aset') }}">
-                         <i class="bi bi-circle"></i><span>Data Tidak Bergerak</span>
-                     </a>
-                 </li>
-
-                 <li>
-                     <a class=" @yield('peralatan')" href="{{ url('/data-peralatan') }} ">
-                         <i class="bi bi-circle"></i><span>Data Peralatan</span>
-                     </a>
-                 </li>
-                 <li>
-                     <a class=" @yield('perlengkapan')" href="{{ url('/data-perlengkapan') }} ">
-                         <i class="bi bi-circle"></i><span>Data Perlengkapan</span>
-                     </a>
-                 </li>
-             </ul>
          </li><!-- End Forms Nav -->
 
          <li class="nav-item">

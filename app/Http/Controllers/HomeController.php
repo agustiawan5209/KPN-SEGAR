@@ -29,6 +29,12 @@ class HomeController extends Controller
         if ($role == '1') {
             return view('admin');
         }
+        if ($role == '3') {
+            return view('kepalaunit');
+        }
+        if ($role == '4') {
+            return view('kepalaunit');
+        }
 
         if ($role == '2') {
             return view('staff');
@@ -130,6 +136,38 @@ class HomeController extends Controller
         $role = Auth::user()->roles_id;
 
         // return $inputbarang;
+        if ($role == '4') {
+
+
+
+            $jumlah = Barang::count();
+
+            $asetbergerak = Barang::where('jenis_asets_id', 1)->count();
+            $asettidakbergerak = Barang::where('jenis_asets_id', 2)->count();
+            $asetperlengkapan = Barang::where('jenis_asets_id', 4)->count();
+            $asetperalatan = Barang::where('jenis_asets_id', 3)->count();
+            $pengajuan = DetailPeminjaman::where('status_konfirmasis_id', 1)->count();
+            $disetujui = DetailPeminjaman::where('status_konfirmasis_id', 2 && 'status_peminjamans_id', 2)->count();
+            $dikembalikan = DetailPeminjaman::where('status_konfirmasis_id', 2 && 'status_peminjamans_id', 3)->count();
+            $ditolak = DetailPeminjaman::where('status_konfirmasis_id', 3)->count();
+            $dibatalkan = DetailPeminjaman::where('status_konfirmasis_id', 5)->count();
+            $pinjam = Pinjam::count();
+
+            return view('kepalaunit',compact(
+                    'asetbergerak','asettidakbergerak','asetperlengkapan','asetperalatan', 'pinjam','jumlah',
+                    'data',
+                    'datap',
+                    // 'data',
+                    'datas',
+                    'jenisbarang',
+                    // 'jenisaset',
+                    'dataasalperolehan',
+                    'datasatuan',
+                    'inputbarang',
+                    'pinjam',
+                )
+            );
+        }
         if ($role == '2') {
 
 
@@ -161,123 +199,6 @@ class HomeController extends Controller
                     'pinjam',
 
 
-                    'total_jan',
-                    'total_feb',
-                    'total_mar',
-                    'total_apr',
-                    'total_mei',
-                    'total_jun',
-                    'total_juli',
-                    'total_agus',
-                    'total_sept',
-                    'total_okto',
-                    'total_nove',
-                    'total_dese',
-
-                    'ditolak_jan',
-                    'ditolak_feb',
-                    'ditolak_mar',
-                    'ditolak_apr',
-                    'ditolak_mei',
-                    'ditolak_jun',
-                    'ditolak_juli',
-                    'ditolak_agus',
-                    'ditolak_sept',
-                    'ditolak_okto',
-                    'ditolak_nove',
-                    'ditolak_dese',
-
-                    'ambilbarang_jan',
-                    'ambilbarang_feb',
-                    'ambilbarang_mar',
-                    'ambilbarang_apr',
-                    'ambilbarang_mei',
-                    'ambilbarang_jun',
-                    'ambilbarang_juli',
-                    'ambilbarang_agus',
-                    'ambilbarang_sept',
-                    'ambilbarang_okto',
-                    'ambilbarang_nove',
-                    'ambilbarang_dese',
-
-                    'dikembalikan_jan',
-                    'dikembalikan_feb',
-                    'dikembalikan_mar',
-                    'dikembalikan_apr',
-                    'dikembalikan_mei',
-                    'dikembalikan_jun',
-                    'dikembalikan_juli',
-                    'dikembalikan_agus',
-                    'dikembalikan_sept',
-                    'dikembalikan_okto',
-                    'dikembalikan_nove',
-                    'dikembalikan_dese',
-
-                    'terlambat_jan',
-                    'terlambat_feb',
-                    'terlambat_mar',
-                    'terlambat_apr',
-                    'terlambat_mei',
-                    'terlambat_jun',
-                    'terlambat_juli',
-                    'terlambat_agus',
-                    'terlambat_sept',
-                    'terlambat_okto',
-                    'terlambat_nove',
-                    'terlambat_dese',
-
-                    'bergerak_jan',
-                    'bergerak_feb',
-                    'bergerak_mar',
-                    'bergerak_apr',
-                    'bergerak_mei',
-                    'bergerak_jun',
-                    'bergerak_juli',
-                    'bergerak_agus',
-                    'bergerak_sept',
-                    'bergerak_okto',
-                    'bergerak_nove',
-                    'bergerak_dese',
-
-                    'tdkbergerak_jan',
-                    'tdkbergerak_feb',
-                    'tdkbergerak_mar',
-                    'tdkbergerak_apr',
-                    'tdkbergerak_mei',
-                    'tdkbergerak_jun',
-                    'tdkbergerak_juli',
-                    'tdkbergerak_agus',
-                    'tdkbergerak_sept',
-                    'tdkbergerak_okto',
-                    'tdkbergerak_nove',
-                    'tdkbergerak_dese',
-
-                    'peralatan_jan',
-                    'peralatan_feb',
-                    'peralatan_mar',
-                    'peralatan_apr',
-                    'peralatan_mei',
-                    'peralatan_jun',
-                    'peralatan_juli',
-                    'peralatan_agus',
-                    'peralatan_sept',
-                    'peralatan_okto',
-                    'peralatan_nove',
-                    'peralatan_dese',
-
-                    'perlengkapan_jan',
-                    'perlengkapan_feb',
-                    'perlengkapan_mar',
-                    'perlengkapan_apr',
-                    'perlengkapan_mei',
-                    'perlengkapan_jun',
-                    'perlengkapan_juli',
-                    'perlengkapan_agus',
-                    'perlengkapan_sept',
-                    'perlengkapan_okto',
-                    'perlengkapan_nove',
-                    'perlengkapan_dese',
-                    'thn'
                 )
             );
         }

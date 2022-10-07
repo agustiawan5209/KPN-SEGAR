@@ -22,8 +22,16 @@ class RolesSeeder extends Seeder
                 'roles' => "Admin",
             ],
             [
+                'id' => "2",
+                'roles' => "Kasir",
+            ],
+            [
                 'id' => "3",
-                'roles' => "Staff",
+                'roles' => "Pengguna",
+            ],
+            [
+                'id' => "4",
+                'roles' => "bendahara",
             ],
 
         ];

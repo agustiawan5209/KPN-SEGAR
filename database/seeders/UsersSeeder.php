@@ -19,9 +19,9 @@ class UsersSeeder extends Seeder
         $posts = [
             [
                 'id' => "1",
-                'name'=>"adminpusat1",
+                'name'=>"pengurus",
                 'roles_id'=>"1",
-                'username'=>"adminpusat1",
+                'username'=>"pengurus",
                 'alamat'=>"Makassar, Sulawesi Selatan",
                 'posisi'=>"admin",
                 'telephone'=>"0811111",
@@ -33,9 +33,9 @@ class UsersSeeder extends Seeder
 
             [
                 'id' => "2",
-                'name'=>"adminpusat2",
-                'roles_id'=>"1",
-                'username'=>"adminpusat2",
+                'name'=>"bendahara",
+                'roles_id'=>"4",
+                'username'=>"bendahara",
                 'alamat'=>"Makassar, Sulawesi Selatan",
                 'posisi'=>"admin",
                 'telephone'=>"0821111",
@@ -47,9 +47,9 @@ class UsersSeeder extends Seeder
 
             [
                 'id' => "3",
-                'name'=>"admincabang1",
-                'roles_id'=>"1",
-                'username'=>"admincabang1",
+                'name'=>"kasir",
+                'roles_id'=>"2",
+                'username'=>"kasir",
                 'alamat'=>"Makassar, Sulawesi Selatan",
                 'posisi'=>"admin",
                 'telephone'=>"0811121",
@@ -60,9 +60,9 @@ class UsersSeeder extends Seeder
             ],
             [
                 'id' => "4",
-                'name'=>"peminjam",
+                'name'=>"pengguna",
                 'roles_id'=>"3",
-                'username'=>"peminjam",
+                'username'=>"pengguna",
                 'alamat'=>"Makassar, Sulawesi Selatan",
                 'posisi'=>"staff ahli",
                 'telephone'=>"0811113",

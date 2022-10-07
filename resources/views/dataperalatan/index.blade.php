@@ -314,7 +314,7 @@
                                     <div class="modal-body">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h5 class="card-title">Data Riwayat Peminjaman</h5>
+                                                <h5 class="card-title">Data Riwayat Pembelian</h5>
 
                                                 <!-- Table with stripped rows -->
                                                 <table class="table datatable">

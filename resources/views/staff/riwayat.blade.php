@@ -27,7 +27,7 @@
                     <div class="card-body">
 
                         <center>
-                            <h5 style="align-content: center" class="card-title">Riwayat Peminjaman
+                            <h5 style="align-content: center" class="card-title">Riwayat Pembelian
                                 {{ auth()->user()->name }}
                             </h5>
                             <center>

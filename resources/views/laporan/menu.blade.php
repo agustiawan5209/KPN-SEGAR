@@ -82,9 +82,9 @@
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    {{-- <div class="col-lg-5 col-md-4 label">Riwayat Peminjaman :</div> --}}
+                                    {{-- <div class="col-lg-5 col-md-4 label">Riwayat Pembelian :</div> --}}
                                     <a href="{{ url('/laporan/peminjaman') }}">
-                                        <span> Data Riwayat Peminjaman </span>
+                                        <span> Data Riwayat Pembelian </span>
                                     </a><br>
 
 

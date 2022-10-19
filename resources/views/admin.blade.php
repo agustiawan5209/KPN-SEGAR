@@ -18,7 +18,7 @@
                                     <h5 class="card-title text-center pb-0 fs-4">Selamat Datang Kepala
                                         {{ auth()->user()->name }}
                                     </h5>
-                                    <h5 class="card-title">Sistem Informasi Aset KPN “SEGAR” POLITEKNIK PELAYARAN BAROMBONG</h5>
+                                    <h5 class="card-title">SISTEM INFORMASI KPN “SEGAR” POLITEKNIK PELAYARAN BAROMBONG</h5>
 
                         </div>
 

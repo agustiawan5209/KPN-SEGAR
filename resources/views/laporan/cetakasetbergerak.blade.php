@@ -23,20 +23,9 @@
         <div class="card">
             <div class="card-body">
                 <h3>
-                    <center>SISTEM INFORMASI ASET <BR> INSTITUT TEKNOLOGI DAN BISNIS NOBEL INDONESIA (ITB)
+                    <center>SISTEM INFORMASI <BR> KPN SEGAR BAROMBONG
                 </h3>
-                <center>
-                    <p>
-                        Gedung Perkuliahan Jl. Sultan Alauddin No. 212 Mangasa,
-                        Kecamatan Makassar,
-                        Kota Makassar,
-                        Sulawesi Selatan 90221
-                        Indonesia,<br>
-                        <strong>Phone:</strong> (0411) 861281, 861287, atau 861123<br>
-                        <strong>Website :</strong> https://www.nobel.ac.id/<br>
-
-                    </p>
-                </center>
+                SISTEM INFORMASI
                 <hr style="width:max;height:2px;">
                 <h4><b>
                         <center>LAPORAN DATA ASET BERGERAK</center>

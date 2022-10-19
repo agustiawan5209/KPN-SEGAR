@@ -231,9 +231,9 @@
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link collapsed" href="{{ route('staff/riwayat') }} ">
+                <a class="nav-link collapsed" href="#">
                     <i class="bi bi-cart-check-fill"></i>
-                    <span>Riwayat Pembelian</span>
+                    <span> Pembelian</span>
                 </a>
             </li>
 

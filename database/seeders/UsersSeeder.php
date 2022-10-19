@@ -72,9 +72,6 @@ class UsersSeeder extends Seeder
                 'updated_at' => null,
 
             ],
-
-
-
         ];
         DB::table('users')->insert($posts);
     }

@@ -249,6 +249,7 @@ class PinjamController extends Controller
                 $pinjam->tgl_kembali = $request->tgl_kembali;
                 $pinjam->jumlah_pinjam = $request->jumlah_pinjam;
             } else {
+
             }
             $pinjam->save();
             $trxstatus = new TrxStatus();

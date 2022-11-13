@@ -259,12 +259,29 @@
 
             <!-- End Forms Nav -->
 
-            <li class="nav-item ">
-                <a class="nav-link collapsed" href="{{ url('/cekdata') }}">
-                    <i class="bi bi-journal-text"></i>
-                    <span>Buat Transaksi</span>
+            <li class="nav-item @yield('jenis-nav')">
+                <a class="nav-link collapsed" data-bs-target="#jenis-nav" data-bs-toggle="collapse">
+                    <i class="bi bi-menu-button-wide"></i><span>Data Master</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-            </li>
+                <ul id="jenis-nav" class="nav-content collapse @yield('jenis-nav')" data-bs-parent="#sidebar-nav">
+
+                    {{-- <li>
+                         <a class=" @yield('jenisaset')" href="{{ url('/datajenisaset') }}">
+                             <i class="bi bi-circle"></i><span>Data Jenis Aset</span>
+                         </a>
+                     </li> --}}
+
+                    <li>
+                        <a class=" @yield('databunga')" href="{{ route('JenisBunga.index') }}">
+                            <i class="bi bi-circle"></i><span>Data Bunga</span>
+                        </a>
+                    </li>
+
+
+
+
+                </ul>
+            </li><!-- End Forms Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#formss-nav" data-bs-toggle="collapse" href="#">
@@ -277,18 +294,8 @@
                         </a>
                     </li>
                     <li>
-                        <a class="@yield('dataadmin')" href="{{ url('data-admin') }}">
-                            <i class="bi bi-circle"></i><span>Petugas</span>
-                        </a>
-                    </li>
-                    <li>
                         <a class="@yield('datakepala')" href="{{ url('data-kepala') }}">
-                            <i class="bi bi-circle"></i><span>sektretaris</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="@yield('kasir')" href="{{ url('data-kepala') }}">
-                            <i class="bi bi-circle"></i><span>Kasir</span>
+                            <i class="bi bi-circle"></i><span>bendahara</span>
                         </a>
                     </li>
                 </ul>

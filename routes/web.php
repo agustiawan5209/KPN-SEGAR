@@ -18,6 +18,7 @@ use App\Http\Controllers\JenisBarangController;
 use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\DataJenisAsetController;
 use App\Http\Controllers\DataAsalPerolehanController;
+use App\Http\Controllers\JenisBungaController;
 use App\Models\Pinjam;
 
 /*
@@ -69,7 +70,14 @@ Route::get('/filterthn/{tahun}', [HomeController::class, 'rekap_tahun']); //mena
 
 // Route::middleware(['auth', 'check.role:1,2,3'])->get('/dashboard', [HomeController::class, "dashboardall"])->name('dashboardall');
 Auth::routes();
-
+// Data Bunga
+Route::group(['auth', 'check.role:2'], function(){
+    Route::resource('JenisBunga',JenisBungaController::class)->parameters([
+        'edit' => 'id',
+        'store' => 'id',
+        'destroy' => 'id',
+    ])->name('*','jenis-bunga');
+});
 //--SEMUA ROUTE ROLE ADMIN ( ROLE 1)--//
 Route::middleware(['auth', 'check.role:1,2'])->group(function () {
     // Ubah Status
@@ -162,6 +170,8 @@ Route::middleware(['auth', 'check.role:1,2'])->group(function () {
     Route::get('/data-kepala', function () {
         return view('datakepala.index');
     });
+
+    // Data Bunga
 
     //DATA AKUN USER
     Route::get('/data-user', [UserController::class, 'index']); //menampilkan data user

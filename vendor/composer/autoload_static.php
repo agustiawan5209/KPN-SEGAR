@@ -195,8 +195,8 @@ class ComposerStaticInit43dc8076c6bc5017979feabe1ecad41f
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Whoops\\' => 
         array (
@@ -352,8 +352,8 @@ class ComposerStaticInit43dc8076c6bc5017979feabe1ecad41f
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -580,6 +580,7 @@ class ComposerStaticInit43dc8076c6bc5017979feabe1ecad41f
         'App\\Http\\Controllers\\LokasiController' => __DIR__ . '/../..' . '/app/Http/Controllers/LokasiController.php',
         'App\\Http\\Controllers\\LokasiPenempatanController' => __DIR__ . '/../..' . '/app/Http/Controllers/LokasiPenempatanController.php',
         'App\\Http\\Controllers\\MutasiController' => __DIR__ . '/../..' . '/app/Http/Controllers/MutasiController.php',
+        'App\\Http\\Controllers\\PembelianController' => __DIR__ . '/../..' . '/app/Http/Controllers/PembelianController.php',
         'App\\Http\\Controllers\\PeminjamanController' => __DIR__ . '/../..' . '/app/Http/Controllers/PeminjamanController.php',
         'App\\Http\\Controllers\\PeralatanController' => __DIR__ . '/../..' . '/app/Http/Controllers/PeralatanController.php',
         'App\\Http\\Controllers\\PerlengkapanController' => __DIR__ . '/../..' . '/app/Http/Controllers/PerlengkapanController.php',
@@ -603,9 +604,11 @@ class ComposerStaticInit43dc8076c6bc5017979feabe1ecad41f
         'App\\Models\\Barang' => __DIR__ . '/../..' . '/app/Models/Barang.php',
         'App\\Models\\BarangKeluar' => __DIR__ . '/../..' . '/app/Models/BarangKeluar.php',
         'App\\Models\\BarangMasuk' => __DIR__ . '/../..' . '/app/Models/BarangMasuk.php',
+        'App\\Models\\Bunga' => __DIR__ . '/../..' . '/app/Models/Bunga.php',
         'App\\Models\\DataAsalPerolehan' => __DIR__ . '/../..' . '/app/Models/DataAsalPerolehan.php',
         'App\\Models\\DataJenisAset' => __DIR__ . '/../..' . '/app/Models/DataJenisAset.php',
         'App\\Models\\DetailPeminjaman' => __DIR__ . '/../..' . '/app/Models/DetailPeminjaman.php',
+        'App\\Models\\Diskon' => __DIR__ . '/../..' . '/app/Models/Diskon.php',
         'App\\Models\\JenisBarang' => __DIR__ . '/../..' . '/app/Models/JenisBarang.php',
         'App\\Models\\LokasiPenempatan' => __DIR__ . '/../..' . '/app/Models/LokasiPenempatan.php',
         'App\\Models\\Mutasi' => __DIR__ . '/../..' . '/app/Models/Mutasi.php',
@@ -741,6 +744,8 @@ class ComposerStaticInit43dc8076c6bc5017979feabe1ecad41f
         'Cron\\HoursField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/HoursField.php',
         'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
+        'Database\\Factories\\BungaFactory' => __DIR__ . '/../..' . '/database/factories/BungaFactory.php',
+        'Database\\Factories\\DiskonFactory' => __DIR__ . '/../..' . '/database/factories/DiskonFactory.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\BarangSeeder' => __DIR__ . '/../..' . '/database/seeders/BarangSeeder.php',
         'Database\\Seeders\\DataAsalPerolehanSeeder' => __DIR__ . '/../..' . '/database/seeders/DataAsalPerolehanSeeder.php',

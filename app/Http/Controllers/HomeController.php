@@ -74,6 +74,7 @@ class HomeController extends Controller
 
     public function maindashboard()
     {
+
         $tt = 0;
         $barang = 0;
         $d = 0;

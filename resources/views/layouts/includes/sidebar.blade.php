@@ -5,12 +5,11 @@
 
 
             <li class="nav-item {{ request()->is('redirects*') ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="{{ url('/dashboard') }}">
+                <a class="nav-link collapsed" href="{{ route('dashboard') }}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#formss-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-person"></i><span>Data User</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -38,7 +37,6 @@
                     </li>
                 </ul>
             </li><!-- End Forms Nav -->
-
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse"

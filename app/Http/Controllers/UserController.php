@@ -2,17 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Roles;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-
-use Illuminate\Http\Request;
-
 class UserController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //DATA USER/PEMINJAM
     public function index()
     {
@@ -54,15 +65,6 @@ class UserController extends Controller
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -117,6 +119,8 @@ class UserController extends Controller
         } elseif ($akun->roles_id == 2) {
             return redirect()->route('data-kepala')->with('success', 'Data Berhasil Ditambahkan!');
         } elseif ($akun->roles_id == 3) {
+            return redirect()->route('data-user')->with('success', 'Data Berhasil Ditambahkan!');
+        } elseif ($akun->roles_id == 4) {
             return redirect()->route('data-user')->with('success', 'Data Berhasil Ditambahkan!');
         }
     }

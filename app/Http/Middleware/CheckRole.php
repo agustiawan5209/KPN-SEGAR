@@ -17,11 +17,18 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, ...$role)
     {
-        if (Auth::user() && in_array(Auth::user()->roles_id, $role)) {
+
+        // dd(Auth::user()->roles_id);
+        if(Auth::user()->roles_id == 1){
             return $next($request);
         }
+        if (in_array(Auth::user()->roles_id, $role)) {
+            return $next($request);
+        }else{
+            abort(403);
 
-        // abort(403);
+        }
+
         return redirect()->route('dashboard');
     }
 }

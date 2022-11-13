@@ -19,7 +19,7 @@ class RolesSeeder extends Seeder
         $posts = [
             [
                 'id' => "1",
-                'roles' => "Admin",
+                'roles' => "pengurus",
             ],
             [
                 'id' => "2",

@@ -236,24 +236,20 @@ class PinjamController extends Controller
                 ->back()
                 ->with('warning', 'Maaf jumlah barang yang anda pinjam melebihi dari sisa stok yang ada');
         } else {
-            $pinjam = new Pinjam();
-            $pinjam->kode_peminjaman = $book_id;
-            $pinjam->barangs_id = $request->barangs_id;
-            $pinjam->users_id = $request->users_id;
-            $pinjam->nama_peminjam = $request->nama_peminjam;
-            $pinjam->jenis_peminjaman = $request->jenis_peminjaman;
-            $pinjam->tujuan = $request->tujuan;
-            $pinjam->tgl_pengajuan = $request->tgl_pengajuan;
-            // $pinjam->tgl_pinjam = $request->tgl_pengajuan;
-            $pinjam->tgl_kembali = $request->tgl_kembali;
-            $pinjam->jumlah_pinjam = $request->jumlah_pinjam;
-
-            // Noaktifkan SUrat Pengantar
-            // $pinjam->surat_pinjam = $request->surat_pinjam;
-            // if ($request->hasFile('surat_pinjam')) {
-            //     $request->file('surat_pinjam')->move('surat/', $request->file('surat_pinjam')->getClientOriginalName());
-            //     $pinjam->surat_pinjam = $request->file('surat_pinjam')->getClientOriginalName();
-            // }
+            if ($request->jenis_peminjaman == 1) {
+                $pinjam = new Pinjam();
+                $pinjam->kode_peminjaman = $book_id;
+                $pinjam->barangs_id = $request->barangs_id;
+                $pinjam->users_id = $request->users_id;
+                $pinjam->nama_peminjam = $request->nama_peminjam;
+                $pinjam->jenis_peminjaman = $request->jenis_peminjaman;
+                $pinjam->tujuan = $request->tujuan;
+                $pinjam->tgl_pengajuan = $request->tgl_pengajuan;
+                // $pinjam->tgl_pinjam = $request->tgl_pengajuan;
+                $pinjam->tgl_kembali = $request->tgl_kembali;
+                $pinjam->jumlah_pinjam = $request->jumlah_pinjam;
+            } else {
+            }
             $pinjam->save();
             $trxstatus = new TrxStatus();
             $trxstatus->kode_peminjaman = $book_id;
@@ -270,10 +266,10 @@ class PinjamController extends Controller
             $brg->update([
                 'jumlah' => intval($brg->jumlah - $request->jumlah_pinjam),
             ]);
-            Notification::send($pinjam,new NotifPinjam([
-                'nama'=> $user->name,
-                'barang'=> $brg->kode . ','. $brg->spesifikasi . ', ',
-                'jumlah'=> $request->jumlah_pinjam,
+            Notification::send($pinjam, new NotifPinjam([
+                'nama' => $user->name,
+                'barang' => $brg->kode . ',' . $brg->spesifikasi . ', ',
+                'jumlah' => $request->jumlah_pinjam,
             ]));
             return redirect()
                 ->back()
@@ -292,7 +288,7 @@ class PinjamController extends Controller
     {
         $pinjam = Pinjam::where('kode_peminjaman', $request->input('kode_peminjaman'))->first();
 
-        if($request->status_id == 2){
+        if ($request->status_id == 2) {
             $brg = Barang::where('id', $request->barang_id)->first();
             // dd(intval($brg->jumlah - $request->jumlah_pinjam));
             $brg->update([

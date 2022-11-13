@@ -86,14 +86,14 @@
                         <div class="col-sm-10">
 
                             <input class="form-check-input" type="radio" name="jenis_peminjaman" name="gridRadios"
-                                id="gridRadios1" value="Pribadi" checked>
+                                id="gridRadios1" value="1" checked>
                             <label class="form-check-label" for="gridRadios1">
-                                Pribadi
+                                Barang
                             </label>
                             <input class="form-check-input" type="radio" name="jenis_peminjaman" name="gridRadios"
-                                id="gridRadios2" value="Keperluan Projek">
+                                id="gridRadios2" value="2">
                             <label class="form-check-label" for="gridRadios2">
-                                Keperluan Projek
+                                Uang
                             </label>
                         </div>
                     </fieldset>

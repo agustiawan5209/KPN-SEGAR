@@ -83,19 +83,7 @@
 
                     <fieldset class="row mb-3">
                         <legend class="col-form-label col-sm-2 pt-0">Jenis Peminjaman</legend>
-                        <div class="col-sm-10">
 
-                            <input class="form-check-input" type="radio" name="jenis_peminjaman" name="gridRadios"
-                                id="gridRadios1" value="1" checked>
-                            <label class="form-check-label" for="gridRadios1">
-                                Barang
-                            </label>
-                            <input class="form-check-input" type="radio" name="jenis_peminjaman" name="gridRadios"
-                                id="gridRadios2" value="2">
-                            <label class="form-check-label" for="gridRadios2">
-                                Uang
-                            </label>
-                        </div>
                     </fieldset>
 
 

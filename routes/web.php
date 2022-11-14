@@ -19,6 +19,7 @@ use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\DataJenisAsetController;
 use App\Http\Controllers\DataAsalPerolehanController;
 use App\Http\Controllers\JenisBungaController;
+use App\Http\Controllers\PinjamUang;
 use App\Models\Pinjam;
 
 /*
@@ -328,6 +329,11 @@ Route::middleware(['auth', 'check.role:3,4'])->group(function () {
     });
 
     //PINJAM NEW
+    Route::resource('pinjamUang', PinjamUang::class)->parameters([
+        'edit'=> 'id',
+        'update'=> 'id',
+        'destroy'=> 'id',
+    ])->name('*', 'Pinjam-Uang');
 
     Route::get('/pinjam/formulir', function () {
         return view('pinjam.formulir');

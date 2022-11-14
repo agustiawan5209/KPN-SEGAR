@@ -236,21 +236,18 @@ class PinjamController extends Controller
                 ->back()
                 ->with('warning', 'Maaf jumlah barang yang anda pinjam melebihi dari sisa stok yang ada');
         } else {
-            if ($request->jenis_peminjaman == 1) {
                 $pinjam = new Pinjam();
                 $pinjam->kode_peminjaman = $book_id;
                 $pinjam->barangs_id = $request->barangs_id;
                 $pinjam->users_id = $request->users_id;
                 $pinjam->nama_peminjam = $request->nama_peminjam;
-                $pinjam->jenis_peminjaman = $request->jenis_peminjaman;
+                $pinjam->jenis_peminjaman = "Barang";
                 $pinjam->tujuan = $request->tujuan;
                 $pinjam->tgl_pengajuan = $request->tgl_pengajuan;
                 // $pinjam->tgl_pinjam = $request->tgl_pengajuan;
                 $pinjam->tgl_kembali = $request->tgl_kembali;
                 $pinjam->jumlah_pinjam = $request->jumlah_pinjam;
-            } else {
 
-            }
             $pinjam->save();
             $trxstatus = new TrxStatus();
             $trxstatus->kode_peminjaman = $book_id;

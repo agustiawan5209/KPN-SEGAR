@@ -105,11 +105,11 @@
                                                 {{ $data->barangs->spesifikasi }}
                                             </td>
                                             <td>{{ $data->jumlah_pinjam }} </td> --}}
-                                              @if ($data->jenis_peminjaman == "Barang")
-                                              <td>
-                                                @include('modal')
-                                               </td>
-                                              @endif
+                                                @if ($data->jenis_peminjaman == 'Barang')
+                                                    <td>
+                                                        @include('modal')
+                                                    </td>
+                                                @endif
 
 
                                                 <td>
@@ -152,8 +152,7 @@
                                                         </button>
 
                                                         <div class="modal fade"
-                                                            id="statuspengembalian{{ $data->id }}"
-                                                            tabindex="-1">
+                                                            id="statuspengembalian{{ $data->id }}" tabindex="-1">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
@@ -168,8 +167,7 @@
                                                                             method="GET"
                                                                             enctype="multipart/form-data">
                                                                             @csrf
-                                                                            <input type="text"
-                                                                                name="kode_peminjaman"
+                                                                            <input type="text" name="kode_peminjaman"
                                                                                 value={{ $data->kode_peminjaman }}
                                                                                 hidden>
                                                                             <input type="hidden" name="users_id"
@@ -262,7 +260,7 @@
                                                                             <input type="hidden" name="status_id"
                                                                                 value="2">
                                                                             <input type="hidden" name="barang_id"
-                                                                                value="{{$data->barangs_id}}">
+                                                                                value="{{ $data->barangs_id }}">
                                                                             <div class="row mb-3">
                                                                                 <center>
                                                                                     <h5 style="align-content: center"
@@ -316,10 +314,7 @@
                 </div>
             </div>
         </div> <!-- End Table with stripped rows -->
+    </section>
+</main>
 
-        </div>
-        </div>
-
-
-
-    @endsection
+@endsection

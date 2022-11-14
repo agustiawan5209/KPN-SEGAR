@@ -1,11 +1,15 @@
 @php
-    $trs = \App\Models\TrxStatus::where('pinjams_id', $data->id)->where('kode_peminjaman', $data->kode_peminjaman)->orderBy('id','desc')->latest()->first();
+    $trs = \App\Models\TrxStatus::where('pinjams_id', $data->id)
+        ->where('kode_peminjaman', $data->kode_peminjaman)
+        ->orderBy('id', 'desc')
+        ->latest()
+        ->first();
     // dd($trs);
-$b = \App\Models\Status::where('id', '=', $trs->status_id)->first();
+    $b = \App\Models\Status::where('id', '=', $trs->status_id)->first();
 @endphp
 <div class="badge bg-light text-black btn-sm w-70 p-1 d-flex justify-content-between text-wrap dropdown-toggle{{ $data->kode_peminjaman }}"
-    data-bs-toggle="modal" data-bs-target="#status{{ $data->kode_peminjaman }}"
-    style="font-size: 1rem" id='#status{{ $data->kode_peminjaman }}'> <?= $b->ikon ?> {{ $b->status }} </div>
+    data-bs-toggle="modal" data-bs-target="#status{{ $data->kode_peminjaman }}" style="font-size: 1rem"
+    id='#status{{ $data->kode_peminjaman }}'> <?= $b->ikon ?> {{ $b->status }} </div>
 
 
 {{-- Modal Status --}}

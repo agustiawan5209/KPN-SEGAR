@@ -72,12 +72,12 @@ Route::get('/filterthn/{tahun}', [HomeController::class, 'rekap_tahun']); //mena
 // Route::middleware(['auth', 'check.role:1,2,3'])->get('/dashboard', [HomeController::class, "dashboardall"])->name('dashboardall');
 Auth::routes();
 // Data Bunga
-Route::group(['auth', 'check.role:2'], function(){
-    Route::resource('JenisBunga',JenisBungaController::class)->parameters([
+Route::group(['auth', 'check.role:2'], function () {
+    Route::resource('JenisBunga', JenisBungaController::class)->parameters([
         'edit' => 'id',
         'store' => 'id',
         'destroy' => 'id',
-    ])->name('*','jenis-bunga');
+    ])->name('*', 'jenis-bunga');
 });
 //--SEMUA ROUTE ROLE ADMIN ( ROLE 1)--//
 Route::middleware(['auth', 'check.role:1,2'])->group(function () {
@@ -330,11 +330,11 @@ Route::middleware(['auth', 'check.role:3,4'])->group(function () {
 
     //PINJAM NEW
     Route::resource('pinjamUang', PinjamUang::class)->parameters([
-        'edit'=> 'id',
-        'update'=> 'id',
-        'destroy'=> 'id',
+        'edit' => 'id',
+        'update' => 'id',
+        'destroy' => 'id',
     ])->name('*', 'Pinjam-Uang');
-
+    Route::get('pinjamuang/find/{id}', [PinjamUang::class, 'getJenis']);
     Route::get('/pinjam/formulir', function () {
         return view('pinjam.formulir');
     });
@@ -409,7 +409,6 @@ Route::middleware(['auth', 'check.role:3,4'])->group(function () {
     Route::get('/data-kepala/edit/{id}', 'App\Http\Controllers\UserController@editkepala')->name('editkepala');
     Route::post('/data-kepala/update/{id}', 'App\Http\Controllers\UserController@updatekepala')->name('updatekepala');
     Route::get('/data-kepala/hapus/{id}', 'App\Http\Controllers\UserController@hapuskepala')->name('hapuskepala');
-
 });
 
 //--ROUTE ROLE ADMIN DAN KEPALA UNIT (ROLE 1 DAN 2) --//
@@ -471,7 +470,7 @@ Route::get('/barang/select2', [BarangController::class, 'select2Barang'])->name(
 
 // Filter Data
 Route::get('/Filter/{data}', [StatusController::class, 'filter'])->name('filter-data');
-Route::get('delete/notif/{id}', function($id){
+Route::get('delete/notif/{id}', function ($id) {
     Pinjam::find($id)->notifications()->delete();
     return redirect()->back();
 })->name('delete-notif');

@@ -23,16 +23,9 @@ class CreateBarangsTable extends Migration
             $table->string('kode');
             $table->string('spesifikasi');
             $table->string('foto');
-            $table->string('kegunaan');
             $table->date('tanggal_perolehan');
             // $table->string('nilai_perolehan')->nullable();
-            $table->string('legalitas')->nullable();
-            $table->string('luas')->nullable();
-            $table->string('beban_penyusutan')->nullable();
-            $table->string('nilai_buku')->nullable();
-            $table->foreignId('lokasi')->nullable();
-            $table->string('lokasi_aset')->nullable();
-            $table->string('penanggung_jawab');
+            $table->string('harga')->nullable();
             //  $table->string('jumlah_awal');
             $table->string('jumlah');
             $table->string('kondisi');

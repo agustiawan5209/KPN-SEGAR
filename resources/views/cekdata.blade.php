@@ -32,7 +32,7 @@
                                     <th scope="col">Foto</th>
                                     <th scope="col">Jumlah Awal</th>
                                     <th scope="col">Sisa barang</th>
-                                    {{-- <th scope="col">Keranjang</th> --}}
+                                    <th scope="col">harga</th>
                                     <th scope="col">Detail</th>
                                 </tr>
                             </thead>
@@ -62,18 +62,9 @@
                                                 @endif
                                             </td>
                                                 {{-- Keranjang --}}
-                                            {{-- <td>
-                                                <form action="{{ route('isi-keranjang') }}" method="POST">
-                                                    @csrf
-                                                    @method('POST')
-                                                    <input type="hidden" name="user_id"
-                                                        value="{{ Auth::user()->id }}">
-                                                    <input type="hidden" name="barang_id" value="{{ $data->id }}">
-                                                    <button type="submit" class="btn btn-sm btn-primary">
-                                                        <i class="bi bi-cart-plus-fill"></i>
-                                                    </button>
-                                                </form>
-                                            </td> --}}
+                                            <td>
+                                               Rp.{{number_format($data->harga,0,2)}}
+                                            </td>
                                             <td>
 
                                                 <!-- Large Modal -->

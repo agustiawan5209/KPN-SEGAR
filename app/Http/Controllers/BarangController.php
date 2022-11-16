@@ -379,6 +379,7 @@ class BarangController extends Controller
             'spesifikasi' => 'required',
             'kondisi' => 'required',
             'ket' => 'required',
+            'harga' => ['required', 'numeric'],
         ]);
         // dd($validate);
         // $inputbarang = \App\Models\Barang::create($request->all());
@@ -391,16 +392,8 @@ class BarangController extends Controller
             $inputbarang->kode = $request->kode;
             $inputbarang->spesifikasi = $request->spesifikasi;
             $inputbarang->foto = $request->foto;
-            $inputbarang->kegunaan = $request->kegunaan;
             $inputbarang->tanggal_perolehan = $request->tanggal_perolehan;
-            // $inputbarang->nilai_perolehan = $request->nilai_perolehan;
-            $inputbarang->legalitas = $request->legalitas;
-            $inputbarang->luas = $request->luas;
-            $inputbarang->beban_penyusutan = $request->beban_penyusutan;
-            $inputbarang->nilai_buku = $request->nilai_buku;
-            $inputbarang->lokasi = $request->lokasi;
-            $inputbarang->lokasi_aset = $request->lokasi_aset;
-            $inputbarang->penanggung_jawab = $request->penanggung_jawab;
+            $inputbarang->harga = $request->harga;
             // $inputbarang->jumlah_awal = $request->jumlah_awal;
             $inputbarang->jumlah = $request->jumlah;
             $inputbarang->kondisi = $request->kondisi;

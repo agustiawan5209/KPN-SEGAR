@@ -136,23 +136,6 @@
                                                                                 <div class="row">
                                                                                     <div
                                                                                         class="col-lg-5 col-md-4 label">
-                                                                                        Jenis aset</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->jenis_asets->nama_jenisaset }}
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Kegunaan</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->kegunaan }}</div>
-                                                                                </div>
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
                                                                                         Tgl Perolehan</div>
                                                                                     <div class="col-lg-7 col-md-8">
                                                                                         <?php echo date('d F Y', strtotime($data->tanggal_perolehan)); ?></div>
@@ -164,56 +147,6 @@
                                                                                         Asal Perolehan</div>
                                                                                     <div class="col-lg-7 col-md-8">
                                                                                         {{ $data->asal_perolehans->nama_asalperolehan }}
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                {{-- <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Nilai Perolehan</div>
-                                                                                    <div class="col-lg-7 col-md-8"> Rp.
-                                                                                        {{ $data->nilai_perolehan }}
-                                                                                    </div>
-                                                                                </div> --}}
-
-                                                                                {{-- <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Legalitas</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->legalitas }}</div>
-                                                                                </div> --}}
-
-                                                                                {{-- <div class="row">
-                                                                                    <div class="col-lg-5 col-md-4 label">Luas</div>
-                                                                                    <div class="col-lg-7 col-md-8"> {{ $data->luas}}</div>
-                                                                                    </div>
-
-                                                                                    <div class="row">
-                                                                                    <div class="col-lg-5 col-md-4 label">Beban Penyusutan</div>
-                                                                                    <div class="col-lg-7 col-md-8"> {{ $data->beban_penyusutan}}</div>
-                                                                                    </div>
-
-                                                                                    <div class="row">
-                                                                                    <div class="col-lg-5 col-md-4 label">Nilai Buku</div>
-                                                                                    <div class="col-lg-7 col-md-8"> {{ $data->nilai_buku}}</div>
-                                                                                    </div> --}}
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Lokasi</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                      Lantai : {{$data->lokasipenempatan->lantai}}/ Ruangan : {{$data->lokasipenempatan->ruangan}}
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Penanggung Jawab</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->penanggung_jawab }}
                                                                                     </div>
                                                                                 </div>
 
@@ -281,9 +214,6 @@
 
                 </td>
                 <td>
-                    <a href="{{route('detail-Barang-Mutasi', ['id'=> $data->id])}}" class="btn btn-sm" style="background-color:  #4e9764; color:#FFFFFF">
-                        Mutasi
-                     </a>
                     <!-- Large Modal -->
 
                     <button type="button" class="btn btn-sm" style="background-color:  #e6ad28; color:#FFFFFF"

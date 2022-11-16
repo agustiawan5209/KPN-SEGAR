@@ -38,7 +38,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Formulir Input Data Aset Bergerak</h5>
+                        <h5 class="card-title">Formulir Input Data</h5>
 
                         <!-- validation Form Elements -->
 
@@ -48,8 +48,8 @@
                             <div class="row mb-3">
                                 <label for="validationCustom01" class="col-sm-2 col-form-label">Kode</label>
                                 <div class="col-sm-10">
-                                    <input type="text" id="validationCustom01" value="{{$Kode}}" readonly name="kode" class="form-control"
-                                        required>
+                                    <input type="text" id="validationCustom01" value="{{ $Kode }}" readonly
+                                        name="kode" class="form-control" required>
                                     <div class="invalid-feedback">
                                         Harus di isi
                                     </div>
@@ -112,36 +112,7 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="row mb-3">
-                  <label for="validationTooltip06" class="col-sm-2 col-form-label">Jenis Aset</label>
-                  <div class="col-sm-10">
 
-                    <select class="form-select" type = "hidden" value ="1" name="jenis_asets_id" id="validationTooltip06" aria-label="Default select example">
-                      <option value=''>Silakan Pilih Jenis Aset</option>
-                      @foreach ($jenisaset as $data)
-                      <option value="{{ $data->id }}"> {{ $data->nama_jenisaset}}</option>
-                      @endforeach
-                    </select>
-                    <div class="invalid-feedback">
-                      Harus di isi
-                    </div>
-                  </div>
-                </div> --}}
-
-
-                            <div class="row mb-3">
-                                <label for="validationTooltip04" class="col-sm-2 col-form-label">Kegunaan</label>
-                                <div class="col-sm-10">
-                                    <input type="text" id="validationTooltip04" name="kegunaan" class="form-control"
-                                        required>
-                                    <div class="invalid-feedback">
-                                        Harus di isi
-                                    </div>
-                                </div>
-                            </div>
-
-                            {{-- <input type=file oninput="pic.src=window.URL.createObjectURL(this.files[0])">
-                            <img id="pic" style="width: 250px;" /> --}}
 
                             <div class="row mb-3">
                                 <label for="validationTooltip05" class="col-sm-2 col-form-label">Tanggal
@@ -177,79 +148,21 @@
 
                             <div class="row mb-3">
 
-                                {{-- <div class="row mb-3">
-                                    <label for="validationTooltip04" class="col-sm-2 col-form-label">Legalitas</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" id="validationTooltip04" name="legalitas"
-                                            class="form-control" required>
-                                        <div class="invalid-feedback">
-                                            Harus di isi
-                                        </div>
-                                    </div>
-                                </div> --}}
 
-                                {{-- <div class="row mb-3">
-                  <label for="validationTooltip04" class="col-sm-2 col-form-label">Luas</label>
-                  <div class="col-sm-10">
-                    <input type="text" id="validationTooltip04" name="luas" class="form-control"  required>
-                    <div class="invalid-feedback">
-                      Harus di isi
-                    </div>
-                  </div>
-                </div> --}}
-
-                                {{-- <div class="row mb-3">
-                  <label for="validationTooltip04" class="col-sm-2 col-form-label">Beban Penyusutan</label>
-                  <div class="col-sm-10">
-                    <input type="text" id="validationTooltip04" name="beban_penyusutan" class="form-control"  required>
-                    <div class="invalid-feedback">
-                      Harus di isi
-                    </div>
-                  </div>
-                </div> --}}
-
-                                {{-- <div class="row mb-3">
-                  <label for="validationTooltip04" class="col-sm-2 col-form-label">Nilai Buku</label>
-                  <div class="col-sm-10">
-                    <input type="text" id="validationTooltip04" name="nilai_buku" class="form-control"  required>
-                    <div class="invalid-feedback">
-                      Harus di isi
-                    </div>
-                  </div>
-                </div> --}}
-
-
-                <div class="row mb-3">
-                    <label for="validationTooltip04" class="col-sm-2 col-form-label">Lokasi</label>
-                    <div class="col-sm-10">
-                        <select class="form-select" name="lokasi" id="validationTooltip04"
-                            aria-label="Default select example" value="{{old('lokasi')}}">
-                            <option value=''>Pilih Lokasi Penempatan</option>
-                            @foreach ($lokasi_penempatan as $data)
-                                <option value="{{ $data->id }}">Lantai {{ $data->lantai }}/ Ruangan {{$data->ruangan}}</option>
-                            @endforeach
-                        </select>
-                        @error('lokasi')
-                        <div class="text-danger">
-                            Harus di isi
-                        </div>
-                    @enderror
-                    </div>
-                </div>
 
 
 
                                 <div class="row mb-3">
-                                    <label for="validationTooltip04" class="col-sm-2 col-form-label">Penanggung
-                                        Jawab</label>
+                                    <label for="validationTooltip04" class="col-sm-2 col-form-label">Harga Barang</label>
                                     <div class="col-sm-10">
-                                        <input type="text" id="validationTooltip04" name="penanggung_jawab"
+                                        <input type="text" id="validationTooltip04" name="harga"
                                             class="form-control" required>
                                         <div class="invalid-feedback">
                                             Harus di isi
                                         </div>
                                     </div>
                                 </div>
+
 
 
                                 <div class="row mb-3">
@@ -257,21 +170,12 @@
                                         Barang</label>
                                     <div class="col-sm-10">
                                         <input type="text" id="validationTooltip04" name="jumlah"
-                                            class="form-control" required  value="{{old('jumlah')}}">
+                                            class="form-control" required value="{{ old('jumlah') }}">
                                         <div class="invalid-feedback">
                                             Harus di isi
                                         </div>
                                     </div>
                                 </div>
-
-                                {{-- <div class="row mb-3">
-                                    <label for=" " class="col-sm-2 col-form-label">Jumlah</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="jumlah" class="form-control" required>
-
-                                    </div>
-                                </div> --}}
-
                                 <div class="row mb-3">
                                     <label for="validationTooltip06" class="col-sm-2 col-form-label">Satuan</label>
                                     <div class="col-sm-10">
@@ -300,10 +204,10 @@
                                             <option value="Tidak Baik">Tidak Baik</option>
                                         </select>
                                         @error('kondisi')
-                                        <div class="text-danger">
-                                            Harus di isi
-                                        </div>
-                                    @enderror
+                                            <div class="text-danger">
+                                                Harus di isi
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
 

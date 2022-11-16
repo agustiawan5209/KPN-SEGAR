@@ -216,7 +216,6 @@ class BarangController extends Controller
         $jenisbarang = JenisBarang::all();
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
-        abort_if(Auth::user()->roles->id == 1, 401);
         return view('cekdata', [
             'title' => 'peralatan',
             'jenisbarang' => $jenisbarang,

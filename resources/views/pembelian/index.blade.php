@@ -27,7 +27,7 @@
                     <div class="card-body p-0">
 
                         <center>
-                            <h5 style="align-content: center" class="card-title">Data Peminjaman
+                            <h5 style="align-content: center" class="card-title">Data Pembelian
 
                             </h5>
                             <center>
@@ -40,17 +40,12 @@
                                             <th scope="col sm">No</th>
                                             <th scope="col">Kode </th>
                                             <th scope="col">Nama </th>
-                                            <th scope="col">Tgl Pengajuan</th>
-                                            <th scope="col">Tgl Peminjaman</th>
-                                            <th scope="col">Tgl Pengembalian</th>
-                                            {{-- <th scope="col">Tujuan</th>
-                                            <th scope="col">barang pinjam</th>
-                                            <th scope="col">jumlah pinjam </th> --}}
+                                            <th scope="col">Tgl Pembelian</th>
                                             <th scope="col">Tujuan</th>
-                                            <th scope="col">jumlah pinjam </th>
+                                            <th scope="col">barang</th>
+                                            <th scope="col">Total </th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Aksi</th>
-
                                         </tr>
                                     </thead>
 

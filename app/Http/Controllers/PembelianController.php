@@ -89,10 +89,10 @@ class PembelianController extends Controller
         $book_id = 0;
         $data = Pinjam::max('kode_peminjaman');
         if ($data == null) {
-            $book_id = 'PB-001';
+            $book_id = 'BB-001';
         }
         // dd($data);
-        $huruf = 'PB';
+        $huruf = 'BB';
         $urutan = (int) substr($data, 3, 3);
         $urutan++;
         if ($urutan < 10) {
@@ -111,12 +111,12 @@ class PembelianController extends Controller
                 $pinjam->barangs_id = $request->barangs_id;
                 $pinjam->users_id = $request->users_id;
                 $pinjam->nama_peminjam = $request->nama_peminjam;
-                $pinjam->jenis_peminjaman = "Barang";
+                $pinjam->jenis_peminjaman = "Beli";
                 $pinjam->tujuan = $request->tujuan;
                 $pinjam->tgl_pengajuan = $request->tgl_pengajuan;
                 // $pinjam->tgl_pinjam = $request->tgl_pengajuan;
                 $pinjam->tgl_kembali = $request->tgl_kembali;
-                $pinjam->jumlah_pinjam = $request->jumlah_pinjam;
+                $pinjam->jumlah_pinjam = $request->total;
 
             $pinjam->save();
             $trxstatus = new TrxStatus();
@@ -140,7 +140,7 @@ class PembelianController extends Controller
                 'jumlah' => $request->jumlah_pinjam,
             ]));
             return redirect()
-                ->back()
+                ->route('Pembelian.index')
                 ->with('success', 'Pengajuan Peminjaman Sukses');
         }
     }
@@ -153,7 +153,48 @@ class PembelianController extends Controller
      */
     public function show($id)
     {
-        //
+        $dataasalperolehan = DataAsalPerolehan::all();
+        $datajenisaset = DataJenisAset::all();
+        $pinjam = Pinjam::all();
+        $jenisbarang = JenisBarang::all();
+        $datasatuan = Satuan::all();
+        $inputbarang = Barang::all();
+        $jenisbarang = JenisBarang::all();
+        $inputbarang = Barang::find($id);
+        return view('pembelian.edit', [
+            'title' => ' ',
+            'jenisbarang' => $jenisbarang,
+            'jenisaset' => $datajenisaset,
+            'dataasalperolehan' => $dataasalperolehan,
+            'datasatuan' => $datasatuan,
+            'inputbarang' => $inputbarang,
+            'jenisbarang' => $jenisbarang,
+            'pinjam' => $pinjam,
+        ]);
+    }
+    public function detail($id)
+    {
+        $dataasalperolehan = DataAsalPerolehan::all();
+        $datajenisaset = DataJenisAset::all();
+        $jenisbarang = JenisBarang::all();
+        $datasatuan = Satuan::all();
+        $inputbarang = Barang::all();
+        $akun = User::all();
+        $pinjam = Pinjam::whereNull('ket')->whereNotNull('barangs_id')->where('users_id', Auth::user()->id)->get();
+        $status = Status::all();
+        $trxstatus = TrxStatus::all();
+        return view('pembelian.edit', [
+            'title' => 'pengajuan',
+            'jenisbarang' => $jenisbarang,
+            'jenisaset' => $datajenisaset,
+            'dataasalperolehan' => $dataasalperolehan,
+            'datasatuan' => $datasatuan,
+            'inputbarang' => $inputbarang,
+            'status' => $status,
+            'pinjam' => $pinjam,
+            'akun' => $akun,
+            'trxstatus' => $trxstatus,
+        ]);
     }
 
     /**
@@ -216,6 +257,22 @@ class PembelianController extends Controller
             'pinjam' => $pinjam,
             'akun' => $akun,
             'trxstatus' => $trxstatus,
+        ]);
+    }
+    public function cekdata(){
+        $dataasalperolehan = DataAsalPerolehan::all();
+        $datajenisaset = DataJenisAset::all();
+        $jenisbarang = JenisBarang::all();
+        $datasatuan = Satuan::all();
+        $inputbarang = Barang::all();
+        abort_if(Auth::user()->roles->id == 1, 401);
+        return view('pembelian.cekdata', [
+            'title' => 'peralatan',
+            'jenisbarang' => $jenisbarang,
+            'jenisaset' => $datajenisaset,
+            'dataasalperolehan' => $dataasalperolehan,
+            'datasatuan' => $datasatuan,
+            'inputbarang' => $inputbarang,
         ]);
     }
 }

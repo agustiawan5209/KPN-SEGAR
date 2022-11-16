@@ -19,234 +19,6 @@
         });
     </script>
 
-    <script>
-        var next = 0
-        var total = 1
-        var notIn = []
-        $(function() {
-
-            $(document).on('click', '.btn-add', function(e) {
-                e.preventDefault();
-
-                if (total <= 4) {
-                    $('#btn' + next).removeClass('btn-add').addClass('btn-remove')
-                        .removeClass('btn-success').addClass('btn-danger')
-                        .html('<i class="fa fa-minus" aria-hidden="true">-</i>')
-
-                    next++
-                    total++
-
-                    $('#add-barang').append(`<div class="row entry my-2">
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <select
-                                            onchange="barangTerpilih(this)"
-                                                class="form-control select2"
-                                                data-live-search="true" name="barangs_id[]" id="barangs_id${next}">
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-5">
-                                        <input class="form-control form-control" value=" "
-                                            id="jumlah_pinjam[] "name="jumlah_pinjam[]" type="number"
-                                            placeholder=" jumlah item ">
-                                    </div>
-
-
-
-                                    <div class="col-md-2">
-                                        <button type="button" class="btn btn-success btn-sm btn-add" id="btn${next}">
-                                            <i class="fa fa-plus" aria-hidden="true">+</i>
-                                        </button>
-                                    </div>
-                                </div>`)
-
-
-                    $('#barangs_id' + next).select2({
-                        theme: 'bootstrap-5',
-                        cache: true,
-                        placeholder: 'Pilih Barang',
-                        ajax: {
-                            url: '{!! route('select.barang') !!}',
-                            dataType: 'json',
-                            delay: 400,
-                            data: function(params) {
-                                return {
-                                    q: $.trim(params.term),
-                                    id: notIn
-                                };
-                            },
-                            processResults: function(data) {
-                                return {
-                                    results: $.map(data, function(item) {
-                                        return {
-                                            text: item.spesifikasi,
-                                            id: item.id
-                                        }
-                                    })
-                                };
-                            },
-                        },
-                    });
-                } else {
-                    Swal.fire({
-                        title: 'Mohon Maaf!',
-                        text: 'Anda Tidak Dapat Menambah Barang Lagi',
-                        icon: 'error',
-                        // confirmButtonText: 'Cool'
-                    })
-                }
-
-
-            }).on('click', '.btn-remove', function(e) {
-                $(this).closest('.entry').remove();
-                total--
-                return false;
-            });
-
-            // $('#datefield').on('input', function() {
-            //     $('#datefield2').attr('min', this.value);
-            // });
-            // $('#datefield2').on('input', function() {
-            //     $('#datefield').attr('max', this.value);
-            // });
-
-
-        });
-    </script>
-
-
-    <script>
-        function barangTerpilih(el) {
-            notIn = $("select[name='barangs_id[]']").map(function() {
-                return $(this).val();
-            }).get();
-            // console.log(notIn)
-        }
-
-        $(function() {
-
-            $('#barangs_id0').select2({
-                theme: 'bootstrap-5',
-                cache: true,
-                placeholder: 'Pilih Barang',
-                ajax: {
-                    url: '{!! route('select.barang') !!}',
-                    dataType: 'json',
-                    delay: 400,
-                    data: function(params) {
-                        return {
-                            q: $.trim(params.term),
-                            id: notIn
-                        };
-                    },
-                    processResults: function(data) {
-                        return {
-                            results: $.map(data, function(item) {
-                                return {
-                                    text: item.spesifikasi,
-                                    id: item.id
-                                }
-                            })
-                        };
-                    },
-                },
-            });
-
-            $('#barangs_id1').select2({
-                theme: 'bootstrap-5',
-                cache: true,
-                placeholder: 'Pilih Barang',
-                ajax: {
-                    url: '{!! route('select.barang') !!}',
-                    dataType: 'json',
-                    delay: 400,
-                    data: function(params) {
-                        return {
-                            q: $.trim(params.term),
-                        };
-                    },
-                    processResults: function(data) {
-                        return {
-                            results: $.map(data, function(item) {
-                                return {
-                                    text: item.spesifikasi,
-                                    id: item.id
-                                }
-                            })
-                        };
-                    },
-                },
-            });
-        })
-    </script>
-    <script>
-        $(".js-example-diacritics").select2();
-    </script>
-
-
-    <script>
-        $.fn.select2.amd.define('select2/HideSelectedResultsAdapter', ['select2/utils', 'select2/results'],
-            function(Utils, ResultsList) {
-                var HideSelectedResultsAdapter = function(decorated, $element, options, dataAdapter) {
-                    return decorated.call(this, $element, options, dataAdapter);
-                };
-
-                HideSelectedResultsAdapter.prototype.append = function(decorated, data) {
-                    return decorated.call(this, {
-                        results: $.grep(data.results, function(element) {
-                            return element.selected;
-                        }, true)
-                    });
-                };
-
-                return Utils.Decorate(ResultsList, HideSelectedResultsAdapter);
-            }
-        );
-
-        // USAGE
-        $(function() {
-            $('#elem').select2({
-                resultsAdapter: $.fn.select2.amd.require('select2/HideSelectedResultsAdapter')
-            });
-        });
-    </script>
-
-
-
-
-
-    {{-- <script type="text/javascript">
-        $(document).ready(function() {
-            $('select[name="select_jenisbarang"]').on('change', function() {
-                var jenisbarangID = $(this).val();
-                const PeminjamanForm = $('select[name="barangs_id[]"]');
-
-                PeminjamanForm.val(null);
-                $('select[name="barangs_id[]"]').html('<option value="">semua barang</option>');
-                if (jenisbarangID) {
-                    $.ajax({
-                        url: '/barang/select/' + jenisbarangID,
-                        type: "GET",
-                        dataType: "json",
-                        success: function(data) {
-
-                            $.each(data, function(key, value) {
-                                PeminjamanForm.append('<option value="' + value.id +
-                                    '">' +
-                                    value.nama_barang + '</option>');
-                            });
-
-
-                        }
-                    });
-                }
-            });
-        });
-    </script> --}}
-
-
 
 
 
@@ -268,15 +40,15 @@
         }
     </style>
 
-    <main id="main" class="main">
+    <main id="main" class="main overflow-hidden">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-center pb-0 fs-5">Formulir Konfirmasi Peminjaman Barang</h5></br>
+                <h5 class="card-title text-center pb-0 fs-5">Formulir Peminjaman Barang</h5></br>
 
                 <!-- validation Form Elements -->
 
-                <form action="/peminjaman/update/{{ $peminjaman->id }}" method="POST" enctype="multipart/form-data"
-                    needs-validation" novalidate>
+                <form id="form-formulir" action="{{ route('Pembelian.store') }}" method="POST" enctype="multipart/form-data"
+                    class=" needs-validation" novalidate>
                     @csrf
 
                     <div class="row mb-3">
@@ -295,71 +67,11 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="validationCustom01" class="col-sm-2 col-form-label">Nama Peminjam</label>
+                        <label for="validationCustom01" class="col-sm-2 col-form-label">Nama </label>
                         <div class="col-sm-10">
                             <input type="text" id="validationCustom01" name="nama_peminjam"
-                                value=" {{ $peminjaman->nama_peminjam }}" id=" " readonly class="form-control"
-                                required placeholder=" nama peminjam">
-                            <div class="invalid-feedback">
-                                Harus di isi
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-                    {{-- <fieldset class="row mb-3">
-                        <legend class="col-form-label col-sm-2 pt-0">Jenis Peminjaman</legend>
-                        <div class="col-sm-10">
-
-
-
-                            <input class="form-check-input" type="radio" name="jenis_peminjaman" name="gridRadios"
-                                id="gridRadios1" value="Pribadi" checked>
-                            <label class="form-check-label" for="gridRadios1">
-                                Pribadi
-                            </label>
-                            <input class="form-check-input" type="radio" name="jenis_peminjaman" name="gridRadios"
-                                id="gridRadios2" value="Keperluan Projek">
-                            <label class="form-check-label" for="gridRadios2">
-                                Keperluan Projek
-                            </label>
-                        </div>
-                    </fieldset> --}}
-
-
-
-                    <div class="row mb-3">
-                        <label for="validationTooltip02" class="col-sm-2 col-form-label"> Tujuan Pinjam </label>
-                        <div class="col-sm-10">
-                            <input type="text" value="{{ $peminjaman->tujuan }}" id=" " sid="validationTooltip02"
-                                name="tujuan" class="form-control" required
-                                placeholder=" ex. untuk keperluan proyek A, untuk mengantar keluarga" readonly>
-                            <div class="invalid-feedback">
-                                Harus di isi
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row mb-3">
-                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Pengajuan</label>
-                        <div class="col-sm-10">
-                            <input type="date" id="tgl_pengajuan" value="{{ $peminjaman->tgl_pengajuan }}"
-                                name="tgl_pengajuan" readonly class="form-control" required readonly>
-                            <div class="invalid-feedback">
-                                Harus di isi
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row mb-3">
-                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Peminjaman</label>
-                        <div class="col-sm-10">
-                            <input type="date" id="datefield" value="{{ $peminjaman->tgl_pinjam }}" name="tgl_pinjam"
-                                class="form-control" required readonly>
+                                value=" {{ auth()->user()->name }}" readonly class="form-control" required
+                                placeholder=" nama peminjam">
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>
@@ -367,46 +79,29 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Pengembalian</label>
+                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Pembelian</label>
                         <div class="col-sm-10">
-                            <input type="date" id="datefield2" value="{{ $peminjaman->tgl_kembali }}" name="tgl_kembali"
-                                class="form-control" required readonly>
+                            <input type="date" id="tgl_pengajuan" name="tgl_pengajuan" value="<?php echo date('Y-m-d'); ?>"
+                                readonly class="form-control" required>
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>
                         </div>
                     </div>
-
-                    {{-- <div class="row mb-3">
-                        <label for="validationTooltip03" class="col-sm-2 col-form-label">Surat Pengantar</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="validationTooltip03" name="surat_pinjam"
-                                class="form-control"required readonly>
-                            <div class="invalid-feedback">
-                                Harus di isi
-                            </div>
-                        </div>
-                    </div> --}}
 
                     <div class="row mb-3">
-                        <label for="validationTooltip04" class="col-sm-2 col-form-label">Keterangan</label>
+                        <label class="col-sm-2 col-form-label">Keterangan</label>
                         <div class="col-sm-10">
-                            <input type="text" id="validationTooltip04" value="{{ $peminjaman->ket }}" name="ket"
-                                class="form-control"required readonly>
-                            <div class="invalid-feedback">
-                                Harus di isi
-                            </div>
+                            <input type="text" id=" " name="ket" class="form-control" required
+                                placeholder=" isi keterangan">
+
                         </div>
                     </div>
-
-
-
                     <div class="row mb-3">
-                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Konfirmasi
-                            Ambil Barang</label>
+                        {{-- <label for="validationTooltip04" class="col-sm-2 col-form-label">Status Konfirmasi</label> --}}
                         <div class="col-sm-10">
-                            <input type="date" id="datefield2" value="{{ $peminjaman->tgl_ambil }}" name="tgl_ambil"
-                                class="form-control" required>
+                            <input type="hidden" id="validationTooltip04" value="4" name="status_konfirmasis_id"
+                                class="form-control"required>
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>
@@ -414,42 +109,140 @@
                     </div>
 
 
-                    <div class="row mb-3">
-                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Konfirmasi
-                            Pengembalian</label>
-                        <div class="col-sm-10">
-                            <input type="date" id="datefield2" value="{{ $peminjaman->tgl_konfirmasikembali }}"
-                                name="tgl_konfirmasikembali" class="form-control" required>
-                            <div class="invalid-feedback">
-                                Harus di isi
-                            </div>
-                        </div>
-                    </div>
+
+                    <div class="row g-3 mt-3 border-top pt-2">
+                        <div class="row targetDiv" id="div0">
+                            <div id="group1" class="fvrduplicate">
+                                <center> <label for="validationTooltip06" style="float: center; " col-sm-6
+                                        col-form-label>Peminjaman
+                                        Barang</label>
+                                    <center><br>
 
 
-                    <div class="card-footer">
-                        <button style=" float :right; background-color:   #012970; color:#FFFFFF" type="submit"
-                            class="btn btn btn-sm">Submit</button>
-                    </div>
+
+                                        <div class="row mb-3">
+
+                                            <div class="col-sm-10">
+
+                                                <input type="hidden" id="datefield2" value=" {{ $inputbarang->id }}"
+                                                    name="barangs_id" class="form-control" required readonly>
+                                                <div class="invalid-feedback">
+                                                    Harus di isi
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="validationTooltip05" class="col-sm-2 col-form-label"> Barang
+                                                Pinjam</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" id="datefield2"
+                                                    value="{{ $inputbarang->kode }} {{ $inputbarang->jenis_barangs->jenis_barang }} {{ $inputbarang->spesifikasi }}"
+                                                    name=" " class="form-control" required readonly>
+                                                <div class="invalid-feedback">
+                                                    Harus di isi
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="validationTooltip03" class="col-sm-2 col-form-label">jumlah
+                                                pinjam</label>
+                                            <div class="col-sm-4 d-flex">
+                                                <button style=" float :right; background-color:   #23262c; color:#FFFFFF"
+                                                    type="button" class="btn btn btn-md" id="btn-minus">-</button>
+                                                <input type="text" id="validationTooltip03" name="jumlah_pinjam"
+                                                    class="form-control w-25 text-center" required readonly
+                                                    value="0">
+                                                <button style=" float :right; background-color:   #23262c; color:#FFFFFF"
+                                                    type="button" class="btn btn btn-md" id="btn-plus">+</button>
+                                                <span class=" text-center" style="margin-left: 5px; margin-top:3px;" >
+                                                    {{ $inputbarang->jumlah }} {{ $inputbarang->satuans->nama_satuan }}
+                                                </span>
+                                                <div class="invalid-feedback">
+                                                    Harus di isi
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="validationTooltip05" class="col-sm-2 col-form-label">Total</label>
+                                            <div class="col-sm-10">
+                                                <input type="text"
+                                                    value="{{ $inputbarang->harga }}"
+                                                    name="total" id="total" class="form-control" required readonly>
+                                                <input type="hidden"
+                                                    value="{{ $inputbarang->harga }}"
+                                                    id="sub_total" class="form-control" required readonly>
+                                                <div class="invalid-feedback">
+                                                    Harus di isi
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <button style=" float :right; background-color:   #012970; color:#FFFFFF"
+                                                type="submit" id="btnSubmit" class="btn btn btn-sm">Submit</button>
+                                        </div>
+
                 </form><!-- End General Form Elements -->
             </div>
 
 
         </div>
         <script>
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth() + 1; //January is 0!
-            var yyyy = today.getFullYear();
-            if (dd < 10) {
-                dd = '0' + dd
-            }
-            if (mm < 10) {
-                mm = '0' + mm
-            }
+            $(document).ready(function() {
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1; //January is 0!
+                var yyyy = today.getFullYear();
+                if (dd < 10) {
+                    dd = '0' + dd
+                }
+                if (mm < 10) {
+                    mm = '0' + mm
+                }
 
-            today = yyyy + '-' + mm + '-' + dd;
-            document.getElementById("datefield").setAttribute("min", today);
-            document.getElementById("datefield2").setAttribute("min", today);
+                today = yyyy + '-' + mm + '-' + dd;
+                document.getElementById("datefield2").setAttribute("min", today);
+
+                var btnMinus = document.getElementById("btn-minus");
+                var btnPlus = document.getElementById("btn-plus");
+                var jumlah = document.getElementById('validationTooltip03');
+                var max_jumlah = "{{ $inputbarang->jumlah }}";
+                var hasil = parseInt(jumlah.value);
+                var count = 1;
+                jumlah.max = max_jumlah;
+                btnMinus.addEventListener('click', function(e) {
+                    e.preventDefault;
+                    if (count = 1) {
+                        count = 0;
+                    } else {
+                        count--;
+                    }
+                    jumlah.value = count;
+                    var total = $("#sub_total").val();
+                    var nilai = total * jumlah.value;
+                    $("#total").val(nilai)
+                    console.log(nilai)
+                })
+                btnPlus.addEventListener('click', function(e) {
+                    // e.preventDefault;
+                    if (count < max_jumlah) {
+                        count++
+                    }else{
+                        count = max_jumlah;
+                    }
+                    jumlah.value = count;
+                    var total = $("#sub_total").val();
+                    var nilai = total * jumlah.value;
+                    $("#total").val(nilai)
+                    console.log(nilai)
+
+                })
+                // $("#btnSubmit").click(function (e) {
+                //    var form = $("#form-formulir");
+                //    console.log(form.serializeArray())
+                //  })
+            });
         </script>
     @endsection

@@ -73,6 +73,7 @@ Route::group(['auth', 'check.role:2'], function () {
     Route::resource('JenisBunga', JenisBungaController::class)->parameters([
         'edit' => 'id',
         'store' => 'id',
+        'show' => 'id',
         'destroy' => 'id',
     ])->name('*', 'jenis-bunga');
     Route::resource('Pembelian', PembelianController::class)->parameters([
@@ -81,6 +82,8 @@ Route::group(['auth', 'check.role:2'], function () {
         'destroy' => 'id',
     ])->name('*', 'Pembelian.');
     Route::get('Pembelian-Riwayat', [PembelianController::class, 'riwayat'])->name('Pembelian.riwayat');
+    Route::get('Pembelian-cekdata', [PembelianController::class, 'cekdata'])->name('Pembelian.cekdata');
+    Route::get('Pembelian-detail/{id}', [PembelianController::class, 'detail'])->name('Pembelian.detail');
 });
 //--SEMUA ROUTE ROLE ADMIN ( ROLE 1)--//
 Route::middleware(['auth', 'check.role:1,2'])->group(function () {

@@ -25,11 +25,11 @@
                     <div class="col">
                         <div class="card " style="background-color: #012970;">
                             <div class="card-body ">
-                                <a href="{{ route('staff/pinjam') }}">
+                                <a href="{{ route('Pembelian.create') }}">
                                     <div class="card-title text-center">
                                         <span><i class="bi bi-file-earmark-break-fill text-danger"
                                                 style="font-size: 50px"></i></span>
-                                        <span class="text-light" style="font-size: 20px">Peminjaman</span>
+                                        <span class="text-light" style="font-size: 20px">Pembelian barang</span>
                                     </div>
                                 </a>
                             </div>

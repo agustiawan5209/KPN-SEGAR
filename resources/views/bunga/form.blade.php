@@ -66,9 +66,9 @@
                                     </div>
 
                                     <form class="row g-3 needs-validation" novalidate method="POST"
-                                        action="{{ isset($edit) ?  route('JenisBunga.update', ['JenisBunga'=> $jenisBunga->id]) :route('JenisBunga.store') }}">
+                                        action="{{ $edit == true ?  route('JenisBunga.update', ['JenisBunga'=> $jenisBunga->id]) :route('JenisBunga.store') }}">
                                         @csrf
-                                        @if (isset($edit))
+                                        @if ($edit == true)
                                             @method("PUT")
                                         @else
                                             @method("POST")
@@ -77,7 +77,7 @@
                                             <label for="yourName" class="form-label">kode</label>
                                             <input id="kode" type="text"
                                                 class="form-control @error('kode') is-invalid @enderror" name="kode"
-                                                value="{{ isset($edit) ? $jenisBunga->kode : old('kode') }}" required autocomplete="kode" autofocus>
+                                                value="{{ $edit == true ? $jenisBunga->kode : old('kode') }}" required autocomplete="kode" autofocus>
                                             @error('kode')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -91,7 +91,7 @@
                                             <label for="yourusername" class="form-label"> Jumlah Bulan</label>
                                             <input id="jumlah_bulan" type="number"
                                                 class="form-control @error('jumlah_bulan') is-invalid @enderror" name="jumlah_bulan"
-                                                value="{{ isset($edit) ? $jenisBunga->jumlah_bulan : old('jumlah_bulan') }}" required autocomplete="jumlah_bulan">
+                                                value="{{ $edit == true ? $jenisBunga->jumlah_bulan : old('jumlah_bulan') }}" required autocomplete="jumlah_bulan">
                                             @error('jumlah_bulan')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -104,7 +104,7 @@
                                             <label for="yourusername" class="form-label"> Jumlah Bunga</label>
                                             <input id="jumlah_bunga" type="number"
                                                 class="form-control @error('jumlah_bunga') is-invalid @enderror" name="jumlah_bunga"
-                                                value="{{ isset($edit) ? $jenisBunga->jumlah_bunga : old('jumlah_bunga') }}" required autocomplete="jumlah_bunga">
+                                                value="{{ $edit == true ? $jenisBunga->jumlah_bunga : old('jumlah_bunga') }}" required autocomplete="jumlah_bunga">
                                             @error('jumlah_bunga')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>

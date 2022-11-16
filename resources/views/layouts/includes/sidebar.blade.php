@@ -157,7 +157,35 @@
                 </ul>
             </li><!-- End Forms Nav -->
 
+            <li class="nav-item @yield('pembelian')">
+                <a class="nav-link collapsed" data-bs-target="#pembelian" data-bs-toggle="collapse">
+                    <i class="bi bi-menu-button-wide"></i><span>Data Pembelian</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="pembelian" class="nav-content collapse @yield('pembelian')" data-bs-parent="#sidebar-nav">
 
+                    {{-- <li>
+                         <a class=" @yield('jenisaset')" href="{{ url('/datajenisaset') }}">
+                             <i class="bi bi-circle"></i><span>Data Jenis Aset</span>
+                         </a>
+                     </li> --}}
+
+                    <li>
+                        <a class=" @yield('databunga')" href="{{ route('Pembelian.index') }}">
+                            <i class="bi bi-circle"></i><span>Pembelian</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class=" @yield('databunga')" href="{{ route('Pembelian.riwayat') }}">
+                            <i class="bi bi-circle"></i><span>Riwayat Pembelian</span>
+                        </a>
+                    </li>
+
+
+
+
+                </ul>
+            </li><!-- End Forms Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" @yield('asetbergerak') href="{{ url('/data-asetbergerak') }}">
@@ -261,7 +289,8 @@
 
             <li class="nav-item @yield('jenis-nav')">
                 <a class="nav-link collapsed" data-bs-target="#jenis-nav" data-bs-toggle="collapse">
-                    <i class="bi bi-menu-button-wide"></i><span>Data Master</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-menu-button-wide"></i><span>Data Master</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="jenis-nav" class="nav-content collapse @yield('jenis-nav')" data-bs-parent="#sidebar-nav">
 

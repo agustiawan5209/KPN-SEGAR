@@ -19,6 +19,7 @@ use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\DataJenisAsetController;
 use App\Http\Controllers\DataAsalPerolehanController;
 use App\Http\Controllers\JenisBungaController;
+use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\PinjamUang;
 use App\Models\Pinjam;
 
@@ -64,12 +65,8 @@ Route::get('/profil', function () {
 Route::middleware(['auth', 'check.role:1,2,3,4'])
     ->get('/dashboard', [HomeController::class, 'maindashboard'])
     ->name('dashboard');
-// Route::middleware(['auth', 'check.role:1,2,3'])->get('/dashboard', [HomeController::class, "index"])->name('dashboard');
-
-// Route::get('/dashboard', [HomeController::class, "maindashboard"]);
 Route::get('/filterthn/{tahun}', [HomeController::class, 'rekap_tahun']); //menampilkan filter tahun
 
-// Route::middleware(['auth', 'check.role:1,2,3'])->get('/dashboard', [HomeController::class, "dashboardall"])->name('dashboardall');
 Auth::routes();
 // Data Bunga
 Route::group(['auth', 'check.role:2'], function () {
@@ -78,6 +75,12 @@ Route::group(['auth', 'check.role:2'], function () {
         'store' => 'id',
         'destroy' => 'id',
     ])->name('*', 'jenis-bunga');
+    Route::resource('Pembelian', PembelianController::class)->parameters([
+        'edit' => 'id',
+        'store' => 'id',
+        'destroy' => 'id',
+    ])->name('*', 'Pembelian.');
+    Route::get('Pembelian-Riwayat', [PembelianController::class, 'riwayat'])->name('Pembelian.riwayat');
 });
 //--SEMUA ROUTE ROLE ADMIN ( ROLE 1)--//
 Route::middleware(['auth', 'check.role:1,2'])->group(function () {

@@ -63,7 +63,10 @@ class PembelianController extends Controller
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
         $akun = User::all();
-        $pinjam = Pinjam::whereNull('ket')->whereNotNull('barangs_id')->where('users_id', Auth::user()->id)->get();
+        $pinjam = Pinjam::whereNull('ket')
+        ->whereNotNull('barangs_id')
+        ->where('jenis_peminjaman', '=', 'Beli')
+        ->where('users_id', Auth::user()->id)->get();
         $status = Status::all();
         $trxstatus = TrxStatus::all();
         return view('pembelian.form', [

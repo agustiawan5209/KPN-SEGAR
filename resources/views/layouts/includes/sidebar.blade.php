@@ -256,9 +256,21 @@
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="{{route('Pembelian.create')}}">
                     <i class="bi bi-cart-check-fill"></i>
                     <span> Pembelian</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link collapsed" href="{{route('pinjamUang.index')}}">
+                    <i class="bi bi-cart-check-fill"></i>
+                    <span> Peminjaman Uang</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link collapsed" href="{{route('staff/pinjam')}}">
+                    <i class="bi bi-cart-check-fill"></i>
+                    <span> Peminjaman Barang</span>
                 </a>
             </li>
 

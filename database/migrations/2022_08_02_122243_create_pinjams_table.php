@@ -22,13 +22,13 @@ class CreatePinjamsTable extends Migration
             $table->foreignId('users_id')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nama_peminjam');
             $table->string('jenis_peminjaman');
-            $table->string('tujuan');
-            $table->bigInteger('bunga');
+            $table->string('tujuan')->nullable();
+            $table->bigInteger('bunga')->nullable();
             $table->integer('jenis_id')->nullable()->comment('relasi Ke tabel Jenis_Bunga');
             $table->string('jumlah_pinjam');
-            $table->date('tgl_pengajuan');
+            $table->date('tgl_pengajuan')->nullable();
             // $table->date('tgl_pinjam');
-            $table->date('tgl_kembali');
+            $table->date('tgl_kembali')->nullable();
             // $table->string('surat_pinjam');
             $table->string('ket')->nullable();
             $table->timestamps();

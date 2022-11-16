@@ -176,7 +176,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class=" @yield('databunga')" href="{{ route('Pembelian.riwayat') }}">
+                        <a class=" @yield('databunga')" href="{{ route('Pembelian.data') }}">
                             <i class="bi bi-circle"></i><span>Riwayat Pembelian</span>
                         </a>
                     </li>
@@ -189,8 +189,7 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" @yield('asetbergerak') href="{{ url('/data-asetbergerak') }}">
-                    <i class="bi bi-journal-text"></i><span>Data Jenis Aset</span><i
-                        class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-journal-text"></i><span>Kelola Barang</span>
                 </a>
             </li><!-- End Forms Nav -->
 
@@ -229,7 +228,7 @@
 
                     <li>
                         <a class="@yield('riwayat')" href="{{ url('/peminjaman/riwayatpinjam') }}">
-                            <i class="bi bi-circle"></i><span>Data Pembelian</span>
+                            <i class="bi bi-circle"></i><span>Riwayat Peminjaman</span>
                         </a>
                     </li>
 

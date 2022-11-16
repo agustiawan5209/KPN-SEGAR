@@ -174,7 +174,9 @@ class PinjamUang extends Controller
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
         $akun = User::all();
-        $pinjam = Pinjam::whereNull('ket')->get();
+        $pinjam = Pinjam::whereNull('ket')
+        ->where('jenis_peminjaman', '=', 'Uang')
+        ->get();
         $status = Status::all();
         $trxstatus = TrxStatus::all();
         return view('pinjamuang.admin-index', [

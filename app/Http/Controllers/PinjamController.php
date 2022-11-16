@@ -56,7 +56,9 @@ class PinjamController extends Controller
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
         $akun = User::all();
-        $pinjam = Pinjam::whereNull('ket')->where('users_id', Auth::user()->id)->get();
+        $pinjam = Pinjam::whereNull('ket')
+        ->where('jenis_peminjaman', '=', 'Barang')
+        ->where('users_id', Auth::user()->id)->get();
         $status = Status::all();
         $trxstatus = TrxStatus::all();
         return view('staff.pinjam', [
@@ -162,7 +164,9 @@ class PinjamController extends Controller
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
         $akun = User::all();
-        $pinjam = Pinjam::whereNull('ket')->get();
+        $pinjam = Pinjam::whereNull('ket')
+        ->where('jenis_peminjaman', '=', 'Barang')
+        ->get();
         $status = Status::all();
         $trxstatus = TrxStatus::all();
         return view('peminjaman.peminjaman', [

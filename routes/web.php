@@ -84,6 +84,7 @@ Route::group(['auth', 'check.role:2'], function () {
     Route::get('Pembelian-Riwayat', [PembelianController::class, 'riwayat'])->name('Pembelian.riwayat');
     Route::get('Pembelian-cekdata', [PembelianController::class, 'cekdata'])->name('Pembelian.cekdata');
     Route::get('Pembelian-detail/{id}', [PembelianController::class, 'detail'])->name('Pembelian.detail');
+    Route::get('RiwayatPembelian', [PembelianController::class, 'dataPembelian'])->name('Pembelian.data');
 });
 //--SEMUA ROUTE ROLE ADMIN ( ROLE 1)--//
 Route::middleware(['auth', 'check.role:1,2'])->group(function () {

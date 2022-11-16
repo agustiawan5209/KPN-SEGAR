@@ -31,7 +31,9 @@ class PembelianController extends Controller
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
         $akun = User::all();
-        $pinjam = Pinjam::whereNull('ket')->get();
+        $pinjam = Pinjam::whereNull('ket')
+        ->where('jenis_peminjaman', '=', "Beli")
+        ->get();
         $status = Status::all();
         $trxstatus = TrxStatus::all();
         return view('pembelian.index', [
@@ -106,17 +108,17 @@ class PembelianController extends Controller
                 ->back()
                 ->with('warning', 'Maaf jumlah barang yang anda pinjam melebihi dari sisa stok yang ada');
         } else {
-                $pinjam = new Pinjam();
-                $pinjam->kode_peminjaman = $book_id;
-                $pinjam->barangs_id = $request->barangs_id;
-                $pinjam->users_id = $request->users_id;
-                $pinjam->nama_peminjam = $request->nama_peminjam;
-                $pinjam->jenis_peminjaman = "Beli";
-                $pinjam->tujuan = $request->tujuan;
-                $pinjam->tgl_pengajuan = $request->tgl_pengajuan;
-                // $pinjam->tgl_pinjam = $request->tgl_pengajuan;
-                $pinjam->tgl_kembali = $request->tgl_kembali;
-                $pinjam->jumlah_pinjam = $request->total;
+            $pinjam = new Pinjam();
+            $pinjam->kode_peminjaman = $book_id;
+            $pinjam->barangs_id = $request->barangs_id;
+            $pinjam->users_id = $request->users_id;
+            $pinjam->nama_peminjam = $request->nama_peminjam;
+            $pinjam->jenis_peminjaman = "Beli";
+            $pinjam->tujuan = $request->tujuan;
+            $pinjam->tgl_pengajuan = $request->tgl_pengajuan;
+            // $pinjam->tgl_pinjam = $request->tgl_pengajuan;
+            $pinjam->tgl_kembali = $request->tgl_kembali;
+            $pinjam->jumlah_pinjam = $request->total;
 
             $pinjam->save();
             $trxstatus = new TrxStatus();
@@ -259,7 +261,8 @@ class PembelianController extends Controller
             'trxstatus' => $trxstatus,
         ]);
     }
-    public function cekdata(){
+    public function cekdata()
+    {
         $dataasalperolehan = DataAsalPerolehan::all();
         $datajenisaset = DataJenisAset::all();
         $jenisbarang = JenisBarang::all();
@@ -273,6 +276,33 @@ class PembelianController extends Controller
             'dataasalperolehan' => $dataasalperolehan,
             'datasatuan' => $datasatuan,
             'inputbarang' => $inputbarang,
+        ]);
+    }
+
+    public function dataPembelian()
+    {
+        $dataasalperolehan = DataAsalPerolehan::all();
+        $datajenisaset = DataJenisAset::all();
+        $jenisbarang = JenisBarang::all();
+        $datasatuan = Satuan::all();
+        $inputbarang = Barang::all();
+        $akun = User::all();
+        $pinjam = Pinjam::whereNull('ket')
+            ->where('jenis_peminjaman', '=', 'Beli')
+            ->get();
+        $status = Status::all();
+        $trxstatus = TrxStatus::all();
+        return view('pembelian.data_pembelian', [
+            'title' => 'pengajuan',
+            'jenisbarang' => $jenisbarang,
+            'jenisaset' => $datajenisaset,
+            'dataasalperolehan' => $dataasalperolehan,
+            'datasatuan' => $datasatuan,
+            'inputbarang' => $inputbarang,
+            'status' => $status,
+            'pinjam' => $pinjam,
+            'akun' => $akun,
+            'trxstatus' => $trxstatus,
         ]);
     }
 }

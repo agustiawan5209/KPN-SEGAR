@@ -80,7 +80,7 @@
                                             <th scope="col">Legalitas</th>
                                             <th scope="col"> Luas</th>
                                             <th scope="col">Lokasi</th>
-                                            <th scope="col">penanggung jawab</th>
+
                                             <th scope="col">Jumlah</th>
                                             <th scope="col">kondisi</th>
                                             <th scope="col">ket</th>
@@ -104,8 +104,7 @@
                                                     {{-- <td> {{ $data->nilai_perolehan }}</td> --}}
                                                     {{-- <td> {{ $data->legalitas }} --}}
                                                     <td> {{ $data->luas }}</td>
-                                                    <td> {{ $data->lokasi }}</td>
-                                                    <td> {{ $data->penanggung_jawab }}</td>
+
                                                     <td> {{ $data->jumlah }} {{ $data->satuans->nama_satuan }}</td>
                                                     <td> {{ $data->kondisi }}</td>
                                                     <td> {{ $data->ket }}</td>

@@ -39,7 +39,6 @@
                                     <th scope="col">Barang</th>
                                     {{-- <th scope="col">Jenis Aset</th> --}}
                                     <th scope="col">Lokasi Awal</th>
-                                    <th scope="col">Lokasi Mutasi</th>
                                     <th scope="col">Keterangan</th>
                                     {{-- <th scope="col">Aksi</th> --}}
                                 </tr>
@@ -62,7 +61,7 @@
                                         <td>{{ $item->barangs->kode }}{{ $item->barangs->spesifikasi }}</td>
                                         {{-- <td>{{ $item->barangs->jenis_asets->nama_jenisaset }}</td> --}}
                                         <td>{{ $item->dari }}</td>
-                                        <td>{{ $item->lokasi->lantai }}/ Ruangan {{$item->lokasi->ruangan}}</td>
+
                                         <td>{{ $item->ket }}</td>
                                     </tr>
                                 @endforeach

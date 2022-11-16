@@ -71,13 +71,7 @@
                                         <td>{{ $item->kode }}/{{ $item->spesifikasi }}</td>
                                         <td>{{ $item->jenis_asets->nama_jenisaset }}</td>
                                         <td>{{ $item->jumlah }}</td>
-                                        @if ($item->lokasi_aset == null)
-                                            <td>{{ $item->lokasipenempatan->lantai }}/{{ $item->lokasipenempatan->ruangan }}
-                                            </td>
-                                        @else
-                                            <td>{{ $item->lokasi_aset }}</td>
-                                        @endif
-                                        {{-- <td>{{ $item->ket }}</td> --}}
+
                                         <td><button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#mutasi{{ $item->id }}">
                                                 Mutasi
@@ -113,28 +107,6 @@
                                                                             </div>
                                                                         </div>
                                                                     {{-- </center> --}}
-                                                                </div>
-                                                                <div class="row row align-items-center">
-                                                                        <h5 style="" class="card-title col-sm-2"> Lokasi Awal
-                                                                        </h5>
-                                                                        <div class="col-sm-10">
-                                                                            @if ($item->lokasi_aset ==null)
-                                                                                <input type="text"
-                                                                                    id="validationTooltip02" name="dari"
-                                                                                    class="form-control" required
-                                                                                    placeholder="Isikan keterangan"
-                                                                                    value="Lantai {{ $item->lokasipenempatan->lantai }} / Ruangan {{ $item->lokasipenempatan->ruangan }}">
-                                                                            @else
-                                                                            <input type="text"
-                                                                                    id="validationTooltip02" name="dari"
-                                                                                    class="form-control" readonly required
-                                                                                    placeholder="Isikan keterangan"
-                                                                                    value="{{$item->lokasi_aset}}">
-                                                                            @endif
-                                                                            <div class="invalid-feedback">
-                                                                                Harus di isi
-                                                                            </div>
-                                                                        </div>
                                                                 </div>
                                                                 <div class="row align-items-center">
                                                                         <label for="validationTooltip06"

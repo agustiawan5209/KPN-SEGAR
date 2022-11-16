@@ -168,35 +168,6 @@
                                                                                     </div>
                                                                                 </div>
 
-                                                                                {{-- <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Nilai Perolehan</div>
-                                                                                    <div class="col-lg-7 col-md-8"> Rp.
-                                                                                        {{ $data->nilai_perolehan }}
-                                                                                    </div>
-                                                                                </div> --}}
-
-
-
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Lokasi</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->lokasi }}</div>
-                                                                                </div>
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Penanggung Jawab</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->penanggung_jawab }}
-                                                                                    </div>
-                                                                                </div>
-
                                                                                 <div class="row">
                                                                                     <div
                                                                                         class="col-lg-5 col-md-4 label">

@@ -65,7 +65,7 @@
                                         <td>{{ $item->barangs->kode }}{{ $item->barangs->spesifikasi }}</td>
                                         <td>{{ $item->barangs->jenis_asets->nama_jenisaset }}</td>
                                         <td>{{ $item->dari }}</td>
-                                        <td>{{ $item->lokasi->lantai }}/ Ruangan {{$item->lokasi->ruangan}}</td>
+
                                         <td>{{ $item->ket }}</td>
                                         <td>
                                             <a href="{{route('mutasi-delete', ['id'=> $item->id])}}"

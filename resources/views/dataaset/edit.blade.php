@@ -119,18 +119,6 @@
                                 </div>
                             </div>
 
-
-                            <div class="row mb-3">
-                                <label for="validationTooltip04" class="col-sm-2 col-form-label">Kegunaan</label>
-                                <div class="col-sm-10">
-                                    <input type="text" value="{{ $inputbarang->kegunaan }}" name="kegunaan"
-                                        class="form-control" required>
-                                    <div class="invalid-feedback">
-                                        Harus di isi
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="row mb-3">
                                 <label for="validationTooltip05" class="col-sm-2 col-form-label">Tanggal
                                     Perolehan</label>
@@ -169,70 +157,6 @@
 
 
                             <div class="row mb-3">
-
-                                {{-- <div class="row mb-3">
-                                    <label for="validationTooltip04" class="col-sm-2 col-form-label">Legalitas</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" value=" {{ $inputbarang->legalitas }}" id=" "
-                                            name="legalitas" class="form-control" required>
-                                        <div class="invalid-feedback">
-                                            Harus di isi
-                                        </div>
-                                    </div>
-                                </div> --}}
-
-                                {{-- <div class="row mb-3">
-                  <label for="validationTooltip04" class="col-sm-2 col-form-label">Beban Penyusutan</label>
-                  <div class="col-sm-10">
-                    <input type="text" value="{{$inputbarang->beban_penyusutan}}" id=" "  name="beban_penyusutan" class="form-control"  required>
-                    <div class="invalid-feedback">
-                      Harus di isi
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label for="validationTooltip04" class="col-sm-2 col-form-label">Nilai Buku</label>
-                  <div class="col-sm-10">
-                    <input type="text" value="{{$inputbarang->nilai_buku}}" id=" "  name="nilai_buku" class="form-control"  required>
-                    <div class="invalid-feedback">
-                      Harus di isi
-                    </div>
-                  </div>
-                </div> --}}
-
-
-                <div class="row mb-3">
-                    <label for="validationTooltip04" class="col-sm-2 col-form-label">Lokasi</label>
-                    <div class="col-sm-10">
-                        <select class="form-select" name="lokasi" id="validationTooltip04"
-                        aria-label="Default select example" value="{{old('lokasi')}}">
-                        <option value='{{$inputbarang->lokasi}}' >--Pilih Lokasi--</option>
-                        @foreach ($lokasi_penempatan as $data)
-                            <option value="{{ $data->id }}" {{$inputbarang->lokasi == $data->id ? 'selected' : ''}}>Lantai {{ $data->lantai }}/ Ruangan {{$data->ruangan}}</option>
-                        @endforeach
-                    </select>
-                        @error('lokasi')
-                        <div class="text-danger">
-                            Harus di isi
-                        </div>
-                    @enderror
-                    </div>
-                </div>
-
-
-
-                                <div class="row mb-3">
-                                    <label for="validationTooltip04" class="col-sm-2 col-form-label">Penanggung
-                                        Jawab</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" value="{{ $inputbarang->penanggung_jawab }}"
-                                            id=" " name="penanggung_jawab" class="form-control" required>
-                                        <div class="invalid-feedback">
-                                            Harus di isi
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="row mb-3">
                                     <label for="validationTooltip04" class="col-sm-2 col-form-label">Jumlah</label>

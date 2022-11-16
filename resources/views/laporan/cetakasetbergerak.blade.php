@@ -56,7 +56,6 @@
                             <th scope="col"> Nilai Perolehan</th>
                             <th scope="col">Legalitas</th>
                             <th scope="col"> Luas</th>
-                            <th scope="col">Lokasi</th>
                             <th scope="col">PJ</th>
                             <th scope="col">Jumlah</th>
                             <th scope="col">kondisi</th>
@@ -80,7 +79,6 @@
                                     {{-- <td style="text-align: center;"> {{ $data->nilai_perolehan }}</td> --}}
                                     {{-- <td style="text-align: center;"> {{ $data->legalitas }} --}}
                                     <td style="text-align: center;"> {{ $data->luas }}</td>
-                                    <td style="text-align: center;"> {{ $data->lokasi }}</td>
                                     <td style="text-align: center;"> {{ $data->penanggung_jawab }}</td>
                                     <td style="text-align: center;"> {{ $data->jumlah }} {{ $data->satuans->nama_satuan }}</td>
                                     <td style="text-align: center;"> {{ $data->kondisi }}</td>

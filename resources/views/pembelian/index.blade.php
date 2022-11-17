@@ -41,8 +41,6 @@
                                             <th scope="col">Kode </th>
                                             <th scope="col">Nama </th>
                                             <th scope="col">Tgl Pembelian</th>
-                                            <th scope="col">Tujuan</th>
-                                            <th scope="col">barang</th>
                                             <th scope="col">Total </th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Aksi</th>
@@ -62,42 +60,7 @@
                                                     <?php echo date('d F Y', strtotime($data->tgl_pengajuan)); ?>
                                                 </td>
                                                 <td class=" border">
-                                                    <?php echo date('d F Y', strtotime($data->tgl_pinjam)); ?>
-                                                </td>
-                                                <td class=" border">
-
-                                                    <?php
-                                                    $d = Carbon\Carbon::parse($data->tgl_kembali);
-                                                    $e = Carbon\Carbon::parse(now());
-                                                    if ($d >= $e) {
-                                                        $waktu = $d->diffInDays($e) + 1;
-                                                    } else {
-                                                        $waktu = -$d->diffInDays($e);
-                                                    } ?>
-
-
-                                                    {{ date('d F Y', strtotime($data->tgl_kembali)) }}
-
-
-                                                    @if ($waktu < 0)
-                                                        <p style="color:#cd0b30;" class="small fst-italic">
-                                                            Sudah
-                                                            Terlewat {{ -$waktu }}
-                                                            hari</p>
-                                                    @elseif($waktu > 0)
-                                                        <p style="color:#012970;" class="small fst-italic"><b>
-                                                                {{ $waktu }} Hari Lagi </b>
-                                                        </p>
-                                                    @else
-                                                        <p style="color:#012970;" class="small fst-italic"><b>Hari
-                                                                Terakhir</b></p>
-                                                    @endif
-
-
-                                                </td>
-                                                <td class=" border">{{ $data->tujuan }} </td>
-                                                <td class=" border">
-                                                @if ($data->barang_id == null)
+                                                @if ($data->barangs_id == null)
                                                 Rp {{ number_format($data->jumlah_pinjam) }}
                                                 @else
                                                 {{ $data->jumlah_pinjam }}
@@ -157,7 +120,7 @@
                                                                                 <center>
                                                                                     <h5 style="align-content: center"
                                                                                         class="card-title">Keterangan
-                                                                                        Pengembalian
+Pengiriman
                                                                                     </h5>
                                                                                     <center>
                                                                                         <div class="col-sm-10">

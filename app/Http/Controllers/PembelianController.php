@@ -290,7 +290,7 @@ class PembelianController extends Controller
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
         $akun = User::all();
-        $pinjam = Pinjam::whereNull('ket')
+        $pinjam = Pinjam::whereNotNull('ket')
             ->where('jenis_peminjaman', '=', 'Beli')
             ->get();
         $status = Status::all();

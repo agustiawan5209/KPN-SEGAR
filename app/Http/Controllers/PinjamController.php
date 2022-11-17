@@ -166,6 +166,7 @@ class PinjamController extends Controller
         $akun = User::all();
         $pinjam = Pinjam::whereNull('ket')
         ->where('jenis_peminjaman', '=', 'Barang')
+        ->orderBy('id', 'desc')
         ->get();
         $status = Status::all();
         $trxstatus = TrxStatus::all();
@@ -192,6 +193,8 @@ class PinjamController extends Controller
         $inputbarang = Barang::all();
         $akun = User::all();
         $pinjam = Pinjam::whereNotNull('ket')
+        ->where('jenis_peminjaman', '=', 'Barang')
+        ->OrWhere('jenis_peminjaman', '=', 'Uang')
             ->orderBy('id', 'desc')
             ->latest()
             ->get();

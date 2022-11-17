@@ -402,17 +402,18 @@ class HomeController extends Controller
 
         //role staff
         if ($role == '3') {
-            return view('staff', [
-                'pinjam'=> Pinjam::where('users_id', '=', Auth::user()->id)->orderBy('id','desc')->paginate(2),
-                "title" => "perlengkapan",
-                "jenisbarang" => $jenisbarang,
-                "jenisaset" => $datajenisaset,
-                "dataasalperolehan" => $dataasalperolehan,
-                "datasatuan" => $datasatuan,
-                "inputbarang" => $inputbarang,
-                'trxstatus' => TrxStatus::orderBy('id', 'desc')->get(),
+            return redirect()->route('Customer.Index');
+            // return view('staff', [
+            //     'pinjam'=> Pinjam::where('users_id', '=', Auth::user()->id)->orderBy('id','desc')->paginate(2),
+            //     "title" => "perlengkapan",
+            //     "jenisbarang" => $jenisbarang,
+            //     "jenisaset" => $datajenisaset,
+            //     "dataasalperolehan" => $dataasalperolehan,
+            //     "datasatuan" => $datasatuan,
+            //     "inputbarang" => $inputbarang,
+            //     'trxstatus' => TrxStatus::orderBy('id', 'desc')->get(),
 
-            ]);
+            // ]);
         } else {
             return view('dashboard', [
                 "title" => "perlengkapan",

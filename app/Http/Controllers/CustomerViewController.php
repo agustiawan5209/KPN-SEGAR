@@ -14,6 +14,9 @@ class CustomerViewController extends Controller
         ]);
     }
     public function detail($id){
-        return view('customer.product');
+        $barang =Barang::find($id);
+        return view('customer.product',[
+            'barang'=> $barang,
+        ]);
     }
 }

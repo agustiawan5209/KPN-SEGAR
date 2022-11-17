@@ -352,7 +352,7 @@ Route::middleware(['auth', 'check.role:3,4'])->group(function () {
     Route::get('/pinjam/formulir', function () {
         return view('pinjam.formulir');
     });
-    Route::get('/pinjam/formulir/{id}', [PinjamController::class, 'index']);
+    Route::get('/pinjam/formulir/{id}', [PinjamController::class, 'index'])->name('pinjam.formulir');
     Route::get('/inputpinjam/{id}', 'App\Http\Controllers\PinjamController@create')->name('inputpinjam');
     Route::POST('inputpinjam', 'App\Http\Controllers\PinjamController@create')->name('inputpinjam');
     Route::get('/pinjam', [PinjamController::class, 'pinjamstaff'])->name('staff/pinjam');

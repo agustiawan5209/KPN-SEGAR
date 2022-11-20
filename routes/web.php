@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Pinjam;
+use App\Http\Controllers\PinjamUang;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -11,17 +13,16 @@ use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\PinjamController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\DataSatuanController;
+use App\Http\Controllers\JenisBungaController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\JenisBarangController;
 use App\Http\Controllers\BarangKeluarController;
+use App\Http\Controllers\CustomerViewController;
 use App\Http\Controllers\DataJenisAsetController;
 use App\Http\Controllers\DataAsalPerolehanController;
-use App\Http\Controllers\JenisBungaController;
-use App\Http\Controllers\PembelianController;
-use App\Http\Controllers\PinjamUang;
-use App\Models\Pinjam;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,12 @@ Route::middleware(['auth', 'check.role:1,2,3,4'])
 Route::get('/filterthn/{tahun}', [HomeController::class, 'rekap_tahun']); //menampilkan filter tahun
 
 Auth::routes();
+
+// View Customer
+Route::group(['check.role:4,3', 'prefix' => 'Produk', 'as' => 'Customer.'], function () {
+    Route::get('Produk', [CustomerViewController::class, 'index'])->name('Index');
+    Route::get('Produk/detail/{id}', [CustomerViewController::class, 'detail'])->name('detail');
+});
 // Data Bunga
 Route::group(['auth', 'check.role:2'], function () {
     Route::resource('JenisBunga', JenisBungaController::class)->parameters([
@@ -345,7 +352,7 @@ Route::middleware(['auth', 'check.role:3,4'])->group(function () {
     Route::get('/pinjam/formulir', function () {
         return view('pinjam.formulir');
     });
-    Route::get('/pinjam/formulir/{id}', [PinjamController::class, 'index']);
+    Route::get('/pinjam/formulir/{id}', [PinjamController::class, 'index'])->name('pinjam.formulir');
     Route::get('/inputpinjam/{id}', 'App\Http\Controllers\PinjamController@create')->name('inputpinjam');
     Route::POST('inputpinjam', 'App\Http\Controllers\PinjamController@create')->name('inputpinjam');
     Route::get('/pinjam', [PinjamController::class, 'pinjamstaff'])->name('staff/pinjam');

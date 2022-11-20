@@ -221,7 +221,7 @@
                 <ul id="iconss-nav" class="nav-content collapse" @yield('iconss-nav') data-bs-parent="#sidebar-nav">
                     <li>
                         <a class="@yield('riwayat')" href="{{ url('/peminjaman/peminjaman') }}">
-                            <i class="bi bi-circle"></i><span>Data Penjualan</span>
+                            <i class="bi bi-circle"></i><span>Data Peminjaman</span>
                         </a>
                     </li>
 

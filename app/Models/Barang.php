@@ -78,8 +78,8 @@ class Barang extends Model
     public function pinjam(){
         return $this->belongsTo(Pinjam::class, 'barang_id');
     }
-    public function mutasi(){
-        return $this->hasMany(Mutasi::class, 'barang_id', 'id');
+    public function diskon(){
+        return $this->hasOne(Diskon::class, 'barang_id', 'id');
     }
 
 

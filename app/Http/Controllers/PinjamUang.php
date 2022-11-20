@@ -93,12 +93,6 @@ class PinjamUang extends Controller
         $pinjam->jumlah_pinjam = $request->jumlah_pinjam;
 
         $pinjam->save();
-        $trxstatus = new TrxStatus();
-        $trxstatus->kode_peminjaman = $book_id;
-        $trxstatus->users_id = $request->input('users_id');
-        $trxstatus->pinjams_id = $pinjam->id;
-        $trxstatus->status_id = 5;
-        $trxstatus->save();
         // User
         $user = User::find($request->input('users_id'));
         $trxstatus = new TrxStatus();

@@ -41,8 +41,6 @@
                                             <th scope="col">Kode </th>
                                             <th scope="col">Nama </th>
                                             <th scope="col">Tgl Pembelian</th>
-                                            <th scope="col">Tujuan</th>
-                                            <th scope="col">barang</th>
                                             <th scope="col">Total </th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Aksi</th>
@@ -62,46 +60,11 @@
                                                     <?php echo date('d F Y', strtotime($data->tgl_pengajuan)); ?>
                                                 </td>
                                                 <td class=" border">
-                                                    <?php echo date('d F Y', strtotime($data->tgl_pinjam)); ?>
-                                                </td>
-                                                <td class=" border">
-
-                                                    <?php
-                                                    $d = Carbon\Carbon::parse($data->tgl_kembali);
-                                                    $e = Carbon\Carbon::parse(now());
-                                                    if ($d >= $e) {
-                                                        $waktu = $d->diffInDays($e) + 1;
-                                                    } else {
-                                                        $waktu = -$d->diffInDays($e);
-                                                    } ?>
-
-
-                                                    {{ date('d F Y', strtotime($data->tgl_kembali)) }}
-
-
-                                                    @if ($waktu < 0)
-                                                        <p style="color:#cd0b30;" class="small fst-italic">
-                                                            Sudah
-                                                            Terlewat {{ -$waktu }}
-                                                            hari</p>
-                                                    @elseif($waktu > 0)
-                                                        <p style="color:#012970;" class="small fst-italic"><b>
-                                                                {{ $waktu }} Hari Lagi </b>
-                                                        </p>
+                                                    @if ($data->barangs_id == null)
+                                                        Rp {{ number_format($data->jumlah_pinjam) }}
                                                     @else
-                                                        <p style="color:#012970;" class="small fst-italic"><b>Hari
-                                                                Terakhir</b></p>
+                                                        {{ $data->jumlah_pinjam }}
                                                     @endif
-
-
-                                                </td>
-                                                <td class=" border">{{ $data->tujuan }} </td>
-                                                <td class=" border">
-                                                @if ($data->barang_id == null)
-                                                Rp {{ number_format($data->jumlah_pinjam) }}
-                                                @else
-                                                {{ $data->jumlah_pinjam }}
-                                                @endif
                                                 </td>
                                                 @if ($data->jenis_peminjaman == 'Barang')
                                                     <td class=" border">
@@ -123,7 +86,7 @@
                                                         $pinjam_status = App\Models\Pinjam::where('kode_peminjaman', '=', $statuss->kode_peminjaman)->first();
 
                                                     @endphp
-                                                    @if ($statuss->status_id == 3  && Auth::user()->roles_id == 2)
+                                                    @if ($statuss->status_id == 3 && Auth::user()->roles_id == 2)
                                                         <button type="button" class="btn btn-info btn-sm"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#statuspengembalian{{ $data->id }}">
@@ -157,7 +120,7 @@
                                                                                 <center>
                                                                                     <h5 style="align-content: center"
                                                                                         class="card-title">Keterangan
-                                                                                        Pengembalian
+                                                                                        Pengiriman
                                                                                     </h5>
                                                                                     <center>
                                                                                         <div class="col-sm-10">
@@ -187,7 +150,7 @@
                                                             </div>
                                                         </div><!-- End Basic Modal-->
                                                     @endif
-                                                    @if ($statuss->status_id == 4 || $statuss->status_id == 6 && Auth::user()->roles_id == 2)
+                                                    @if ($statuss->status_id == 4 || ($statuss->status_id == 6 && Auth::user()->roles_id == 2))
                                                         <span
                                                             class="badge border-dark border-1 text-dark small fst-italic"
                                                             style="color:#012970;">peminjaman
@@ -231,8 +194,7 @@
                                                                         <form action="/insertstatus" method="POST"
                                                                             enctype="multipart/form-data">
                                                                             @csrf
-                                                                            <input type="hidden"
-                                                                                name="kode_peminjaman"
+                                                                            <input type="hidden" name="kode_peminjaman"
                                                                                 value={{ $data->kode_peminjaman }}>
                                                                             <input type="hidden" name="users_id"
                                                                                 value={{ Auth::user()->id }}>

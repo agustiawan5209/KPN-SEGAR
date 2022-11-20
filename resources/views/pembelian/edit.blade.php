@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('customer.layout')
 @section('content')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
@@ -43,7 +43,7 @@
     <main id="main" class="main overflow-hidden">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-center pb-0 fs-5">Formulir Peminjaman Barang</h5></br>
+                <h5 class="card-title text-center pb-0 fs-5">Formulir Pembelian Barang</h5></br>
 
                 <!-- validation Form Elements -->
 
@@ -108,81 +108,69 @@
                         </div>
                     </div>
 
+                    <div class="row mb-3">
 
+                        <div class="col-sm-10">
 
-                    <div class="row g-3 mt-3 border-top pt-2">
-                        <div class="row targetDiv" id="div0">
-                            <div id="group1" class="fvrduplicate">
-                                <center> <label for="validationTooltip06" style="float: center; " col-sm-6
-                                        col-form-label>Peminjaman
-                                        Barang</label>
-                                    <center><br>
+                            <input type="hidden" id="datefield2" value=" {{ $inputbarang->id }}"
+                                name="barangs_id" class="form-control" required readonly>
+                            <div class="invalid-feedback">
+                                Harus di isi
+                            </div>
 
+                        </div>
+                    </div>
 
+                    <div class="row mb-3">
+                        <label for="validationTooltip05" class="col-sm-2 col-form-label"> Barang
+                            Pinjam</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="datefield2"
+                                value="{{ $inputbarang->kode }} {{ $inputbarang->jenis_barangs->jenis_barang }} {{ $inputbarang->spesifikasi }}"
+                                name=" " class="form-control" required readonly>
+                            <div class="invalid-feedback">
+                                Harus di isi
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="validationTooltip03" class="col-sm-2 col-form-label">jumlah
+                            pinjam</label>
+                        <div class="col-sm-4 d-flex">
+                            <button style=" float :right; background-color:   #23262c; color:#FFFFFF"
+                                type="button" class="btn btn btn-md" id="btn-minus">-</button>
+                            <input type="text" id="validationTooltip03" name="jumlah_pinjam"
+                                class="form-control w-25 text-center" required readonly
+                                value="0">
+                            <button style=" float :right; background-color:   #23262c; color:#FFFFFF"
+                                type="button" class="btn btn btn-md" id="btn-plus">+</button>
+                            <span class=" text-center" style="margin-left: 5px; margin-top:3px;" >
+                                {{ $inputbarang->jumlah }} {{ $inputbarang->satuans->nama_satuan }}
+                            </span>
+                            <div class="invalid-feedback">
+                                Harus di isi
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Total</label>
+                        <div class="col-sm-10">
+                            <input type="text"
+                                value="{{ $inputbarang->harga }}"
+                                name="total" id="total" class="form-control" required readonly>
+                            <input type="hidden"
+                                value="{{ $inputbarang->harga }}"
+                                id="sub_total" class="form-control" required readonly>
+                            <div class="invalid-feedback">
+                                Harus di isi
+                            </div>
+                        </div>
+                    </div>
 
-                                        <div class="row mb-3">
-
-                                            <div class="col-sm-10">
-
-                                                <input type="hidden" id="datefield2" value=" {{ $inputbarang->id }}"
-                                                    name="barangs_id" class="form-control" required readonly>
-                                                <div class="invalid-feedback">
-                                                    Harus di isi
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="validationTooltip05" class="col-sm-2 col-form-label"> Barang
-                                                Pinjam</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" id="datefield2"
-                                                    value="{{ $inputbarang->kode }} {{ $inputbarang->jenis_barangs->jenis_barang }} {{ $inputbarang->spesifikasi }}"
-                                                    name=" " class="form-control" required readonly>
-                                                <div class="invalid-feedback">
-                                                    Harus di isi
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="validationTooltip03" class="col-sm-2 col-form-label">jumlah
-                                                pinjam</label>
-                                            <div class="col-sm-4 d-flex">
-                                                <button style=" float :right; background-color:   #23262c; color:#FFFFFF"
-                                                    type="button" class="btn btn btn-md" id="btn-minus">-</button>
-                                                <input type="text" id="validationTooltip03" name="jumlah_pinjam"
-                                                    class="form-control w-25 text-center" required readonly
-                                                    value="0">
-                                                <button style=" float :right; background-color:   #23262c; color:#FFFFFF"
-                                                    type="button" class="btn btn btn-md" id="btn-plus">+</button>
-                                                <span class=" text-center" style="margin-left: 5px; margin-top:3px;" >
-                                                    {{ $inputbarang->jumlah }} {{ $inputbarang->satuans->nama_satuan }}
-                                                </span>
-                                                <div class="invalid-feedback">
-                                                    Harus di isi
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="validationTooltip05" class="col-sm-2 col-form-label">Total</label>
-                                            <div class="col-sm-10">
-                                                <input type="text"
-                                                    value="{{ $inputbarang->harga }}"
-                                                    name="total" id="total" class="form-control" required readonly>
-                                                <input type="hidden"
-                                                    value="{{ $inputbarang->harga }}"
-                                                    id="sub_total" class="form-control" required readonly>
-                                                <div class="invalid-feedback">
-                                                    Harus di isi
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="card-footer">
-                                            <button style=" float :right; background-color:   #012970; color:#FFFFFF"
-                                                type="submit" id="btnSubmit" class="btn btn btn-sm">Submit</button>
-                                        </div>
+                    <div class="card-footer">
+                        <button style=" float :right; background-color:   #012970; color:#FFFFFF"
+                            type="submit" id="btnSubmit" class="btn btn btn-sm">Submit</button>
+                    </div>
 
                 </form><!-- End General Form Elements -->
             </div>

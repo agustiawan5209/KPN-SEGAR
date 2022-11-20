@@ -60,11 +60,11 @@
                                                     <?php echo date('d F Y', strtotime($data->tgl_pengajuan)); ?>
                                                 </td>
                                                 <td class=" border">
-                                                @if ($data->barangs_id == null)
-                                                Rp {{ number_format($data->jumlah_pinjam) }}
-                                                @else
-                                                {{ $data->jumlah_pinjam }}
-                                                @endif
+                                                    @if ($data->barangs_id == null)
+                                                        Rp {{ number_format($data->jumlah_pinjam) }}
+                                                    @else
+                                                        {{ $data->jumlah_pinjam }}
+                                                    @endif
                                                 </td>
                                                 @if ($data->jenis_peminjaman == 'Barang')
                                                     <td class=" border">
@@ -86,7 +86,7 @@
                                                         $pinjam_status = App\Models\Pinjam::where('kode_peminjaman', '=', $statuss->kode_peminjaman)->first();
 
                                                     @endphp
-                                                    @if ($statuss->status_id == 3  && Auth::user()->roles_id == 2)
+                                                    @if ($statuss->status_id == 3 && Auth::user()->roles_id == 2)
                                                         <button type="button" class="btn btn-info btn-sm"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#statuspengembalian{{ $data->id }}">
@@ -120,7 +120,7 @@
                                                                                 <center>
                                                                                     <h5 style="align-content: center"
                                                                                         class="card-title">Keterangan
-Pengiriman
+                                                                                        Pengiriman
                                                                                     </h5>
                                                                                     <center>
                                                                                         <div class="col-sm-10">
@@ -150,7 +150,7 @@ Pengiriman
                                                             </div>
                                                         </div><!-- End Basic Modal-->
                                                     @endif
-                                                    @if ($statuss->status_id == 4 || $statuss->status_id == 6 && Auth::user()->roles_id == 2)
+                                                    @if ($statuss->status_id == 4 || ($statuss->status_id == 6 && Auth::user()->roles_id == 2))
                                                         <span
                                                             class="badge border-dark border-1 text-dark small fst-italic"
                                                             style="color:#012970;">peminjaman
@@ -194,8 +194,7 @@ Pengiriman
                                                                         <form action="/insertstatus" method="POST"
                                                                             enctype="multipart/form-data">
                                                                             @csrf
-                                                                            <input type="hidden"
-                                                                                name="kode_peminjaman"
+                                                                            <input type="hidden" name="kode_peminjaman"
                                                                                 value={{ $data->kode_peminjaman }}>
                                                                             <input type="hidden" name="users_id"
                                                                                 value={{ Auth::user()->id }}>

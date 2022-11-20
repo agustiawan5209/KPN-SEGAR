@@ -7,7 +7,7 @@
     <meta name="keywords" content="Shayna, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Shayna | Template</title>
+    <title>KPN-SEGAR</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" />
+    <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 </head>
 
 <body>
@@ -53,7 +54,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="breadcrumb-text product-more">
-                                    <a href="./home.html"><i class="fa fa-home"></i> Home</a>
+                                    <a href="{{route('Customer.Index')}}"><i class="fa fa-home"></i> Home</a>
                                     <span>Detail</span>
                                 </div>
                             </div>

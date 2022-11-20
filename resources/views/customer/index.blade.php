@@ -12,7 +12,7 @@
                             <p>
                                Menyediakan Barang Sesuai Kebutuhan Anda
                             </p>
-                            <a href="#" class="primary-btn">Beli Sekarang</a>
+                            <a href="{{route('Pembelian.cekdata')}}" class="primary-btn" >Belanja Sekarang</a>
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                             <p>
                                 Menyediakan Peminjaman Dalam Jumlah Bunga Yang Sedikit
                             </p>
-                            <a href="#" class="primary-btn">Belanja Sekarang</a>
+                            <a href="{{route('pinjamUang.create')}}" class="primary-btn">Pinjam Sekarang</a>
                         </div>
                     </div>
                 </div>

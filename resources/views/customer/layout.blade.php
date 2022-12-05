@@ -55,7 +55,10 @@
                             <div class="col-lg-12">
                                 <div class="breadcrumb-text product-more">
                                     <a href="{{route('Customer.Index')}}"><i class="fa fa-home"></i> Home</a>
-                                    <span>Detail</span>
+                                    <a href="{{route('Customer.Index')}}"><i class="fa fa-home"></i> Product</a>
+                                    <a href="{{route('Customer.Index')}}"><i class="fa fa-home"></i> Promo</a>
+                                    <a href="{{route('Customer.Index')}}"><i class="fa fa-home"></i> Tentang Kami</a>
+
                                 </div>
                             </div>
                         </div>

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Roles;
+use App\Models\Voucher;
+use App\Models\VoucherUser;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -70,7 +72,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'roles_id' => $data['roles_id'],
@@ -79,5 +81,12 @@ class RegisterController extends Controller
             'telephone' => $data['telephone'],
             'password' => Hash::make($data['password']),
         ]);
+        $voucher = Voucher::where('status', '=', '1')->orderBy('id', 'desc')->first();
+        VoucherUser::create([
+            'voucher_id' => $voucher->id,
+            'user_id' => $user->id,
+            'status' => '1',
+        ]);
+        return $user;
     }
 }

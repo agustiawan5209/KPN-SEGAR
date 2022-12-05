@@ -28,7 +28,7 @@
                         <h5 class="card-title">Data Aset Bergerak</h5>
                         @if (Auth::user()->roles_id == 1)
 
-                        <a href="/data-asetbergerak/form" type="button" class="btn btn-sm"
+                        <a href="/barang/form" type="button" class="btn btn-sm"
                             style="background-color:  #012970; color:#FFFFFF">Tambah</a>
 
                         @endif

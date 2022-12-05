@@ -27,7 +27,7 @@
                     <div class="card-body overflow-scroll">
                         <h5 class="card-title">Data Aset Bergerak</h5>
 
-                        <a href="/data-asetbergerak/form" type="button" class="btn btn-sm"
+                        <a href="/barang/form" type="button" class="btn btn-sm"
                             style="background-color:  #012970; color:#FFFFFF">Tambah</a>
 
                         <!-- Table with stripped rows -->
@@ -204,7 +204,7 @@
                     </div>
                 </div><!-- End Large Modal-->
 
-                <a href="/data-asetbergerak/edit/{{ $data->id }}" type="button" class="btn btn-sm"
+                <a href="/barang/edit/{{ $data->id }}" type="button" class="btn btn-sm"
                     style="background-color: #05b3c3; color:#FFFFFF"><i class="bi bi-pencil"></i></a>
                 <a href="/data-asetbergerak/hapus/{{ $data->id }}" onclick="return confirm('Hapus Data?')"
                     type="button" class="btn btn-danger btn-sm"><i class="bi bi-trash delete"></i></a>

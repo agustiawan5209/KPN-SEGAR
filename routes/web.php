@@ -163,7 +163,7 @@ Route::middleware(['auth', 'check.role:1,2'])->group(function () {
         return view('dataasetbergerak.index');
     });
 
-    Route::get('/data-asetbergerak/form', function () {
+    Route::get('/barang/form', function () {
         return view('dataasetbergerak.form');
     });
 
@@ -284,9 +284,9 @@ Route::middleware(['auth', 'check.role:1,2'])->group(function () {
 
     //DATA ASET BERGERAK
     // Route::POST('create', 'App\Http\Controllers\BarangController@create')->name('create');
-    Route::get('/data-asetbergerak/form', [BarangController::class, 'formasetbergerak']);
-    Route::get('/data-asetbergerak', [BarangController::class, 'dataasetbergerak']);
-    Route::get('/data-asetbergerak/edit/{id}', 'App\Http\Controllers\BarangController@editasetbergerak')->name('editasetbergerak');
+    Route::get('/barang/form', [BarangController::class, 'formasetbergerak']);
+    Route::get('/Barang', [BarangController::class, 'dataasetbergerak'])->name('barang');
+    Route::get('/barang/edit/{id}', 'App\Http\Controllers\BarangController@editasetbergerak')->name('editasetbergerak');
     Route::post('/data-asetbergerak/update/{id}', 'App\Http\Controllers\BarangController@update')->name('data-asetbergerak.update');
     Route::get('/data-asetbergerak/hapus/{id}', 'App\Http\Controllers\BarangController@hapusasetbergerak')->name('hapusasetbergerak');
 

@@ -405,7 +405,7 @@ class BarangController extends Controller
             if ($inputbarang->jenis_asets_id == 2) {
                 return redirect('/data-aset')->with('success', 'Data Berhasil Ditambahkan!');
             } elseif ($inputbarang->jenis_asets_id == 1) {
-                return redirect('/data-asetbergerak')->with('success', 'Data Berhasil Ditambahkan!');
+                return redirect()->route('barang')->with('success', 'Data Berhasil Ditambahkan!');
             } elseif ($inputbarang->jenis_asets_id == 3) {
                 return redirect('/data-peralatan')->with('success', 'Data Berhasil Ditambahkan!');
             } elseif ($inputbarang->jenis_asets_id == 4) {
@@ -533,7 +533,7 @@ class BarangController extends Controller
         if ($inputbarang->jenis_asets_id == 2) {
             return redirect('/data-aset')->with('success', 'Data Berhasil Diupdate!');
         } elseif ($inputbarang->jenis_asets_id == 1) {
-            return redirect('/data-asetbergerak')->with('success', 'Data Berhasil Diupdate!');
+            return redirect()->route('barang')->with('success', 'Data Berhasil Diupdate!');
         } elseif ($inputbarang->jenis_asets_id == 3) {
             return redirect('/data-peralatan')->with('success', 'Data Berhasil Diupdate!');
         } elseif ($inputbarang->jenis_asets_id == 4) {
@@ -553,7 +553,7 @@ class BarangController extends Controller
     {
         $inputbarang = Barang::find($id);
         $inputbarang->delete();
-        return redirect('/data-asetbergerak')->with('success', 'Data Berhasil Dihapus!');
+        return redirect()->route('barang')->with('success', 'Data Berhasil Dihapus!');
     }
 
     public function hapusperalatan($id)

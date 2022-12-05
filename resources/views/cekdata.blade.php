@@ -227,7 +227,7 @@
                     @else
                     @endif
                 </td> --}}
-                {{-- {{-- <a href="/data-asetbergerak/edit/{{$data->id}}" type="button" class="btn btn" style="background-color: #05b3c3; color:#FFFFFF"><i class="bi bi-pencil"></i></a> --}}
+                {{-- {{-- <a href="/barang/edit/{{$data->id}}" type="button" class="btn btn" style="background-color: #05b3c3; color:#FFFFFF"><i class="bi bi-pencil"></i></a> --}}
                 <a href="/pinjam/formulir/{{ $data->id }}" type="button" class="btn btn btn-sm"
                     style="background-color:  #5ebade; color:#FFFFFF"> Pinjam</a>
                 </td>

@@ -32,7 +32,7 @@
                             <div class="card-body">
 
                                 <h5 class="card-title">
-                                    Status peminjaman
+                                    Status
                                     <span>|
                                         {{ Auth::user()->name }}</span>
                                 </h5>
@@ -101,49 +101,6 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="activity">
-                                        @foreach ($trxstatus as $a)
-                                            @if ($data->id == $a->pinjams_id)
-                                                <div
-                                                    class="activity-item d-flex">
-                                                    <i
-                                                        class='bi bi-circle-fill activity-badge text-success align-self-start'>
-                                                    </i>
-                                                    <div @foreach ($status as $item) @if ($a->status_id == $item->id)
-                                                                <div
-                                                                    class="activity-content">
-                                                                    {{ $item->status }}
-                                                                </div> @endif
-                                                        @endforeach
-
-                                                        <?php
-                                                            foreach($akun as $p){
-                                                                if($a->users_id == $p->id){?>
-                                                        <div
-                                                            class="activity-content">
-                                                            <p><br>
-                                                                Diverifikasi
-                                                                oleh :
-                                                                {{ $p->name }}<br>
-
-                                                                Tanggal
-                                                                :
-
-                                                                {{ $a->created_at }}
-                                                            </p>
-                                                        </div>
-                                                        <?php }
-                                                                        }
-                                                                        ?>
-                                                    </div>
-                                            @endif
-                                        @endforeach
-                                    </div>
-
-                                </div> --}}
-            <!-- End activity item-->
-
         </div>
-
     </div>
 </div>

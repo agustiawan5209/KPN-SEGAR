@@ -40,7 +40,7 @@
   ======================================================== -->
 </head>
 
-<body class="toggle-sidebar">
+<body >
     <!-- WRAPPER -->
     <div id="wrapper">
         <!-- NAVBAR -->

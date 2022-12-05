@@ -38,13 +38,23 @@
                 </ul>
             </li><!-- End Forms Nav -->
             <li class="nav-item flex-column">
-                <a class="nav-link collapsed" data-bs-target="#diskonpromo" data-bs-toggle="collapse" href="@yield('diskonpromo')">
+                <a class="nav-link collapsed" data-bs-target="#potongan-nav" data-bs-toggle="collapse" href="@yield('potongan-nav')">
                     <i class="bi bi-person"></i><span>Data Diskon/Promo</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="diskonpromo" class="nav-content collapse @yield('diskonpromo')" data-bs-parent="#sidebar-nav">
+                <ul id="potongan-nav" class="nav-content collapse @yield('potongan-nav')" data-bs-parent="#sidebar-nav">
                     <li>
-                        <a class="@yield('diskonpromo')" href="{{ route('Diskon.index') }} ">
+                        <a class="@yield('diskonli')" href="{{ route('Diskon.index') }} ">
                             <i class="bi bi-circle"></i><span>Diskon</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="@yield('promoli')" href="{{ route('Promo.index') }} ">
+                            <i class="bi bi-circle"></i><span>Promo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="@yield('voucherli')" href="{{ route('Voucher.index') }} ">
+                            <i class="bi bi-circle"></i><span>Voucher</span>
                         </a>
                     </li>
                 </ul>

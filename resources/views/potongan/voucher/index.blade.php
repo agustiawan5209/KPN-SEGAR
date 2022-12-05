@@ -1,9 +1,9 @@
 @extends('layouts.master')
+@section('title', 'potongan-nav')
+@section('voucherli', 'active')
+@section('potongan-nav', 'show')
 @section('content')
 
-@section('title', 'potongan-nav')
-@section('diskonli', 'active')
-@section('potongan-nav', 'show')
 
 <main id="main" class="main">
 

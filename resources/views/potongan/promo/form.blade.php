@@ -2,7 +2,7 @@
 
 
 @section('title', 'potongan-nav')
-@section('diskonli', 'active')
+@section('promoli', 'active')
 @section('potongan-nav', 'show')
 
 @section('content')
@@ -26,15 +26,15 @@
                         </div>
 
                         <form class="row g-3 needs-validation" novalidate method="POST"
-                            action="{{ route('Diskon.update', ['id'=> $diskon->id]) }}">
+                            action="{{ route('Diskon.store') }}">
                             @csrf
-                            @method('PUT')
+                            @method('POST')
                             <div class="col-12">
                                 <label for="yourName" class="form-label">Barang</label>
                                <select name="barang_id" id="barang_id" class="form-select">
                                 <option value="">--</option>
                                 @foreach ($barang as $item)
-                                    <option value="{{ $item->id }}" {{ $diskon->barang_id == $item->id ? 'selected' :''}}>- {{ $item->kode }} - {{ $item->spesifikasi }}</option>
+                                    <option value="{{ $item->id }}">- {{ $item->kode }} - {{ $item->spesifikasi }}</option>
                                 @endforeach
                                </select>
                                 <div class="invalid-feedback">Please, enter your name!</div>
@@ -43,7 +43,7 @@
                                 <label for="yourName" class="form-label">Diskon</label>
                                 <input id="name" type="text"
                                     class="form-control @error('diskon') is-invalid @enderror" name="diskon"
-                                    value="{{$diskon->diskon }}" required autocomplete="diskon" autofocus>
+                                    value="{{ old('diskon') }}" required autocomplete="diskon" autofocus>
                                 @error('diskon')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@
                                 <label for="yourName" class="form-label">Tanggal Mulai</label>
                                 <input id="name" type="date"
                                     class="form-control @error('tgl_mulai') is-invalid @enderror" name="tgl_mulai"
-                                    value="{{ $diskon->tgl_mulai }}" required autocomplete="tgl_mulai" autofocus>
+                                    value="{{ old('tgl_mulai') }}" required autocomplete="tgl_mulai" autofocus>
                                 @error('tgl_mulai')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -67,7 +67,7 @@
                                 <label for="yourName" class="form-label">Tanggal Akhir</label>
                                 <input id="name" type="date"
                                     class="form-control @error('tgl_akhir') is-invalid @enderror" name="tgl_akhir"
-                                    value="{{ $diskon->tgl_akhir }}" required autocomplete="tgl_akhir" autofocus>
+                                    value="{{ old('tgl_akhir') }}" required autocomplete="tgl_akhir" autofocus>
                                 @error('tgl_akhir')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

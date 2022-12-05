@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Promo;
 use App\Http\Requests\StorePromoRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\UpdatePromoRequest;
 
 class PromoController extends Controller
@@ -15,7 +16,9 @@ class PromoController extends Controller
      */
     public function index()
     {
-        //
+        return view('potongan.promo.index', [
+            'promo'=> Promo::all(),
+        ]);
     }
 
     /**
@@ -25,7 +28,7 @@ class PromoController extends Controller
      */
     public function create()
     {
-        //
+        return view('potongan.promo.form');
     }
 
     /**
@@ -36,7 +39,14 @@ class PromoController extends Controller
      */
     public function store(StorePromoRequest $request)
     {
-        //
+        Promo::create([
+            'kode'=> $request->kode,
+            'potongan'=> $request->potongan,
+            'tgl_mulai'=> $request->tgl_mulai,
+            'tgl_akhir'=> $request->tgl_akhir,
+        ]);
+        Alert::success('info', 'Berhasil Di Tambah');
+        return redirect()->route('Promo.index');
     }
 
     /**
@@ -56,9 +66,12 @@ class PromoController extends Controller
      * @param  \App\Models\Promo  $promo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Promo $promo)
+    public function edit(Promo $promo,$id)
     {
-        //
+        $promo = Promo::find($id);
+        return view('potongan.promo.edit', [
+            'promo'=> $promo,
+        ]);
     }
 
     /**
@@ -68,9 +81,16 @@ class PromoController extends Controller
      * @param  \App\Models\Promo  $promo
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePromoRequest $request, Promo $promo)
+    public function update(UpdatePromoRequest $request, Promo $promo,$id)
     {
-        //
+        Promo::where($id)->update([
+            'kode'=> $request->kode,
+            'potongan'=> $request->potongan,
+            'tgl_mulai'=> $request->tgl_mulai,
+            'tgl_akhir'=> $request->tgl_akhir,
+        ]);
+        Alert::success('info', 'Berhasil Di Tambah');
+        return redirect()->route('Promo.index');
     }
 
     /**
@@ -79,8 +99,10 @@ class PromoController extends Controller
      * @param  \App\Models\Promo  $promo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Promo $promo)
+    public function destroy(Promo $promo,$id)
     {
-        //
+        Promo::find($id)->delete();
+        Alert::success('info', 'Berhasil Di Hapus..!');
+        return redirect()->route('Promo.index');
     }
 }

@@ -2,7 +2,7 @@
 
 
 @section('title', 'potongan-nav')
-@section('diskonli', 'active')
+@section('promoli', 'active')
 @section('potongan-nav', 'show')
 
 @section('content')
@@ -22,7 +22,7 @@
                     <div class="card-body">
 
                         <div class="pt-4 pb-2">
-                            <h5 class="card-title text-center pb-0 fs-4">Tambah akun Diskon</h5>
+                            <h5 class="card-title text-center pb-0 fs-4">Tambah akun Promo</h5>
                         </div>
 
                         <form class="row g-3 needs-validation" novalidate method="POST"

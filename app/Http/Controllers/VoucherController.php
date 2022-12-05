@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Voucher;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreVoucherRequest;
 use App\Http\Requests\UpdateVoucherRequest;
+use App\Models\Promo;
 
 class VoucherController extends Controller
 {
@@ -15,7 +17,9 @@ class VoucherController extends Controller
      */
     public function index()
     {
-        //
+        return view('potongan.voucher.index', [
+            'voucher'=> Voucher::all(),
+        ]);
     }
 
     /**
@@ -25,6 +29,7 @@ class VoucherController extends Controller
      */
     public function create()
     {
+        return view('potongan.voucher.form');
         //
     }
 
@@ -36,7 +41,14 @@ class VoucherController extends Controller
      */
     public function store(StoreVoucherRequest $request)
     {
-        //
+        Voucher::create([
+            'kode'=> $request->kode,
+            'potongan'=> $request->potongan,
+            'tgl_mulai'=> $request->tgl_mulai,
+            'tgl_akhir'=> $request->tgl_akhir,
+        ]);
+        Alert::success('info', 'Berhasil Di Tambah');
+        return redirect()->route('Voucher.index');
     }
 
     /**
@@ -56,9 +68,12 @@ class VoucherController extends Controller
      * @param  \App\Models\Voucher  $voucher
      * @return \Illuminate\Http\Response
      */
-    public function edit(Voucher $voucher)
+    public function edit(Voucher $voucher,$id)
     {
-        //
+        $voucher = Voucher::find($id);
+        return view('potongan.voucher.edit', [
+            'voucher'=> $voucher,
+        ]);
     }
 
     /**
@@ -68,9 +83,16 @@ class VoucherController extends Controller
      * @param  \App\Models\Voucher  $voucher
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateVoucherRequest $request, Voucher $voucher)
+    public function update(UpdateVoucherRequest $request, Voucher $voucher,$id)
     {
-        //
+        Voucher::where($id)->update([
+            'kode'=> $request->kode,
+            'potongan'=> $request->potongan,
+            'tgl_mulai'=> $request->tgl_mulai,
+            'tgl_akhir'=> $request->tgl_akhir,
+        ]);
+        Alert::success('info', 'Berhasil Di Tambah');
+        return redirect()->route('Voucher.index');
     }
 
     /**
@@ -79,8 +101,10 @@ class VoucherController extends Controller
      * @param  \App\Models\Voucher  $voucher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Voucher $voucher)
+    public function destroy(Voucher $voucher,$id)
     {
-        //
+        Voucher::find($id)->delete();
+        Alert::success('info', 'Berhasil Di Hapus..!');
+        return redirect()->route('Diskon.index');
     }
 }

@@ -1,13 +1,16 @@
 <?php
 
 use App\Models\Pinjam;
+use App\Models\Voucher;
 use App\Http\Controllers\PinjamUang;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PromoController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\DiskonController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\PinjamController;
@@ -23,7 +26,6 @@ use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\CustomerViewController;
 use App\Http\Controllers\DataJenisAsetController;
 use App\Http\Controllers\DataAsalPerolehanController;
-use App\Http\Controllers\DiskonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +100,26 @@ Route::group(['auth', 'check.role:2'], function () {
 Route::middleware(['auth', 'check.role:1'])->group(function(){
     Route::group(['prefix'=>'Diskon', 'as'=> 'Diskon.'],function(){
         Route::controller(DiskonController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::put('/update/{id}', 'update')->name('update');
+            Route::get('/destroy/{id}', 'destroy')->name('destroy');
+        });
+    });
+    Route::group(['prefix'=>'Promo', 'as'=> 'Promo.'],function(){
+        Route::controller(PromoController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::put('/update/{id}', 'update')->name('update');
+            Route::get('/destroy/{id}', 'destroy')->name('destroy');
+        });
+    });
+    Route::group(['prefix'=>'Voucher', 'as'=> 'Voucher.'],function(){
+        Route::controller(VoucherController::class)->group(function(){
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');

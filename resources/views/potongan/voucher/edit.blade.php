@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
-
 @section('title', 'potongan-nav')
-@section('diskonli', 'active')
+@section('voucherli', 'active')
 @section('potongan-nav', 'show')
+
 
 @section('content')
     <div class="container">

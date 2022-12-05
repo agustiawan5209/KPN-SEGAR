@@ -31,18 +31,6 @@
                                     <a href="{{ url('/laporan/asetbergerak') }}">
                                         <span> 1. Data Aset Bergerak</span>
                                     </a><br>
-
-                                    <a href="{{ url('/laporan/asettidakbergerak') }}">
-                                        <span> 2. Data Aset Tidak Bergerak</span>
-                                    </a><br>
-
-                                    <a href="{{ url('/laporan/peralatan') }}">
-                                        <span> 3. Data Aset Peralatan</span>
-                                    </a><br>
-
-                                    <a href="{{ url('/laporan/perlengkapan') }}">
-                                        <span> 4. Data Aset Perlengkapan</span>
-                                    </a><br>
                                 </div>
                             </div>
                         </div>
@@ -64,10 +52,6 @@
                                     <a href="{{ url('/laporan/barangmasuk') }}">
                                         <span> 2. Data Barang Masuk</span>
                                     </a>
-                                    <br>
-                                    <a href="{{ route('mutasi-laporan') }}">
-                                        <span> 3. Data Mutasi barang</span>
-                                    </a>
 
                                 </div>
                             </div>
@@ -85,6 +69,12 @@
                                     {{-- <div class="col-lg-5 col-md-4 label">Riwayat Pembelian :</div> --}}
                                     <a href="{{ url('/laporan/peminjaman') }}">
                                         <span> Data Riwayat Pembelian </span>
+                                    </a><br>
+                                    <a href="{{ url('/laporan/peminjaman') }}">
+                                        <span> Data Riwayat Peminjaman Uang </span>
+                                    </a><br>
+                                    <a href="{{ url('/laporan/peminjaman') }}">
+                                        <span> Data Riwayat Peminjaman Barang </span>
                                     </a><br>
 
 

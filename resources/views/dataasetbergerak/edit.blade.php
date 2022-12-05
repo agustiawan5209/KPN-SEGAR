@@ -90,18 +90,6 @@
                             </div>
 
 
-
-                            <div class="row mb-3">
-                                <label for="validationTooltip04" class="col-sm-2 col-form-label">Kegunaan</label>
-                                <div class="col-sm-10">
-                                    <input type="text" value="{{ $inputbarang->kegunaan }}" name="kegunaan"
-                                        class="form-control" required>
-                                    <div class="invalid-feedback">
-                                        Harus di isi
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="row mb-3">
                                 <label for="validationTooltip05" class="col-sm-2 col-form-label">Tanggal
                                     Perolehan</label>
@@ -148,98 +136,84 @@
 
 
                             <div class="row mb-3">
+                                <label for="validationTooltip04" class="col-sm-2 col-form-label">Jumlah
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="{{ $inputbarang->jumlah }}" id=" "
+                                        name="jumlah" class="form-control" required>
+                                    <div class="invalid-feedback">
+                                        Harus di isi
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row mb-3">
-                                    <label for="validationTooltip04" class="col-sm-2 col-form-label">Penanggung
-                                        Jawab</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" value="{{ $inputbarang->penanggung_jawab }}"
-                                            id=" " name="penanggung_jawab" class="form-control" required>
-                                        <div class="invalid-feedback">
-                                            Harus di isi
-                                        </div>
+                                <label for="validationTooltip06" class="col-sm-2 col-form-label">Satuan</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" id=" " name="satuans_id"
+                                        aria-label="Default select example">
+                                        {{-- <option selected>Silakan Pilih Satuan</option> --}}
+
+
+                                        <?php
+                                        foreach ($datasatuan as $data) {
+                                            echo "<option value='$data->id'";
+                                            echo $inputbarang['satuans_id'] == $data->id ? 'selected' : '';
+                                            echo ">$data->nama_satuan</option>";
+                                        }
+                                        ?>
+
+
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Harus di isi
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="row mb-3">
-                                    <label for="validationTooltip04" class="col-sm-2 col-form-label">Jumlah
-                                        </label>
-                                    <div class="col-sm-10">
-                                        <input type="text" value="{{ $inputbarang->jumlah }}" id=" "
-                                            name="jumlah" class="form-control" required >
-                                        <div class="invalid-feedback">
-                                            Harus di isi
-                                        </div>
+                            <div class="row mb-3">
+                                <label for="validationTooltip06" class="col-sm-2 col-form-label">Kondisi</label>
+                                <div class="col-sm-10">
+
+                                    <select class="form-select" id="validationTooltip06" name="kondisi"
+                                        aria-label="Default select example">
+                                        {{-- <option selected>Kondisi Barang</option> --}}
+                                        <option value="Baik" {{ $inputbarang->kondisi == 'Baik' ? 'selected' : '' }}>
+                                            Baik</option>
+                                        <option value="Cukup" {{ $inputbarang->kondisi == 'Cukup' ? 'selected' : '' }}>
+                                            Cukup
+                                        </option>
+                                        <option value="Tidak Baik"
+                                            {{ $inputbarang->kondisi == 'Tidak Baik' ? 'selected' : '' }}>Tidak
+                                            Baik
+                                        </option>
+                                    </select>
+
+
+
+                                    <div class="invalid-feedback">
+                                        Harus di isi
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="row mb-3">
-                                    <label for="validationTooltip06" class="col-sm-2 col-form-label">Satuan</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-select" id=" " name="satuans_id"
-                                            aria-label="Default select example">
-                                            {{-- <option selected>Silakan Pilih Satuan</option> --}}
-
-
-                                            <?php
-                                            foreach ($datasatuan as $data) {
-                                                echo "<option value='$data->id'";
-                                                echo $inputbarang['satuans_id'] == $data->id ? 'selected' : '';
-                                                echo ">$data->nama_satuan</option>";
-                                            }
-                                            ?>
-
-
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Harus di isi
-                                        </div>
+                            <div class="row mb-3">
+                                <label for="validationTooltip04" class="col-sm-2 col-form-label">Keterangan</label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="{{ $inputbarang->ket }}" id=" "
+                                        name="ket" class="form-control"required>
+                                    <div class="invalid-feedback">
+                                        Harus di isi
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="row mb-3">
-                                    <label for="validationTooltip06" class="col-sm-2 col-form-label">Kondisi</label>
-                                    <div class="col-sm-10">
-
-                                        <select class="form-select" id="validationTooltip06" name="kondisi"
-                                            aria-label="Default select example">
-                                            {{-- <option selected>Kondisi Barang</option> --}}
-                                            <option value="Baik"
-                                                {{ $inputbarang->kondisi == 'Baik' ? 'selected' : '' }}>Baik</option>
-                                            <option value="Cukup"
-                                                {{ $inputbarang->kondisi == 'Cukup' ? 'selected' : '' }}>Cukup
-                                            </option>
-                                            <option value="Tidak Baik"
-                                                {{ $inputbarang->kondisi == 'Tidak Baik' ? 'selected' : '' }}>Tidak
-                                                Baik
-                                            </option>
-                                        </select>
-
-
-
-                                        <div class="invalid-feedback">
-                                            Harus di isi
-                                        </div>
-                                    </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-10">
+                                    <button style=" float :right; background-color:   #012970; color:#FFFFFF"
+                                        type="submit" class="btn btn">Submit</button>
                                 </div>
-
-                                <div class="row mb-3">
-                                    <label for="validationTooltip04"
-                                        class="col-sm-2 col-form-label">Keterangan</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" value="{{ $inputbarang->ket }}" id=" "
-                                            name="ket" class="form-control"required>
-                                        <div class="invalid-feedback">
-                                            Harus di isi
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-sm-10">
-                                        <button style=" float :right; background-color:   #012970; color:#FFFFFF"
-                                            type="submit" class="btn btn">Submit</button>
-                                    </div>
-                                </div>
+                            </div>
                         </form><!-- End General Form Elements -->
 
 

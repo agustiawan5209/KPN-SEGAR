@@ -7,12 +7,12 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Peminjaman, Pembelian</span>
+                            <span class="text-dark">Peminjaman, Pembelian</span>
                             <h1>KPN SEGAR</h1>
                             <p>
                                Menyediakan Barang Sesuai Kebutuhan Anda
                             </p>
-                            <a href="{{route('Pembelian.cekdata')}}" class="primary-btn" >Belanja Sekarang</a>
+                            <a href="{{route('Pembelian.cekdata')}}" class="btn-info px-3 py-2 rounded" >Belanja Sekarang</a>
                         </div>
                     </div>
                 </div>
@@ -21,12 +21,12 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Peminjaman, Pembelian</span>
+                            <span class="text-dark">Peminjaman, Pembelian</span>
                             <h1>KPN SEGAR</h1>
                             <p>
                                 Menyediakan Peminjaman Dalam Jumlah Bunga Yang Sedikit
                             </p>
-                            <a href="{{route('pinjamUang.create')}}" class="primary-btn">Pinjam Sekarang</a>
+                            <a href="{{route('pinjamUang.create')}}" class="btn-info px-3 py-2 rounded">Pinjam Sekarang</a>
                         </div>
                     </div>
                 </div>

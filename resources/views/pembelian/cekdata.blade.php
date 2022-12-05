@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('customer.layout')
 @section('content')
 
 @section('title', 'asetbergerak')
@@ -11,238 +11,23 @@
 
     </div><!-- End Page Title -->
 
-    <section class="section">
+    <section class="container-fluid py-3 pb-5">
         <div class="row">
-            <div class="col-lg-12">
-
-
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"> Silakan Cek Data Barang </h5>
-
-                        <!-- Table with stripped rows -->
-                        <table class="table datatable">
-                            <thead>
-
-                                <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">
-                                        Nama barang
-                                    </th>
-                                    <th scope="col">Foto</th>
-                                    <th scope="col">Jumlah Awal</th>
-                                    <th scope="col">Sisa barang</th>
-                                    <th scope="col">harga</th>
-                                    <th scope="col">Detail</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <?php
-                                $nomor = 1;
-                                ?>
-                                @foreach ($inputbarang as $data)
-                                    @if ($data->jumlah > 0 && $data->jenis_asets->id != 2)
-                                        <tr>
-                                            <th> {{ $nomor++ }}</th>
-                                            <td> {{ $data->kode }} {{ $data->jenis_barangs->jenis_barang }}
-                                                {{ $data->spesifikasi }} </td>
-
-                                            <td>
-                                                <img src="{{ asset('fotobarang/' . $data->foto) }}"
-                                                    style="width: 100px;" alt="...">
-                                            </td>
-                                            <td>{{ $data->jumlah }} {{ $data->satuans->nama_satuan }} </td>
-                                            <td>
-                                                @if ($data->jumlah <= 0)
-                                                    <span class="badge bg-danger">
-                                                        kosong</span>
-                                                @else
-                                                    {{ $data->jumlah }} {{ $data->satuans->nama_satuan }}
-                                                @endif
-                                            </td>
-                                                {{-- Keranjang --}}
-                                            <td>
-                                               Rp.{{number_format($data->harga,0,2)}}
-                                            </td>
-                                            <td>
-
-                                                <!-- Large Modal -->
-
-                                                <button type="button" class="btn btn btn-sm"
-                                                    style="background-color:  #012970; color:#FFFFFF"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#modaldetail{{ $data->id }}">
-                                                    <i class="bi bi-eye"></i>
-                                                </button>
-
-                                                <div class="modal fade" id="modaldetail{{ $data->id }}"
-                                                    tabindex="-1">
-                                                    <div class="modal-dialog modal-lg">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Detail Data Aset</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-
-                                                                <!-- Card with an image on left -->
-
-
-                                                                <div class="card mb-3">
-                                                                    <div class="row g-0">
-                                                                        <div class="col-md-4">
-                                                                            <img src="{{ asset('fotobarang/' . $data->foto) }}"
-                                                                                class="img-fluid rounded-start"
-                                                                                alt="...">
-                                                                        </div>
-                                                                        <div class="col-md-8">
-                                                                            <div class="card-body">
-                                                                                {{-- <h5 class="card-title text-center">Detail Data Aset</h5> --}}
-
-
-                                                                                <h5 class="card-title text-center">
-                                                                                    {{ $data->jenis_barangs->jenis_barang }}
-                                                                                    {{ $data->spesifikasi }}</h5>
-
-                                                                                <p class="card-text">
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label ">
-                                                                                        Kode </div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->kode }}</div>
-                                                                                </div>
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Nama </div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->jenis_barangs->jenis_barang }}
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Tipe</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->spesifikasi }}
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Jenis aset</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->jenis_asets->nama_jenisaset }}
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Kegunaan</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->kegunaan }}</div>
-                                                                                </div>
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Tgl Perolehan</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->tanggal_perolehan }}
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Asal Perolehan</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->asal_perolehans->nama_asalperolehan }}
-                                                                                    </div>
-                                                                                </div>
-
-
-
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Jumlah</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->jumlah }}</div>
-                                                                                </div>
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Satuan</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->satuans->nama_satuan }}
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Kondisi</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->kondisi }}</div>
-                                                                                </div>
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                        Ket</div>
-                                                                                    <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->ket }}</div>
-                                                                                </div>
-
-                                                                            </div>
-                                                                        </div>
-
-
-
-                                                                        </p>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- End Card with an image on left -->
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    </div>
-                                                </div>
-                    </div>
-                </div><!-- End Large Modal-->
-
-                {{-- <td>
-                    @if ($data->jumlah <= 0)
-                        <a href=" " type="button" class="btn btn-danger"> stok habis</a>
-                    @else
-                    @endif
-                </td> --}}
-                {{-- {{-- <a href="/data-asetbergerak/edit/{{$data->id}}" type="button" class="btn btn" style="background-color: #05b3c3; color:#FFFFFF"><i class="bi bi-pencil"></i></a> --}}
-                <a href="{{route('Pembelian.show', ['Pembelian'=> $data->id])}}" type="button" class="btn btn btn-sm"
-                    style="background-color:  #5ebade; color:#FFFFFF"> Beli</a>
-                </td>
-                @endif
-                @endforeach
-
-                </tr>
-
-                </tbody>
-                </table>
-                <!-- End Table with stripped rows -->
-
-            </div>
+           @foreach ($inputbarang as $item)
+             <div class="card col-lg-3" >
+                 <img src="{{ asset('fotobarang/' . $item->foto) }}" class="card-img-top" alt="...">
+                 <div class="card-body">
+                     <h5 class="card-title">{{ $item->jenis_barangs->jenis_barang }}</h5>
+                     <p class="card-text">
+                        Rp. {{ $item->harga }}
+                        @if ($item->diskon != null)
+                            <span>{{$item->diskon->diskon}}</span>
+                        @endif
+                     </p>
+                     <a href="{{ route('Customer.detail', ['id' => $item->id]) }}" class="primary-btn">Detail</a>
+                 </div>
+             </div>
+           @endforeach
         </div>
 
         </div>

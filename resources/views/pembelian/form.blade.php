@@ -57,7 +57,7 @@
                                                 </td>
                                                 <td>Rp. {{ number_format($data->jumlah_pinjam,0,2) }} </td>
                                                 <td>
-                                                    @include('modal')
+                                                    @include('pembelian.modal-pembelian')
                                                 </td>
 
 

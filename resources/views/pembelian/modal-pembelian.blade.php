@@ -24,13 +24,13 @@
                                 <div class="row">
                                     <div class="col-lg-15">
                                         <h5 class="card-title text-center">
-                                            Detail Data
+                                            Detail Data Pembelian
                                         </h5>
 
                                         <p class="card-text">
                                         <div class="row">
                                             <div class="col-lg-5 col-md-4 label ">
-                                                Kode peminjaman
+                                                Kode Pembelian
                                             </div>
                                             <div class="col-lg-7 col-md-8">
                                                 :{{ $data->kode_peminjaman }}
@@ -39,14 +39,14 @@
 
                                         <div class="row">
                                             <div class="col-lg-5 col-md-4 label">
-                                                Peminjam </div>
+                                                Nama Pembeli </div>
                                             <div class="col-lg-7 col-md-8">
                                                 :{{ $data->nama_peminjam }}
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-5 col-md-4 label">
-                                                jenis peminjaman
+                                                jenis Pembelian
                                             </div>
                                             <div class="col-lg-7 col-md-8">
                                                 :{{ $data->jenis_peminjaman }}
@@ -63,7 +63,7 @@
 
                                         <div class="row">
                                             <div class="col-lg-5 col-md-4 label">
-                                                Tanggal Pengajuan </div>
+                                                Tanggal Pembelian </div>
                                             <div class="col-lg-7 col-md-8">
                                                 :{{ $data->tgl_pengajuan }}
                                             </div>
@@ -71,16 +71,7 @@
 
                                         <div class="row">
                                             <div class="col-lg-5 col-md-4 label">
-                                                Tanggal kembali :
-                                            </div>
-                                            <div class="col-lg-7 col-md-8">
-                                                :{{ $data->tgl_kembali }}
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-5 col-md-4 label">
-                                                Barang Pinjam </div>
+                                              Detail  Barang </div>
                                             <div class="col-lg-7 col-md-8">
                                                 :
                                                 {{ $data->barangs->kode }}
@@ -91,7 +82,7 @@
 
                                         <div class="row">
                                             <div class="col-lg-5 col-md-4 label">
-                                                Jumlah Pinjam </div>
+                                                Jumlah Pembelian </div>
                                             <div class="col-lg-7 col-md-8">
                                                 :
                                                 {{ $data->jumlah_pinjam }}

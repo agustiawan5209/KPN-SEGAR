@@ -23,6 +23,7 @@ use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\CustomerViewController;
 use App\Http\Controllers\DataJenisAsetController;
 use App\Http\Controllers\DataAsalPerolehanController;
+use App\Http\Controllers\DiskonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,7 +73,7 @@ Auth::routes();
 
 // View Customer
 Route::group(['check.role:4,3', 'prefix' => 'Produk', 'as' => 'Customer.'], function () {
-    Route::get('Produk', [CustomerViewController::class, 'index'])->name('Index');
+    Route::get('/', [CustomerViewController::class, 'index'])->name('Index');
     Route::get('Produk/detail/{id}', [CustomerViewController::class, 'detail'])->name('detail');
 });
 // Data Bunga
@@ -92,6 +93,19 @@ Route::group(['auth', 'check.role:2'], function () {
     Route::get('Pembelian-cekdata', [PembelianController::class, 'cekdata'])->name('Pembelian.cekdata');
     Route::get('Pembelian-detail/{id}', [PembelianController::class, 'detail'])->name('Pembelian.detail');
     Route::get('RiwayatPembelian', [PembelianController::class, 'dataPembelian'])->name('Pembelian.data');
+});
+
+Route::middleware(['auth', 'check.role:1'])->group(function(){
+    Route::group(['prefix'=>'Diskon', 'as'=> 'Diskon.'],function(){
+        Route::controller(DiskonController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::put('/update/{id}', 'update')->name('update');
+            Route::get('/destroy/{id}', 'destroy')->name('destroy');
+        });
+    });
 });
 //--SEMUA ROUTE ROLE ADMIN ( ROLE 1)--//
 Route::middleware(['auth', 'check.role:1,2'])->group(function () {

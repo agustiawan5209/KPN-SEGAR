@@ -13,7 +13,7 @@ class StoreDiskonRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreDiskonRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'barang_id'=> ['required'],
+            'diskon'=> ['required', 'numeric'],
+            'tgl_mulai'=> ['required', 'date'],
+            'tgl_akhir'=> ['required', 'date'],
         ];
     }
 }

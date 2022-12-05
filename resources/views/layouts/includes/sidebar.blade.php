@@ -4,13 +4,13 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
 
-            <li class="nav-item {{ request()->is('redirects*') ? 'active' : '' }}">
+            <li class="nav-item flex-column {{ request()->is('redirects*') ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="{{ route('dashboard') }}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item flex-column">
                 <a class="nav-link collapsed" data-bs-target="#formss-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-person"></i><span>Data User</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
@@ -37,8 +37,20 @@
                     </li>
                 </ul>
             </li><!-- End Forms Nav -->
+            <li class="nav-item flex-column">
+                <a class="nav-link collapsed" data-bs-target="#diskonpromo" data-bs-toggle="collapse" href="@yield('diskonpromo')">
+                    <i class="bi bi-person"></i><span>Data Diskon/Promo</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="diskonpromo" class="nav-content collapse @yield('diskonpromo')" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a class="@yield('diskonpromo')" href="{{ route('Diskon.index') }} ">
+                            <i class="bi bi-circle"></i><span>Diskon</span>
+                        </a>
+                    </li>
+                </ul>
+            </li><!-- End Forms Nav -->
 
-            <li class="nav-item">
+            <li class="nav-item flex-column">
                 <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse"
                     href="@yield('charts-nav')">
                     <i class="bi bi-bar-chart @yield('charts-nav')"></i><span>Pencatatan</span><i
@@ -57,17 +69,13 @@
                             <i class="bi bi-circle"></i><span>Stok Keluar</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="@yield('mutasi')" href="{{ route('mutasi-riwayat') }}">
-                            <i class="bi bi-circle"></i><span>Mutasi Barang</span>
-                        </a>
-                    </li>
+
 
 
 
                 </ul>
             </li><!-- End Charts Nav -->
-            <li class="nav-item">
+            <li class="nav-item flex-column">
                 <a class="nav-link collapsed" data-bs-target="#iconss-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-cart" @yield('iconss-nav')></i><span>Data Transaksi</span><i
                         class="bi bi-chevron-down ms-auto"></i>
@@ -91,7 +99,7 @@
             </li><!-- End Icons Nav -->
 
 
-            <li class="nav-item {{ request()->is('redirects*') ? 'active' : '' }}">
+            <li class="nav-item flex-column {{ request()->is('redirects*') ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="{{ url('/laporan/menu') }}">
                     <i class="bi bi-layout-text-window-reverse"></i>
                     <span>Laporan</span>
@@ -111,25 +119,18 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
-            <li class="nav-item ">
+            <li class="nav-item flex-column ">
                 <a class="nav-link collapsed" href="{{ url('/dashboard') }}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
 
-            <li class="nav-item @yield('components-nav')">
+            <li class="nav-item flex-column @yield('components-nav')">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse">
                     <i class="bi bi-menu-button-wide"></i><span>Data Master</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="components-nav" class="nav-content collapse @yield('components-nav')" data-bs-parent="#sidebar-nav">
-
-                    {{-- <li>
-                         <a class=" @yield('jenisaset')" href="{{ url('/datajenisaset') }}">
-                             <i class="bi bi-circle"></i><span>Data Jenis Aset</span>
-                         </a>
-                     </li> --}}
-
                     <li>
                         <a class=" @yield('asalperolehan')" href="{{ url('dataasalperolehan') }}">
                             <i class="bi bi-circle"></i><span>Data Asal Perolehan</span>
@@ -157,7 +158,7 @@
                 </ul>
             </li><!-- End Forms Nav -->
 
-            <li class="nav-item @yield('pembelian')">
+            <li class="nav-item flex-column @yield('pembelian')">
                 <a class="nav-link collapsed" data-bs-target="#pembelian" data-bs-toggle="collapse">
                     <i class="bi bi-menu-button-wide"></i><span>Data Pembelian</span><i
                         class="bi bi-chevron-down ms-auto"></i>
@@ -187,13 +188,13 @@
                 </ul>
             </li><!-- End Forms Nav -->
 
-            <li class="nav-item">
+            <li class="nav-item flex-column">
                 <a class="nav-link collapsed" @yield('asetbergerak') href="{{ url('/data-asetbergerak') }}">
                     <i class="bi bi-journal-text"></i><span>Kelola Barang</span>
                 </a>
             </li><!-- End Forms Nav -->
 
-            <li class="nav-item">
+            <li class="nav-item flex-column">
                 <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-bar-chart"></i><span>Pencatatan</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
@@ -213,7 +214,7 @@
 
                 </ul>
             </li><!-- End Charts Nav -->
-            <li class="nav-item">
+            <li class="nav-item flex-column">
                 <a class="nav-link collapsed" data-bs-target="#iconss-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-cart" @yield('iconss-nav')></i><span>Data Transaksi</span><i
                         class="bi bi-chevron-down ms-auto"></i>
@@ -248,26 +249,26 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
-            <li class="nav-item ">
+            <li class="nav-item flex-column ">
                 <a class="nav-link collapsed" href="{{ url('/dashboard') }}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item flex-column ">
                 <a class="nav-link collapsed" href="{{route('Pembelian.create')}}">
                     <i class="bi bi-cart-check-fill"></i>
                     <span> Pembelian</span>
                 </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item flex-column ">
                 <a class="nav-link collapsed" href="{{route('pinjamUang.index')}}">
                     <i class="bi bi-cart-check-fill"></i>
                     <span> Peminjaman Uang</span>
                 </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item flex-column ">
                 <a class="nav-link collapsed" href="{{route('staff/pinjam')}}">
                     <i class="bi bi-cart-check-fill"></i>
                     <span> Peminjaman Barang</span>
@@ -288,7 +289,7 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
-            <li class="nav-item ">
+            <li class="nav-item flex-column ">
                 <a class="nav-link collapsed" href="{{ url('/dashboard') }}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
@@ -298,7 +299,7 @@
 
             <!-- End Forms Nav -->
 
-            <li class="nav-item @yield('jenis-nav')">
+            <li class="nav-item flex-column @yield('jenis-nav')">
                 <a class="nav-link collapsed" data-bs-target="#jenis-nav" data-bs-toggle="collapse">
                     <i class="bi bi-menu-button-wide"></i><span>Data Master</span><i
                         class="bi bi-chevron-down ms-auto"></i>
@@ -323,7 +324,7 @@
                 </ul>
             </li><!-- End Forms Nav -->
 
-            <li class="nav-item">
+            <li class="nav-item flex-column">
                 <a class="nav-link collapsed" data-bs-target="#formss-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-person"></i><span>Data User</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
@@ -344,14 +345,14 @@
 
 
 
-            <li class="nav-item ">
+            <li class="nav-item flex-column ">
                 <a class="nav-link collapsed" href="{{ route('staff/pinjam') }}">
                     <i class="bi bi-cart"></i>
                     <span>Peminjaman</span>
                 </a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item flex-column ">
                 <a class="nav-link collapsed" href="{{ route('staff/riwayat') }} ">
                     <i class="bi bi-cart-check-fill"></i>
                     <span>Riwayat Pembelian</span>

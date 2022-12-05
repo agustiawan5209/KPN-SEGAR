@@ -26,7 +26,7 @@
                                     <h4>Rp. {{number_format($barang->harga,0,2)}}</h4>
                                 </div>
                                 <div class="quantity">
-                                    <a href="{{route('Pembelian.show', ['Pembelian'=> $barang->id])}}" class="primary-btn pd-cart">Beli</a>
+                                    <a href="{{route('Pembelian.show', ['Pembelian'=> $barang->id])}}" class="primary-btn pd-cart border-right">Beli</a>
                                     <a href="{{route('pinjam.formulir', ['id'=> $barang->id])}}" class="primary-btn pd-cart">Pinjam Barang</a>
                                 </div>
                             </div>

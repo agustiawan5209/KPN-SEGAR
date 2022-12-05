@@ -5,82 +5,49 @@ namespace App\Http\Controllers;
 use App\Models\PromoUser;
 use App\Http\Requests\StorePromoUserRequest;
 use App\Http\Requests\UpdatePromoUserRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PromoUserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * store
      *
-     * @return \Illuminate\Http\Response
+     * @param  mixed $promo_id
+     * @return void
      */
-    public function index()
+    public function store($promo_id)
     {
-        //
+        $user_id = Auth::user()->id;
+        PromoUser::create([
+            'promo_id' => $promo_id,
+            'user_id' => $user_id,
+            'status' => '1',
+        ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * update
      *
-     * @return \Illuminate\Http\Response
+     * @param  mixed $voucher_id
+     * @param  mixed $id
+     * @return void
      */
-    public function create()
+    public function update($voucher_id, $id)
     {
-        //
+        PromoUser::where('voucher_id', '=', $voucher_id)->where('id', $id)->update([
+            'status' => '2',
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StorePromoUserRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StorePromoUserRequest $request)
-    {
-        //
-    }
 
     /**
-     * Display the specified resource.
+     * destroy
      *
-     * @param  \App\Models\PromoUser  $promoUser
-     * @return \Illuminate\Http\Response
+     * @param  mixed $id
+     * @return void
      */
-    public function show(PromoUser $promoUser)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\PromoUser  $promoUser
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(PromoUser $promoUser)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatePromoUserRequest  $request
-     * @param  \App\Models\PromoUser  $promoUser
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdatePromoUserRequest $request, PromoUser $promoUser)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\PromoUser  $promoUser
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(PromoUser $promoUser)
-    {
-        //
+        PromoUser::where('id', $id)->delete();
     }
 }

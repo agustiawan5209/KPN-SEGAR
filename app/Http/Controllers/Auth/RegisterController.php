@@ -80,14 +80,17 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'posisi' => $data['posisi'],
             'telephone' => $data['telephone'],
+            'status'=> '1',
             'password' => Hash::make($data['password']),
         ]);
         $voucher = Voucher::where('status', '=', '1')->orderBy('id', 'desc')->first();
-        VoucherUser::create([
-            'voucher_id' => $voucher->id,
-            'user_id' => $user->id,
-            'status' => '1',
-        ]);
+        if($voucher != null){
+            VoucherUser::create([
+                'voucher_id' => $voucher->id,
+                'user_id' => $user->id,
+                'status' => '1',
+            ]);
+        }
         return $user;
     }
 }

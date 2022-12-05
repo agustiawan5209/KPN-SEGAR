@@ -130,10 +130,10 @@
                                         </div>
 
 
-                                        {{-- <div class="col-12">
+                                        <div class="col-12">
                                             <p class="small mb-0">Belum punya akun? <a href="/register">Silakan
                                                     registrasi</a></p>
-                                        </div> --}}
+                                        </div>
                                     </form>
 
                                 </div>

@@ -141,60 +141,20 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-
-            <li class="nav-item flex-column @yield('components-nav')">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse">
-                    <i class="bi bi-menu-button-wide"></i><span>Data Master</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="components-nav" class="nav-content collapse @yield('components-nav')" data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a class=" @yield('asalperolehan')" href="{{ url('dataasalperolehan') }}">
-                            <i class="bi bi-circle"></i><span>Data Asal Perolehan</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class=" @yield('datasatuan')" href="{{ url('/datasatuan') }}">
-                            <i class="bi bi-circle"></i><span>Data Satuan</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class=" @yield('jenisbarang')" href="{{ url('/jenisbarang') }}">
-                            <i class="bi bi-circle"></i><span>Data Jenis Barang</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class=" @yield('lokasipenempatan')" href="{{ route('lokasi') }}">
-                            <i class="bi bi-circle"></i><span>Data Lokasi</span>
-                        </a>
-                    </li>
-
-
-                </ul>
-            </li><!-- End Forms Nav -->
-
             <li class="nav-item flex-column @yield('pembelian')">
                 <a class="nav-link collapsed" data-bs-target="#pembelian" data-bs-toggle="collapse">
-                    <i class="bi bi-menu-button-wide"></i><span>Data Pembelian</span><i
+                    <i class="bi bi-menu-button-wide"></i><span>Data Simpanan</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="pembelian" class="nav-content collapse @yield('pembelian')" data-bs-parent="#sidebar-nav">
-
-                    {{-- <li>
-                         <a class=" @yield('jenisaset')" href="{{ url('/datajenisaset') }}">
-                             <i class="bi bi-circle"></i><span>Data Jenis Aset</span>
-                         </a>
-                     </li> --}}
-
                     <li>
                         <a class=" @yield('databunga')" href="{{ route('Pembelian.index') }}">
-                            <i class="bi bi-circle"></i><span>Pembelian</span>
+                            <i class="bi bi-circle"></i><span>Data Simpanan</span>
                         </a>
                     </li>
                     <li>
                         <a class=" @yield('databunga')" href="{{ route('Pembelian.data') }}">
-                            <i class="bi bi-circle"></i><span>Riwayat Pembelian</span>
+                            <i class="bi bi-circle"></i><span>Simpan Wajib</span>
                         </a>
                     </li>
 
@@ -203,28 +163,6 @@
 
                 </ul>
             </li><!-- End Forms Nav -->
-
-
-            <li class="nav-item flex-column">
-                <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-bar-chart"></i><span>Pencatatan</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a class="active" href="/pencatatan/barangmasuk">
-                            <i class="bi bi-circle"></i><span>Stok Masuk</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="active" href="/pencatatan/barangkeluar">
-                            <i class="bi bi-circle"></i><span>Stok/ Barang Keluar</span>
-                        </a>
-                    </li>
-
-
-
-                </ul>
-            </li><!-- End Charts Nav -->
             <li class="nav-item flex-column">
                 <a class="nav-link collapsed" data-bs-target="#iconss-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-cart" @yield('iconss-nav')></i><span>Data Transaksi</span><i
@@ -273,18 +211,12 @@
                     <span> Pembelian</span>
                 </a>
             </li>
-            <li class="nav-item flex-column ">
-                <a class="nav-link collapsed" href="{{route('pinjamUang.index')}}">
-                    <i class="bi bi-cart-check-fill"></i>
-                    <span> Peminjaman Uang</span>
-                </a>
-            </li>
-            <li class="nav-item flex-column ">
+            {{-- <li class="nav-item flex-column ">
                 <a class="nav-link collapsed" href="{{route('staff/pinjam')}}">
                     <i class="bi bi-cart-check-fill"></i>
                     <span> Peminjaman Barang</span>
                 </a>
-            </li>
+            </li> --}}
 
 
 
@@ -336,21 +268,9 @@
             </li><!-- End Forms Nav -->
 
             <li class="nav-item flex-column">
-                <a class="nav-link collapsed" data-bs-target="#formss-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-person"></i><span>Data User</span><i class="bi bi-chevron-down ms-auto"></i>
+                <a class="nav-link " href="{{ url('data-kepala') }}">
+                    <i class="bi bi-person"></i><span>Data Anggota</span></i>
                 </a>
-                <ul id="formss-nav" class="nav-content collapse @yield('formss-nav')" data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a class="@yield('datauser')" href="{{ url('data-user') }} ">
-                            <i class="bi bi-circle"></i><span>Pengguna</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="@yield('datakepala')" href="{{ url('data-kepala') }}">
-                            <i class="bi bi-circle"></i><span>bendahara</span>
-                        </a>
-                    </li>
-                </ul>
             </li><!-- End Forms Nav -->
 
 

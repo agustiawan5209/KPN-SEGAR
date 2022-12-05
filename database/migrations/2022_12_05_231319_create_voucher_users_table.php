@@ -15,6 +15,9 @@ class CreateVoucherUsersTable extends Migration
     {
         Schema::create('voucher_users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('voucher_id')->constrained('vouchers')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->enum('status', ['1','2'])->comment('1 : Dipakai,2 : Telah Terpakai ');
             $table->timestamps();
         });
     }

@@ -15,6 +15,9 @@ class CreatePromoUsersTable extends Migration
     {
         Schema::create('promo_users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('promo_id')->constrained('promos')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->enum('status', ['1','2'])->comment('1 : Dipakai,2 : Telah Terpakai ');
             $table->timestamps();
         });
     }

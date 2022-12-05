@@ -13,7 +13,7 @@ class UpdatePromoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class UpdatePromoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'kode'=> ['required', 'string', 'max:13'] ,
+            'jenis_promo'=> ['required', 'numeric'] ,
+            'potongan'=> ['required' ,'numeric'],
+            'tgl_mulai'=> ['required' ,'date'],
+            'tgl_akhir'=> ['required' ,'date'] ,
         ];
     }
 }

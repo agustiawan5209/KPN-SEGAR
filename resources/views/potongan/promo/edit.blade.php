@@ -42,6 +42,15 @@
                             <div class="invalid-feedback">Please, enter your name!</div>
                         </div>
                         <div class="col-12">
+                            <label for="yourName" class="form-label">Jenis Promo</label>
+                           <select name="jenis_promo" id="jenis_promo" class="form-select">
+                            <option value="1" {{ $promo->jenis_promo == 1 ? 'selected' : ''}}>Promo Nominal</option>
+                            <option value="2" {{ $promo->jenis_promo == 2 ? 'selected' : ''}}>Promo Diskon</option>
+
+                           </select>
+                            <div class="invalid-feedback">Please, enter your name!</div>
+                        </div>
+                        <div class="col-12">
                             <label for="yourName" class="form-label">potongan</label>
                             <input id="name" type="text"
                                 class="form-control @error('potongan') is-invalid @enderror" name="potongan"

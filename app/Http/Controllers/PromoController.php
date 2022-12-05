@@ -41,6 +41,7 @@ class PromoController extends Controller
     {
         Promo::create([
             'kode'=> $request->kode,
+            'jenis_promo'=> $request->jenis_promo,
             'potongan'=> $request->potongan,
             'tgl_mulai'=> $request->tgl_mulai,
             'tgl_akhir'=> $request->tgl_akhir,
@@ -83,8 +84,9 @@ class PromoController extends Controller
      */
     public function update(UpdatePromoRequest $request, Promo $promo,$id)
     {
-        Promo::where($id)->update([
+        Promo::where('id',$id)->update([
             'kode'=> $request->kode,
+            'jenis_promo'=> $request->jenis_promo,
             'potongan'=> $request->potongan,
             'tgl_mulai'=> $request->tgl_mulai,
             'tgl_akhir'=> $request->tgl_akhir,

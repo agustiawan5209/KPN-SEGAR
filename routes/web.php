@@ -26,6 +26,7 @@ use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\CustomerViewController;
 use App\Http\Controllers\DataJenisAsetController;
 use App\Http\Controllers\DataAsalPerolehanController;
+use App\Http\Controllers\VoucherController;
 
 /*
 |--------------------------------------------------------------------------

@@ -85,7 +85,7 @@ class VoucherController extends Controller
      */
     public function update(UpdateVoucherRequest $request, Voucher $voucher,$id)
     {
-        Voucher::where($id)->update([
+        Voucher::where('id',$id)->update([
             'kode'=> $request->kode,
             'potongan'=> $request->potongan,
             'tgl_mulai'=> $request->tgl_mulai,

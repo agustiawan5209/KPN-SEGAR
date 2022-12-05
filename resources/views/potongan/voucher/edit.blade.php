@@ -42,6 +42,16 @@
                                 <div class="invalid-feedback">Please, enter your name!</div>
                             </div>
                             <div class="col-12">
+                                <label for="yourName" class="form-label">Jenis voucher</label>
+                                <select name="jenis_voucher" id="jenis_voucher" class="form-select">
+                                    <option value="1" {{ $voucher->jenis_voucher == 1 ? 'selected' :'' }} >voucher Pengguna Barus</option>
+                                    <option value="2" {{ $voucher->jenis_voucher == 2 ? 'selected' :'' }}>voucher Pembelian Produk</option>
+                                    <option value="3" {{ $voucher->jenis_voucher == 3 ? 'selected' :'' }}>voucher Umum</option>
+
+                                </select>
+                                <div class="invalid-feedback">Please, enter your name!</div>
+                            </div>
+                            <div class="col-12">
                                 <label for="yourName" class="form-label">potongan</label>
                                 <input id="name" type="text"
                                     class="form-control @error('potongan') is-invalid @enderror" name="potongan"

@@ -25,7 +25,9 @@ class UpdateVoucherRequest extends FormRequest
     {
         return [
             'kode'=> ['required', 'string', 'max:13'] ,
+            'jenis_voucher'=> ['required' ,'numeric'],
             'potongan'=> ['required' ,'numeric'],
+            'barang_id'=> ['numeric'],
             'tgl_mulai'=> ['required' ,'date'],
             'tgl_akhir'=> ['required' ,'date'] ,
         ];

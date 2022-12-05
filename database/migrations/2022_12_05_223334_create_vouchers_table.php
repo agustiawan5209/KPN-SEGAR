@@ -16,6 +16,8 @@ class CreateVouchersTable extends Migration
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
             $table->string('kode',20);
+            $table->enum('jenis_voucher', ['1','2','3'])->comment('1 = User Baru, 2= Pembelian Barang, 3 = Umum');
+            $table->foreignId('barang_id')->nullable();
             $table->integer('potongan');
             $table->date('tgl_mulai');
             $table->date('tgl_akhir');

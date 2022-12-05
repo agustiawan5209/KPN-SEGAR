@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Promo;
+use App\Models\Barang;
 use App\Models\Voucher;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreVoucherRequest;
 use App\Http\Requests\UpdateVoucherRequest;
-use App\Models\Promo;
 
 class VoucherController extends Controller
 {
@@ -29,7 +30,11 @@ class VoucherController extends Controller
      */
     public function create()
     {
-        return view('potongan.voucher.form');
+        $barang = Barang::all();
+
+        return view('potongan.voucher.form',[
+            'barang'=> $barang,
+        ]);
         //
     }
 
@@ -44,6 +49,8 @@ class VoucherController extends Controller
         Voucher::create([
             'kode'=> $request->kode,
             'potongan'=> $request->potongan,
+            'jenis_voucher'=> $request->jenis_voucher,
+            'barang_id'=> $request->jenis_voucher == 2 ? $request->barang_id : null,
             'tgl_mulai'=> $request->tgl_mulai,
             'tgl_akhir'=> $request->tgl_akhir,
         ]);
@@ -71,8 +78,10 @@ class VoucherController extends Controller
     public function edit(Voucher $voucher,$id)
     {
         $voucher = Voucher::find($id);
+        $barang = Barang::all();
         return view('potongan.voucher.edit', [
             'voucher'=> $voucher,
+            'barang'=> $barang,
         ]);
     }
 
@@ -87,6 +96,8 @@ class VoucherController extends Controller
     {
         Voucher::where('id',$id)->update([
             'kode'=> $request->kode,
+            'jenis_voucher'=> $request->jenis_voucher,
+            'barang_id'=> $request->jenis_voucher == 2 ? $request->barang_id : null,
             'potongan'=> $request->potongan,
             'tgl_mulai'=> $request->tgl_mulai,
             'tgl_akhir'=> $request->tgl_akhir,

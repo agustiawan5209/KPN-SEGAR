@@ -26,6 +26,8 @@ class StoreVoucherRequest extends FormRequest
         return [
             'kode'=> ['required', 'string', 'max:13'] ,
             'potongan'=> ['required' ,'numeric'],
+            'jenis_voucher'=> ['required' ,'numeric'],
+            'barang_id'=> ['numeric'],
             'tgl_mulai'=> ['required' ,'date'],
             'tgl_akhir'=> ['required' ,'date'] ,
         ];

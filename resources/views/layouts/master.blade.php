@@ -30,7 +30,7 @@
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <!-- Template Main CSS File -->
     <link href="{{ asset('admin/assets/css/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- =======================================================
   * Template Name: NiceAdmin - v2.2.2
@@ -40,60 +40,55 @@
   ======================================================== -->
 </head>
 
-@can('Manage-User')
+<body class="toggle-sidebar">
+    <!-- WRAPPER -->
+    <div id="wrapper">
+        <!-- NAVBAR -->
+        @include('layouts.includes.navbar')
+        <!-- END NAVBAR -->
+        <!-- LEFT SIDEBAR -->
+        @include('layouts.includes.sidebar')
+        <!-- END LEFT SIDEBAR -->
+        <!-- MAIN -->
+        @yield('content')
+        <!-- END MAIN -->
+        @include('sweetalert::alert')
+        <div class="clearfix"></div>
 
-    <body class="toggle-sidebar">
-    @endcan
-    @can('Manage-Admin')
+        <!-- ======= Footer ======= -->
+        <footer id="footer" class="footer">
+            <div class="copyright">
+                &copy; Copyright <strong><span>KPN “SEGAR” POLITEKNIK PELAYARAN BAROMBONG</span></strong>. All Rights
+                Reserved 2022
+            </div>
 
-        <body>
-        @endcan
-        <!-- WRAPPER -->
-        <div id="wrapper">
-            <!-- NAVBAR -->
-            @include('layouts.includes.navbar')
-            <!-- END NAVBAR -->
-            <!-- LEFT SIDEBAR -->
-            @include('layouts.includes.sidebar')
-            <!-- END LEFT SIDEBAR -->
-            <!-- MAIN -->
-            @yield('content')
-            <!-- END MAIN -->
-            @include('sweetalert::alert')
-            <div class="clearfix"></div>
+        </footer><!-- End Footer -->
 
-            <!-- ======= Footer ======= -->
-            <footer id="footer" class="footer">
-                <div class="copyright">
-                    &copy; Copyright <strong><span>KPN “SEGAR” POLITEKNIK PELAYARAN BAROMBONG</span></strong>. All Rights Reserved 2022
-                </div>
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+                class="bi bi-arrow-up-short"></i></a>
 
-            </footer><!-- End Footer -->
+        <!-- Vendor JS Files -->
+        <script src="{{ asset('admin/assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+        <script src="{{ asset('admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('admin/assets/vendor/chart.js/chart.min.js') }}"></script>
+        <script src="{{ asset('admin/assets/vendor/echarts/echarts.min.js') }}"></script>
+        <script src="{{ asset('admin/assets/vendor/quill/quill.min.js') }}"></script>
+        <script src="{{ asset('admin/assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+        <script src="{{ asset('admin/assets/vendor/tinymce/tinymce.min.js') }}"></script>
 
-            <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-                    class="bi bi-arrow-up-short"></i></a>
-
-            <!-- Vendor JS Files -->
-            <script src="{{ asset('admin/assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
-            <script src="{{ asset('admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-            <script src="{{ asset('admin/assets/vendor/chart.js/chart.min.js') }}"></script>
-            <script src="{{ asset('admin/assets/vendor/echarts/echarts.min.js') }}"></script>
-            <script src="{{ asset('admin/assets/vendor/quill/quill.min.js') }}"></script>
-            <script src="{{ asset('admin/assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
-            <script src="{{ asset('admin/assets/vendor/tinymce/tinymce.min.js') }}"></script>
-
-            <!-- Template Main JS File -->
-            <script src="{{ asset('admin/assets/js/main.js') }}"></script>
-            <script>
-                $(document).ready(function() {
-                    $('#peminjaman').DataTable({
-                        // paging: false,
-                        ordering: false,
-                        info: false,
-                    });
+        <!-- Template Main JS File -->
+        <script src="{{ asset('admin/assets/js/main.js') }}"></script>
+        @yield('js')
+        <script>
+            $(document).ready(function() {
+                $('#peminjaman').DataTable({
+                    // paging: false,
+                    ordering: false,
+                    info: false,
                 });
-            </script>
+            });
+        </script>
 
-    </body>
+</body>
 
 </html>

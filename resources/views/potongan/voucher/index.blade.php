@@ -23,6 +23,7 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">kode</th>
+                                <th scope="col">Jenis Voucher</th>
                                 <th scope="col">Potongan</th>
                                 <th scope="col">Tanggal Mulai</th>
                                 <th scope="col">Tanggal Berakhir</th>
@@ -38,7 +39,22 @@
                             <tr>
                                 <th> {{ $loop->iteration }} </th>
                                 <td>{{ $data->kode }}</td>
-                                <td>{{ $data->potongan }}</td>
+                                <td>
+                                @switch($data->jenis_voucher)
+                                    @case(1)
+                                        Pengguna Baru
+                                        @break
+                                    @case(2)
+                                        Pembelian Produk {{ $data->barang->kode }}-{{ $data->barang->spesifikasi }}
+                                        @break
+                                    @case(3)
+                                       Umum
+                                        @break
+                                    @default
+
+                                @endswitch
+                                </td>
+                                <td>{{ $data->potongan }}%</td>
                                 <td>{{ $data->tgl_mulai }}</td>
                                 <td>{{ $data->tgl_akhir }}</td>
                                 <td>

@@ -103,3 +103,21 @@
         </div>
     </div>
 @endsection
+
+@section('js')
+    <script>
+        $("#form-barang_id").hide()
+        $("#barang_id").prop("disabled", true);
+
+        $("#jenis_voucher").change(function() {
+            if ($(this).val() == 2) {
+                $("#form-barang_id").show()
+                $("#barang_id").prop("disabled", false);
+            }else{
+                $("#form-barang_id").toggleClass('hidden')
+                $("#barang_id").prop("disabled", true);
+
+            }
+        })
+    </script>
+@endsection

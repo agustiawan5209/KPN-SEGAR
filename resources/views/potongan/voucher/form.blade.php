@@ -44,14 +44,24 @@
                             <div class="col-12">
                                 <label for="yourName" class="form-label">Jenis voucher</label>
                                 <select name="jenis_voucher" id="jenis_voucher" class="form-select">
-                                    <option value="1">voucher Pengguna Barus</option>
+                                    <option value="1">voucher Pengguna Baru</option>
                                     <option value="2">voucher Pembelian Produk</option>
                                     <option value="3">voucher Umum</option>
 
                                 </select>
                                 <div class="invalid-feedback">Please, enter your name!</div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 hidden" id="form-barang_id">
+                                <label for="yourName" class="form-label">Barang</label>
+                                <select name="barang_id" id="barang_id" class="form-select">
+                                    @foreach ($barang as $item)
+                                        <option value="{{ $item->id }}">{{ $item->kode }}-{{ $item->spesifikasi }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="invalid-feedback">Please, enter your name!</div>
+                            </div>
+                            <div class="col-12 " >
                                 <label for="yourName" class="form-label">potongan</label>
                                 <input id="name" type="text"
                                     class="form-control @error('potongan') is-invalid @enderror" name="potongan"
@@ -102,4 +112,22 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        $("#form-barang_id").hide()
+        $("#barang_id").prop("disabled", true);
+
+        $("#jenis_voucher").change(function() {
+            if ($(this).val() == 2) {
+                $("#form-barang_id").show()
+                $("#barang_id").prop("disabled", false);
+            }else{
+                $("#form-barang_id").toggleClass('hidden')
+                $("#barang_id").prop("disabled", true);
+
+            }
+        })
+    </script>
 @endsection

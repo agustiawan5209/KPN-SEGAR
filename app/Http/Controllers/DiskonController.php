@@ -17,7 +17,7 @@ class DiskonController extends Controller
      */
     public function index()
     {
-        return view('diskon.index', [
+        return view('potongan.diskon.index', [
             'diskon'=> Diskon::all(),
         ]);
     }
@@ -30,7 +30,7 @@ class DiskonController extends Controller
     public function create()
     {
         $barang = Barang::all();
-        return view('diskon.form',[
+        return view('potongan.diskon.form',[
             'barang'=> $barang
         ]);
     }
@@ -74,7 +74,7 @@ class DiskonController extends Controller
     {
         $diskon = Diskon::find($id);
         $barang = Barang::all();
-        return view('diskon.edit', [
+        return view('potongan.diskon.edit', [
             'diskon'=> $diskon,
             'barang'=> $barang,
         ]);

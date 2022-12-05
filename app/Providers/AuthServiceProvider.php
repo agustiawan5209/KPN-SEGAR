@@ -28,10 +28,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('Pengurus', function(User $user){
             return $user->roles->id == "1";
         });
-        Gate::define('Kasir', function(User $user){
+        Gate::define('Anggota', function(User $user){
             return $user->roles->id == "2";
         });
-        Gate::define('Manage-User', function(User $user){
+        Gate::define('Pengguna', function(User $user){
             return $user->roles->id == "3";
         });
         Gate::define('Bendahara', function(User $user){

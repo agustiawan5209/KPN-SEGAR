@@ -105,14 +105,14 @@
                       <div class="invalid-feedback">Please enter a valid username adddress!</div>
                     </div>
 
-                    {{-- <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
+                    <div class="col-12">
+                      <label for="yourUsername" class="form-label">Email</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
+                        <input type="email" name="email" class="form-control" id="yourUsername" required>
                         <div class="invalid-feedback">Please choose a username.</div>
                       </div>
-                    </div> --}}
+                    </div>
 
                     <div class="col-12">
                       <input id="roles" type="hidden" class="form-control @error('name') is-invalid @enderror" name="roles_id" value="3" required autocomplete="roles" autofocus>

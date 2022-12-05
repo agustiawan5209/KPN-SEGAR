@@ -31,8 +31,8 @@
                         </a>
                     </li>
                     <li>
-                        <a class="@yield('kasir')" href="{{ url('data-kepala') }}">
-                            <i class="bi bi-circle"></i><span>Kasir</span>
+                        <a class="@yield('Anggota')" href="{{ url('data-kepala') }}">
+                            <i class="bi bi-circle"></i><span>Anggota</span>
                         </a>
                     </li>
                 </ul>
@@ -129,7 +129,7 @@
     </aside><!-- End Sidebar Admin-->
 @endcan
 
-@can('Kasir')
+@can('Anggota')
     <!-- ======= Sidebar Kepala Unit ======= -->
     <aside id="sidebar" class="sidebar">
 
@@ -254,7 +254,7 @@
     </aside><!-- End Sidebar Kepala unit-->
 @endcan
 
-@can('Manage-User')
+@can('Pengguna')
     <!-- ======= Sidebar Peminjam ======= -->
     <aside id="sidebar" class="sidebar">
 

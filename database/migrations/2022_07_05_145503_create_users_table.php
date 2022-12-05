@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('roles_id')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
             $table->string('username')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('alamat');
             $table->string('posisi');
             $table->string('telephone');

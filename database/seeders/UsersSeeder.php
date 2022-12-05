@@ -47,9 +47,9 @@ class UsersSeeder extends Seeder
 
             [
                 'id' => "3",
-                'name'=>"kasir",
+                'name'=>"Anggota",
                 'roles_id'=>"2",
-                'username'=>"kasir",
+                'username'=>"Anggota",
                 'alamat'=>"Makassar, Sulawesi Selatan",
                 'posisi'=>"admin",
                 'telephone'=>"0811121",

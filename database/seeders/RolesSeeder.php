@@ -23,7 +23,7 @@ class RolesSeeder extends Seeder
             ],
             [
                 'id' => "2",
-                'roles' => "Kasir",
+                'roles' => "Anggota",
             ],
             [
                 'id' => "3",

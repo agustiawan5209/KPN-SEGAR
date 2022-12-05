@@ -23,6 +23,7 @@ class User extends Authenticatable
         // 'foto',
         'name',
         'username',
+        'email',
         'alamat',
         'telephone',
         'posisi',

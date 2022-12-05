@@ -15,6 +15,10 @@ class CreateVouchersTable extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
+            $table->string('kode',20);
+            $table->integer('potongan');
+            $table->date('tgl_mulai');
+            $table->date('tgl_akhir');
             $table->timestamps();
         });
     }

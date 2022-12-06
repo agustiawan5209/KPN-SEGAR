@@ -26,7 +26,7 @@
                             <p>
                                 Menyediakan Peminjaman Dalam Jumlah Bunga Yang Sedikit
                             </p>
-                            <a href="{{route('pinjamUang.create')}}" class="btn-info px-3 py-2 rounded">Pinjam Sekarang</a>
+                            <a href="{{route('pinjamUang.create')}}" class="btn-info px-3 py-2 rounded">Daftar Jadi Anggota</a>
                         </div>
                     </div>
                 </div>

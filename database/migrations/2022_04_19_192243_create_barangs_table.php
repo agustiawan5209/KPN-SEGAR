@@ -21,7 +21,7 @@ class CreateBarangsTable extends Migration
             $table->foreignId('asal_perolehans_id')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('satuans_id')->onUpdate('cascade')->onDelete('cascade');
             $table->string('kode');
-            $table->string('spesifikasi');
+            $table->string('nama_barang');
             $table->string('foto');
             $table->date('tanggal_perolehan');
             // $table->string('nilai_perolehan')->nullable();

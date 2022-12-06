@@ -375,7 +375,7 @@ class BarangController extends Controller
             'jenis_barangs_id' => 'required',
             'satuans_id' => 'required',
             'kode' => 'required',
-            'spesifikasi' => 'required',
+            'nama_barang' => 'required',
             'kondisi' => 'required',
             'ket' => 'required',
             'harga' => ['required', 'numeric'],
@@ -389,7 +389,7 @@ class BarangController extends Controller
             $inputbarang->asal_perolehans_id = $request->asal_perolehans_id;
             $inputbarang->satuans_id = $request->satuans_id;
             $inputbarang->kode = $request->kode;
-            $inputbarang->spesifikasi = $request->spesifikasi;
+            $inputbarang->nama_barang = $request->nama_barang;
             $inputbarang->foto = $request->foto;
             $inputbarang->tanggal_perolehan = $request->tanggal_perolehan;
             $inputbarang->harga = $request->harga;
@@ -505,7 +505,7 @@ class BarangController extends Controller
                 'asal_perolehans_id' => $request->input('asal_perolehans_id'),
                 'satuans_id' => $request->input('satuans_id'),
                 'kode' => $request->input('kode'),
-                'spesifikasi' => $request->input('spesifikasi'),
+                'nama_barang' => $request->input('nama_barang'),
                 //  'foto' => $request->input ('foto'),
                 'kegunaan' => $request->input('kegunaan'),
                 'tanggal_perolehan' => $request->input('tanggal_perolehan'),
@@ -574,8 +574,8 @@ class BarangController extends Controller
     {
         $id = $request->id ?? [];
 
-        return Barang::select('barangs.id', DB::raw('CONCAT(kode," - ", jenis_barang ," - ",spesifikasi) as spesifikasi'))
-            ->where(DB::raw('CONCAT(kode," - ", jenis_barang ," - ",spesifikasi)'), 'like', '%' . $request->q . '%')
+        return Barang::select('barangs.id', DB::raw('CONCAT(kode," - ", jenis_barang ," - ",nama_barang) as nama_barang'))
+            ->where(DB::raw('CONCAT(kode," - ", jenis_barang ," - ",nama_barang)'), 'like', '%' . $request->q . '%')
             ->join('jenis_barangs', 'jenis_barangs.id', '=', 'barangs.jenis_barangs_id')
             ->whereNotIn('barangs.id', $id)
             ->where('jumlah', '>', 0)

@@ -78,9 +78,9 @@
 
                             <div class="row mb-3">
                                 <label for="validationTooltip02"
-                                    class="col-sm-2 col-form-label">Tipe/Spesifikasi</label>
+                                    class="col-sm-2 col-form-label">Tipe/nama_barang</label>
                                 <div class="col-sm-10">
-                                    <input type="text" id="validationTooltip02" name="spesifikasi"
+                                    <input type="text" id="validationTooltip02" name="nama_barang"
                                         class="form-control" required>
                                     <div class="invalid-feedback">
                                         Harus di isi

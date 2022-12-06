@@ -98,7 +98,7 @@
                                             <td> {{ $data->tgl_kembali }}</td>
                                             <td> {{ $data->barangs->kode }}
                                                 {{ $data->barangs->jenis_barangs->jenis_barang }}
-                                                {{ $data->barangs->spesifikasi }}</td>
+                                                {{ $data->barangs->nama_barang }}</td>
                                             <td> {{ $data->jumlah_pinjam }}</td>
                                             <td> {{ $data->ket }}</td>
                                         </tr>

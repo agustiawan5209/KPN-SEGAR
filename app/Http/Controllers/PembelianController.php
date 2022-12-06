@@ -141,7 +141,7 @@ class PembelianController extends Controller
             ]);
             Notification::send($pinjam, new NotifPinjam([
                 'nama' => $user->name,
-                'barang' => $brg->kode . ',' . $brg->spesifikasi . ', ',
+                'barang' => $brg->kode . ',' . $brg->nama_barang . ', ',
                 'jumlah' => $request->jumlah_pinjam,
             ]));
             return redirect()

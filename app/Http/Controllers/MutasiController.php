@@ -81,7 +81,7 @@ class MutasiController extends Controller
 
     public function edit($id){
         $mutasi = Mutasi::find($id);
-        $barang_id = $mutasi->barangs->kode . ',' . $mutasi->barangs->spesifikasi;
+        $barang_id = $mutasi->barangs->kode . ',' . $mutasi->barangs->nama_barang;
         $tgl_mutasi = $mutasi->tgl_mutasi;
         $dari = $mutasi->dari;
         $ke = $mutasi->ke;

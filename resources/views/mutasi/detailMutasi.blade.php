@@ -26,7 +26,7 @@
                 <div class="card">
                     <div class="card-body  overflow-scroll">
                         <h5 class="card-title">
-                            Data Mutasi {{$barang->kode}}/{{$barang->spesifikasi}}
+                            Data Mutasi {{$barang->kode}}/{{$barang->nama_barang}}
                         </h5>
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
@@ -58,7 +58,7 @@
                                             {{ $item->kode }}
                                         </td>
                                         <td>{{ $item->tgl_mutasi }}</td>
-                                        <td>{{ $item->barangs->kode }}{{ $item->barangs->spesifikasi }}</td>
+                                        <td>{{ $item->barangs->kode }}{{ $item->barangs->nama_barang }}</td>
                                         {{-- <td>{{ $item->barangs->jenis_asets->nama_jenisaset }}</td> --}}
                                         <td>{{ $item->dari }}</td>
 

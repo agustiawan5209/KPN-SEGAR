@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" />
-    <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 </head>
 
 <body>
@@ -52,17 +52,21 @@
                 <div class="breacrumb-section">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-10">
+                            <div class="col-lg-7">
                                 <div class="breadcrumb-text product-more">
-                                    <a href="{{route('Customer.Index')}}"><i class="fa fa-home"></i> Home</a>
-                                    <a href="{{route('Customer.Index')}}"><i class="fa fa-home"></i> Product</a>
-                                    <a href="{{route('Customer.Index')}}"><i class="fa fa-home"></i> Promo</a>
-                                    <a href="{{route('Customer.Index')}}"><i class="fa fa-home"></i> Tentang Kami</a>
+                                    <a href="{{ route('Customer.Index') }}"><i class="fa fa-home"></i> Home</a>
+                                    <a href="{{ route('Customer.allproduk') }}"><i class="fa fa-shopping-bag"></i>
+                                        Produk</a>
+                                    <a href="{{ route('Customer.Index') }}"><i class="fa fa-credit-card"></i> Promo</a>
+                                    <a href="{{ route('Customer.Index') }}"><i class="fa fa-info-circle"></i> Tentang
+                                        Kami</a>
                                 </div>
                             </div>
-                            <div class="col-lg-2">
-                                <a href="{{route('dashboardUser')}}"><i class="fa fa-home"></i> Dashboard</a>
-
+                            <div class="col-lg-5">
+                                <div class="breadcrumb-text product-more">
+                                    <a href="{{ route('dashboardUser') }}"> <i class="fa fa-home"></i> Dashboard</a>
+                                    <a href="{{ route('dashboardUser') }}"> <i class="fa fa-id-card"></i>  Daftar Anggota</a>
+                                </div>
                             </div>
                         </div>
                     </div>

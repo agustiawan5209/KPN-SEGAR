@@ -16,7 +16,7 @@
                             <div class="product-details">
                                 <div class="pd-title">
                                     <span>{{$barang->jenis_barangs->jenis_barang}}</span>
-                                    <h3>{{$barang->spesifikasi}}</h3>
+                                    <h3>{{$barang->nama_barang}}</h3>
                                 </div>
                                 <div class="pd-desc">
                                     <p>

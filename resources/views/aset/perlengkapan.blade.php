@@ -57,7 +57,7 @@
                                         <tr>
                                             <th> {{ $nomor++ }}</th>
                                             <td> {{ $data->kode }}</td>
-                                            <td> {{ $data->jenis_barangs->jenis_barang }} {{ $data->spesifikasi }}
+                                            <td> {{ $data->jenis_barangs->jenis_barang }} {{ $data->nama_barang }}
                                             </td>
                                             <td>
                                                 <img src="{{ asset('fotobarang/' . $data->foto) }}"
@@ -105,7 +105,7 @@
 
                                                                                 <h5 class="card-title text-center">
                                                                                     {{ $data->jenis_barangs->jenis_barang }}
-                                                                                    {{ $data->spesifikasi }}</h5>
+                                                                                    {{ $data->nama_barang }}</h5>
 
                                                                                 <p class="card-text">
                                                                                 <div class="row">
@@ -130,7 +130,7 @@
                                                                                         class="col-lg-5 col-md-4 label">
                                                                                         Tipe</div>
                                                                                     <div class="col-lg-7 col-md-8">
-                                                                                        {{ $data->spesifikasi }}
+                                                                                        {{ $data->nama_barang }}
                                                                                     </div>
                                                                                 </div>
 

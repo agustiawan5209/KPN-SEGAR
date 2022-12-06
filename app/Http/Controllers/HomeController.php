@@ -32,7 +32,7 @@ class HomeController extends Controller
         $barang = 0;
         $d = 0;
         $data = DB::select("SELECT pinjams.barangs_id, sum(pinjams.jumlah_pinjam) as jumlah FROM pinjams INNER JOIN barangs ON (pinjams.barangs_id = barangs.id) GROUP BY pinjams.barangs_id");
-        $datas = DB::table('pinjams')->select('pinjams.barangs_id', 'barangs.kode', 'barangs.spesifikasi', 'pinjams.jumlah_pinjam')
+        $datas = DB::table('pinjams')->select('pinjams.barangs_id', 'barangs.kode', 'barangs.nama_barang', 'pinjams.jumlah_pinjam')
         ->join('barangs', 'barangs.id', '=', 'pinjams.barangs_id')
         ->get()
             ->toArray();
@@ -46,7 +46,7 @@ class HomeController extends Controller
                 # code...
                 $datap[$i]["barangs_id"] = $row_product->barangs_id;
                 $datap[$i]["kode"] = $row_product->kode;
-                $datap[$i]["spesifikasi"] = $row_product->spesifikasi;
+                $datap[$i]["nama_barang"] = $row_product->nama_barang;
                 // $datap[$i]["jenis_asets_id"] = $row_product->jenis_asets_id;
                 $datap[$i]["jumlah"] = (int)$row_product->jumlah_pinjam;
                 $i++;
@@ -56,7 +56,7 @@ class HomeController extends Controller
                     # code...
                     $datap[$i]["barangs_id"] = $row_product->barangs_id;
                     $datap[$i]["kode"] = $row_product->kode;
-                    $datap[$i]["spesifikasi"] = $row_product->spesifikasi;
+                    $datap[$i]["nama_barang"] = $row_product->nama_barang;
                     // $datap[$i]["jenis_asets_id"] = $row_product->jenis_asets_id;
                     $datap[$i]["jumlah"] = (int)$row_product->jumlah_pinjam;
                     $i++;

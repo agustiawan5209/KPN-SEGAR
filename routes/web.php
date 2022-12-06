@@ -77,6 +77,7 @@ Auth::routes();
 // View Customer
 Route::group(['check.role:2', 'prefix' => 'Produk', 'as' => 'Customer.'], function () {
     Route::get('/', [CustomerViewController::class, 'index'])->name('Index');
+    Route::get('/all', [CustomerViewController::class, 'produk'])->name('allproduk');
     Route::get('Produk/detail/{id}', [CustomerViewController::class, 'detail'])->name('detail');
 });
 Route::get('Dashboard', [CustomerViewController::class, 'DashboardUser'])->name('dashboardUser');

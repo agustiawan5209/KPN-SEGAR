@@ -67,7 +67,7 @@
                                 <th style="text-align: center">{{ $nomor++ }}</th>
                                 <td style="text-align: center"> {{ $data->barangs->kode }} -
                                      {{ $data->barangs->jenis_barangs->jenis_barang }}
-                                     {{ $data->barangs->spesifikasi }} </td>
+                                     {{ $data->barangs->nama_barang }} </td>
                                 <td style="text-align: center"> {{ $data->tanggal_keluar }}</td>
                                 <td style="text-align: center"> {{ $data->jumlah_keluar }}</td>
                                 <td style="text-align: center"> {{ $data->kondisi }}</td>

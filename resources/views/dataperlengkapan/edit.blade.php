@@ -70,9 +70,9 @@
 
                             <div class="row mb-3">
                                 <label for="validationTooltip02"
-                                    class="col-sm-2 col-form-label">Tipe/Spesifikasi</label>
+                                    class="col-sm-2 col-form-label">Tipe/nama_barang</label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="{{ $inputbarang->spesifikasi }}" name="spesifikasi"
+                                    <input type="text" value="{{ $inputbarang->nama_barang }}" name="nama_barang"
                                         class="form-control" required>
                                     <div class="invalid-feedback">
                                         Harus di isi

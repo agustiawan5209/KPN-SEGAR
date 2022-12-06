@@ -185,7 +185,7 @@
                                                                                                                 :
                                                                                                                 {{ $data->barangs->kode }}
                                                                                                                 {{ $data->barangs->jenis_barangs->jenis_barang }}
-                                                                                                                {{ $data->barangs->spesifikasi }}
+                                                                                                                {{ $data->barangs->nama_barang }}
                                                                                                             </div>
                                                                                                         </div>
 
@@ -222,7 +222,7 @@
                                                                     {{-- <td>{{ $data->tujuan }} </td>
                                                         <td>{{ $data->barangs->kode }}
                                                             {{ $data->barangs->jenis_barangs->jenis_barang }}
-                                                            {{ $data->barangs->spesifikasi }}
+                                                            {{ $data->barangs->nama_barang }}
                                                         </td>
                                                         <td>{{ $data->jumlah_pinjam }} </td> --}}
 

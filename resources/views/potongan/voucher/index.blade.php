@@ -45,7 +45,7 @@
                                         Pengguna Baru
                                         @break
                                     @case(2)
-                                        Pembelian Produk {{ $data->barang->kode }}-{{ $data->barang->spesifikasi }}
+                                        Pembelian Produk {{ $data->barang->kode }}-{{ $data->barang->nama_barang }}
                                         @break
                                     @case(3)
                                        Umum

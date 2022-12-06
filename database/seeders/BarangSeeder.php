@@ -31,7 +31,7 @@ class BarangSeeder extends Seeder
         //         'jenis_barangs_id'=>"1",
         //         'asal_perolehans_id'=>"1",
         //         'satuans_id'=>"1",
-        //         'spesifikasi'=>"canon D312",
+        //         'nama_barang'=>"canon D312",
         //         'foto'=>"1.jpg",
         //         'kegunaan'=>"foto barang",
         //         'tanggal_perolehan'=>"2022-08-08",

@@ -34,7 +34,7 @@
                                <select name="barang_id" id="barang_id" class="form-select">
                                 <option value="">--</option>
                                 @foreach ($barang as $item)
-                                    <option value="{{ $item->id }}">- {{ $item->kode }} - {{ $item->spesifikasi }}</option>
+                                    <option value="{{ $item->id }}">- {{ $item->kode }} - {{ $item->nama_barang }}</option>
                                 @endforeach
                                </select>
                                 <div class="invalid-feedback">Please, enter your name!</div>

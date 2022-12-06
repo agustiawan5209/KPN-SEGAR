@@ -48,7 +48,7 @@
                                 <tr>
                                     <th scope="col">No</th>
 
-                                    <th scope="col">Kode/Spesifikasi</th>
+                                    <th scope="col">Kode/nama_barang</th>
                                     <th scope="col">Jenis Aset</th>
                                     <th scope="col">Jumlah Satuan</th>
                                     <th scope="col">Lokasi</th>
@@ -68,7 +68,7 @@
                                                     value="{{ $item->id }}"> --}}
                                         </td>
 
-                                        <td>{{ $item->kode }}/{{ $item->spesifikasi }}</td>
+                                        <td>{{ $item->kode }}/{{ $item->nama_barang }}</td>
                                         <td>{{ $item->jenis_asets->nama_jenisaset }}</td>
                                         <td>{{ $item->jumlah }}</td>
 

@@ -65,7 +65,7 @@
                                     <th scope="row">{{ $no++ }}</th>
                                     <td> {{ $data[$i][0]['barang_id']->kode }}
                                         {{ $data[$i][0]['barang_id']->jenis_barangs->jenis_barang }}
-                                        {{ $data[$i][0]['barang_id']->spesifikasi }} </td>
+                                        {{ $data[$i][0]['barang_id']->nama_barang }} </td>
                                     <td>
                                         @if ($data[$i][0]['barang_id']->jumlah <= 0)
                                             <span class="badge bg-danger">

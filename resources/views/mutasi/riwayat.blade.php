@@ -62,7 +62,7 @@
                                             {{ $item->kode }}
                                         </td>
                                         <td>{{ $item->tgl_mutasi }}</td>
-                                        <td>{{ $item->barangs->kode }}{{ $item->barangs->spesifikasi }}</td>
+                                        <td>{{ $item->barangs->kode }}{{ $item->barangs->nama_barang }}</td>
                                         <td>{{ $item->barangs->jenis_asets->nama_jenisaset }}</td>
                                         <td>{{ $item->dari }}</td>
 

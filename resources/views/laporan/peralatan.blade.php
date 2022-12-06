@@ -93,7 +93,7 @@
                                                 <tr>
                                                     <th> {{ $nomor++ }}</th>
                                                     <td> {{ $data->kode }}</td>
-                                                    <td> {{ $data->jenis_barangs->jenis_barang }} {{ $data->spesifikasi }}</td>
+                                                    <td> {{ $data->jenis_barangs->jenis_barang }} {{ $data->nama_barang }}</td>
                                                     <td> {{ $data->kegunaan }} </td>
                                                     <td> {{ $data->tanggal_perolehan }}
                                                     <td> {{ $data->asal_perolehans->nama_asalperolehan }} </td>

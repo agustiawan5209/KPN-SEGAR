@@ -37,7 +37,7 @@
                             @foreach ($diskon as $data)
                             <tr>
                                 <th> {{ $loop->iteration }} </th>
-                                <td>{{ $data->barang->kode }}-{{ $data->barang->spesifikasi }}</td>
+                                <td>{{ $data->barang->kode }}-{{ $data->barang->nama_barang }}</td>
                                 <td>{{ $data->diskon }}</td>
                                 <td>{{ $data->tgl_mulai }}</td>
                                 <td>{{ $data->tgl_akhir }}</td>

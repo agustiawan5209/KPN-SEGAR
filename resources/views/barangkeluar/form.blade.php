@@ -54,7 +54,7 @@
                                             @if ($data->jumlah > 0)
                                                 <option value="{{ $data->id }}"> {{ $data->kode }} -
                                                     {{ $data->jenis_barangs->jenis_barang }}
-                                                    {{ $data->spesifikasi }}
+                                                    {{ $data->nama_barang }}
                                                 </option>
                                             @endif
                                         @endforeach
@@ -68,9 +68,9 @@
 
 
                             {{-- <div class="row mb-3">
-                  <label for="validationTooltip02" class="col-sm-2 col-form-label">Tipe/Spesifikasi</label>
+                  <label for="validationTooltip02" class="col-sm-2 col-form-label">Tipe/nama_barang</label>
                   <div class="col-sm-10">
-                    <input type="text" id="validationTooltip02" name="spesifikasi" class="form-control"  required>
+                    <input type="text" id="validationTooltip02" name="nama_barang" class="form-control"  required>
                     <div class="invalid-feedback">
                       Harus di isi
                     </div>

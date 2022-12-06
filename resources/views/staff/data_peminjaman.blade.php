@@ -100,7 +100,7 @@
 
                                     <div class="col-lg-7 col-md-8"> : {{ $d->barangs->kode }} -
                                         {{ $d->barangs->jenis_barangs->jenis_barang }}
-                                        {{ $d->barangs->spesifikasi }}</div>
+                                        {{ $d->barangs->nama_barang }}</div>
                                 </div>
 
                                 <div class="row">

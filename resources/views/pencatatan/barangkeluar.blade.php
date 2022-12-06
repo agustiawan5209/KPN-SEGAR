@@ -54,12 +54,12 @@
                                         <th>{{ $nomor++ }}</th>
                                         <td> {{ $data->barangs->kode }} -
                                             {{ $data->barangs->jenis_barangs->jenis_barang }}
-                                            {{ $data->barangs->spesifikasi }} </td>
+                                            {{ $data->barangs->nama_barang }} </td>
                                         <td> {{ $data->tanggal_keluar }}</td>
                                         <td> {{ $data->jumlah_keluar }}</td>
                                         <td> {{ $data->kondisi }}</td>
                                         <td> {{ $data->ket }}</td>
-                                        {{-- <td> 
+                                        {{-- <td>
 
               @if ($data->status == 0)
               <a href="/barang-keluar/status_keluar/{{$data->id}}" type="button" class="btn btn" style="background-color: #05b3c3; color:#FFFFFF">Push</a>

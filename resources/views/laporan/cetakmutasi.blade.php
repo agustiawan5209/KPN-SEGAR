@@ -69,7 +69,7 @@
                              <tr>
                                  <th style="text-align: center;">{{ $nomor++ }}</th>
                                  <td style="text-align: center;"> {{ $mutasi->barangs->kode }} -
-                                     {{ $mutasi->barangs->spesifikasi }} </td>
+                                     {{ $mutasi->barangs->nama_barang }} </td>
                                  <td style="text-align: center;"> {{ $mutasi->tgl_mutasi }}</td>
                                  <td style="text-align: center;"> {{ $mutasi->dari }}</td>
                                  <td style="text-align: center;"> {{ $mutasi->ke }}</td>

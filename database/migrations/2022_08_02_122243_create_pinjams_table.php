@@ -21,7 +21,6 @@ class CreatePinjamsTable extends Migration
             $table->foreignId('users_id')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nama_peminjam');
             $table->string('jenis_peminjaman');
-            $table->string('tujuan')->nullable();
             $table->bigInteger('bunga')->nullable();
             $table->string('jumlah_pinjam');
             $table->date('tgl_pengajuan')->nullable();

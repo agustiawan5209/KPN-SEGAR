@@ -16,7 +16,7 @@ class Barang extends Model
         'asal_perolehans_id',
         'satuans_id',
         'kode',
-        'spesifikasi',
+        'nama_barang',
         'foto',
         'kegunaan',
         'tanggal_perolehan',

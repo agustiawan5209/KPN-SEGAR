@@ -180,7 +180,7 @@
                                                 Pinjam</label>
                                             <div class="col-sm-10">
                                                 <input type="text" id="datefield2"
-                                                    value="{{ $inputbarang->kode }} {{ $inputbarang->jenis_barangs->jenis_barang }} {{ $inputbarang->spesifikasi }}"
+                                                    value="{{ $inputbarang->kode }} {{ $inputbarang->jenis_barangs->jenis_barang }} {{ $inputbarang->nama_barang }}"
                                                     name=" " class="form-control" required readonly>
                                                 <div class="invalid-feedback">
                                                     Harus di isi

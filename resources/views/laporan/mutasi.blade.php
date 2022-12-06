@@ -89,7 +89,7 @@
                                             <tr>
                                                 <th>{{ $nomor++ }}</th>
                                                 <td> {{ $mutasi->barangs->kode }} -
-                                                    {{ $mutasi->barangs->spesifikasi }} </td>
+                                                    {{ $mutasi->barangs->nama_barang }} </td>
                                                 <td> {{ $mutasi->tgl_mutasi }}</td>
                                                 <td> {{ $mutasi->dari }}</td>
                                                 <td> {{ $mutasi->ke }}</td>

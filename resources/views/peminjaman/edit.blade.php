@@ -46,7 +46,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-md-5">
                                         <input class="form-control form-control" value=" "
                                             id="jumlah_pinjam[] "name="jumlah_pinjam[]" type="number"
@@ -81,7 +81,7 @@
                                 return {
                                     results: $.map(data, function(item) {
                                         return {
-                                            text: item.spesifikasi,
+                                            text: item.nama_barang,
                                             id: item.id
                                         }
                                     })
@@ -145,7 +145,7 @@
                         return {
                             results: $.map(data, function(item) {
                                 return {
-                                    text: item.spesifikasi,
+                                    text: item.nama_barang,
                                     id: item.id
                                 }
                             })
@@ -171,7 +171,7 @@
                         return {
                             results: $.map(data, function(item) {
                                 return {
-                                    text: item.spesifikasi,
+                                    text: item.nama_barang,
                                     id: item.id
                                 }
                             })

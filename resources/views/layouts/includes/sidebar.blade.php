@@ -212,21 +212,6 @@
 
 
             <!-- End Forms Nav -->
-
-            <li class="nav-item flex-column @yield('jenis-nav')">
-                <a class="nav-link collapsed" data-bs-target="#jenis-nav" data-bs-toggle="collapse">
-                    <i class="bi bi-menu-button-wide"></i><span>Data Master</span><i
-                        class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="jenis-nav" class="nav-content collapse @yield('jenis-nav')" data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a class=" @yield('databunga')" href="{{ route('JenisBunga.index') }}">
-                            <i class="bi bi-circle"></i><span>Data Bunga</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Forms Nav -->
-
             <li class="nav-item flex-column">
                 <a class="nav-link " href="{{ url('data-kepala') }}">
                     <i class="bi bi-person"></i><span>Data Anggota</span></i>

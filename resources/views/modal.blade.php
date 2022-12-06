@@ -85,7 +85,7 @@
                                                 :
                                                 {{ $data->barangs->kode }}
                                                 {{ $data->barangs->jenis_barangs->jenis_barang }}
-                                                {{ $data->barangs->spesifikasi }}
+                                                {{ $data->barangs->nama_barang }}
                                             </div>
                                         </div>
 

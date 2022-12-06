@@ -35,6 +35,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Roles::class,'roles_id'); //1 karyawan mempunyai 1 posisi
     }
+    public function anggota() // relasi tabel posisi ke kryawan
+    {
+        return $this->hasOne(Anggota::class,'user_id', 'id'); //1 karyawan mempunyai 1 posisi
+    }
 
     public function peminjamans() // relasi tabel posisi ke kryawan
     {

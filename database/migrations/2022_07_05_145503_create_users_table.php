@@ -20,10 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique()->nullable();
             $table->string('alamat');
-            $table->string('posisi');
             $table->string('telephone');
             $table->string('password');
-             $table->string('status');
+            $table->string('status');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -23,14 +23,10 @@ class RolesSeeder extends Seeder
             ],
             [
                 'id' => "2",
-                'roles' => "Anggota",
-            ],
-            [
-                'id' => "3",
                 'roles' => "Pengguna",
             ],
             [
-                'id' => "4",
+                'id' => "3",
                 'roles' => "bendahara",
             ],
 

@@ -52,14 +52,17 @@
                 <div class="breacrumb-section">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-10">
                                 <div class="breadcrumb-text product-more">
                                     <a href="{{route('Customer.Index')}}"><i class="fa fa-home"></i> Home</a>
                                     <a href="{{route('Customer.Index')}}"><i class="fa fa-home"></i> Product</a>
                                     <a href="{{route('Customer.Index')}}"><i class="fa fa-home"></i> Promo</a>
                                     <a href="{{route('Customer.Index')}}"><i class="fa fa-home"></i> Tentang Kami</a>
-
                                 </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <a href="{{route('dashboardUser')}}"><i class="fa fa-home"></i> Dashboard</a>
+
                             </div>
                         </div>
                     </div>

@@ -75,10 +75,11 @@ Route::get('/filterthn/{tahun}', [HomeController::class, 'rekap_tahun']); //mena
 Auth::routes();
 
 // View Customer
-Route::group(['check.role:4,3', 'prefix' => 'Produk', 'as' => 'Customer.'], function () {
+Route::group(['check.role:2', 'prefix' => 'Produk', 'as' => 'Customer.'], function () {
     Route::get('/', [CustomerViewController::class, 'index'])->name('Index');
     Route::get('Produk/detail/{id}', [CustomerViewController::class, 'detail'])->name('detail');
 });
+Route::get('Dashboard', [CustomerViewController::class, 'DashboardUser'])->name('dashboardUser');
 // Data Bunga
 Route::group(['auth', 'check.role:2'], function () {
     Route::resource('JenisBunga', JenisBungaController::class)->parameters([
@@ -131,7 +132,7 @@ Route::middleware(['auth', 'check.role:1'])->group(function(){
     });
 });
 //--SEMUA ROUTE ROLE ADMIN ( ROLE 1)--//
-Route::middleware(['auth', 'check.role:1,2'])->group(function () {
+Route::middleware(['auth', 'check.role:1,3'])->group(function () {
     // Ubah Status
     Route::get('/ubah/status/{id}', [UserController::class, 'ubahstatus']);
     //SIDEBAR ADMIN /ROLE 1
@@ -239,7 +240,7 @@ Route::middleware(['auth', 'check.role:1,2'])->group(function () {
     Route::post('/data-admin/update/{id}', 'App\Http\Controllers\UserController@updateadmin')->name('updateadmin');
     Route::get('/data-admin/hapus/{id}', 'App\Http\Controllers\UserController@hapusadmin')->name('hapusadmin');
 
-    //DATA AKUN KEPALA UNIT
+    //DATA AKUN BENDAHARA
     Route::POST('/data-kepala', 'App\Http\Controllers\UserController@create')->name('data-kepala');
     Route::get('/data-kepala', [UserController::class, 'datakepala'])->name('data-kepala');
     Route::get('/data-kepala/edit/{id}', 'App\Http\Controllers\UserController@editkepala')->name('editkepala');
@@ -369,7 +370,7 @@ Route::middleware(['auth', 'check.role:1,2'])->group(function () {
 
 //-- SEMUA ROUTE ROLE STAFF ( ROLE 3)--//
 
-Route::middleware(['auth', 'check.role:2,4'])->group(function () {
+Route::middleware(['auth', 'check.role:2,3'])->group(function () {
     //SIDEBAR STAFF /ROLE 3
     Route::get('/peminjaman/form', function () {
         return view('peminjaman.form');
@@ -454,7 +455,7 @@ Route::middleware(['auth', 'check.role:2,4'])->group(function () {
     Route::post('/data-admin/update/{id}', 'App\Http\Controllers\UserController@updateadmin')->name('updateadmin');
     Route::get('/data-admin/hapus/{id}', 'App\Http\Controllers\UserController@hapusadmin')->name('hapusadmin');
 
-    //DATA AKUN KEPALA UNIT
+    //DATA AKUN BENDAHARA
     Route::POST('/data-kepala', 'App\Http\Controllers\UserController@create')->name('data-kepala');
     Route::get('/data-kepala', [UserController::class, 'datakepala'])->name('data-kepala');
     Route::get('/data-kepala/edit/{id}', 'App\Http\Controllers\UserController@editkepala')->name('editkepala');
@@ -462,9 +463,9 @@ Route::middleware(['auth', 'check.role:2,4'])->group(function () {
     Route::get('/data-kepala/hapus/{id}', 'App\Http\Controllers\UserController@hapuskepala')->name('hapuskepala');
 });
 
-//--ROUTE ROLE ADMIN DAN KEPALA UNIT (ROLE 1 DAN 2) --//
+//--ROUTE ROLE ADMIN DAN BENDAHARA (ROLE 1 DAN 2) --//
 
-Route::middleware(['auth', 'check.role:1,2'])->group(function () {
+Route::middleware(['auth', 'check.role:1,3'])->group(function () {
     //LAPORAN
     Route::get('/laporan/asetbergerak', [BarangController::class, 'laporanasetbergerak']);
     Route::get('/laporan/asetbergerak', function () {
@@ -513,7 +514,7 @@ Route::middleware(['auth', 'check.role:1,2'])->group(function () {
     Route::post('/filterpeminjaman', 'App\Http\Controllers\PinjamController@sortirpeminjaman');
     Route::get('/laporanpeminjaman/{start}/{end}', 'App\Http\Controllers\PinjamController@cetakLaporanPeminjaman');
 
-    //--selesai role admin & kepala unit--//
+    //--selesai role admin & BENDAHARA--//
 });
 
 //SELECT 2 Barang BAGIAN FORM PEMINJAMAN STAFF
@@ -526,33 +527,33 @@ Route::get('delete/notif/{id}', function ($id) {
     return redirect()->back();
 })->name('delete-notif');
 
-//-- SEMUA ROUTE ROLE kEPALA UNIT ( ROLE 2)--//
-Route::middleware(['auth', 'check.role:2'])->group(
+//-- SEMUA ROUTE ROLE BENDAHARA ( ROLE 2)--//
+Route::middleware(['auth', 'check.role:3'])->group(
     function () {
-        //PEMINJAMAN//STATUS YG GANTI KEPALA UNIT
+        //PEMINJAMAN//STATUS YG GANTI BENDAHARA
         Route::get('/status_setuju/{kode_peminjaman}', 'App\Http\Controllers\PeminjamanController@status_setuju');
         Route::get('/status_ditolak/{kode_peminjaman}', 'App\Http\Controllers\PeminjamanController@status_ditolak');
 
 
-        //RIWAYAT PEMINJAM kepala unit
+        //RIWAYAT PEMINJAM BENDAHARA
         Route::get('/kepalaunit/pengajuan', [PinjamController::class, 'pengajuan']);
         Route::get('/detailpengajuan/{id}', [PeminjamanController::class, 'detail_pengajuan']);
         Route::get('/kepalaunit/riwayat', [PinjamController::class, 'riwayatkepala']); //
 
 
-        //PENCATATAN STOK/BARANG KELUAR kepala unit
+        //PENCATATAN STOK/BARANG KELUAR BENDAHARA
         Route::get('/pencatatan/barangkeluar', [BarangKeluarController::class, 'databarangkeluar']);
 
-        //PENCATATAN STOK/BARANG MASUK kepala unit
+        //PENCATATAN STOK/BARANG MASUK BENDAHARA
         Route::get('/pencatatan/barangmasuk', [BarangMasukController::class, 'databarangmasuk']);
 
-        //TAMPIL DATA ASET kepala unit
+        //TAMPIL DATA ASET BENDAHARA
         Route::get('/aset/bergerak', [BarangController::class, 'asetbergerak']);
         Route::get('/aset/tidakbergerak', [BarangController::class, 'asettidakbergerak']);
         Route::get('/aset/peralatan', [BarangController::class, 'asetperalatan']);
         Route::get('/aset/perlengkapan', [BarangController::class, 'asetperlengkapan']);
 
 
-        //--selesai route kepala unit--//
+        //--selesai route BENDAHARA--//
     }
 );

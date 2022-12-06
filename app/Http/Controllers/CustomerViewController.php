@@ -19,4 +19,11 @@ class CustomerViewController extends Controller
             'barang'=> $barang,
         ]);
     }
+
+
+
+    public function DashboardUser()
+    {
+        return view('staff',);
+    }
 }

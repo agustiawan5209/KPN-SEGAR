@@ -44,7 +44,8 @@
             </li><!-- End Forms Nav -->
 
             <li class="nav-item flex-column">
-                <a class="nav-link collapsed" data-bs-target="#potongan-nav" data-bs-toggle="collapse" href="@yield('potongan-nav')">
+                <a class="nav-link collapsed" data-bs-target="#potongan-nav" data-bs-toggle="collapse"
+                    href="@yield('potongan-nav')">
                     <i class="bi bi-person"></i><span>Data Diskon/Promo</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="potongan-nav" class="nav-content collapse @yield('potongan-nav')" data-bs-parent="#sidebar-nav">
@@ -129,68 +130,6 @@
     </aside><!-- End Sidebar Admin-->
 @endcan
 
-@can('Anggota')
-    <!-- ======= Sidebar Kepala Unit ======= -->
-    <aside id="sidebar" class="sidebar">
-
-        <ul class="sidebar-nav" id="sidebar-nav">
-
-            <li class="nav-item flex-column ">
-                <a class="nav-link collapsed" href="{{ url('/dashboard') }}">
-                    <i class="bi bi-grid"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item flex-column @yield('pembelian')">
-                <a class="nav-link collapsed" data-bs-target="#pembelian" data-bs-toggle="collapse">
-                    <i class="bi bi-menu-button-wide"></i><span>Data Simpanan</span><i
-                        class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="pembelian" class="nav-content collapse @yield('pembelian')" data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a class=" @yield('databunga')" href="{{ route('Pembelian.index') }}">
-                            <i class="bi bi-circle"></i><span>Data Simpanan</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class=" @yield('databunga')" href="{{ route('Pembelian.data') }}">
-                            <i class="bi bi-circle"></i><span>Simpan Wajib</span>
-                        </a>
-                    </li>
-
-
-
-
-                </ul>
-            </li><!-- End Forms Nav -->
-            <li class="nav-item flex-column">
-                <a class="nav-link collapsed" data-bs-target="#iconss-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-cart" @yield('iconss-nav')></i><span>Data Transaksi</span><i
-                        class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="iconss-nav" class="nav-content collapse" @yield('iconss-nav') data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a class="@yield('riwayat')" href="{{ url('/peminjaman/peminjaman') }}">
-                            <i class="bi bi-circle"></i><span>Data Peminjaman</span>
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a class="@yield('riwayat')" href="{{ url('/peminjaman/riwayatpinjam') }}">
-                            <i class="bi bi-circle"></i><span>Riwayat Peminjaman</span>
-                        </a>
-                    </li>
-
-
-                </ul>
-            </li><!-- End Icons Nav -->
-
-
-        </ul>
-
-    </aside><!-- End Sidebar Kepala unit-->
-@endcan
 
 @can('Pengguna')
     <!-- ======= Sidebar Peminjam ======= -->
@@ -206,21 +145,53 @@
             </li>
 
             <li class="nav-item flex-column ">
-                <a class="nav-link collapsed" href="{{route('Pembelian.create')}}">
+                <a class="nav-link collapsed" href="{{ route('Pembelian.create') }}">
                     <i class="bi bi-cart-check-fill"></i>
                     <span> Pembelian</span>
                 </a>
             </li>
-            {{-- <li class="nav-item flex-column ">
-                <a class="nav-link collapsed" href="{{route('staff/pinjam')}}">
-                    <i class="bi bi-cart-check-fill"></i>
-                    <span> Peminjaman Barang</span>
-                </a>
-            </li> --}}
+            @can('Anggota')
+                <li class="nav-item flex-column @yield('pembelian')">
+                    <a class="nav-link collapsed" data-bs-target="#pembelian" data-bs-toggle="collapse">
+                        <i class="bi bi-menu-button-wide"></i><span>Data Simpanan</span><i
+                            class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="pembelian" class="nav-content collapse @yield('pembelian')" data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a class=" @yield('databunga')" href="{{ route('Pembelian.index') }}">
+                                <i class="bi bi-circle"></i><span>Data Simpanan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class=" @yield('databunga')" href="{{ route('Pembelian.data') }}">
+                                <i class="bi bi-circle"></i><span>Simpan Wajib</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li><!-- End Forms Nav -->
+                <li class="nav-item flex-column">
+                    <a class="nav-link collapsed" data-bs-target="#iconss-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-cart" @yield('iconss-nav')></i><span>Data Transaksi</span><i
+                            class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="iconss-nav" class="nav-content collapse" @yield('iconss-nav') data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a class="@yield('riwayat')" href="{{ url('/peminjaman/peminjaman') }}">
+                                <i class="bi bi-circle"></i><span>Data Peminjaman</span>
+                            </a>
+                        </li>
 
 
+                        <li>
+                            <a class="@yield('riwayat')" href="{{ url('/peminjaman/riwayatpinjam') }}">
+                                <i class="bi bi-circle"></i><span>Riwayat Peminjaman</span>
+                            </a>
+                        </li>
 
 
+                    </ul>
+                </li><!-- End Icons Nav -->
+            @endcan
 
         </ul>
 
@@ -248,22 +219,11 @@
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="jenis-nav" class="nav-content collapse @yield('jenis-nav')" data-bs-parent="#sidebar-nav">
-
-                    {{-- <li>
-                         <a class=" @yield('jenisaset')" href="{{ url('/datajenisaset') }}">
-                             <i class="bi bi-circle"></i><span>Data Jenis Aset</span>
-                         </a>
-                     </li> --}}
-
                     <li>
                         <a class=" @yield('databunga')" href="{{ route('JenisBunga.index') }}">
                             <i class="bi bi-circle"></i><span>Data Bunga</span>
                         </a>
                     </li>
-
-
-
-
                 </ul>
             </li><!-- End Forms Nav -->
 

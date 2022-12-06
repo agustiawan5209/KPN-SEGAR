@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Simpanan;
-use App\Http\Requests\StoreSimpananRequest;
-use App\Http\Requests\UpdateSimpananRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SimpananController extends Controller
 {
@@ -31,11 +31,36 @@ class SimpananController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSimpananRequest  $request
+     * @param  \App\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSimpananRequest $request)
+    public function store(Request $request)
     {
+        $this->validate($request,   [
+            'kode_simpanan' => ['required', 'string'],
+            'user_id' => ['required', 'string'],
+            'jumlah_simpanan' => ['required', 'numeric'],
+            'tgl_simpanan' => ['required', 'string'],
+        ]);
+        $simpanan = Simpanan::where('user_id', Auth::user()->id)->get();
+        if ($simpanan->count() > 0) {
+            $jumlah_simpanan = Simpanan::where('user_id', Auth::user()->id)->sum('total');
+            Simpanan::create([
+                'kode_simpanan' => $request->kode_simpanan,
+                'user_id' => Auth::user()->id,
+                'jumlah_simpanan' => $request->jumlah_simpanan,
+                'tgl_simpanan' => $request->tgl_simpanan,
+                'total' => $request->jumlah_simpanan + $jumlah_simpanan,
+            ]);
+        } else {
+            Simpanan::create([
+                'kode_simpanan' => $request->kode_simpanan,
+                'user_id' => Auth::user()->id,
+                'jumlah_simpanan' => $request->jumlah_simpanan,
+                'tgl_simpanan' => $request->tgl_simpanan,
+                'total' => $request->jumlah_simpanan,
+            ]);
+        }
         //
     }
 
@@ -56,7 +81,7 @@ class SimpananController extends Controller
      * @param  \App\Models\Simpanan  $simpanan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Simpanan $simpanan)
+    public function edit(Simpanan $simpanan, $id)
     {
         //
     }
@@ -64,13 +89,18 @@ class SimpananController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSimpananRequest  $request
+     * @param  \App\Http\Request  $request
      * @param  \App\Models\Simpanan  $simpanan
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSimpananRequest $request, Simpanan $simpanan)
+    public function update(Request $request, Simpanan $simpanan, $id)
     {
-        //
+        $this->validate($request,   [
+            'kode_simpanan' => ['required', 'string'],
+            'user_id' => ['required', 'string'],
+            'jumlah_simpanan' => ['required', 'numeric'],
+            'tgl_simpanan' => ['required', 'string'],
+        ]);
     }
 
     /**

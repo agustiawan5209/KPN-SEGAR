@@ -18,6 +18,8 @@ class CreateSimpanansTable extends Migration
             $table->string('kode_anggota',30)->nullable();
             $table->string('kode_simpanan',20);
             $table->string('jumlah_simpanan',15);
+            $table->date('tgl_simpanan');
+            $table->string('total');
             $table->timestamps();
         });
     }

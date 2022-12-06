@@ -125,29 +125,6 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="yourName" class="form-label">Jenis Pengguna</label>
-                                            <select name="roles_id" id="roles_id" onchange="UserV(this)"
-                                                class="form-select">
-                                                <option value="1">Pengguna Biasa</option>
-                                                <option value="2">Anggota KPN SEGAR BAROMBONG </option>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-12" id="mainPosisi">
-                                            <label for="yourName" class="form-label">Posisi</label>
-                                            <input  type="text"
-                                                class="form-control @error('posisi') is-invalid @enderror"
-                                                name="posisi" id="Posisi" value="{{ old('posisi') }}" required
-                                                autocomplete="name" autofocus>
-                                            @error('posisi')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-
-                                            <div class="invalid-feedback">Please, enter your name!</div>
-                                        </div>
-                                        <div class="col-12">
                                             <label for="yourName" class="form-label">Telephone</label>
                                             <input id="telephone" type="number"
                                                 class="form-control @error('telephone') is-invalid @enderror"
@@ -233,19 +210,7 @@
     <script src="{{ asset('admin/assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
     <script src="{{ asset('admin/assets/vendor/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('admin/assets/vendor/php-email-form/validate.js') }}"></script>
-    <script>
-        $("#Posisi").prop("disabled", true);
-        $("#mainPosisi").hide()
-        function UserV(target) {
-            if (target.value == '2') {
-                $("#Posisi").prop('disabled', false)
-                $("#mainPosisi").show()
-            } else {
-                $("#Posisi").prop("disabled", true);
-                $("#mainPosisi").hide()
-            }
-        }
-    </script>
+
     <!-- Template Main JS File -->
     <script src="{{ asset('admin/assets/js/main.js') }}"></script>
 

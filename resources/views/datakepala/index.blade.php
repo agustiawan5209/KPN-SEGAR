@@ -36,7 +36,6 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">Username</th>
                                     <th scope="col">Alamat</th>
-                                    <th scope="col">Posisi</th>
                                     <th scope="col">Telp</th>
                                     <th scope="col">Roles</th>
                                     <th scope="col">Status</th>
@@ -55,7 +54,6 @@
                                             <td>{{ $data->name }}</td>
                                             <td>{{ $data->username }}</td>
                                             <td>{{ $data->alamat }}</td>
-                                            <td>{{ $data->posisi }}</td>
                                             <td>{{ $data->telephone }}</td>
                                             <td>{{ $data->roles->roles }}</td>
                                             <td>

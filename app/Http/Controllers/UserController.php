@@ -79,7 +79,6 @@ class UserController extends Controller
     //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
     //         'roles_id' => ['required', 'string', 'max:255'],
     //         'alamat' => ['required', 'string', 'max:255'],
-    //         'posisi' => ['required', 'string', 'max:255'],
     //         'telephone' => ['required', 'string', 'max:255'],
     //         'password' => ['required', 'string', 'min:8', 'confirmed'],
     //     ]);
@@ -98,7 +97,6 @@ class UserController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'roles_id' => ['required', 'string', 'max:255'],
             'alamat' => ['required', 'string', 'max:255'],
-            'posisi' => ['required', 'string', 'max:255'],
             'telephone' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -108,7 +106,6 @@ class UserController extends Controller
         $akun->username = $request->input('username');
         $akun->roles_id = $request->input('roles_id');
         $akun->alamat = $request->input('alamat');
-        $akun->posisi = $request->input('posisi');
         $akun->telephone = $request->input('telephone');
         $akun->password = Hash::make($request->password);
         $akun->status = '1';
@@ -174,39 +171,6 @@ class UserController extends Controller
 
         return redirect('/data-kepala')->with('success', 'Data Berhasil Diupdate!');
     }
-
-    //UPDATE
-    //    public function update(Request $request, $id)
-    // {
-    //     $akun = \App\Models\User::find($id);
-    //     // $this->validate($request, [
-    //     //     'name' => ['required', 'string', 'max:255'],
-    //     //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-    //     //     'roles_id' => ['required', 'string', 'max:255'],
-    //     //     'alamat' => ['required', 'string', 'max:255'],
-    //     //     'posisi' => ['required', 'string', 'max:255'],
-    //     //     'telephone' => ['required', 'string', 'max:255'],
-    //     //     'password' => ['required', 'string', 'min:8', 'confirmed'],
-    //     // ]);
-
-    //         $akun = new user;
-    //         $akun->name = $request->input('name');
-    //         $akun->email = $request->input('email');
-    //         $akun->roles_id = $request->input('roles_id');
-    //         $akun->alamat = $request->input('alamat');
-    //         $akun->posisi = $request->input('posisi');
-    //         $akun->telephone = $request->input('telephone');
-    //         $akun->password = Hash::make($request->password);
-
-    //         $akun->update();
-    //         if ($akun->roles_id == 1){
-    //             return redirect()->route('data-admin')->with('success', 'Data Berhasil Diupdate!');
-    //             }elseif ($akun->roles_id == 2){
-    //                 return redirect()->route('data-kepala')->with('success', 'Data Berhasil Diupdate!');
-    //             }elseif ($akun->roles_id == 3){
-    //                 return redirect()->route('datauser')->with('success', 'Data Berhasil Diupdate!');
-    //             }
-    //     }
 
 
     //FUNCTION HAPUS DATA USER, ADMIN, KEPALA UNIT

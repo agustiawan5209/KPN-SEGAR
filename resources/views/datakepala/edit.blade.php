@@ -137,20 +137,6 @@
                                             <div class="invalid-feedback">Please, enter your name!</div>
                                         </div>
 
-                                        <div class="col-12">
-                                            <label for="yourName" class="form-label">Posisi</label>
-                                            <input id="posisi" type="text"
-                                                class="form-control @error('posisi') is-invalid @enderror"
-                                                name="posisi" value="{{ $akun->posisi }}" required
-                                                autocomplete="name" autofocus>
-                                            @error('posisi')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-
-                                            <div class="invalid-feedback">Please, enter your name!</div>
-                                        </div>
 
                                         <div class="col-12">
                                             <label for="yourName" class="form-label">Telephone</label>

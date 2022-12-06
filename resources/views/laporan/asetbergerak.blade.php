@@ -27,7 +27,7 @@
                     <!-- Default Card -->
                     <div class="card">
                         <div class="card-body  overflow-scroll">
-                            <h5 class="card-title">Laporan Data Aset Bergerak</h5>
+                            <h5 class="card-title">Laporan Barang</h5>
 
                             <form action="/filterasetbergerak" method="post">
                                 @csrf
@@ -58,7 +58,7 @@
                     @isset($data)
                         <div class=" ">
                             <div class="card-body">
-                                <h5 class="card-title">Laporan Data Aset Bergerak</h5>
+                                <h5 class="card-title">Laporan Barang</h5>
                                 <a href="/laporanasetbergerak/{{ $startDate }}/{{ $endDate }}"
                                     class="btn btn-secondary btn-sm float-right mr-4"><i class="bi bi-print"></i> Cetak
                                     PDF </a> <br>
@@ -73,14 +73,8 @@
                                             <th scope="col">Kode</th>
                                             <th scope="col">Nama
                                                 Tipe/ Spesifik</th>
-                                            <th scope="col">Kegunaan</th>
                                             <th scope="col">Tgl Perolehan</th>
                                             <th scope="col">Asal Perolehan</th>
-                                            <th scope="col"> Nilai Perolehan</th>
-                                            <th scope="col">Legalitas</th>
-                                            <th scope="col"> Luas</th>
-                                            <th scope="col">Lokasi</th>
-
                                             <th scope="col">Jumlah</th>
                                             <th scope="col">kondisi</th>
                                             <th scope="col">ket</th>
@@ -98,12 +92,12 @@
                                                     <th> {{ $nomor++ }}</th>
                                                     <td> {{ $data->kode }}</td>
                                                     <td> {{ $data->jenis_barangs->jenis_barang }} {{ $data->spesifikasi }}</td>
-                                                    <td> {{ $data->kegunaan }} </td>
+                                                    {{-- <td> {{ $data->kegunaan }} </td> --}}
                                                     <td> {{ $data->tanggal_perolehan }}
                                                     <td> {{ $data->asal_perolehans->nama_asalperolehan }} </td>
                                                     {{-- <td> {{ $data->nilai_perolehan }}</td> --}}
                                                     {{-- <td> {{ $data->legalitas }} --}}
-                                                    <td> {{ $data->luas }}</td>
+                                                    {{-- <td> {{ $data->luas }}</td> --}}
 
                                                     <td> {{ $data->jumlah }} {{ $data->satuans->nama_satuan }}</td>
                                                     <td> {{ $data->kondisi }}</td>

@@ -237,9 +237,15 @@
 
 
             <li class="nav-item flex-column ">
+                <a class="nav-link collapsed" href="{{ route('pinjamUang.create') }}">
+                    <i class="bi bi-cart"></i>
+                    <span>Peminjaman Uang</span>
+                </a>
+            </li>
+            <li class="nav-item flex-column ">
                 <a class="nav-link collapsed" href="{{ route('staff/pinjam') }}">
                     <i class="bi bi-cart"></i>
-                    <span>Peminjaman</span>
+                    <span>Peminjaman Barang</span>
                 </a>
             </li>
 

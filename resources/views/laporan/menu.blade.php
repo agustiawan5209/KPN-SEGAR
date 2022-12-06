@@ -29,7 +29,7 @@
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <a href="{{ url('/laporan/asetbergerak') }}">
-                                        <span> 1. Data Aset Bergerak</span>
+                                        <span>Barang</span>
                                     </a><br>
                                 </div>
                             </div>

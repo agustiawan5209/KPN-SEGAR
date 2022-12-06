@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anggota;
 use App\Models\User;
 use App\Models\Barang;
 use App\Models\Pinjam;
@@ -28,11 +29,11 @@ class PinjamUang extends Controller
         $pinjam = Pinjam::where('jenis_peminjaman', '=', 'uang')->get();
         $trxstatus = TrxStatus::all();
         $akun = User::all();
-        return view('pinjamuang.index',[
-            'pinjam'=> $pinjam,
-            'trxstatus'=> $trxstatus,
-            'status'=> Status::all(),
-            'akun'=> $akun
+        return view('pinjamuang.index', [
+            'pinjam' => $pinjam,
+            'trxstatus' => $trxstatus,
+            'status' => Status::all(),
+            'akun' => $akun
         ]);
     }
 
@@ -44,9 +45,11 @@ class PinjamUang extends Controller
     public function create()
     {
         $jenis = JenisBunga::all();
+        $user = Anggota::all();
         return view('pinjamuang.form', [
             'edit' => false,
             'jenis' => $jenis,
+            'user'=> $user,
         ]);
     }
 
@@ -58,12 +61,12 @@ class PinjamUang extends Controller
      */
     public function store(Request $request)
     {
-       $valid =  $this->validate($request, [
-            'jumlah_pinjam'=> ['required', 'numeric'],
-            'jenis_id'=> ['required', 'numeric'],
-            'tgl_pengajuan'=> ['required', 'date'],
-            'tgl_kembali'=> ['required', 'date'],
-            'total_bunga'=> ['required', 'numeric'],
+        $valid =  $this->validate($request, [
+            'jumlah_pinjam' => ['required', 'numeric'],
+            'jenis_id' => ['required', 'numeric'],
+            'tgl_pengajuan' => ['required', 'date'],
+            'tgl_kembali' => ['required', 'date'],
+            'total_bunga' => ['required', 'numeric'],
         ]);
         $book_id = 0;
         $data = Pinjam::max('kode_peminjaman');
@@ -156,12 +159,14 @@ class PinjamUang extends Controller
         //
     }
 
-    public function getJenis($id){
+    public function getJenis($id)
+    {
         $jenis = JenisBunga::find($id);
         return response()->json($jenis);
     }
 
-    public function KepalaIndex(){
+    public function KepalaIndex()
+    {
         $dataasalperolehan = DataAsalPerolehan::all();
         $datajenisaset = DataJenisAset::all();
         $jenisbarang = JenisBarang::all();
@@ -169,8 +174,8 @@ class PinjamUang extends Controller
         $inputbarang = Barang::all();
         $akun = User::all();
         $pinjam = Pinjam::whereNull('ket')
-        ->where('jenis_peminjaman', '=', 'Uang')
-        ->get();
+            ->where('jenis_peminjaman', '=', 'Uang')
+            ->get();
         $status = Status::all();
         $trxstatus = TrxStatus::all();
         return view('pinjamuang.admin-index', [

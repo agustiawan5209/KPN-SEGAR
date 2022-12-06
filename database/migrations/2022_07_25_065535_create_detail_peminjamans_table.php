@@ -15,11 +15,10 @@ class CreateDetailPeminjamansTable extends Migration
     {
         Schema::create('detail_peminjamans', function (Blueprint $table) {
             $table->id();
-             $table->foreignId('status_konfirmasis_id')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('status_peminjamans_id')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('kode_peminjaman');
-            $table->string('barangs_id')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('jumlah_pinjam');
+            $table->string('pinjam_id');
+            $table->string('kode_anggota');
+            $table->string('debit')->default('-');
+            $table->string('kredit')->default('-');
             $table->string('status')->default(0);
             $table->timestamps();
         });

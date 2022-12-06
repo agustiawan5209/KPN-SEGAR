@@ -5,18 +5,18 @@
             <div class="card-body">
                 <h5 class="card-title text-center pb-0 fs-5">Formulir Peminjaman Barang</h5></br>
                 @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <!-- validation Form Elements -->
 
-                <form id="form-formulir" action="{{route('pinjamUang.store')}}" method="POST" enctype="multipart/form-data" class=" needs-validation"
-                    novalidate>
+                <form id="form-formulir" action="{{ route('pinjamUang.store') }}" method="POST" enctype="multipart/form-data"
+                    class=" needs-validation" novalidate>
                     @csrf
 
                     <div class="row mb-3">
@@ -37,9 +37,14 @@
                     <div class="row mb-3">
                         <label for="validationCustom01" class="col-sm-2 col-form-label">Nama Peminjam</label>
                         <div class="col-sm-10">
-                            <input type="text" id="validationCustom01" name="nama_peminjam"
-                                value=" {{ auth()->user()->name }}" readonly class="form-control" required
-                                placeholder=" nama peminjam">
+                           <select name="nama_peminjam" id="" class="form-select">
+                                <option value="">---</option>
+                                @foreach ($user as $anggota)
+                                    <option value="{{ $anggota->kode_anggota  }}">{{ $anggota->kode_anggota  }} @if($angoota->user != null)
+                                        {{ $anggota->user->name }}
+                                    @endif</option>
+                                @endforeach
+                           </select>
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>
@@ -66,37 +71,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <label for="validationTooltip02" class="col-sm-2 col-form-label"> Lama Pinjaman </label>
-                        <div class="col-sm-10">
-                            <select class="form-select" id="jenis_id" name="jenis_id" id="validationTooltip06"
-                                aria-label="Default select example" required>
-                                <option value="">--</option>
-                                @foreach ($jenis as $item)
-                                    <option value="{{ $item->id }}">{{ $item->jumlah_bulan }} Bulan</option>
-                                @endforeach
-                            </select>
-                            <input type="hidden" name="total_bunga" class="total_bunga">
-                            <div class="invalid-feedback">
-                                Harus di isi
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-sm-5">
-                            <table class="table col-md-3">
-                                <thead>
-                                    <tr>
-                                        <th>Lama Pinjam</th>
-                                        <th>Jumlah Bunga</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="hasilPinjam">
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                     <div class="row mb-3">
                         <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Pengajuan</label>
                         <div class="col-sm-10">
@@ -112,12 +87,33 @@
                     <div class="row mb-3">
                         <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Pengembalian</label>
                         <div class="col-sm-10">
-                            <input type="date" id="datefield2" name="tgl_kembali" class="form-control" required>
+                            <input type="date" id="tgl_kembali" name="tgl_kembali" class="form-control" required>
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label for="validationTooltip02" class="col-sm-2 col-form-label"> Lama Pinjaman </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="lama_pinjam" name="lama_pinjam" class="form-control" readonly
+                                required>
+
+                            <div class="invalid-feedback">
+                                Harus di isi
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Bukti Pinjaman</label>
+                        <div class="col-sm-10">
+                            <input type="file" id="datefield2" name="bukti_pinjam" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Harus di isi
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row mb-3">
                         <label for="validationTooltip05" class="col-sm-2 col-form-label">Keterangan</label>
                         <div class="col-sm-10">
@@ -137,32 +133,34 @@
     </main>
     <script>
         $(document).ready(function() {
-            $("#jenis_id").on('change', function(e) {
+            $("#tgl_kembali").change(function(e) {
+                var tgl_pengajuan = new Date($("#tgl_pengajuan").val());
+                var tgl_kembali = new Date($(this).val());
+                var diff = diff_date(tgl_pengajuan, tgl_kembali)
+                $('#lama_pinjam').val(diff)
+            })
 
-                $.ajax({
-                        type: "GET",
-                        url: "/pinjamuang/find/" + $(this).val(),
-                        success: function(response) {
-                            var hasil = response;
-                            var bunga = JSON.stringify(response.jumlah_bunga);
-                            var jumlah_pinjam = $('.jumlah_pinjam').val();
-                            console.log(bunga)
-                            var total_bunga = (parseInt(bunga) / 100) * parseInt(jumlah_pinjam);
-                            console.log(total_bunga)
-                            $('.total_bunga').val(parseInt(total_bunga))
-                            var table = `
-                            <tr>
-                                <td>${hasil.jumlah_bulan} Bulan</td>
-                                <td>${hasil.jumlah_bunga}%</td>
-                                <td>${parseInt(total_bunga)}</td>
-                            </tr>
-                        `;
+            function diff_date(date1, date2) {
+                var d = Math.abs(date1 - date2) / 1000; // delta
+                var r = {}; // result
+                var s = { // structure
+                    year: 31536000,
+                    month: 2592000,
+                    week: 604800, // uncomment row to ignore
+                    day: 86400, // feel free to add your own row
+                    hour: 3600,
+                    minute: 60,
+                    second: 1
+                };
 
-                            $("#hasilPinjam").append(table)
-                        }
-                    });
+                Object.keys(s).forEach(function(key) {
+                    r[key] = Math.floor(d / s[key]);
+                    d -= r[key] * s[key];
+                });
+                console.log(r)
+                return  `${r.year} Tahun : ${r.month} Bulan : ${r.week} Minggu : ${r.day}  Hari `;
+            }
 
-            });
         });
     </script>
 @endsection

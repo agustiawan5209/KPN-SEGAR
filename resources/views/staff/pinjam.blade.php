@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('content')
 
-@section('title', 'pengajuan')
-@section('pengajuan', 'active')
+@section('title', 'pinjamIndex')
+@section('pinjamIndex', 'active')
 @section('iconss-nav', 'show')
 
 <main id="main" class="main">
@@ -31,10 +31,6 @@
 
                             </h5>
                         </center>
-
-                                <a href="{{ route('cekdata') }}" class="btn btn-primary"
-                                    style="background-color: #163e85;">Buat Pengajuan Baru</a>
-
                                 <!-- Table with stripped rows -->
                                 <table class="table datatable" id="peminjaman">
                                     <thead>

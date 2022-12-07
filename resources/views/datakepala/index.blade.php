@@ -24,10 +24,10 @@
 
                 <div class="card">
                     <div class="card-body  overflow-scroll">
-                        <h5 class="card-title">Data Anggota</h5>
+                        <h5 class="card-title">Data </h5>
                         {{-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p> --}}
-                        <a href="/data-Anggota/form" type="button" class="btn btn-sm"
-                            style="background-color:  #012970; color:#FFFFFF">Tambah</a>
+                        {{-- <a href="/data-Anggota/form" type="button" class="btn btn-sm"
+                            style="background-color:  #012970; color:#FFFFFF">Tambah</a> --}}
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
                             <thead>
@@ -47,32 +47,30 @@
                                 $nomor = 1;
                                 ?>
                                 @foreach ($akun as $data)
-                                    @if ($data->roles_id == 2)
-                                        <tr>
-                                            <th> {{ $nomor++ }}</th>
-                                            <td>{{ $data->name }}</td>
-                                            <td>{{ $data->username }}</td>
-                                            <td>{{ $data->alamat }}</td>
-                                            <td>{{ $data->telephone }}</td>
-                                            <td>
-                                                @if ($data->status == 1)
-                                                    <a href="{{ url('ubah/status/' . $data->id) }}" type="button"
-                                                        class="btn btn-outline-primary btn-sm">Aktif</a>
-                                                @else
-                                                    <a href="{{ url('ubah/status/' . $data->id) }}" type="button"
-                                                        class="btn btn-outline-danger btn-sm">Non-Aktif</a>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a href="/data-Anggota/edit/{{ $data->id }}" type="button"
-                                                    class="btn btn" style="background-color: #05b3c3; color:#FFFFFF"><i
-                                                        class="bi bi-pencil"></i></a>
-                                                <a href="/data-Anggota/hapus/{{ $data->id }}"
-                                                    onclick="return confirm('Hapus Data?')" type="button"
-                                                    class="btn btn-danger"><i class="bi bi-trash delete"></i></a>
-                                            </td>
-                                        </tr>
-                                    @endif
+                                    <tr>
+                                        <th> {{ $nomor++ }}</th>
+                                        <td>{{ $data->user->name }}</td>
+                                        <td>{{ $data->user->username }}</td>
+                                        <td>{{ $data->user->alamat }}</td>
+                                        <td>{{ $data->user->telephone }}</td>
+                                        <td>
+                                            @if ($data->status == 1)
+                                                <a href="{{ route('ubahstatus->anggota', ['id' => $data->id]) }}"
+                                                    type="button" class="btn btn-outline-primary btn-sm">Aktif</a>
+                                            @elseif ($data->status == 0)
+                                                <a href="{{ route('ubahstatus->anggota', ['id' => $data->id]) }}"
+                                                    type="button" class="btn btn-outline-danger btn-sm">Non-Aktif</a>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="/data-user-Anggota/edit/{{ $data->user->id }}" type="button"
+                                                class="btn btn" style="background-color: #05b3c3; color:#FFFFFF"><i
+                                                    class="bi bi-pencil"></i></a>
+                                            <a href="/data-user-Anggota/hapus/{{ $data->user->id }}"
+                                                onclick="return confirm('Hapus Data?')" type="button"
+                                                class="btn btn-danger"><i class="bi bi-trash delete"></i></a>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

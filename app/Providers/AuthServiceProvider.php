@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user->roles->id == "1";
         });
         Gate::define('Anggota', function(User $user){
-            return $user->anggota != null;
+            return $user->anggota != null && $user->anggota->status == 1;
         });
         Gate::define('Pengguna', function(User $user){
             return $user->roles->id == "2";

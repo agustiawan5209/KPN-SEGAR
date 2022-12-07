@@ -56,9 +56,14 @@ class PinjamController extends Controller
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
         $akun = User::all();
-        $pinjam = Pinjam::whereNull('ket')
-        ->where('jenis_peminjaman', '=', 'Barang')
-        ->where('users_id', Auth::user()->id)->get();
+        if(Auth::user()->roles_id == 3){
+            $pinjam = Pinjam::all();
+        }else{
+            $pinjam = Pinjam::whereNull('ket')
+            ->where('jenis_peminjaman', '=', 'Barang')
+            ->where('kode_anggota', Auth::user()->anggota->kode_anggota)->get();
+        }
+
         $status = Status::all();
         $trxstatus = TrxStatus::all();
         return view('staff.pinjam', [
@@ -83,7 +88,11 @@ class PinjamController extends Controller
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
         $akun = User::all();
-        $pinjam = Pinjam::where('users_id', Auth::user()->id)->get();
+        if(Auth::user()->roles_id == 3){
+            $pinjam = Pinjam::all();
+        }else{
+            $pinjam = Pinjam::where('kode_anggota', Auth::user()->anggota->kode_anggota)->get();
+        }
         $status = Status::all();
         $trxstatus = TrxStatus::all();
         return view('staff.riwayat', [
@@ -165,9 +174,9 @@ class PinjamController extends Controller
         $inputbarang = Barang::all();
         $akun = User::all();
         $pinjam = Pinjam::whereNull('ket')
-        ->where('jenis_peminjaman', '=', 'Barang')
-        ->orderBy('id', 'desc')
-        ->get();
+            ->where('jenis_peminjaman', '=', 'Barang')
+            ->orderBy('id', 'desc')
+            ->get();
         $status = Status::all();
         $trxstatus = TrxStatus::all();
         return view('peminjaman.peminjaman', [
@@ -193,8 +202,8 @@ class PinjamController extends Controller
         $inputbarang = Barang::all();
         $akun = User::all();
         $pinjam = Pinjam::whereNotNull('ket')
-        ->where('jenis_peminjaman', '=', 'Barang')
-        ->OrWhere('jenis_peminjaman', '=', 'Uang')
+            ->where('jenis_peminjaman', '=', 'Barang')
+            ->OrWhere('jenis_peminjaman', '=', 'Uang')
             ->orderBy('id', 'desc')
             ->latest()
             ->get();
@@ -244,17 +253,17 @@ class PinjamController extends Controller
                 ->back()
                 ->with('warning', 'Maaf jumlah barang yang anda pinjam melebihi dari sisa stok yang ada');
         } else {
-                $pinjam = new Pinjam();
-                $pinjam->kode_peminjaman = $book_id;
-                $pinjam->barangs_id = $request->barangs_id;
-                $pinjam->users_id = $request->users_id;
-                $pinjam->nama_peminjam = $request->nama_peminjam;
-                $pinjam->jenis_peminjaman = "Barang";
-                $pinjam->tujuan = $request->tujuan;
-                $pinjam->tgl_pengajuan = $request->tgl_pengajuan;
-                // $pinjam->tgl_pinjam = $request->tgl_pengajuan;
-                $pinjam->tgl_kembali = $request->tgl_kembali;
-                $pinjam->jumlah_pinjam = $request->jumlah_pinjam;
+            $pinjam = new Pinjam();
+            $pinjam->kode_peminjaman = $book_id;
+            $pinjam->barangs_id = $request->barangs_id;
+            $pinjam->users_id = $request->users_id;
+            $pinjam->nama_peminjam = $request->nama_peminjam;
+            $pinjam->jenis_peminjaman = "Barang";
+            $pinjam->tujuan = $request->tujuan;
+            $pinjam->tgl_pengajuan = $request->tgl_pengajuan;
+            // $pinjam->tgl_pinjam = $request->tgl_pengajuan;
+            $pinjam->tgl_kembali = $request->tgl_kembali;
+            $pinjam->jumlah_pinjam = $request->jumlah_pinjam;
 
             $pinjam->save();
             $trxstatus = new TrxStatus();

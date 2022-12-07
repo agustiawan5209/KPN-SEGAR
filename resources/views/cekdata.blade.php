@@ -1,9 +1,9 @@
 @extends('layouts.master')
 @section('content')
 
-@section('title', 'asetbergerak')
-@section('asetbergerak', 'active')
-@section('forms-nav', 'show')
+@section('title', 'pinjam-barang-nav')
+@section('pinjam-barang-nav', 'active')
+@section('pinjambarangcek', 'show')
 
 <main id="main" class="main">
 

@@ -122,9 +122,6 @@
                     <span>Laporan</span>
                 </a>
             </li>
-
-
-
         </ul>
 
     </aside><!-- End Sidebar Admin-->
@@ -213,37 +210,58 @@
 
             <!-- End Forms Nav -->
             <li class="nav-item flex-column">
-                <a class="nav-link " href="{{ url('data-Anggota') }}">
+                <a class="nav-link collapsed @yield('pinjam')" href="{{ url('data-Anggota') }}">
                     <i class="bi bi-person"></i><span>Data Anggota</span></i>
                 </a>
             </li><!-- End Forms Nav -->
-
-
-
-
-            <li class="nav-item flex-column ">
-                <a class="nav-link collapsed" href="{{ route('pinjamUang.create') }}">
-                    <i class="bi bi-cart"></i>
-                    <span>Peminjaman Uang</span>
+            <li class="nav-item flex-column">
+                <a class="nav-link collapsed" data-bs-target="#pinjam-uang-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-person"></i><span>Data Pinjaman Uang</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
+                <ul id="pinjam-uang-nav" class="nav-content collapse @yield('pinjam-uang-nav')" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a class="@yield('uanglinkCreate')" href="{{ route('pinjamUang.create') }}">
+                            <i class="bi bi-cart"></i>
+                            <span>Buat Peminjaman</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="@yield('uanglinkCreate')" href="{{ route('staff/pinjam') }}">
+                            <i class="bi bi-cart"></i>
+                            <span>Data Pinjaman Uang</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="@yield('riwayat')" href="{{ url('/peminjaman/riwayatpinjam') }}">
+                            <i class="bi bi-circle"></i><span>Riwayat Peminjaman</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
-            <li class="nav-item flex-column ">
-                <a class="nav-link collapsed" href="{{ route('staff/pinjam') }}">
-                    <i class="bi bi-cart"></i>
-                    <span>Peminjaman Barang</span>
+            <li class="nav-item flex-column">
+                <a class="nav-link collapsed " data-bs-target="#pinjam-barang-nav" data-bs-toggle="collapse"
+                    href="@yield('pinjam-barang-nav')">
+                    <i class="bi bi-cart"></i><span>Data Pinjaman Barang</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
                 </a>
+                <ul id="pinjam-barang-nav" class="nav-content collapse @yield('pinjam-barang-nav')"  data-bs-parent="#sidebar-nav">
+
+                    <li >
+                        <a class=" @yield('pinjambarangcek') " href="{{ route('cekdata') }}">
+
+                            <span>Buat Peminjaman Barang</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a  class=" @yield('pinjam')" href="{{ route('staff/riwayat') }} ">
+                            <i class="bi bi-cart-check-fill"></i>
+                            <span>Riwayat Peminjaman Barang</span>
+                        </a>
+                    </li>
+
+                </ul>
             </li>
-
-            <li class="nav-item flex-column ">
-                <a class="nav-link collapsed" href="{{ route('staff/riwayat') }} ">
-                    <i class="bi bi-cart-check-fill"></i>
-                    <span>Riwayat Pembelian</span>
-                </a>
-            </li>
-
-
-
-
 
         </ul>
 

@@ -8,6 +8,7 @@ use App\Models\DetailAnggota;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreAnggotaRequest;
 use App\Http\Requests\UpdateAnggotaRequest;
+use Exception;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AnggotaController extends Controller
@@ -44,10 +45,10 @@ class AnggotaController extends Controller
     {
         $status = Auth::user()->anggota->status;
         // dd(Auth::user()->anggota->status);
-        if($status == 0){
+        if ($status == 0) {
             Alert::success('info', 'Mohon menunggu konfirmasi');
             return redirect()->route('Customer.Index');
-        }else{
+        } else {
             return redirect()->route('dashboardUser');
         }
         //
@@ -84,10 +85,13 @@ class AnggotaController extends Controller
                 'user_id' => Auth::user()->id,
                 'status' => '0',
             ]);
+
+            $nama_ktp = $request->foto_ktp->getClientOriginalName();
+            $request->file('foto_ktp')->move('ktp', $nama_ktp);
             $detail = DetailAnggota::create([
                 'anggota_id' => $anggota->id,
                 'nama_lengkap' => $request->nama_lengkap,
-                'foto_ktp' => $request->foto_ktp,
+                'foto_ktp' => $nama_ktp,
                 'pekerjaan' => $request->pekerjaan,
                 'gaji' => $request->gaji,
                 'pendidikan' => $request->pendidikan,
@@ -144,5 +148,28 @@ class AnggotaController extends Controller
     public function destroy(Anggota $anggota)
     {
         //
+    }
+
+    public function ubahstatus($id)
+    {
+        $akun = Anggota::find($id);
+        $status_sekarang = $akun->status;
+        // dd($status_sekarang);
+        try{
+            if ($status_sekarang == 1) {
+                 Anggota::find($id)->update([
+                    'status' => 0
+                ]);
+            } else if ($status_sekarang == 0) {
+                 Anggota::find($id)->update([
+                    'status' => 1
+                ]);
+            }
+            $msg = 'Berhasil';
+        }catch(Exception $e){
+            $msg = $e->getMessage();
+        }
+        Alert::info('Info', $msg);
+        return redirect()->back();
     }
 }

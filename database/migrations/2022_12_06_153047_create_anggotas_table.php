@@ -17,7 +17,7 @@ class CreateAnggotasTable extends Migration
             $table->id();
             $table->string('kode_anggota');
             $table->foreignId('user_id')->nullable();
-            $table->enum('status', ['0', '1'])->default('0');
+            $table->integer('status')->default('0');
 
             $table->timestamps();
         });

@@ -5,7 +5,8 @@
             <div class=" col-lg-12">
                 <h4 class="mb-3">Form Anggota</h4>
                 <p>Isi Form Dibawah Ini untuk Daftar Jadi Anggota</p>
-               <x-validation-errros />
+                <x-validation-errors />
+
                 <form class="needs-validation" action="{{ route('store-anggota') }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('POST')

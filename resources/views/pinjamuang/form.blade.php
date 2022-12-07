@@ -4,15 +4,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title text-center pb-0 fs-5">Formulir Peminjaman Barang</h5></br>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+
                 <!-- validation Form Elements -->
 
                 <form id="form-formulir" action="{{ route('pinjamUang.store') }}" method="POST" enctype="multipart/form-data"
@@ -37,10 +29,10 @@
                     <div class="row mb-3">
                         <label for="validationCustom01" class="col-sm-2 col-form-label">Nama Peminjam</label>
                         <div class="col-sm-10">
-                           <select name="nama_peminjam" id="" class="form-select">
+                           <select name="kode_anggota" id="" class="form-select">
                                 <option value="">---</option>
                                 @foreach ($user as $anggota)
-                                    <option value="{{ $anggota->nama_lengkap  }}">{{ $anggota->kode_anggota  }} - @if($anggota->user != null)
+                                    <option value="{{ $anggota->kode_anggota }}">{{ $anggota->kode_anggota  }} - @if($anggota->user != null)
                                         {{ $anggota->user->name }}
                                     @endif</option>
                                 @endforeach
@@ -53,9 +45,9 @@
                     <div class="row mb-3">
                         <label for="validationTooltip02" class="col-sm-2 col-form-label"> Jumlah Pinjaman </label>
                         <div class="col-sm-10">
-                            <input type="text" id="validationTooltip02" name="jumlah_pinjam" id="jumlah_pinjam"
+                            <input type="number" id="validationTooltip02" name="jumlah_pinjam" id="jumlah_pinjam"
                                 class="form-control jumlah_pinjam" required
-                                placeholder=" ex. untuk keperluan proyek A, untuk mengantar keluarga">
+                                placeholder="0000000000">
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>
@@ -89,6 +81,16 @@
                             <input type="text" id="lama_pinjam" name="lama_pinjam" class="form-control" readonly
                                 required>
 
+                            <div class="invalid-feedback">
+                                Harus di isi
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="validationTooltip02" class="col-sm-2 col-form-label"> Bunga </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="bunga" name="bunga" class="form-control"
+                                required>
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>

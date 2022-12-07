@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Policies\AnggotaPolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -51,8 +52,8 @@ class Pinjam extends Model
         return $this->belongsTo(StatusPeminjaman::class, 'status_peminjamans_id'); //1 karyawan mempunyai 1 posisi
     }
 
-    public function users()
+    public function anggota()
     {
-        return $this->belongsTo(User::class, 'users_id', 'id'); //1 karyawan mempunyai 1 posisi
+        return $this->hasOne(Anggota::class, 'kode_anggota', 'kode_anggota'); //1 karyawan mempunyai 1 posisi
     }
 }

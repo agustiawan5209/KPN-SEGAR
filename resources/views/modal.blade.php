@@ -77,6 +77,7 @@
                                                 :{{ $data->tgl_kembali }}
                                             </div>
                                         </div>
+                                        @if ($data->barangs != null)
 
                                         <div class="row">
                                             <div class="col-lg-5 col-md-4 label">
@@ -88,6 +89,7 @@
                                                 {{ $data->barangs->nama_barang }}
                                             </div>
                                         </div>
+                                        @endif
 
                                         <div class="row">
                                             <div class="col-lg-5 col-md-4 label">

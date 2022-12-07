@@ -9,9 +9,14 @@ class Anggota extends Model
 {
     use HasFactory;
     protected $table = 'anggotas';
-    protected $fillable = ['kode_anggota','user_id', 'status' ];
+    protected $fillable = ['kode_anggota', 'user_id', 'status'];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
+    }
+    public function detail()
+    {
+        return $this->hasOne(DetailAnggota::class, 'anggota_id', 'id');
     }
 }

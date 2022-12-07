@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Barang;
 use App\Models\Pinjam;
 use App\Models\Satuan;
 use App\Models\Status;
+use App\Models\Anggota;
 use App\Models\TrxStatus;
 use App\Models\Peminjaman;
 use App\Models\JenisBarang;
@@ -18,10 +20,9 @@ use App\Models\StatusKonfirmasi;
 use App\Models\StatusPeminjaman;
 use App\Models\DataAsalPerolehan;
 use App\Notifications\NotifPinjam;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class PinjamController extends Controller
 {
@@ -36,6 +37,7 @@ class PinjamController extends Controller
         $inputbarang = Barang::all();
         $jenisbarang = JenisBarang::all();
         $inputbarang = Barang::find($id);
+        $anggota = Anggota::where('status', '1')->get();
         return view('pinjam.formulir', [
             'title' => ' ',
             'jenisbarang' => $jenisbarang,
@@ -45,6 +47,7 @@ class PinjamController extends Controller
             'inputbarang' => $inputbarang,
             'jenisbarang' => $jenisbarang,
             'pinjam' => $pinjam,
+            'anggota' => $anggota,
         ]);
     }
 
@@ -56,12 +59,12 @@ class PinjamController extends Controller
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
         $akun = User::all();
-        if(Auth::user()->roles_id == 3){
-            $pinjam = Pinjam::all();
-        }else{
+        if (Auth::user()->roles_id == 3) {
+            $pinjam = Pinjam::where('jenis_peminjaman', 'Uang')->get();
+        } else {
             $pinjam = Pinjam::whereNull('ket')
-            ->where('jenis_peminjaman', '=', 'Barang')
-            ->where('kode_anggota', Auth::user()->anggota->kode_anggota)->get();
+                ->where('jenis_peminjaman', '=', 'Barang')
+                ->where('kode_anggota', Auth::user()->anggota->kode_anggota)->get();
         }
 
         $status = Status::all();
@@ -88,13 +91,14 @@ class PinjamController extends Controller
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
         $akun = User::all();
-        if(Auth::user()->roles_id == 3){
-            $pinjam = Pinjam::all();
-        }else{
+        if (Auth::user()->roles_id == 3) {
+            $pinjam = Pinjam::where('jenis_peminjaman', 'Barang')->get();
+        } else {
             $pinjam = Pinjam::where('kode_anggota', Auth::user()->anggota->kode_anggota)->get();
         }
         $status = Status::all();
         $trxstatus = TrxStatus::all();
+        // dd($pinjam);
         return view('staff.riwayat', [
             'title' => 'pengajuan',
             'jenisbarang' => $jenisbarang,
@@ -248,20 +252,29 @@ class PinjamController extends Controller
             $book_id = $huruf . '-' . $urutan;
         }
         $b = Barang::where('id', $request->barangs_id)->first();
+
         if ($b->jumlah < $request->jumlah_pinjam) {
             return redirect()
                 ->back()
                 ->with('warning', 'Maaf jumlah barang yang anda pinjam melebihi dari sisa stok yang ada');
         } else {
+
+            $nama_bukti = $request->bukti_pinjam->getClientOriginalName();
+
+            $request->file('bukti_pinjam')->move('bukti_pinjam/', $nama_bukti);
+
+            $b = Barang::where('id', $request->barangs_id)->first();
+            $anggota = Anggota::where('kode_anggota', '=', $request->kode_anggota)->first();
+
             $pinjam = new Pinjam();
             $pinjam->kode_peminjaman = $book_id;
             $pinjam->barangs_id = $request->barangs_id;
-            $pinjam->users_id = $request->users_id;
-            $pinjam->nama_peminjam = $request->nama_peminjam;
+            $pinjam->kode_anggota = $request->kode_anggota;
+            $pinjam->nama_peminjam = $anggota->detail->nama_lengkap;
             $pinjam->jenis_peminjaman = "Barang";
-            $pinjam->tujuan = $request->tujuan;
             $pinjam->tgl_pengajuan = $request->tgl_pengajuan;
             // $pinjam->tgl_pinjam = $request->tgl_pengajuan;
+            $pinjam->bunga = $request->bunga;
             $pinjam->tgl_kembali = $request->tgl_kembali;
             $pinjam->jumlah_pinjam = $request->jumlah_pinjam;
 
@@ -270,7 +283,7 @@ class PinjamController extends Controller
             $trxstatus->kode_peminjaman = $book_id;
             $trxstatus->users_id = $request->input('users_id');
             $trxstatus->pinjams_id = $pinjam->id;
-            $trxstatus->status_id = 5;
+            $trxstatus->status_id = 3;
             $trxstatus->save();
             // User
             $user = User::find($request->input('users_id'));

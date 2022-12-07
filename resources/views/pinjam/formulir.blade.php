@@ -69,35 +69,38 @@
                     <div class="row mb-3">
                         <label for="validationCustom01" class="col-sm-2 col-form-label">Nama Peminjam</label>
                         <div class="col-sm-10">
-                            <input type="text" id="validationCustom01" name="nama_peminjam"
-                                value=" {{ auth()->user()->name }}" readonly class="form-control" required
-                                placeholder=" nama peminjam">
+                           <select name="kode_anggota" id="" class="form-select">
+                                <option value="">---</option>
+                                @foreach ($anggota as $anggota)
+                                    <option value="{{ $anggota->kode_anggota }}">{{ $anggota->kode_anggota  }} - @if($anggota->user != null)
+                                        {{ $anggota->user->name }}
+                                    @endif</option>
+                                @endforeach
+                           </select>
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>
                         </div>
                     </div>
-
-
-
-
-                    <fieldset class="row mb-3">
-                        <legend class="col-form-label col-sm-2 pt-0">Jenis Peminjaman</legend>
-
-                    </fieldset>
-
-
                     <div class="row mb-3">
-                        <label for="validationTooltip02" class="col-sm-2 col-form-label"> Tujuan Pinjam </label>
+                        <label for="validationTooltip02" class="col-sm-2 col-form-label"> Bunga </label>
                         <div class="col-sm-10">
-                            <input type="text" id="validationTooltip02" name="tujuan" class="form-control" required
-                                placeholder=" ex. untuk keperluan proyek A, untuk mengantar keluarga">
+                            <input type="text" id="bunga" name="bunga" class="form-control"
+                                required>
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>
                         </div>
                     </div>
-
+                    <div class="row mb-3">
+                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Bukti Pinjaman</label>
+                        <div class="col-sm-10">
+                            <input type="file" id="datefield2" name="bukti_pinjam" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Harus di isi
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row mb-3">
                         <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Pengajuan</label>

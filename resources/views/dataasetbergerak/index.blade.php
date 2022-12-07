@@ -182,11 +182,6 @@
                                                                                     <div class="col-lg-7 col-md-8">
                                                                                         {{ $data->ket }}</div>
                                                                                 </div>
-                                                                                @foreach ($pinjam as $item)
-                                                                                    @if ($item->barangs_id == $data->id)
-                                                                                        {{ $item->users->name }}
-                                                                                    @endif
-                                                                                @endforeach
                                                                             </div>
                                                                         </div>
 
@@ -254,7 +249,7 @@
                                                             <tr>
                                                                 {{-- <th scope="row"></th> --}}
                                                                 <td>{{ $nomor++ }}</td>
-                                                                <td>{{ $item->users->name }}</td>
+                                                                <td>{{ $item->anggota->nama_lengkap }}</td>
                                                                 <td>{{ $item->jenis_peminjaman }}</td>
                                                                 <td>{{ $item->tgl_pengajuan }}</td>
                                                                 {{-- <td>{{ $item->tgl_pinjam }}</td> --}}

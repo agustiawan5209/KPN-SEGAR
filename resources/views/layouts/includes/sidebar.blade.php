@@ -256,7 +256,7 @@
                     <li>
                         <a  class=" @yield('pinjam')" href="{{ route('staff/riwayat') }} ">
                             <i class="bi bi-cart-check-fill"></i>
-                            <span>Riwayat Peminjaman Barang</span>
+                            <span>Data Peminjaman Barang</span>
                         </a>
                     </li>
 

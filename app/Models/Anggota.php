@@ -9,7 +9,7 @@ class Anggota extends Model
 {
     use HasFactory;
     protected $table = 'anggotas';
-    protected $fillable = ['kode_anggota','user_id'];
+    protected $fillable = ['kode_anggota','user_id', 'status' ];
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id');

@@ -67,7 +67,7 @@
                                     </div>
 
                                     <form class="row g-3 needs-validation" novalidate
-                                        action="/data-kepala/update/{{ $akun->id }}" method="POST"
+                                        action="/data-Anggota/update/{{ $akun->id }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
 

@@ -13,6 +13,15 @@ class AnggotaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function daftar()
+    {
+        return view('anggota.daftar');
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         //

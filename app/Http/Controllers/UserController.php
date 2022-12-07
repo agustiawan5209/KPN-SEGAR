@@ -114,7 +114,7 @@ class UserController extends Controller
         if ($akun->roles_id == 1) {
             return redirect()->route('data-admin')->with('success', 'Data Berhasil Ditambahkan!');
         } elseif ($akun->roles_id == 2) {
-            return redirect()->route('data-kepala')->with('success', 'Data Berhasil Ditambahkan!');
+            return redirect()->route('data-Anggota')->with('success', 'Data Berhasil Ditambahkan!');
         } elseif ($akun->roles_id == 3) {
             return redirect()->route('data-user')->with('success', 'Data Berhasil Ditambahkan!');
         } elseif ($akun->roles_id == 4) {
@@ -169,7 +169,7 @@ class UserController extends Controller
     {
         User::find($id)->update($request->all());
 
-        return redirect('/data-kepala')->with('success', 'Data Berhasil Diupdate!');
+        return redirect('/data-Anggota')->with('success', 'Data Berhasil Diupdate!');
     }
 
 
@@ -192,7 +192,7 @@ class UserController extends Controller
     {
         $akun = User::find($id);
         $akun->delete();
-        return redirect('/data-kepala')->with('success', 'Data Berhasil Dihapus!');
+        return redirect('/data-Anggota')->with('success', 'Data Berhasil Dihapus!');
     }
 
     public function ubahstatus($id)

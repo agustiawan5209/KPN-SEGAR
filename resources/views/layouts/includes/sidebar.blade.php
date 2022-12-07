@@ -26,12 +26,12 @@
                         </a>
                     </li>
                     <li>
-                        <a class="@yield('datakepala')" href="{{ url('data-kepala') }}">
+                        <a class="@yield('datakepala')" href="{{ url('data-Anggota') }}">
                             <i class="bi bi-circle"></i><span>sektretaris</span>
                         </a>
                     </li>
                     <li>
-                        <a class="@yield('Anggota')" href="{{ url('data-kepala') }}">
+                        <a class="@yield('Anggota')" href="{{ url('data-Anggota') }}">
                             <i class="bi bi-circle"></i><span>Anggota</span>
                         </a>
                     </li>
@@ -213,7 +213,7 @@
 
             <!-- End Forms Nav -->
             <li class="nav-item flex-column">
-                <a class="nav-link " href="{{ url('data-kepala') }}">
+                <a class="nav-link " href="{{ url('data-Anggota') }}">
                     <i class="bi bi-person"></i><span>Data Anggota</span></i>
                 </a>
             </li><!-- End Forms Nav -->

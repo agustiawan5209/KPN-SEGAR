@@ -15,6 +15,7 @@ use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\PinjamController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\PembelianController;
@@ -220,11 +221,11 @@ Route::middleware(['auth', 'check.role:1,3'])->group(function () {
         return view('dataadmin.index');
     });
 
-    Route::get('/data-kepala/form', function () {
+    Route::get('/data-Anggota/form', function () {
         return view('datakepala.form');
     });
 
-    Route::get('/data-kepala', function () {
+    Route::get('/data-Anggota', function () {
         return view('datakepala.index');
     });
 
@@ -245,11 +246,11 @@ Route::middleware(['auth', 'check.role:1,3'])->group(function () {
     Route::get('/data-admin/hapus/{id}', 'App\Http\Controllers\UserController@hapusadmin')->name('hapusadmin');
 
     //DATA AKUN BENDAHARA
-    Route::POST('/data-kepala', 'App\Http\Controllers\UserController@create')->name('data-kepala');
-    Route::get('/data-kepala', [UserController::class, 'datakepala'])->name('data-kepala');
-    Route::get('/data-kepala/edit/{id}', 'App\Http\Controllers\UserController@editkepala')->name('editkepala');
-    Route::post('/data-kepala/update/{id}', 'App\Http\Controllers\UserController@updatekepala')->name('updatekepala');
-    Route::get('/data-kepala/hapus/{id}', 'App\Http\Controllers\UserController@hapuskepala')->name('hapuskepala');
+    Route::POST('/data-Anggota', 'App\Http\Controllers\UserController@create')->name('data-Anggota');
+    Route::get('/data-Anggota', [UserController::class, 'datakepala'])->name('data-Anggota');
+    Route::get('/data-Anggota/edit/{id}', 'App\Http\Controllers\UserController@editkepala')->name('editkepala');
+    Route::post('/data-Anggota/update/{id}', 'App\Http\Controllers\UserController@updatekepala')->name('updatekepala');
+    Route::get('/data-Anggota/hapus/{id}', 'App\Http\Controllers\UserController@hapuskepala')->name('hapuskepala');
 
     //DATA JENIS ASET
     Route::POST('inputjenisaset', 'App\Http\Controllers\DataJenisAsetController@inputjenisaset')->name('inputjenisaset');
@@ -372,10 +373,14 @@ Route::middleware(['auth', 'check.role:1,3'])->group(function () {
     //--selesai route admin--//
 });
 
-//-- SEMUA ROUTE ROLE STAFF ( ROLE 3)--//
+//-- SEMUA ROUTE ROLE BENDAHARA ( ROLE 3)--//
 
 Route::middleware(['auth', 'check.role:2,3'])->group(function () {
-    //SIDEBAR STAFF /ROLE 3
+    //Daftar Anggota
+    Route::get('Daftar-Anggota', [AnggotaController::class, 'daftar'])->name('daftar-anggota');
+    Route::get('Dashboard-Anggota', [AnggotaController::class, 'index'])->name('index-anggota');
+
+    //SIDEBAR BENDAHARA /ROLE 3
     Route::get('/peminjaman/form', function () {
         return view('peminjaman.form');
     });
@@ -399,7 +404,7 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
     Route::POST('inputpinjam', 'App\Http\Controllers\PinjamController@create')->name('inputpinjam');
     Route::get('/pinjam', [PinjamController::class, 'pinjamstaff'])->name('staff/pinjam');
 
-    //PEMINJAMAN STAFF
+    //PEMINJAMAN BENDAHARA
     Route::POST('inputpeminjaman', 'App\Http\Controllers\PeminjamanController@create')->name('inputpeminjaman');
     Route::get('/peminjaman/form', [PeminjamanController::class, 'index']);
     Route::get('/peminjaman/konfirmasi/{id}', [PeminjamanController::class, 'detail_konfirmasi']);
@@ -437,11 +442,11 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
         return view('dataadmin.index');
     });
 
-    Route::get('/data-kepala/form', function () {
+    Route::get('/data-Anggota/form', function () {
         return view('datakepala.form');
     });
 
-    Route::get('/data-kepala', function () {
+    Route::get('/data-Anggota', function () {
         return view('datakepala.index');
     });
 
@@ -460,11 +465,11 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
     Route::get('/data-admin/hapus/{id}', 'App\Http\Controllers\UserController@hapusadmin')->name('hapusadmin');
 
     //DATA AKUN BENDAHARA
-    Route::POST('/data-kepala', 'App\Http\Controllers\UserController@create')->name('data-kepala');
-    Route::get('/data-kepala', [UserController::class, 'datakepala'])->name('data-kepala');
-    Route::get('/data-kepala/edit/{id}', 'App\Http\Controllers\UserController@editkepala')->name('editkepala');
-    Route::post('/data-kepala/update/{id}', 'App\Http\Controllers\UserController@updatekepala')->name('updatekepala');
-    Route::get('/data-kepala/hapus/{id}', 'App\Http\Controllers\UserController@hapuskepala')->name('hapuskepala');
+    Route::POST('/data-Anggota', 'App\Http\Controllers\UserController@create')->name('data-Anggota');
+    Route::get('/data-Anggota', [UserController::class, 'datakepala'])->name('data-Anggota');
+    Route::get('/data-Anggota/edit/{id}', 'App\Http\Controllers\UserController@editkepala')->name('editkepala');
+    Route::post('/data-Anggota/update/{id}', 'App\Http\Controllers\UserController@updatekepala')->name('updatekepala');
+    Route::get('/data-Anggota/hapus/{id}', 'App\Http\Controllers\UserController@hapuskepala')->name('hapuskepala');
 });
 
 //--ROUTE ROLE ADMIN DAN BENDAHARA (ROLE 1 DAN 2) --//
@@ -521,7 +526,7 @@ Route::middleware(['auth', 'check.role:1,3'])->group(function () {
     //--selesai role admin & BENDAHARA--//
 });
 
-//SELECT 2 Barang BAGIAN FORM PEMINJAMAN STAFF
+//SELECT 2 Barang BAGIAN FORM PEMINJAMAN BENDAHARA
 Route::get('/barang/select2', [BarangController::class, 'select2Barang'])->name('select.barang');
 
 // Filter Data

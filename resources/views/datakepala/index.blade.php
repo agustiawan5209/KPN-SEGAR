@@ -26,7 +26,7 @@
                     <div class="card-body  overflow-scroll">
                         <h5 class="card-title">Data Kepala Unit</h5>
                         {{-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p> --}}
-                        <a href="/data-kepala/form" type="button" class="btn btn-sm"
+                        <a href="/data-Anggota/form" type="button" class="btn btn-sm"
                             style="background-color:  #012970; color:#FFFFFF">Tambah</a>
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
@@ -66,10 +66,10 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="/data-kepala/edit/{{ $data->id }}" type="button"
+                                                <a href="/data-Anggota/edit/{{ $data->id }}" type="button"
                                                     class="btn btn" style="background-color: #05b3c3; color:#FFFFFF"><i
                                                         class="bi bi-pencil"></i></a>
-                                                <a href="/data-kepala/hapus/{{ $data->id }}"
+                                                <a href="/data-Anggota/hapus/{{ $data->id }}"
                                                     onclick="return confirm('Hapus Data?')" type="button"
                                                     class="btn btn-danger"><i class="bi bi-trash delete"></i></a>
                                             </td>

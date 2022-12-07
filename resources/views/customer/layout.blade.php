@@ -65,7 +65,13 @@
                             <div class="col-lg-5">
                                 <div class="breadcrumb-text product-more">
                                     <a href="{{ route('dashboardUser') }}"> <i class="fa fa-home"></i> Dashboard</a>
-                                    <a href="{{ route('dashboardUser') }}"> <i class="fa fa-id-card"></i>  Daftar Anggota</a>
+                                    @cannot('Anggota')
+                                    <a href="{{ route('daftar-anggota') }}"> <i class="fa fa-id-card"></i>  Daftar Anggota</a>
+                                    @endcannot
+                                    @can('Anggota')
+                                    <a href="{{ route('index-anggota') }}"> <i class="fa fa-id-card"></i>  Dashboard Anggota</a>
+
+                                    @endcan
                                 </div>
                             </div>
                         </div>

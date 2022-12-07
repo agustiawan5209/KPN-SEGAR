@@ -67,7 +67,7 @@
                                     </div>
 
                                     <form class="row g-3 needs-validation" novalidate method="POST"
-                                        action="{{ route('data-kepala') }}">
+                                        action="{{ route('data-Anggota') }}">
                                         @csrf
 
                                         <div class="col-12">

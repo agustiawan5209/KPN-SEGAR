@@ -17,7 +17,7 @@
                         <div class="card-body"><br>
                             <center> <img src="logo/logo.jpg" class="card-img-bottom" style="width: 90px;" alt="...">
                                 <center>
-                                    <h5 class="card-title text-center pb-0 fs-4">Selamat Datang Kepala Unit
+                                    <h5 class="card-title text-center pb-0 fs-4">Selamat Datang Anggota
                                         {{ auth()->user()->name }}
                                     </h5>
                                     <h5 class="card-title">Sistem Aset KPN “SEGAR” POLITEKNIK PELAYARAN BAROMBONG</h5>

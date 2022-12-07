@@ -38,7 +38,7 @@ class StatusKonfirmasiSeeder extends Seeder
             [
                 'id' => "1",
                 'ikon' => "<i class='bi bi-check-circle-fill'></i>",
-                'status' => "Konfirmasi Kepala Unit",
+                'status' => "Konfirmasi Anggota",
             ],
 
             [

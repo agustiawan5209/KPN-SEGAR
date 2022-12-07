@@ -207,7 +207,7 @@ class BarangController extends Controller
         ]);
     }
 
-    //MENAMPILKAN DATA HASIL INPUT KEPALA UNIT DAN STAFF
+    //MENAMPILKAN DATA HASIL INPUT Anggota DAN STAFF
 
     public function cekdata()
     {

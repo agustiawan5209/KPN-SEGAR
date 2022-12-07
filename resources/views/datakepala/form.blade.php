@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Tambah akun kepala unit inventaris- Sistem Inventaris dan Peminjaman Barang KPN “SEGAR” POLITEKNIK PELAYARAN BAROMBONG</title>
+    <title>Tambah akun Anggota inventaris- Sistem Inventaris dan Peminjaman Barang KPN “SEGAR” POLITEKNIK PELAYARAN BAROMBONG</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -62,7 +62,7 @@
                                 <div class="card-body">
 
                                     <div class="pt-4 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">Tambah Akun Kepala Unit</h5>
+                                        <h5 class="card-title text-center pb-0 fs-4">Tambah Akun Anggota</h5>
                                         <p class="text-center small">Isi data diri sesuai formulir dibawah ini</p>
                                     </div>
 

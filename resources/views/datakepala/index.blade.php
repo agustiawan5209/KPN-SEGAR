@@ -24,7 +24,7 @@
 
                 <div class="card">
                     <div class="card-body  overflow-scroll">
-                        <h5 class="card-title">Data Kepala Unit</h5>
+                        <h5 class="card-title">Data Anggota</h5>
                         {{-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p> --}}
                         <a href="/data-Anggota/form" type="button" class="btn btn-sm"
                             style="background-color:  #012970; color:#FFFFFF">Tambah</a>
@@ -37,7 +37,6 @@
                                     <th scope="col">Username</th>
                                     <th scope="col">Alamat</th>
                                     <th scope="col">Telp</th>
-                                    <th scope="col">Roles</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
@@ -55,7 +54,6 @@
                                             <td>{{ $data->username }}</td>
                                             <td>{{ $data->alamat }}</td>
                                             <td>{{ $data->telephone }}</td>
-                                            <td>{{ $data->roles->roles }}</td>
                                             <td>
                                                 @if ($data->status == 1)
                                                     <a href="{{ url('ubah/status/' . $data->id) }}" type="button"

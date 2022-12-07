@@ -173,7 +173,7 @@ class UserController extends Controller
     }
 
 
-    //FUNCTION HAPUS DATA USER, ADMIN, KEPALA UNIT
+    //FUNCTION HAPUS DATA USER, ADMIN, Anggota
     public function hapususer($id)
     {
         $akun = User::find($id);

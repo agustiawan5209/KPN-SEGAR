@@ -253,7 +253,7 @@ class PeminjamanController extends Controller
 
 
 
-    //MENAMPILKAN  PEMINJAMAN// KEPALA UNIT
+    //MENAMPILKAN  PEMINJAMAN// Anggota
     public function pengajuan()
     {
         $dataasalperolehan = DataAsalPerolehan::all();
@@ -413,7 +413,7 @@ class PeminjamanController extends Controller
 
 
     }
-// UBAH STATUS KONFIRMASI KEPALA UNIT
+// UBAH STATUS KONFIRMASI Anggota
     public function status_ditolak($kode_peminjaman)
     {
         // $datadetail = DetailPeminjaman::where('kode_peminjaman', $kode_peminjaman)->get();

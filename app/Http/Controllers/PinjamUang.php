@@ -15,10 +15,20 @@ use Illuminate\Http\Request;
 use App\Models\DataJenisAset;
 use App\Models\DataAsalPerolehan;
 use App\Notifications\NotifPinjam;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
 class PinjamUang extends Controller
 {
+
+    public function __construct()
+    {
+        if (Auth::check()) {
+            if (Auth::user()->roles_id == 2 && Auth::user()->anggota == null) {
+                abort(403);
+            }
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -49,7 +59,7 @@ class PinjamUang extends Controller
         return view('pinjamuang.form', [
             'edit' => false,
             'jenis' => $jenis,
-            'user'=> $user,
+            'user' => $user,
         ]);
     }
 

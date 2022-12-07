@@ -21,8 +21,8 @@ class CreateAngsuransTable extends Migration
             $table->string('jumlah_bayar',20);
             $table->string('sisa_bayar', 20);
             $table->enum('status', ['0','1','2'])->comment('0 :belum dibayar, 1: telat, 2 : dibayar');
-            $table->integer('denda');
-            $table->integer('jumlah_denda');
+            $table->integer('denda')->nullable();
+            $table->integer('jumlah_denda')->nullable();
             $table->timestamps();
         });
     }

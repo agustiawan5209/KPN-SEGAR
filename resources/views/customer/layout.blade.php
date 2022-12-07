@@ -15,6 +15,7 @@
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendor/bootstrap/css/bootstrap.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/elegant-icons.css') }}" type="text/css" />
@@ -64,8 +65,8 @@
                             </div>
                             <div class="col-lg-5">
                                 <div class="breadcrumb-text product-more">
-                                    <a href="{{ route('dashboardUser') }}"> <i class="fa fa-home"></i> Dashboard</a>
                                     @cannot('Anggota')
+                                    <a href="{{ route('dashboardUser') }}"> <i class="fa fa-home"></i> Dashboard</a>
                                     <a href="{{ route('daftar-anggota') }}"> <i class="fa fa-id-card"></i>  Daftar Anggota</a>
                                     @endcannot
                                     @can('Anggota')

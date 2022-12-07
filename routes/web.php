@@ -84,7 +84,7 @@ Route::group(['check.role:2', 'prefix' => 'Produk', 'as' => 'Customer.'], functi
     Route::get('Produk/detail/{id}', [CustomerViewController::class, 'detail'])->name('detail');
     Route::get('/Promo-Diskon', [CustomerViewController::class, 'potongan'])->name('potongan');
 });
-Route::get('Dashboard', [CustomerViewController::class, 'DashboardUser'])->name('dashboardUser');
+Route::get('/user/Dashboard', [CustomerViewController::class, 'DashboardUser'])->name('dashboardUser');
 // Data Bunga
 Route::group(['auth', 'check.role:2'], function () {
     Route::resource('JenisBunga', JenisBungaController::class)->parameters([
@@ -137,7 +137,7 @@ Route::middleware(['auth', 'check.role:1'])->group(function(){
     });
 });
 //--SEMUA ROUTE ROLE ADMIN ( ROLE 1)--//
-Route::middleware(['auth', 'check.role:1,3'])->group(function () {
+Route::middleware(['auth', 'check.role:1,2,3'])->group(function () {
     // Ubah Status
     Route::get('/ubah/status/{id}', [UserController::class, 'ubahstatus']);
     //SIDEBAR ADMIN /ROLE 1
@@ -379,6 +379,8 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
     //Daftar Anggota
     Route::get('Daftar-Anggota', [AnggotaController::class, 'daftar'])->name('daftar-anggota');
     Route::get('Dashboard-Anggota', [AnggotaController::class, 'index'])->name('index-anggota');
+    Route::get('Form-Anggota', [AnggotaController::class, 'form'])->name('form-anggota');
+    Route::post('store-Anggota', [AnggotaController::class, 'store'])->name('store-anggota');
 
     //SIDEBAR BENDAHARA /ROLE 3
     Route::get('/peminjaman/form', function () {

@@ -13,7 +13,7 @@ class StoreAnggotaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class StoreAnggotaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nama_lengkap'=> ['required', 'string'],
+            'foto_ktp'=> ['image', 'mimes:png,jpg'],
+            'pekerjaan'=> ['required', 'string'],
+            'gaji'=> ['required', 'numeric'],
+            'pendidikan'=> ['required', 'string'],
+            'jenkel'=> ['required', 'string'],
+            'tempat_lahir'=> ['required', 'string'],
+            'tgl_lahir'=> ['required', 'date'],
+            'status'=> ['required', 'string'],
+            'tanggungan'=> ['string'],
         ];
     }
 }

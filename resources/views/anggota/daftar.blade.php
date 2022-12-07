@@ -2,7 +2,7 @@
 @section('content')
     <div class="container px-4 pt-5" id="featured-3">
         <h2 class="pb-2 border-bottom">Keuntungan Menjadi Anggota <span
-                class="text-muted font-weight-bold bx-underline">KPN</span> SEGAR </h2>
+                class="text-muted font-weight-bold bx-underline">KPN</span> <span class="text-danger font-weight-bolder">SEGAR</span> </h2>
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             <div class="feature col">
                 <div
@@ -10,7 +10,7 @@
                     <i class="fa fa-id-card bi primary-btn"></i>
                 </div>
                 <h3 class="fs-2">Peminjaman </h3>
-                <p>Anggota KPN SEGAR dapat Melakukan Peminjaman Uang/p>
+                <p>Anggota KPN SEGAR dapat Melakukan Peminjaman Uang </p>
 
             </div>
             <div class="feature col">
@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="px-4 pb-3 text-center">
-        <button type="button" class="primary-btn">Daftar Jadi Anggota KPN SEGAR</button>
+        <a href="{{ route('form-anggota') }}" class="primary-btn">Daftar Jadi Anggota KPN SEGAR</a>
 
     </div>
 @endsection

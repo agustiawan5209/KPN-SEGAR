@@ -40,7 +40,7 @@
                            <select name="nama_peminjam" id="" class="form-select">
                                 <option value="">---</option>
                                 @foreach ($user as $anggota)
-                                    <option value="{{ $anggota->kode_anggota  }}">{{ $anggota->kode_anggota  }} @if($angoota->user != null)
+                                    <option value="{{ $anggota->kode_anggota  }}">{{ $anggota->kode_anggota  }} - @if($anggota->user != null)
                                         {{ $anggota->user->name }}
                                     @endif</option>
                                 @endforeach

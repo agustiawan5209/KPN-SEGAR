@@ -34,7 +34,7 @@ class CustomerViewController extends Controller
 
     public function DashboardUser()
     {
-        return view('staff',);
+        return view('staff');
     }
 
     public function potongan()

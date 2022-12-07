@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anggota;
+use Illuminate\Support\Str;
+use App\Models\DetailAnggota;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreAnggotaRequest;
 use App\Http\Requests\UpdateAnggotaRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AnggotaController extends Controller
 {
@@ -17,6 +21,20 @@ class AnggotaController extends Controller
     {
         return view('anggota.daftar');
     }
+    public function form()
+    {
+        $angg = Anggota::where('user_id', Auth::user()->id)->first();
+        if ($angg != null) {
+            if ($angg->status == 1) {
+                Alert::success("Info", 'Anda Sudah Terdaftar Menjadi Anggota');
+            } else {
+                Alert::success("Anda Sudah Terdaftar Menjadi Anggota", 'Mohon Menunggu Konfirmasi Pihak Yang Bersangkutan');
+            }
+            return redirect()->route('Customer.Index');
+        } else {
+            return view('anggota.form');
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +42,14 @@ class AnggotaController extends Controller
      */
     public function index()
     {
+        $status = Auth::user()->anggota->status;
+        // dd(Auth::user()->anggota->status);
+        if($status == 0){
+            Alert::success('info', 'Mohon menunggu konfirmasi');
+            return redirect()->route('Customer.Index');
+        }else{
+            return redirect()->route('dashboardUser');
+        }
         //
     }
 
@@ -45,7 +71,34 @@ class AnggotaController extends Controller
      */
     public function store(StoreAnggotaRequest $request)
     {
-        //
+        $angg = Anggota::where('user_id', Auth::user()->id)->first();
+        if ($angg != null) {
+            if ($angg->status == 1) {
+                Alert::success("Info", 'Anda Sudah Terdaftar Menjadi Anggota');
+            } else {
+                Alert::success("Anda Sudah Terdaftar Menjadi Anggota", 'Mohon Menunggu Konfirmasi Pihak Yang Bersangkutan');
+            }
+        } else {
+            $anggota = Anggota::create([
+                'kode_anggota' => Auth::user()->username . Str::random(3),
+                'user_id' => Auth::user()->id,
+                'status' => '0',
+            ]);
+            $detail = DetailAnggota::create([
+                'anggota_id' => $anggota->id,
+                'nama_lengkap' => $request->nama_lengkap,
+                'foto_ktp' => $request->foto_ktp,
+                'pekerjaan' => $request->pekerjaan,
+                'gaji' => $request->gaji,
+                'pendidikan' => $request->pendidikan,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tgl_lahir' => $request->tgl_lahir,
+                'jenkel' => $request->jenkel,
+                'status' => $request->status,
+                'tanggungan' => $request->tanggungan,
+            ]);
+        }
+        return redirect()->route('Customer.Index');
     }
 
     /**

@@ -5,15 +5,7 @@
             <div class=" col-lg-12">
                 <h4 class="mb-3">Form Anggota</h4>
                 <p>Isi Form Dibawah Ini untuk Daftar Jadi Anggota</p>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+               <x-validation-errros />
                 <form class="needs-validation" action="{{ route('store-anggota') }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('POST')

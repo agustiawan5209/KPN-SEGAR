@@ -25,7 +25,7 @@ class CreatePinjamsTable extends Migration
             $table->string('jumlah_pinjam');
             $table->date('tgl_pengajuan')->nullable();
             $table->date('tgl_kembali')->nullable();
-            $table->string('surat_pinjam')->nullable();
+            $table->string('bukti_pinjam')->nullable();
             $table->string('ket')->nullable();
             $table->timestamps();
         });

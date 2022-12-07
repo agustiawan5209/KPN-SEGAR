@@ -390,11 +390,11 @@ class PeminjamanController extends Controller
             $peminjaman ->tgl_pengajuan= $request->tgl_pengajuan;
             $peminjaman ->tgl_pinjam = $request->tgl_pinjam;
             $peminjaman ->tgl_kembali = $request->tgl_kembali;
-            $peminjaman ->surat_pinjam = $request->surat_pinjam;
-            if($request->hasFile('surat_pinjam'))
+            $peminjaman ->bukti_pinjam = $request->bukti_pinjam;
+            if($request->hasFile('bukti_pinjam'))
             {
-                 $request->file('surat_pinjam')->move('surat/', $request->file('surat_pinjam')->getClientOriginalName());
-                 $peminjaman->surat_pinjam = $request->file('surat_pinjam')->getClientOriginalName();
+                 $request->file('bukti_pinjam')->move('surat/', $request->file('bukti_pinjam')->getClientOriginalName());
+                 $peminjaman->bukti_pinjam = $request->file('bukti_pinjam')->getClientOriginalName();
                  $peminjaman->save();
 
              }
@@ -406,10 +406,10 @@ class PeminjamanController extends Controller
 
 
 
-     public function download(Request $request, $surat_pinjam)
+     public function download(Request $request, $bukti_pinjam)
     {
 
-        return response()->download(public_path('surat/'. $surat_pinjam));
+        return response()->download(public_path('surat/'. $bukti_pinjam));
 
 
     }

@@ -71,6 +71,7 @@ class PinjamUang extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $valid =  $this->validate($request, [
             'jumlah_pinjam' => ['required', 'numeric'],
             'jenis_id' => ['required', 'numeric'],
@@ -104,6 +105,7 @@ class PinjamUang extends Controller
         // $pinjam->tgl_pinjam = $request->tgl_pengajuan;
         $pinjam->tgl_kembali = $request->tgl_kembali;
         $pinjam->jumlah_pinjam = $request->jumlah_pinjam;
+        $pinjam->bukti_pinjam = $request->bukti_pinjam;
 
         $pinjam->save();
         // User

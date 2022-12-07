@@ -21,7 +21,7 @@ class Peminjaman extends Model
         'tgl_pengajuan',
         'tgl_pinjam',
         'tgl_kembali',
-        'surat_pinjam',
+        'bukti_pinjam',
         'tgl_ambil',
         'tgl_konfirmasikembali',
         'ket',

@@ -223,6 +223,7 @@ class PinjamController extends Controller
      */
     public function create(Request $request)
     {
+        // dd($request->all());
         $book_id = 0;
         $data = Pinjam::max('kode_peminjaman');
         if ($data == null) {

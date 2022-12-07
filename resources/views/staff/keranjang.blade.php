@@ -196,7 +196,7 @@
                     {{-- <div class="row mb-3">
                         <label for="validationTooltip03" class="col-sm-2 col-form-label">Surat Pengantar</label>
                         <div class="col-sm-10">
-                            <input type="file" id="validationTooltip03" name="surat_pinjam" class="form-control"required>
+                            <input type="file" id="validationTooltip03" name="bukti_pinjam" class="form-control"required>
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>

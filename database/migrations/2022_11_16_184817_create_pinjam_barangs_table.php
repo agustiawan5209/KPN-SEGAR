@@ -29,7 +29,7 @@ class CreatePinjamBarangsTable extends Migration
             $table->date('tgl_pengajuan');
             // $table->date('tgl_pinjam');
             $table->date('tgl_kembali');
-            // $table->string('surat_pinjam');
+            // $table->string('bukti_pinjam');
             $table->string('ket')->nullable();
             $table->timestamps();
         });

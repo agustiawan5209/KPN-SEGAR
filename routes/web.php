@@ -414,7 +414,7 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
     //RIWAYAT PEMINJAM staff
     Route::get('/peminjaman', [PeminjamanController::class, 'peminjamanstaff'])->name('staff/peminjaman');
     Route::get('/riwayat', [PinjamController::class, 'riwayatstaff'])->name('staff/riwayat'); //
-    Route::get('/download/{surat_pinjam}', [PeminjamanController::class, 'download']);
+    Route::get('/download/{bukti_pinjam}', [PeminjamanController::class, 'download']);
     Route::get('/detailbarang/{id}', [PeminjamanController::class, 'detail_barang']);
     Route::get('/detailriwayat/{id}', [PeminjamanController::class, 'detail_riwayat']);
 

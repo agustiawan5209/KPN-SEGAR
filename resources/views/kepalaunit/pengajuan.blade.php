@@ -140,7 +140,7 @@
                                                                                             <div
                                                                                                 class="col-lg-7 col-md-8">
                                                                                                 <img class="w-100"
-                                                                                                    src="{{asset('surat/'. $data->surat_pinjam)}}"
+                                                                                                    src="{{asset('surat/'. $data->bukti_pinjam)}}"
                                                                                                     alt="" srcset="">
                                                                                             </div>
                                                                                         </div>

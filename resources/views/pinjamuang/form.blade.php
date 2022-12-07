@@ -18,7 +18,7 @@
                 <form id="form-formulir" action="{{ route('pinjamUang.store') }}" method="POST" enctype="multipart/form-data"
                     class=" needs-validation" novalidate>
                     @csrf
-
+                    <x-validation-errors />
                     <div class="row mb-3">
                         {{-- <label for="validationCustom01" class="col-sm-2 col-form-label">Nama login</label> --}}
                         <div class="col-sm-10">
@@ -40,21 +40,11 @@
                            <select name="nama_peminjam" id="" class="form-select">
                                 <option value="">---</option>
                                 @foreach ($user as $anggota)
-                                    <option value="{{ $anggota->kode_anggota  }}">{{ $anggota->kode_anggota  }} - @if($anggota->user != null)
+                                    <option value="{{ $anggota->nama_lengkap  }}">{{ $anggota->kode_anggota  }} - @if($anggota->user != null)
                                         {{ $anggota->user->name }}
                                     @endif</option>
                                 @endforeach
                            </select>
-                            <div class="invalid-feedback">
-                                Harus di isi
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="validationTooltip02" class="col-sm-2 col-form-label"> Tujuan Pinjam </label>
-                        <div class="col-sm-10">
-                            <input type="text" id="validationTooltip02" name="tujuan" class="form-control" required
-                                placeholder=" ex. untuk keperluan proyek A, untuk mengantar keluarga">
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>

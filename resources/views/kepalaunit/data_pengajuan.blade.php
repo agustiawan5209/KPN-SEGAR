@@ -69,9 +69,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label "> 7. Surat Pengantar</div>
-                                    <div class="col-lg-7 col-md-8"> <a href="{{ url('/download', $p->surat_pinjam) }}"
+                                    <div class="col-lg-7 col-md-8"> <a href="{{ url('/download', $p->bukti_pinjam) }}"
                                             style="  background-color:   #012970; color:#FFFFFF" button type="button"
-                                            class="btn btn-sm"><i class="ri-printer-line"></i> {{ $p->surat_pinjam }}</a>
+                                            class="btn btn-sm"><i class="ri-printer-line"></i> {{ $p->bukti_pinjam }}</a>
                                     </div>
                                 </div>
                             @endforeach

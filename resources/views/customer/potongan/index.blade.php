@@ -61,7 +61,7 @@
                                 <li>Kadaluarsa Pada Tanggal : {{ $voucher->tgl_akhir }}</li>
                             </ul>
                             @if ($voucher->jenis_voucher != 1)
-                                <button type="button" class="btn btn-lg btn-block btn-primary">Klaim Sekarang Juga</button>
+                                <a href="{{ route('Klaim-Voucher', ['voucher_id'=> $voucher->id]) }}" class="btn btn-lg btn-block btn-primary">Klaim Sekarang Juga</a>
                             @endif
 
                         </div>

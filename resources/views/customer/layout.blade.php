@@ -77,6 +77,8 @@
         </div>
     </header>
     <!-- Header End -->
+    @include('sweetalert::alert')
+
     @yield('content')
     <!-- Footer Section Begin -->
     <footer class="footer-section">

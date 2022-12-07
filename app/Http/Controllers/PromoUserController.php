@@ -6,6 +6,7 @@ use App\Models\PromoUser;
 use App\Http\Requests\StorePromoUserRequest;
 use App\Http\Requests\UpdatePromoUserRequest;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PromoUserController extends Controller
 {
@@ -18,23 +19,33 @@ class PromoUserController extends Controller
     public function store($promo_id)
     {
         $user_id = Auth::user()->id;
-        PromoUser::create([
-            'promo_id' => $promo_id,
-            'user_id' => $user_id,
-            'status' => '1',
-        ]);
+        $promo = PromoUser::where('user_id',$user_id)->where('promo_id', '=', $promo_id)->get();
+        if($promo->count() > 0){
+            Alert::error('Maaf!!', "Promo Sudah Terpakai");
+        }else{
+            PromoUser::create([
+                'promo_id' => $promo_id,
+                'user_id' => $user_id,
+                'status' => '1',
+            ]);
+        Alert::success('Selamat!!', 'Nikmati Potongan Anda');
+
+        }
+       return redirect()->back();
+
+
     }
 
     /**
      * update
      *
-     * @param  mixed $voucher_id
+     * @param  mixed $promo_id
      * @param  mixed $id
      * @return void
      */
-    public function update($voucher_id, $id)
+    public function update($promo_id, $id)
     {
-        PromoUser::where('voucher_id', '=', $voucher_id)->where('id', $id)->update([
+        PromoUser::where('promo_id', '=', $promo_id)->where('id', $id)->update([
             'status' => '2',
         ]);
     }

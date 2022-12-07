@@ -15,18 +15,20 @@ use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\PinjamController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\PromoUserController;
 use App\Http\Controllers\DataSatuanController;
 use App\Http\Controllers\JenisBungaController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\JenisBarangController;
+use App\Http\Controllers\VoucherUserController;
 use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\CustomerViewController;
 use App\Http\Controllers\DataJenisAsetController;
 use App\Http\Controllers\DataAsalPerolehanController;
-use App\Http\Controllers\VoucherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -559,3 +561,10 @@ Route::middleware(['auth', 'check.role:3'])->group(
         //--selesai route BENDAHARA--//
     }
 );
+
+
+// Klaim Promo Dan Voucher
+Route::group(['middleware'=> ['auth', 'check.role:2']], function(){
+    Route::get('/KlaimPromo/{promo_id}', [PromoUserController::class, 'store'])->name('Klaim-Promo');
+    Route::get('/KlaimVoucher/{voucher_id}', [VoucherUserController::class, 'store'])->name('Klaim-Voucher');
+});

@@ -6,23 +6,31 @@ use App\Models\VoucherUser;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreVoucherUserRequest;
 use App\Http\Requests\UpdateVoucherUserRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class VoucherUserController extends Controller
 {
     /**
      * store
      *
-     * @param  mixed $promo_id
+     * @param  mixed $voucher_id
      * @return void
      */
-    public function store($promo_id)
+    public function store($voucher_id)
     {
         $user_id = Auth::user()->id;
+        $voucher = VoucherUser::where('voucher_id', '=', $voucher_id)->where('user_id', '=', $user_id)->get();
+       if($voucher->count() > 0 ){
+        Alert::error('Maaf!', 'Voucher Telah Terpakai');
+       }else{
         VoucherUser::create([
-            'promo_id' => $promo_id,
+            'voucher_id' => $voucher_id,
             'user_id' => $user_id,
             'status' => '1',
         ]);
+        Alert::success('Selamat!!', 'Nikmati Potongan Anda');
+       }
+       return redirect()->back();
     }
 
     /**

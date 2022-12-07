@@ -79,6 +79,7 @@ Route::group(['check.role:2', 'prefix' => 'Produk', 'as' => 'Customer.'], functi
     Route::get('/', [CustomerViewController::class, 'index'])->name('Index');
     Route::get('/all', [CustomerViewController::class, 'produk'])->name('allproduk');
     Route::get('Produk/detail/{id}', [CustomerViewController::class, 'detail'])->name('detail');
+    Route::get('/Promo-Diskon', [CustomerViewController::class, 'potongan'])->name('potongan');
 });
 Route::get('Dashboard', [CustomerViewController::class, 'DashboardUser'])->name('dashboardUser');
 // Data Bunga

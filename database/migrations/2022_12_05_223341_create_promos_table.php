@@ -16,7 +16,7 @@ class CreatePromosTable extends Migration
         Schema::create('promos', function (Blueprint $table) {
             $table->id();
             $table->string('kode',20);
-            $table->integer('jenis_promo');
+            $table->enum('jenis_promo', ['1','2'])->comment('1: nominal, 2: persen');
             $table->integer('potongan');
             $table->date('tgl_mulai');
             $table->date('tgl_akhir');

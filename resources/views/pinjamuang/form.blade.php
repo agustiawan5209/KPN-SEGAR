@@ -89,7 +89,7 @@
                     <div class="row mb-3">
                         <label for="validationTooltip02" class="col-sm-2 col-form-label"> Bunga </label>
                         <div class="col-sm-10">
-                            <input type="text" id="bunga" name="bunga" class="form-control" required>
+                            <input type="text" id="bunga" name="bunga" class="form-control bunga" required>
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>
@@ -154,6 +154,8 @@
                 var brmain = $("#angsuran_main br");
                 $(brmain).remove()
                 var jumlah_pinjam = $(".jumlah_pinjam").val();
+                var bunga = $("#bunga").val();
+                const total_bunga = jumlah_pinjam * (bunga /100);
                 console.log(jumlah_pinjam / $(this).val())
                 for (let jumlah = 0; jumlah < $(this).val(); jumlah++) {
                     angsuran_main.append(`<span>Angsuran ${jumlah + 1}</span>`);
@@ -171,7 +173,7 @@
                         jumlah_angsuran.id = 'jumlah_angsuran';
                         jumlah_angsuran.placeholder = 'masukkan jumlah angsuran';
                         jumlah_angsuran.name = 'jumlah_angsuran[]';
-                        jumlah_angsuran.value = jumlah_pinjam / $(this).val();
+                        jumlah_angsuran.value = (jumlah_pinjam / $(this).val()) + total_bunga;
 
                         jumlah_angsuran.classList.add('jumlah_angsuran')
                         jumlah_angsuran.classList.add('form-control')

@@ -245,7 +245,7 @@ class PembelianController extends Controller
         $inputbarang = Barang::all();
         $akun = User::all();
         $pinjam = Pinjam::whereNotNull('ket')
-            ->where('jenis', '=', '1')
+            ->where('jenis_peminjaman', '=', 'Barang')
             ->orderBy('id', 'desc')
             ->latest()
             ->get();

@@ -40,14 +40,9 @@
                                             <th scope="col sm">No</th>
                                             <th scope="col">Kode </th>
                                             <th scope="col">Nama </th>
-                                            <th scope="col">Jenis peminjaman </th>
-                                            <th scope="col">Tujuan </th>
-                                            <th scope="col">Tgl Pengajuan</th>
-                                            <th scope="col">Tgl Peminjaman</th>
-                                            <th scope="col">Tgl Pengembalian</th>
-                                            {{-- <th scope="col">Tujuan</th>
-                                            <th scope="col">barang pinjam</th>
-                                            <th scope="col">jumlah pinjam </th> --}}
+                                            <th scope="col">Tgl Pembelian</th>
+                                            <th scope="col">barang</th>
+                                            <th scope="col">jumlah</th>
                                             <th scope="col">Detail</th>
                                             <th scope="col">status</th>
 
@@ -68,11 +63,9 @@
                                                             <td>{{ $nomor++ }}</td>
                                                             <td> {{ $data->kode_peminjaman }}</td>
                                                             <td> {{ $data->nama_peminjam }}</td>
-                                                            <td> {{ $data->jenis_peminjaman }}</td>
-                                                            <td> {{ $data->tujuan }}</td>
                                                             <td> <?php echo date('d F Y', strtotime($data->tgl_pengajuan)); ?> </td>
-                                                            <td> <?php echo date('d F Y', strtotime($data->tgl_pinjam)); ?> </td>
-                                                            <td> <?php echo date('d F Y', strtotime($data->tgl_kembali)); ?></td>
+                                                            <td>{{ $data->barangs->nama_barang }}</td>
+                                                            <td>{{ $data->barangs->jumlah_pinjaman }}</td>
                                                             <td>
 
                                                                 <!-- Detail Peminjaman -->
@@ -154,7 +147,7 @@
                                                                                                 <div class="row">
                                                                                                     <div
                                                                                                         class="col-lg-5 col-md-4 label">
-                                                                                                        Tanggal ajuan
+                                                                                                        Tanggal Pembelian
                                                                                                     </div>
                                                                                                     <div
                                                                                                         class="col-lg-7 col-md-8">
@@ -165,29 +158,7 @@
                                                                                                 <div class="row">
                                                                                                     <div
                                                                                                         class="col-lg-5 col-md-4 label">
-                                                                                                        Tanggal pinjam
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="col-lg-7 col-md-8">
-                                                                                                        :{{ $data->tgl_pinjam }}
-                                                                                                    </div>
-                                                                                                </div>
-
-                                                                                                <div class="row">
-                                                                                                    <div
-                                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                                        Tanggal kembali
-                                                                                                        :</div>
-                                                                                                    <div
-                                                                                                        class="col-lg-7 col-md-8">
-                                                                                                        :{{ $data->tgl_kembali }}
-                                                                                                    </div>
-                                                                                                </div>
-
-                                                                                                <div class="row">
-                                                                                                    <div
-                                                                                                        class="col-lg-5 col-md-4 label">
-                                                                                                        Barang Pinjam
+                                                                                                        Barang
                                                                                                     </div>
                                                                                                     <div
                                                                                                         class="col-lg-7 col-md-8">
@@ -201,7 +172,7 @@
                                                                                                 <div class="row">
                                                                                                     <div
                                                                                                         class="col-lg-5 col-md-4 label">
-                                                                                                        Jumlah Pinjam
+                                                                                                        Jumlah
                                                                                                     </div>
                                                                                                     <div
                                                                                                         class="col-lg-7 col-md-8">

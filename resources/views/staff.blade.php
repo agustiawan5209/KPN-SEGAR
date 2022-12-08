@@ -38,7 +38,7 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-body" style="background-color: #012970;">
-                                <a href="{{ route('staff/riwayat') }}">
+                                <a href="{{ route('Pembelian.riwayat') }}">
                                     <div class="card-title text-center">
                                         <span class=""><i class="bi bi-receipt-cutoff text-warning"
                                                 style="font-size: 50px"></i></span>

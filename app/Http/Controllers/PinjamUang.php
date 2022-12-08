@@ -76,12 +76,12 @@ class PinjamUang extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        // $valid =  $this->validate($request, [
-        //     'jumlah_pinjam' => ['required', 'numeric'],
-        //     'tgl_pengajuan' => ['required', 'date'],
-        //     'tgl_kembali' => ['required', 'date'],
-        //     'bunga' => ['required', 'numeric'],
-        // ]);
+        $valid =  $this->validate($request, [
+            'jumlah_pinjam' => ['required', 'numeric'],
+            'tgl_pengajuan' => ['required', 'date'],
+            'tgl_kembali' => ['required', 'date'],
+            'bunga' => ['required', 'numeric'],
+        ]);
         $book_id = 0;
         $data = Pinjam::max('kode_peminjaman');
         if ($data == null) {
@@ -111,6 +111,7 @@ class PinjamUang extends Controller
         $pinjam->tgl_kembali = $request->tgl_kembali;
         $pinjam->jumlah_pinjam = $request->jumlah_pinjam;
         $pinjam->bukti_pinjam = $nama_bukti;
+        $pinjam->ket = $request->ket;
         $pinjam->save();
         $batas_angsuran = count($request->tgl_angsuran);
         $tgl_angsuran = $request->tgl_angsuran;
@@ -181,7 +182,12 @@ class PinjamUang extends Controller
      */
     public function edit($id)
     {
-        return view('pinjamuang.form');
+        $user = Anggota::where('status', '1')->get();
+        $pinjam = Pinjam::find($id);
+        return view('pinjamuang.edit',[
+            'user'=> $user,
+            'pinjam'=> $pinjam,
+        ]);
     }
 
     /**
@@ -193,7 +199,30 @@ class PinjamUang extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $valid =  $this->validate($request, [
+            'jumlah_pinjam' => ['required', 'numeric'],
+            'tgl_pengajuan' => ['required', 'date'],
+            'tgl_kembali' => ['required', 'date'],
+            'bunga' => ['required', 'numeric'],
+        ]);
+        if($request->file('bukti_pinjam') != null){
+            $nama_bukti = $request->bukti_pinjam->getClientOriginalName();
+            $request->file('bukti_pinjam')->move('bukti_pinjam/', $nama_bukti);
+        }else{
+            $nama_bukti = Pinjam::find($id)->bukti_pinjam;
+        }
+        $pinjam = Pinjam::where('id', $id)->update([
+            'kode_anggota'=> $request->kode_anggota,
+            'jumlah_pinjam'=> $request->jumlah_pinjam,
+            'tgl_pengajuan'=> $request->tgl_pengajuan,
+            'tgl_kembali'=> $request->tgl_kembali,
+            'bunga'=> $request->bunga,
+            'bukti_pinjam'=> $nama_bukti,
+            'ket'=> $request->ket,
+        ]);
+        Alert::success("Info", 'Berhasil Di Ganti');
+        return redirect()->route('pinjamUang.index');
+
     }
 
     /**

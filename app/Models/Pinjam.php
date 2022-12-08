@@ -56,4 +56,8 @@ class Pinjam extends Model
     {
         return $this->hasOne(Anggota::class, 'kode_anggota', 'kode_anggota'); //1 karyawan mempunyai 1 posisi
     }
+    public function angsuran()
+    {
+        return $this->hasMany(Angsuran::class, 'pinjam_id', 'id'); //1 karyawan mempunyai 1 posisi
+    }
 }

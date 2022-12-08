@@ -100,34 +100,6 @@
                                             onclick="return confirm('Hapus Data?')" type="button"
                                             class="btn btn-danger"><i class="bi bi-trash delete"></i></a>
 
-                                        {{-- <!--HAPUS DATA JENIS ASET PAKAI MODAL UNTUK KONFIRMASI HAPUS-->
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#smallModal"><i class="bi bi-trash delete"></i></button>
-                    <div class="modal fade" id="smallModal" tabindex="-1">
-                      <div class="modal-dialog modal-sm">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title">Konfirmasi Hapus</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-
-                            <form name="hapusjenisbarang" method="POST" action="/jenisbarang/hapusjenisbarang/{{$data->id}}" enctype="multipart/form-data" class="row g-3">
-                              @csrf
-                              @method('delete')
-                            <div>
-
-                             Apakah data <strong> </strong> yakin akan dihapus?
-
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="Submit" class="btn btn-danger">Hapus</button>
-                          </form>
-
-                          </div>
-                        </div>
-                      </div>
-                    </div><!-- End Modal--> --}}
                                     </td>
                             @endforeach
                             </tr>

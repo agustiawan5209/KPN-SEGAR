@@ -226,7 +226,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="@yield('uanglinkCreate')" href="{{ route('staff/pinjam') }}">
+                        <a class="@yield('uanglinkCreate')" href="{{ route('pinjamUang.index') }}">
                             <i class="bi bi-cart"></i>
                             <span>Data Pinjaman Uang</span>
                         </a>

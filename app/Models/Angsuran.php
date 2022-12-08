@@ -11,4 +11,8 @@ class Angsuran extends Model
 
     protected $table = 'angsurans';
     protected $fillable = ['pinjam_id', 'kode_angsuran','tgl_angsuran', 'jumlah_bayar','sisa_bayar','status', 'denda','jumlah_denda'];
+
+    public function pinjam(){
+        return $this->belongsTo(Pinjam::class, 'pinjam_id');
+    }
 }

@@ -104,9 +104,9 @@ Route::group(['auth', 'check.role:2'], function () {
     Route::get('RiwayatPembelian', [PembelianController::class, 'dataPembelian'])->name('Pembelian.data');
 });
 
-Route::middleware(['auth', 'check.role:1'])->group(function(){
-    Route::group(['prefix'=>'Diskon', 'as'=> 'Diskon.'],function(){
-        Route::controller(DiskonController::class)->group(function(){
+Route::middleware(['auth', 'check.role:1'])->group(function () {
+    Route::group(['prefix' => 'Diskon', 'as' => 'Diskon.'], function () {
+        Route::controller(DiskonController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
@@ -115,8 +115,8 @@ Route::middleware(['auth', 'check.role:1'])->group(function(){
             Route::get('/destroy/{id}', 'destroy')->name('destroy');
         });
     });
-    Route::group(['prefix'=>'Promo', 'as'=> 'Promo.'],function(){
-        Route::controller(PromoController::class)->group(function(){
+    Route::group(['prefix' => 'Promo', 'as' => 'Promo.'], function () {
+        Route::controller(PromoController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
@@ -125,8 +125,8 @@ Route::middleware(['auth', 'check.role:1'])->group(function(){
             Route::get('/destroy/{id}', 'destroy')->name('destroy');
         });
     });
-    Route::group(['prefix'=>'Voucher', 'as'=> 'Voucher.'],function(){
-        Route::controller(VoucherController::class)->group(function(){
+    Route::group(['prefix' => 'Voucher', 'as' => 'Voucher.'], function () {
+        Route::controller(VoucherController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
@@ -393,11 +393,21 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
     });
 
     //PINJAM NEW
-    Route::resource('pinjamUang', PinjamUang::class)->parameters([
-        'edit' => 'id',
-        'update' => 'id',
-        'destroy' => 'id',
-    ])->name('*', 'Pinjam-Uang');
+    Route::group(['prefix' => 'PinjamUang', 'as' => 'pinjamUang.'], function () {
+        Route::controller(PinjamUang::class)->group(function () {
+            Route::get('/pinjamUang', 'index')->name('index');
+            Route::get('/show/{id}', 'show')->name('show');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::get('destroy/{id}', 'destroy')->name('destroy');
+            Route::post('store', 'store')->name('store');
+            Route::get('create', 'create')->name('create');
+            Route::put('update/{id}', 'update')->name('update');
+            // Angsuran
+            Route::get('edit-angsuran/{id}', 'editAngsuran')->name('editAngsuran');
+            Route::put('Update-angsuran/{id}/{pinjam_id}', 'UpdateAngsuran')->name('UpdateAngsuran');
+            Route::get('destroy-angsuran/{id}/{pinjam_id}', 'destroyAngsuran')->name('destroyAngsuran');
+        });
+    });
     Route::get('pinjamuang/find/{id}', [PinjamUang::class, 'getJenis']);
     Route::get('/pinjam/formulir', function () {
         return view('pinjam.formulir');
@@ -572,7 +582,7 @@ Route::middleware(['auth', 'check.role:3'])->group(
 
 
 // Klaim Promo Dan Voucher
-Route::group(['middleware'=> ['auth', 'check.role:2']], function(){
+Route::group(['middleware' => ['auth', 'check.role:2']], function () {
     Route::get('/KlaimPromo/{promo_id}', [PromoUserController::class, 'store'])->name('Klaim-Promo');
     Route::get('/KlaimVoucher/{voucher_id}', [VoucherUserController::class, 'store'])->name('Klaim-Voucher');
 });

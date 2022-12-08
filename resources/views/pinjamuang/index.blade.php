@@ -42,14 +42,12 @@
                                             <th scope="col sm">No</th>
                                             <th scope="col">Kode </th>
                                             <th scope="col">Nama </th>
-                                            <th scope="col">Tgl Pengajuan</th>
-                                            <th scope="col">Tgl Peminjaman</th>
+                                            <th scope="col">kode Anggota </th>
                                             <th scope="col">Tgl Pengembalian</th>
-                                            <th scope="col">Tujuan</th>
                                             <th scope="col">jumlah pinjam </th>
                                             <th scope="col">Bunga </th>
-                                            <th scope="col">Status</th>
-                                            {{-- <th scope="col">Aksi</th> --}}
+                                            <th scope="col">Detail</th>
+                                            <th scope="col">Aksi</th>
 
                                         </tr>
                                     </thead>
@@ -63,8 +61,8 @@
                                                 <td>{{ $nomor++ }}</td>
                                                 <td> {{ $data->kode_peminjaman }}</td>
                                                 <td> {{ $data->nama_peminjam }}</td>
-                                                <td> <?php echo date('d F Y', strtotime($data->tgl_pengajuan)); ?> </td>
-                                                <td> <?php echo date('d F Y', strtotime($data->tgl_pinjam)); ?> </td>
+                                                <td>{{$data->kode_anggota}}</td>
+
                                                 <td>
 
                                                     <?php
@@ -95,11 +93,22 @@
 
 
                                                 </td>
-                                                <td>{{$data->tujuan}}</td>
                                                 <td>Rp. {{number_format($data->jumlah_pinjam,0,2)}}</td>
                                                 <td>Rp. {{number_format($data->bunga,0,2)}}</td>
                                                 <td>
-                                                    @include('status')
+                                                    <a href="{{route('pinjamUang.show', ['id'=> $data->id])}}" type="button" class="btn btn"
+                                                        style="background-color: #05b3c3; color:#FFFFFF"><i
+                                                            class="bi bi-eye"></i></a>
+                                                </td>
+                                                <td>
+                                                    <!--EDIT DATA JENIS ASET-->
+                                                    <a href="{{route('pinjamUang.edit', ['id'=> $data->id])}}" type="button" class="btn btn"
+                                                        style="background-color: #05b3c3; color:#FFFFFF"><i
+                                                            class="bi bi-pencil"></i></a>
+                                                    <a href="{{route('pinjamUang.destroy', ['id'=> $data->id])}}"
+                                                        onclick="return confirm('Hapus Data?')" type="button"
+                                                        class="btn btn-danger"><i class="bi bi-trash delete"></i></a>
+
                                                 </td>
 
                                             </tr>

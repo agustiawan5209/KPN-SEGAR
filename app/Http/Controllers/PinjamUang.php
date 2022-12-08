@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anggota;
 use App\Models\User;
 use App\Models\Barang;
 use App\Models\Pinjam;
 use App\Models\Satuan;
 use App\Models\Status;
+use App\Models\Anggota;
+use App\Models\Angsuran;
 use App\Models\TrxStatus;
 use App\Models\JenisBunga;
 use App\Models\JenisBarang;
@@ -16,6 +17,7 @@ use App\Models\DataJenisAset;
 use App\Models\DataAsalPerolehan;
 use App\Notifications\NotifPinjam;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Notification;
 
 class PinjamUang extends Controller
@@ -72,12 +74,12 @@ class PinjamUang extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $valid =  $this->validate($request, [
-            'jumlah_pinjam' => ['required', 'numeric'],
-            'tgl_pengajuan' => ['required', 'date'],
-            'tgl_kembali' => ['required', 'date'],
-            'bunga' => ['required', 'numeric'],
-        ]);
+        // $valid =  $this->validate($request, [
+        //     'jumlah_pinjam' => ['required', 'numeric'],
+        //     'tgl_pengajuan' => ['required', 'date'],
+        //     'tgl_kembali' => ['required', 'date'],
+        //     'bunga' => ['required', 'numeric'],
+        // ]);
         $book_id = 0;
         $data = Pinjam::max('kode_peminjaman');
         if ($data == null) {
@@ -92,14 +94,9 @@ class PinjamUang extends Controller
         } else {
             $book_id = $huruf . '-' . $urutan;
         }
-        $total_bunga = $request->jumlah_pinjam * ($request->bunga / 100) ;
 
         $nama_bukti = $request->bukti_pinjam->getClientOriginalName();
-        $ext_bukti = $request->bukti_pinjam->getClientOriginalExtension();
-
         $request->file('bukti_pinjam')->move('bukti_pinjam/', $nama_bukti);
-
-        $b = Barang::where('id', $request->barangs_id)->first();
         $anggota = Anggota::where('kode_anggota', '=',$request->kode_anggota)->first();
 
         $pinjam = new Pinjam();
@@ -112,8 +109,29 @@ class PinjamUang extends Controller
         $pinjam->tgl_kembali = $request->tgl_kembali;
         $pinjam->jumlah_pinjam = $request->jumlah_pinjam;
         $pinjam->bukti_pinjam = $nama_bukti;
-
         $pinjam->save();
+        $batas_angsuran = count($request->tgl_angsuran);
+        $tgl_angsuran = $request->tgl_angsuran;
+        $jumlah_angsuran = $request->jumlah_angsuran;
+        $jumlah_bayar = $request->jumlah_pinjam /$batas_angsuran;
+        $sisa_bayar = $request->jumlah_pinjam;
+        // dd($request->tgl_angsuran);
+        for ($i=0; $i < $batas_angsuran; $i++) {
+            $sisa_bayar -= $jumlah_angsuran[$i];
+            // $hasil -= $sisa_bayar[$i] - $jumlah_bayar;
+            $arr[$i] = [
+                'pinjam_id'=> $pinjam->id,
+                'kode_angsuran'=> $pinjam->kode_peminjaman . "-A-". $i,
+                'tgl_angsuran'=> $tgl_angsuran[$i],
+                'jumlah_bayar'=> $jumlah_angsuran[$i],
+                'sisa_bayar'=> $sisa_bayar,
+                'status'=> '0',
+                'denda'=> '0',
+                'jumlah_denda'=> '0',
+
+            ];
+        }
+        Angsuran::insert($arr);
         // User
         $user = User::find($request->input('users_id'));
         $trxstatus = new TrxStatus();
@@ -140,7 +158,17 @@ class PinjamUang extends Controller
      */
     public function show($id)
     {
-        //
+        $pinjam = Pinjam::find($id);
+        $angsuran = Angsuran::where('pinjam_id', $id)->get();
+        $trxstatus = TrxStatus::all();
+        $akun = User::all();
+        return view('angsuran.detail', [
+            'data' => $pinjam,
+            'trxstatus' => $trxstatus,
+            'status' => Status::all(),
+            'akun' => $akun,
+            'angsuran'=> $angsuran
+        ]);
     }
 
     /**
@@ -207,5 +235,30 @@ class PinjamUang extends Controller
             'akun' => $akun,
             'trxstatus' => $trxstatus,
         ]);
+    }
+
+    public function editAngsuran($id){
+        $angsuran = Angsuran::find($id);
+        return view('angsuran.edit', [
+            'angsuran'=> $angsuran,
+        ]);
+    }
+    public function UpdateAngsuran(Request $request,$id, $pinjam_id){
+        $valid = $this->validate($request, [
+            'jumlah_bayar'=> ['required','numeric'],
+            'sisa_bayar'=> ['required','numeric'],
+            'tgl_angsuran'=> ['required','date'],
+            'denda'=> ['required','numeric'],
+            'jumlah_denda'=> ['required','numeric'],
+        ]);
+        $angsuran = Angsuran::find($id)->update($valid);
+        Alert::success('Berhasil', "Edit Data Angsuran berhasil");
+        return redirect()->route('pinjamUang.show', ['id'=> $pinjam_id]);
+    }
+    public function destroyAngsuran($id, $pinjam_id){
+        $angsuran = Angsuran::find($id)->delete();
+        Alert::error('Berhasil', " Data Angsuran berhasil Di Hapus");
+        return redirect()->route('pinjamUang.show', ['id'=> $pinjam_id]);
+
     }
 }

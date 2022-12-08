@@ -60,7 +60,7 @@ class PinjamController extends Controller
         $inputbarang = Barang::all();
         $akun = User::all();
         if (Auth::user()->roles_id == 3) {
-            $pinjam = Pinjam::where('jenis_peminjaman', 'Uang')->get();
+            $pinjam = Pinjam::where('jenis_peminjaman', 'Barang')->get();
         } else {
             $pinjam = Pinjam::whereNull('ket')
                 ->where('jenis_peminjaman', '=', 'Barang')

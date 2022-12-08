@@ -19,6 +19,7 @@ class CreatePinjamsTable extends Migration
             $table->foreignId('barangs_id')->nullable();
             $table->string('kode_anggota')->nullable();
             $table->foreignId('users_id')->nullable();
+            $table->integer('harga')->nullable();
             $table->string('nama_peminjam');
             $table->string('jenis_peminjaman');
             $table->bigInteger('bunga')->nullable();

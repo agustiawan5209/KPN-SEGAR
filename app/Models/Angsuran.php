@@ -15,4 +15,24 @@ class Angsuran extends Model
     public function pinjam(){
         return $this->belongsTo(Pinjam::class, 'pinjam_id');
     }
+    public function textStatus($value){
+        switch ($value) {
+            case '0':
+               $Msg = '<span class="badge bg-secondary"><i class="bi bi-collection me-1"></i> Kosong</span>';
+                break;
+
+            case '1':
+               $Msg = '<span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i>Telat Di Bayar</span>';
+                break;
+
+            case '2':
+               $Msg = '<span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Success</span>';
+                break;
+
+            default:
+               $Msg = 'Error Status Kosong';
+                break;
+        }
+        return $Msg;
+    }
 }

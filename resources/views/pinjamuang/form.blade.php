@@ -58,7 +58,7 @@
                         <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Pengajuan</label>
                         <div class="col-sm-10">
                             <input type="date" id="tgl_pengajuan" name="tgl_pengajuan" value="<?php echo date('Y-m-d'); ?>"
-                                readonly class="form-control" required>
+                                class="form-control" required>
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>
@@ -114,7 +114,8 @@
                         </div>
 
                         <div class="col-sm-10" id="angsuran_main">
-                            <label for="validationTooltip05" class="col-sm-12 col-form-label">Mohon isi Tanggal Angsuran dan jumlah angsuran</label>
+                            <label for="validationTooltip05" class="col-sm-12 col-form-label">Mohon isi Tanggal Angsuran dan
+                                jumlah angsuran</label>
                         </div>
                     </div>
 
@@ -139,7 +140,7 @@
         $(document).ready(function() {
             $("#angsuran_main").hide();
             $("#jumlah_angsuran").keyup(function(e) {
-            $("#angsuran_main").show();
+                $("#angsuran_main").show();
 
                 var angsuran_main = $("#angsuran_main");
                 // tgl
@@ -155,30 +156,54 @@
                 $(brmain).remove()
                 var jumlah_pinjam = $(".jumlah_pinjam").val();
                 var bunga = $("#bunga").val();
-                const total_bunga = jumlah_pinjam * (bunga /100);
-                console.log(jumlah_pinjam / $(this).val())
+                const total_bunga = jumlah_pinjam * (bunga / 100);
+
+                // Tanggal Min Dan Max
+                var tgl_min = new Date($("#tgl_pengajuan").val());
+                var tgl_max = new Date($("#tgl_kembali").val());
+                const day = {
+                    min: ("0" + tgl_min.getDate()).slice(-2),
+                    max: ("0" + tgl_max.getDate()).slice(-2),
+                }
+                const month = {
+                    min: ("0" + (tgl_min.getMonth() + 1)).slice(-2),
+                    max: ("0" + (tgl_max.getMonth() + 1)).slice(-2),
+                }
+                const year = {
+                    min: tgl_min.getFullYear(),
+                    max: tgl_max.getFullYear(),
+                }
+                const min_date = `${year.min}-${month.min}-${day.min}`;
+                const max_date = `${year.max}-${month.max}-${day.max}`;
+                console.log(min_date)
+                console.log(max_date)
                 for (let jumlah = 0; jumlah < $(this).val(); jumlah++) {
                     angsuran_main.append(`<span>Angsuran ${jumlah + 1}</span>`);
-
                     var tgl_angsuran = document.createElement('input');
-                        tgl_angsuran.type = 'date';
-                        tgl_angsuran.id = 'tgl_angsuran';
-                        tgl_angsuran.name = 'tgl_angsuran[]';
-                        tgl_angsuran.classList.add('tgl_angsuran')
-                        tgl_angsuran.classList.add('form-control')
-                        angsuran_main.append(tgl_angsuran);
+                    tgl_angsuran.type = 'date';
+                    tgl_angsuran.id = 'tgl_angsuran';
+                    tgl_angsuran.name = 'tgl_angsuran[]';
+                    $(tgl_angsuran).attr({
+                        'min': min_date
+                    });
+                    tgl_angsuran.max = max_date;
+                    $(tgl_angsuran).prop('required', true);
+                    tgl_angsuran.classList.add('tgl_angsuran')
+                    tgl_angsuran.classList.add('form-control')
+                    angsuran_main.append(tgl_angsuran);
 
                     var jumlah_angsuran = document.createElement('input');
-                        jumlah_angsuran.type = 'number';
-                        jumlah_angsuran.id = 'jumlah_angsuran';
-                        jumlah_angsuran.placeholder = 'masukkan jumlah angsuran';
-                        jumlah_angsuran.name = 'jumlah_angsuran[]';
-                        jumlah_angsuran.value = (jumlah_pinjam / $(this).val()) + total_bunga;
+                    jumlah_angsuran.type = 'number';
+                    jumlah_angsuran.id = 'jumlah_angsuran';
+                    $(jumlah_angsuran).prop('required', true);
+                    jumlah_angsuran.placeholder = 'masukkan jumlah angsuran';
+                    jumlah_angsuran.name = 'jumlah_angsuran[]';
+                    jumlah_angsuran.value = (jumlah_pinjam / $(this).val()) + total_bunga;
 
-                        jumlah_angsuran.classList.add('jumlah_angsuran')
-                        jumlah_angsuran.classList.add('form-control')
-                        angsuran_main.append(jumlah_angsuran);
-                        angsuran_main.append("<br>");
+                    jumlah_angsuran.classList.add('jumlah_angsuran')
+                    jumlah_angsuran.classList.add('form-control')
+                    angsuran_main.append(jumlah_angsuran);
+                    angsuran_main.append("<br>");
                 }
 
             })

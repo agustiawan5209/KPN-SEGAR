@@ -22,26 +22,26 @@
                         <table class="table " id="peminjaman">
                             <thead>
                                 <tr>
-                                    <th scope="col sm">No</th>
-                                    <th scope="col">Kode </th>
-                                    <th scope="col">Nama </th>
-                                    <th scope="col">kode Anggota </th>
-                                    <th scope="col">Tgl Pengembalian</th>
-                                    <th scope="col">jumlah pinjam </th>
-                                    <th scope="col">Bunga </th>
-                                    <th scope="col">Status</th>
-                                    {{-- <th scope="col">Aksi</th> --}}
+                                    <x-th scope="col sm">No</x-th>
+                                    <x-th scope="col">Kode </x-th>
+                                    <x-th scope="col">Nama </x-th>
+                                    <x-th scope="col">kode Anggota </x-th>
+                                    <x-th scope="col">Tgl Pengembalian</x-th>
+                                    <x-th scope="col">jumlah pinjam </x-th>
+                                    <x-th scope="col">Bunga </x-th>
+                                    <x-th scope="col">Status</x-th>
+                                    {{-- <x-th scope="col">Aksi</x-th> --}}
 
                                 </tr>
                             </thead>
 
                             <tbody>
-                                <td>1</td>
-                                <td> {{ $data->kode_peminjaman }}</td>
-                                <td> {{ $data->nama_peminjam }}</td>
-                                <td>{{ $data->kode_anggota }}</td>
+                                <x-td>1</x-td>
+                                <x-td> {{ $data->kode_peminjaman }}</x-td>
+                                <x-td> {{ $data->nama_peminjam }}</x-td>
+                                <x-td>{{ $data->kode_anggota }}</x-td>
 
-                                <td>
+                                <x-td>
 
                                     <?php
                                     $d = Carbon\Carbon::parse($data->tgl_kembali);
@@ -70,14 +70,14 @@
                                     @endif
 
 
-                                </td>
-                                <td>Rp. {{ number_format($data->jumlah_pinjam, 0, 2) }}</td>
-                                <td>Rp. {{ number_format($data->bunga, 0, 2) }}</td>
-                                <td>
-                                    @include('status')
-                                </td>
+                                    </x-td>
+                                    <x-td>Rp. {{ number_format($data->jumlah_pinjam, 0, 2) }}</x-td>
+                                    <x-td>Rp. {{ number_format($data->bunga, 0, 2) }}</x-td>
+                                    <x-td>
+                                        @include('status')
+                                    </x-td>
 
-                                </tr>
+                                    </tr>
                             </tbody>
                         </table>
 
@@ -91,26 +91,26 @@
                         <table class="table " id="peminjaman">
                             <thead>
                                 <tr>
-                                    <th scope="col sm">No</th>
-                                    <th scope="col">Kode </th>
-                                    <th scope="col">Tanggal Angsuran </th>
-                                    <th scope="col">Jumlah Bayar </th>
-                                    <th scope="col">Sisa Bayar</th>
-                                    <th scope="col">Status Angsuran </th>
-                                    <th scope="col">denda </th>
-                                    <th scope="col">Jumlah Denda</th>
-                                    <th scope="col">Aksi</th>
+                                    <x-th scope="col sm">No</x-th>
+                                    <x-th scope="col">Kode </x-th>
+                                    <x-th scope="col">Tanggal Angsuran </x-th>
+                                    <x-th scope="col">Jumlah Bayar </x-th>
+                                    <x-th scope="col">Sisa Bayar</x-th>
+                                    <x-th scope="col">Status Angsuran </x-th>
+                                    <x-th scope="col">denda </x-th>
+                                    <x-th scope="col">Jumlah Denda</x-th>
+                                    <x-th scope="col">Aksi</x-th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($angsuran as $item)
                                     <tr>
-                                        <td style="font-size: 13px;">{{ $loop->iteration }}</td>
-                                        <td style="font-size: 13px;">{{ $item->kode_angsuran }}</td>
-                                        <td style="font-size: 13px;">{{ $item->tgl_angsuran }}</td>
-                                        <td style="font-size: 13px;">Rp. {{ number_format($item->jumlah_bayar) }}</td>
-                                        <td style="font-size: 13px;">Rp. {{ number_format($item->sisa_bayar ,0,2)}}</td>
-                                        <td style="font-size: 13px;">
+                                        <x-td>{{ $loop->iteration }}</x-td>
+                                        <x-td>{{ $item->kode_angsuran }}</x-td>
+                                        <x-td>{{ $item->tgl_angsuran }}</x-td>
+                                        <x-td>Rp. {{ number_format($item->jumlah_bayar) }}</x-td>
+                                        <x-td>Rp. {{ number_format($item->sisa_bayar, 0, 2) }}</x-td>
+                                        <x-td>
                                             <?php
                                             $d = Carbon\Carbon::parse($item->tgl_angsuran);
                                             $e = Carbon\Carbon::parse(now());
@@ -133,19 +133,21 @@
                                                         Terakhir</b></p>
                                             @endif
 
-                                        </td>
-                                        <td style="font-size: 13px;">{{ $item->denda }}</td>
-                                        <td style="font-size: 13px;">{{ $item->jumlah_denda }}</td>
-                                        <td style="font-size: 13px;">
+                                        </x-td>
+                                        <x-td>
+                                            {!! $item->textStatus($item->status) !!}
+                                        </x-td>
+                                        <x-td>{{ $item->jumlah_denda }}</x-td>
+                                        <x-td>
                                             <!--EDIT DATA JENIS ASET-->
-                                            <a href="{{route('pinjamUang.editAngsuran', ['id'=> $item->id])}}" type="button" class="btn btn"
+                                            <a href="{{ route('pinjamUang.editAngsuran', ['id' => $item->id]) }}"
+                                                type="button" class="btn btn"
                                                 style="background-color: #05b3c3; color:#FFFFFF"><i
                                                     class="bi bi-pencil"></i></a>
-                                            <a href="{{route('pinjamUang.destroyAngsuran', ['id'=> $item->id, 'pinjam_id'=> $data->id])}}"
+                                            <a href="{{ route('pinjamUang.destroyAngsuran', ['id' => $item->id, 'pinjam_id' => $data->id]) }}"
                                                 onclick="return confirm('Hapus Data?')" type="button"
                                                 class="btn btn-danger"><i class="bi bi-trash delete"></i></a>
-
-                                        </td>
+                                        </x-td>
                                     </tr>
                                 @endforeach
                             </tbody>

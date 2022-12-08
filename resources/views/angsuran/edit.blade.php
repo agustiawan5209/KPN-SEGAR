@@ -50,9 +50,9 @@
                         <label for="validationTooltip02" class="col-sm-2 col-form-label"> Status Denda </label>
                         <div class="col-sm-10">
                             <select  id="denda" name="denda" class="form-select" required>
-                                <option value="">---</option>
-                                <option value="1">Belum Dibayar</option>
-                                <option value="2">Dibayar</option>
+                                <option value="0" {{ $angsuran->denda == 0 ? 'selected' : ''}}>---</option>
+                                <option value="1" {{ $angsuran->denda == 1 ? 'selected' : '' }}>Belum Dibayar</option>
+                                <option value="2" {{ $angsuran->denda == 2 ? 'selected' : '' }}>Dibayar</option>
                             </select>
                             <div class="invalid-feedback">
                                 Harus di isi

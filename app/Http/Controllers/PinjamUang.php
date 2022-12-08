@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Barang;
 use App\Models\Pinjam;
@@ -30,6 +31,7 @@ class PinjamUang extends Controller
                 abort(403);
             }
         }
+        $this->cekAngsuranKadaluarsa();
     }
     /**
      * Display a listing of the resource.
@@ -97,7 +99,7 @@ class PinjamUang extends Controller
 
         $nama_bukti = $request->bukti_pinjam->getClientOriginalName();
         $request->file('bukti_pinjam')->move('bukti_pinjam/', $nama_bukti);
-        $anggota = Anggota::where('kode_anggota', '=',$request->kode_anggota)->first();
+        $anggota = Anggota::where('kode_anggota', '=', $request->kode_anggota)->first();
 
         $pinjam = new Pinjam();
         $pinjam->kode_peminjaman = $book_id;
@@ -113,21 +115,21 @@ class PinjamUang extends Controller
         $batas_angsuran = count($request->tgl_angsuran);
         $tgl_angsuran = $request->tgl_angsuran;
         $jumlah_angsuran = $request->jumlah_angsuran;
-        $jumlah_bayar = $request->jumlah_pinjam /$batas_angsuran;
+        $jumlah_bayar = $request->jumlah_pinjam / $batas_angsuran;
         $sisa_bayar = $request->jumlah_pinjam;
         // dd($request->tgl_angsuran);
-        for ($i=0; $i < $batas_angsuran; $i++) {
+        for ($i = 0; $i < $batas_angsuran; $i++) {
             $sisa_bayar -= $jumlah_angsuran[$i];
             // $hasil -= $sisa_bayar[$i] - $jumlah_bayar;
             $arr[$i] = [
-                'pinjam_id'=> $pinjam->id,
-                'kode_angsuran'=> $pinjam->kode_peminjaman . "-A-". $i,
-                'tgl_angsuran'=> $tgl_angsuran[$i],
-                'jumlah_bayar'=> $jumlah_angsuran[$i],
-                'sisa_bayar'=> $sisa_bayar,
-                'status'=> '0',
-                'denda'=> '0',
-                'jumlah_denda'=> '0',
+                'pinjam_id' => $pinjam->id,
+                'kode_angsuran' => $pinjam->kode_peminjaman . "-A-" . $i,
+                'tgl_angsuran' => $tgl_angsuran[$i],
+                'jumlah_bayar' => $jumlah_angsuran[$i],
+                'sisa_bayar' => $sisa_bayar,
+                'status' => '0',
+                'denda' => '0',
+                'jumlah_denda' => '0',
 
             ];
         }
@@ -167,7 +169,7 @@ class PinjamUang extends Controller
             'trxstatus' => $trxstatus,
             'status' => Status::all(),
             'akun' => $akun,
-            'angsuran'=> $angsuran
+            'angsuran' => $angsuran
         ]);
     }
 
@@ -237,28 +239,44 @@ class PinjamUang extends Controller
         ]);
     }
 
-    public function editAngsuran($id){
+    public function editAngsuran($id)
+    {
         $angsuran = Angsuran::find($id);
         return view('angsuran.edit', [
-            'angsuran'=> $angsuran,
+            'angsuran' => $angsuran,
         ]);
     }
-    public function UpdateAngsuran(Request $request,$id, $pinjam_id){
+    public function UpdateAngsuran(Request $request, $id, $pinjam_id)
+    {
         $valid = $this->validate($request, [
-            'jumlah_bayar'=> ['required','numeric'],
-            'sisa_bayar'=> ['required','numeric'],
-            'tgl_angsuran'=> ['required','date'],
-            'denda'=> ['required','numeric'],
-            'jumlah_denda'=> ['required','numeric'],
+            'jumlah_bayar' => ['required', 'numeric'],
+            'sisa_bayar' => ['required', 'numeric'],
+            'tgl_angsuran' => ['required', 'date'],
+            'denda' => ['required', 'numeric'],
+            'jumlah_denda' => ['required', 'numeric'],
         ]);
         $angsuran = Angsuran::find($id)->update($valid);
         Alert::success('Berhasil', "Edit Data Angsuran berhasil");
-        return redirect()->route('pinjamUang.show', ['id'=> $pinjam_id]);
+        return redirect()->route('pinjamUang.show', ['id' => $pinjam_id]);
     }
-    public function destroyAngsuran($id, $pinjam_id){
+    public function destroyAngsuran($id, $pinjam_id)
+    {
         $angsuran = Angsuran::find($id)->delete();
         Alert::error('Berhasil', " Data Angsuran berhasil Di Hapus");
-        return redirect()->route('pinjamUang.show', ['id'=> $pinjam_id]);
+        return redirect()->route('pinjamUang.show', ['id' => $pinjam_id]);
+    }
 
+    private function cekAngsuranKadaluarsa()
+    {
+        $today = Carbon::now()->format("Y-m-d");
+        $angsuran = Angsuran::whereDate('tgl_angsuran', $today)->where('status', '=', '0')->get();
+        if ($angsuran->count() > 0) {
+            foreach ($angsuran as $key => $angsuran) {
+                Angsuran::where('id', $angsuran->id)->update([
+                    'status' => '1',
+                    'denda' => '1'
+                ]);
+            }
+        }
     }
 }

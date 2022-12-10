@@ -19,6 +19,7 @@ use App\Models\DataAsalPerolehan;
 use App\Notifications\NotifPinjam;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Controllers\SimpananController;
 use Illuminate\Support\Facades\Notification;
 
 class PinjamUang extends Controller
@@ -135,6 +136,8 @@ class PinjamUang extends Controller
             ];
         }
         Angsuran::insert($arr);
+        $sim = new SimpananController();
+        $sim->store($anggota->kode_anggota, $request->tgl_pengajuan,$request->jumlah_pinjam, $request->jumlah_pinjam);
         // User
         $user = User::find($request->input('users_id'));
         $trxstatus = new TrxStatus();

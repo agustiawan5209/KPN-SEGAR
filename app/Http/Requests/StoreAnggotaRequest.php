@@ -33,7 +33,7 @@ class StoreAnggotaRequest extends FormRequest
             'tempat_lahir'=> ['required', 'string'],
             'tgl_lahir'=> ['required', 'date'],
             'status'=> ['required', 'string'],
-            'tanggungan'=> ['string'],
+            'tanggungan'=> ['string', 'nullable'],
         ];
     }
 }

@@ -26,7 +26,12 @@
                             <p>
                                 Menyediakan Peminjaman Dalam Jumlah Bunga Yang Sedikit
                             </p>
-                            <a href="{{route('pinjamUang.create')}}" class="btn-info px-3 py-2 rounded">Daftar Jadi Anggota</a>
+                            @if (Auth::user()->anggota != null)
+
+                            <a href="{{route('dashboardUser')}}" class="btn-info px-3 py-2 rounded">Daftar Jadi Anggota</a>
+                            @else
+                            <a href="{{route('daftar-anggota')}}" class="btn-info px-3 py-2 rounded">Daftar Jadi Anggota</a>
+                            @endif
                         </div>
                     </div>
                 </div>

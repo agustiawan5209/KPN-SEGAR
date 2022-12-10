@@ -45,9 +45,6 @@
                                             <th scope="col">jumlah</th>
                                             <th scope="col">Detail</th>
                                             <th scope="col">status</th>
-
-
-
                                         </tr>
                                     </thead>
 

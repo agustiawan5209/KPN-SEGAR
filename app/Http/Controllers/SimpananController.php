@@ -34,36 +34,29 @@ class SimpananController extends Controller
      * @param  \App\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($kode_anggota, $tgl_simpanan, $jumlah_simpanan, $total)
     {
-        $this->validate($request,   [
-            'kode_simpanan' => ['required', 'string'],
-            'user_id' => ['required', 'string'],
-            'jumlah_simpanan' => ['required', 'numeric'],
-            'tgl_simpanan' => ['required', 'string'],
+        Simpanan::create([
+            'kode_simpanan' => $this->kodeSimpanan(),
+            'kode_anggota' =>$kode_anggota,
+            'jumlah_simpanan' => $jumlah_simpanan,
+            'tgl_simpanan' => $tgl_simpanan,
+            'total' => $total,
         ]);
-        $simpanan = Simpanan::where('user_id', Auth::user()->id)->get();
-        if ($simpanan->count() > 0) {
-            $jumlah_simpanan = Simpanan::where('user_id', Auth::user()->id)->sum('total');
-            Simpanan::create([
-                'kode_simpanan' => $request->kode_simpanan,
-                'user_id' => Auth::user()->id,
-                'jumlah_simpanan' => $request->jumlah_simpanan,
-                'tgl_simpanan' => $request->tgl_simpanan,
-                'total' => $request->jumlah_simpanan + $jumlah_simpanan,
-            ]);
-        } else {
-            Simpanan::create([
-                'kode_simpanan' => $request->kode_simpanan,
-                'user_id' => Auth::user()->id,
-                'jumlah_simpanan' => $request->jumlah_simpanan,
-                'tgl_simpanan' => $request->tgl_simpanan,
-                'total' => $request->jumlah_simpanan,
-            ]);
-        }
-        //
-    }
 
+    }
+    public function kodeSimpanan(){
+        $sim = Simpanan::max('kode_simpanan');
+        if($sim == null){
+            $kode = "SIM-01";
+        }else{
+            $string = "SIM-";
+            $substr = substr($sim, 4,3);
+            $substr++;
+            $kode = $string . sprintf("%03s", $substr);
+        }
+        return $kode;
+    }
     /**
      * Display the specified resource.
      *

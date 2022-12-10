@@ -77,7 +77,7 @@ class AnggotaController extends Controller
             if ($angg->status == 1) {
                 Alert::success("Info", 'Anda Sudah Terdaftar Menjadi Anggota');
             } else {
-                Alert::success("Anda Sudah Terdaftar Menjadi Anggota", 'Mohon Menunggu Konfirmasi Pihak Yang Bersangkutan');
+                Alert::success("Anda Sudah Terdaftar Menjadi Anggota", 'Mohon Menunggu Konfirmasi Pihak KPN SEGAR');
             }
         } else {
             $anggota = Anggota::create([
@@ -101,6 +101,7 @@ class AnggotaController extends Controller
                 'status' => $request->status,
                 'tanggungan' => $request->tanggungan,
             ]);
+
         }
         return redirect()->route('Customer.Index');
     }

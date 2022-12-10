@@ -1,9 +1,5 @@
 @extends('layouts.master')
 @section('content')
-    {{-- @section('title', 'pengajuan')
-@section('pengajuan', 'active')
-@section('iconss-nav', 'show') --}}
-
     <main id="main" class="main">
         <section class="section">
             <div class="row align-items-top">
@@ -11,7 +7,8 @@
                     <!-- Default Card -->
                     <div class="card">
                         <div class="card-body"><br>
-                            <center> <img src="logo/logo.jpg" class="card-img-bottom" style="width: 90px;" alt="..."><center>
+                            <center> <img src="logo/logo.jpg" class="card-img-bottom" style="width: 90px;" alt="...">
+                                <center>
                                     <h5 class="card-title">SISTEM INFORMASI KPN “SEGAR” POLITEKNIK PELAYARAN BAROMBONG</h5>
                         </div>
 
@@ -51,4 +48,5 @@
                 </div>
             </div>
         </div>
+    </main>
     @endsection

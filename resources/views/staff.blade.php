@@ -7,7 +7,7 @@
                     <!-- Default Card -->
                     <div class="card">
                         <div class="card-body"><br>
-                            <center> <img src="logo/logo.jpg" class="card-img-bottom" style="width: 90px;" alt="...">
+                            <center> <img src="{{ asset('logo/logo.jpg') }}" class="card-img-bottom" style="width: 90px;" alt="...">
                                 <center>
                                     <h5 class="card-title">SISTEM INFORMASI KPN “SEGAR” POLITEKNIK PELAYARAN BAROMBONG</h5>
                         </div>

@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pinjam;
 use App\Models\Simpanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SimpananController extends Controller
 {
+
+    public function __construct()
+    {
+        // if(Auth::user()->anggota->kode_anggota == null){
+        //     abort('403');
+        // }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,17 @@ class SimpananController extends Controller
      */
     public function index()
     {
-        //
+        $simp = Simpanan::where('kode_anggota', '=' , Auth::user()->anggota->kode_anggota)->get();
+        return view('simpanan.index',[
+            'simpan'=> $simp,
+        ]);
+    }
+    public function riwayatPinjaman()
+    {
+        $simp = Pinjam::where('kode_anggota', '=' , Auth::user()->anggota->kode_anggota)->get();
+        return view('simpanan.riwayatpinjam',[
+            'pinjam'=> $simp,
+        ]);
     }
 
     /**
@@ -34,13 +52,14 @@ class SimpananController extends Controller
      * @param  \App\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($kode_anggota, $tgl_simpanan, $jumlah_simpanan, $total)
+    public function store($kode_anggota, $tgl_simpanan, $kredit,$debit,  $total)
     {
         Simpanan::create([
             'kode_simpanan' => $this->kodeSimpanan(),
             'kode_anggota' =>$kode_anggota,
-            'jumlah_simpanan' => $jumlah_simpanan,
             'tgl_simpanan' => $tgl_simpanan,
+            'kredit' => $kredit,
+            'debit' => $debit,
             'total' => $total,
         ]);
 

@@ -137,7 +137,7 @@ class PinjamUang extends Controller
         }
         Angsuran::insert($arr);
         $sim = new SimpananController();
-        $sim->store($anggota->kode_anggota, $request->tgl_pengajuan,$request->jumlah_pinjam, $request->jumlah_pinjam);
+        $sim->store($request->kode_anggota, $request->tgl_pengajuan,$request->jumlah_pinjam , 0, $request->jumlah_pinjam);
         // User
         $user = User::find($request->input('users_id'));
         $trxstatus = new TrxStatus();
@@ -310,5 +310,28 @@ class PinjamUang extends Controller
                 ]);
             }
         }
+    }
+    public function riwayat()
+    {
+        $datasatuan = Satuan::all();
+        $inputbarang = Barang::all();
+        $akun = User::all();
+        $pinjam = Pinjam::whereNotNull('ket')
+            ->where('jenis_peminjaman', '=', 'Barang')
+            ->OrWhere('jenis_peminjaman', '=', 'Uang')
+            ->orderBy('id', 'desc')
+            ->latest()
+            ->get();
+        $status = Status::all();
+        $trxstatus = TrxStatus::all();
+        return view('pinjamuang.riwayatpinjam', [
+            'title' => 'pengajuan',
+            'datasatuan' => $datasatuan,
+            'inputbarang' => $inputbarang,
+            'status' => $status,
+            'pinjam' => $pinjam,
+            'akun' => $akun,
+            'trxstatus' => $trxstatus,
+        ]);
     }
 }

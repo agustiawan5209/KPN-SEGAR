@@ -17,6 +17,7 @@ use App\Http\Controllers\PinjamController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\SimpananController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\PromoUserController;
@@ -343,7 +344,7 @@ Route::middleware(['auth', 'check.role:1,2,3'])->group(function () {
 
     //RIWAYAT PEMINJAM ADMIN
     Route::get('/peminjaman/peminjaman', [PinjamController::class, 'peminjaman']);
-    Route::get('/peminjaman/riwayatpinjam', [PinjamController::class, 'riwayatadmin']); //
+    Route::get('/peminjaman/riwayatpinjam', [PinjamController::class, 'riwayatadmin'])->name('riwayat-peminjaman'); //
     Route::get('/detailbarangadmin/{id}', [PeminjamanController::class, 'detail_barang_admin']);
     Route::get('/detailriwayatadmin/{id}', [PeminjamanController::class, 'detail_riwayat_admin']);
     Route::get('/peminjaman/pengembalian', [PeminjamanController::class, 'pengembalianadmin']);
@@ -396,6 +397,7 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
     Route::group(['prefix' => 'PinjamUang', 'as' => 'pinjamUang.'], function () {
         Route::controller(PinjamUang::class)->group(function () {
             Route::get('/pinjamUang', 'index')->name('index');
+            Route::get('/riwayat', 'riwayat')->name('riwayat');
             Route::get('/show/{id}', 'show')->name('show');
             Route::get('edit/{id}', 'edit')->name('edit');
             Route::get('destroy/{id}', 'destroy')->name('destroy');
@@ -585,4 +587,11 @@ Route::middleware(['auth', 'check.role:3'])->group(
 Route::group(['middleware' => ['auth', 'check.role:2']], function () {
     Route::get('/KlaimPromo/{promo_id}', [PromoUserController::class, 'store'])->name('Klaim-Promo');
     Route::get('/KlaimVoucher/{voucher_id}', [VoucherUserController::class, 'store'])->name('Klaim-Voucher');
+
+    Route::group(['prefix'=> 'Simpanan', 'as'=> 'simpanan.'],function(){
+        Route::controller(SimpananController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/riwayat', 'riwayatPinjaman')->name('riwayatPinjam');
+        });
+    });
 });

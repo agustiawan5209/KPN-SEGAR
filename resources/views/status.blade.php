@@ -38,7 +38,7 @@
                                 </h5>
                                 <div
                                     class="iq-timeline0 m-0 d-flex align-items-center justify-content-between position-relative">
-                                    <ul class="list-inline p-0 m-0">
+                                    <ul class="list-inline p-0 m-0 relative box-border overflow-auto">
                                         @foreach ($trxstatus as $a)
                                             @if ($data->id == $a->pinjams_id)
                                                 <li>
@@ -59,7 +59,7 @@
                                                     <?php
                                                             foreach($akun as $p){
                                                                 if($a->users_id == $p->id){?>
-                                                    <div class="d-inline-block w-100">
+                                                    <div class="w-50 text-black">
                                                         <p>
                                                             Diverifikasi
                                                             oleh

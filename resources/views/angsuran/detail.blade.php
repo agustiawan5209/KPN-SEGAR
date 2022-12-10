@@ -14,7 +14,7 @@
                     <div class="card-body">
 
                         <center>
-                            <h5 style="align-content: center" class="card-title">Data Peminjaman
+                            <h5 style="align-content: center" class="card-title">Data Pinjaman
                                 {{ $data->kode_peminjaman }}
                             </h5>
                         </center>
@@ -70,20 +70,20 @@
                                     @endif
 
 
-                                    </x-td>
-                                    <x-td>Rp. {{ number_format($data->jumlah_pinjam, 0, 2) }}</x-td>
-                                    <x-td>Rp. {{ number_format($data->bunga, 0, 2) }}</x-td>
-                                    <x-td>
-                                        @include('status')
-                                    </x-td>
+                                </x-td>
+                                <x-td>Rp. {{ number_format($data->jumlah_pinjam, 0, 2) }}</x-td>
+                                <x-td>{{ number_format($data->bunga) }}%</x-td>
+                                <x-td>
+                                    @include('status')
+                                </x-td>
 
-                                    </tr>
+                                </tr>
                             </tbody>
                         </table>
 
                         <br>
                         <center>
-                            <h5 style="align-content: center" class="card-title">Data Peminjaman
+                            <h5 style="align-content: center" class="card-title">Data Angsuran Kode Pinjaman
                                 {{ $data->kode_peminjaman }}
                             </h5>
                         </center>
@@ -99,7 +99,9 @@
                                     <x-th scope="col">Status Angsuran </x-th>
                                     <x-th scope="col">denda </x-th>
                                     <x-th scope="col">Jumlah Denda</x-th>
-                                    <x-th scope="col">Aksi</x-th>
+                                    @can('Bendahara')
+                                        <x-th scope="col">Aksi</x-th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
@@ -138,16 +140,18 @@
                                             {!! $item->textStatus($item->status) !!}
                                         </x-td>
                                         <x-td>{{ $item->jumlah_denda }}</x-td>
-                                        <x-td>
-                                            <!--EDIT DATA JENIS ASET-->
-                                            <a href="{{ route('pinjamUang.editAngsuran', ['id' => $item->id]) }}"
-                                                type="button" class="btn btn"
-                                                style="background-color: #05b3c3; color:#FFFFFF"><i
-                                                    class="bi bi-pencil"></i></a>
-                                            <a href="{{ route('pinjamUang.destroyAngsuran', ['id' => $item->id, 'pinjam_id' => $data->id]) }}"
-                                                onclick="return confirm('Hapus Data?')" type="button"
-                                                class="btn btn-danger"><i class="bi bi-trash delete"></i></a>
-                                        </x-td>
+                                        @can('Bendahara')
+                                            <x-td>
+                                                <!--EDIT DATA JENIS ASET-->
+                                                <a href="{{ route('pinjamUang.editAngsuran', ['id' => $item->id]) }}"
+                                                    type="button" class="btn btn"
+                                                    style="background-color: #05b3c3; color:#FFFFFF"><i
+                                                        class="bi bi-pencil"></i></a>
+                                                <a href="{{ route('pinjamUang.destroyAngsuran', ['id' => $item->id, 'pinjam_id' => $data->id]) }}"
+                                                    onclick="return confirm('Hapus Data?')" type="button"
+                                                    class="btn btn-danger"><i class="bi bi-trash delete"></i></a>
+                                            </x-td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                             </tbody>

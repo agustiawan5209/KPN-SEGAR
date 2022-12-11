@@ -6,6 +6,7 @@ use App\Models\Barang;
 use App\Models\Keranjang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KeranjangController extends Controller
 {
@@ -31,13 +32,18 @@ class KeranjangController extends Controller
     public function create($barang_id, Request $request)
     {
         $barang = Barang::find($barang_id);
+        // dd(Auth::user()->id);
         $keranjang = Keranjang::create([
+            'foto'=> $barang->foto,
             'user_id'=> Auth::user()->id,
+            'nama_barang'=> $barang->nama_barang,
             'barang_id'=> $barang_id,
             'harga'=> $barang->harga,
-            'jumlah'=> $request->jumlah,
-            'total'=> $barang->harga * $request->jumlah,
+            'jumlah'=> 1,
+            'sub_total'=> $barang->harga *1,
         ]);
+        Alert::success('Info','Berhasil Di Tambahkan');
+
         return redirect()->route('keranjang.index');
     }
 
@@ -71,6 +77,6 @@ class KeranjangController extends Controller
         if(Auth::user()->id == $keranjang->user_id){
             $keranjang->delete();
         }
-        return response()->json('Berhasil');
+        return redirect()->back();
     }
 }

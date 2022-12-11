@@ -10,7 +10,7 @@ class Keranjang extends Model
     use HasFactory;
 
     protected $table = 'keranjangs';
-    protected $fillable = ['user_id'.'barang_id','foto','nama_barang','jumlah','harga','total'];
+    protected $fillable = ['user_id','barang_id','foto','nama_barang','jumlah','harga','sub_total'];
 
     public function barang(){
         return $this->belongsTo(Barang::class,'barang_id');

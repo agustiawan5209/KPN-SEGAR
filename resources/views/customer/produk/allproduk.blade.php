@@ -17,10 +17,13 @@
                                 <img src="{{ asset('fotobarang/' . $item->foto) }}" alt="" />
                                 <ul>
                                     <li class="w-icon active">
-                                        <a href="{{ route('Customer.detail', ['id' => $item->id]) }}"><i
+                                        <a href="{{ route('keranjang.create', ['barang_id' => $item->id]) }}"><i
                                                 class="icon_bag_alt"></i></a>
                                     </li>
-                                    <li class="quick-view"><a href="#">+ Detail</a></li>
+                                    <li class="quick-view">
+                                        <a
+                                        href="{{ route('Customer.detail', ['id' => $item->id]) }}">+ Detail</a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="pi-text">

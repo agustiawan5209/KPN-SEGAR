@@ -440,7 +440,7 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
     Route::group(['prefix'=> 'Keranjang', 'as'=> 'keranjang.'], function(){
         Route::controller(KeranjangController::class)->group(function(){
             Route::get('/', 'index')->name('index');
-            Route::post('/store/{barang_id}', 'create')->name('create');
+            Route::get('/store/{barang_id}', 'create')->name('create');
             Route::put('/update/{id}', 'update')->name('update');
             Route::get('/destory/{id}', 'destroy')->name('destroy');
         });

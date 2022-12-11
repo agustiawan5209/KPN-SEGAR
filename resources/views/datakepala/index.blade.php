@@ -25,20 +25,21 @@
                 <div class="card">
                     <div class="card-body  overflow-scroll">
                         <h5 class="card-title">Data </h5>
-                        {{-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p> --}}
+                        {{-- <p>Add lightweight datatables to your project wix-th using x-the <a href="https://gix-thub.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p> --}}
                         {{-- <a href="/data-Anggota/form" type="button" class="btn btn-sm"
                             style="background-color:  #012970; color:#FFFFFF">Tambah</a> --}}
-                        <!-- Table with stripped rows -->
+                        <!-- Table wix-th stripped rows -->
                         <table class="table datatable">
                             <thead>
                                 <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Username</th>
-                                    <th scope="col">Alamat</th>
-                                    <th scope="col">Telp</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Aksi</th>
+                                    <x-th scope="col">No</x-th>
+                                    <x-th scope="col">Nama</x-th>
+                                    <x-th scope="col">Username</x-th>
+                                    <x-th scope="col">Alamat</x-th>
+                                    <x-th scope="col">Telp</x-th>
+                                    <x-th scope="col">Status</x-th>
+                                    <x-th scope="col">Detail</x-th>
+                                    <x-th scope="col">Aksi</x-th>
                                 </tr>
                             </thead>
 
@@ -48,12 +49,12 @@
                                 ?>
                                 @foreach ($akun as $data)
                                     <tr>
-                                        <th> {{ $nomor++ }}</th>
-                                        <td>{{ $data->user->name }}</td>
-                                        <td>{{ $data->user->username }}</td>
-                                        <td>{{ $data->user->alamat }}</td>
-                                        <td>{{ $data->user->telephone }}</td>
-                                        <td>
+                                        <x-th> {{ $nomor++ }}</x-th>
+                                        <x-td>{{ $data->user->name }}</x-td>
+                                        <x-td>{{ $data->user->username }}</x-td>
+                                        <x-td>{{ $data->user->alamat }}</x-td>
+                                        <x-td>{{ $data->user->telephone }}</x-td>
+                                        <x-td>
                                             @if ($data->status == 1)
                                                 <a href="{{ route('ubahstatus->anggota', ['id' => $data->id]) }}"
                                                     type="button" class="btn btn-outline-primary btn-sm">Aktif</a>
@@ -61,20 +62,25 @@
                                                 <a href="{{ route('ubahstatus->anggota', ['id' => $data->id]) }}"
                                                     type="button" class="btn btn-outline-danger btn-sm">Non-Aktif</a>
                                             @endif
-                                        </td>
-                                        <td>
-                                            <a href="/data-user-Anggota/edit/{{ $data->user->id }}" type="button"
+                                        </x-td>
+                                        <x-td>
+                                            <a href="{{ route('detail-anggota', ['id'=> $data->id]) }}" type="button"
+                                                class="btn btn" style="background-color: #05c36a; color:#FFFFFF"><i
+                                                    class="bi bi-eye"></i></a>
+                                        </x-td>
+                                        <x-td>
+                                            <a href="/data-Anggota/edit/{{ $data->user->id }}" type="button"
                                                 class="btn btn" style="background-color: #05b3c3; color:#FFFFFF"><i
                                                     class="bi bi-pencil"></i></a>
-                                            <a href="/data-user-Anggota/hapus/{{ $data->user->id }}"
+                                            <a href="/data-Anggota/hapus/{{ $data->user->id }}"
                                                 onclick="return confirm('Hapus Data?')" type="button"
                                                 class="btn btn-danger"><i class="bi bi-trash delete"></i></a>
-                                        </td>
+                                        </x-td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        <!-- End Table with stripped rows -->
+                        <!-- End Table wix-th stripped rows -->
 
                     </div>
                 </div>

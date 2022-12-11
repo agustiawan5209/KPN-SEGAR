@@ -15,8 +15,11 @@ class Anggota extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    public function detail()
+    public function simpanan()
     {
-        return $this->hasOne(DetailAnggota::class, 'anggota_id', 'id');
+        return $this->hasMany(Simpanan::class, 'kode_anggota', 'kode_anggota');
+    }
+    public function pinjam(){
+        return $this->hasMany(Pinjam::class, 'kode_anggota', 'kode_anggota');
     }
 }

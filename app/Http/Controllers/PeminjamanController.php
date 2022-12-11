@@ -52,7 +52,6 @@ class PeminjamanController extends Controller
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
         $kode_peminjaman = request()->user();
-         $status = DetailPeminjaman::where('kode_peminjaman' , $kode_peminjaman)->get();
         // $akun = User::all();
         $akun = request()->user();
         $peminjaman = Peminjaman::where('users_id' , $akun->id)->latest()->get();
@@ -68,7 +67,6 @@ class PeminjamanController extends Controller
 
             "peminjaman"=> $peminjaman,
             "akun"=> $akun,
-            "status" => $status,
 
         ]);
 

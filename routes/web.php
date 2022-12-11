@@ -383,6 +383,7 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
     Route::get('Form-Anggota', [AnggotaController::class, 'form'])->name('form-anggota');
     Route::post('store-Anggota', [AnggotaController::class, 'store'])->name('store-anggota');
     Route::get('/Anggota/ubah/status/{id}', [AnggotaController::class, 'ubahstatus'])->name('ubahstatus->anggota');
+    Route::get('Detail-Anggota/{id}', [AnggotaController::class, 'show'])->name('detail-anggota');
 
     //SIDEBAR BENDAHARA /ROLE 3
     Route::get('/peminjaman/form', function () {

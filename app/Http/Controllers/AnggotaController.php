@@ -101,7 +101,6 @@ class AnggotaController extends Controller
                 'status' => $request->status,
                 'tanggungan' => $request->tanggungan,
             ]);
-
         }
         return redirect()->route('Customer.Index');
     }
@@ -112,9 +111,12 @@ class AnggotaController extends Controller
      * @param  \App\Models\Anggota  $anggota
      * @return \Illuminate\Http\Response
      */
-    public function show(Anggota $anggota)
+    public function show($id)
     {
-        //
+        $akun = Anggota::find($id);
+        return view('anggota.show', [
+            'data'=> $akun
+        ]);
     }
 
     /**

@@ -38,7 +38,7 @@
                                 </h5>
                                 <div
                                     class="iq-timeline0 m-0 d-flex align-items-center justify-content-between position-relative">
-                                    <ul class="list-inline p-0 m-0 relative box-border overflow-auto">
+                                    <ul class="list-inline p-0 m-0 relative box-border overflow-autoz">
                                         @foreach ($trxstatus as $a)
                                             @if ($data->id == $a->pinjams_id)
                                                 <li>

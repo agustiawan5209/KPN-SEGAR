@@ -22,4 +22,8 @@ class Anggota extends Model
     public function pinjam(){
         return $this->hasMany(Pinjam::class, 'kode_anggota', 'kode_anggota');
     }
+    public function detail_anggota()
+    {
+        return $this->hasOne(DetailAnggota::class, 'anggota_id', 'id');
+    }
 }

@@ -61,7 +61,11 @@
                             </tr>
                             <tr>
                                 <x-td>{{ Str::currency($data->simpanan->sum('total')) }}</x-td>
-                                <x-td>{{ $data->pinjam->count() }}</x-td>
+                                <x-td>
+                                    <a href="{{ route('listPinjaman-anggota', ['id'=> $data->user->id]) }}" class="btn btn-info">
+                                        {{ $data->pinjam->count() }}
+                                    </a>
+                                </x-td>
                                 @foreach ($data->pinjam as $pinjam)
                                     @php
                                         $ans[] = $pinjam->angsuran->count();

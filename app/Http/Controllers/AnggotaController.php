@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use App\Models\User;
+use App\Models\Pinjam;
 use App\Models\Anggota;
 use Illuminate\Support\Str;
 use App\Models\DetailAnggota;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreAnggotaRequest;
 use App\Http\Requests\UpdateAnggotaRequest;
-use Exception;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class AnggotaController extends Controller
 {
@@ -116,6 +118,23 @@ class AnggotaController extends Controller
         $akun = Anggota::find($id);
         return view('anggota.show', [
             'data'=> $akun
+        ]);
+    }
+
+
+    /**
+     * listPinjaman
+     *  Tampilan Pinjaman ANggota
+     * @param  mixed $id
+     * @return void
+     */
+    public function listPinjaman($id)
+    {
+        $user = User::find($id);
+        $pinjam = Pinjam::where('kode_anggota', $user->anggota->kode_anggota)->orWhere('users_id', $user->id)->get();
+        return view('anggota.list-pinjaman', [
+            'pinjam'=> $pinjam,
+            'user'=> $user,
         ]);
     }
 

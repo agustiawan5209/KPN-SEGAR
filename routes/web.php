@@ -437,9 +437,14 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
 
     //DATA ASET staff
     Route::get('/cekdata', [BarangController::class, 'cekdata'])->name('cekdata');
-    Route::post('/Keranjang/Peminjaman/', [KeranjangController::class, 'isiKeranjang'])->name('isi-keranjang');
-    Route::get('/keranjang', [KeranjangController::class, 'index'])->name('keranjang-index');
-    Route::get('/keranjang/update/{id}', [KeranjangController::class, 'updateCart'])->name('keranjang-update');
+    Route::group(['prefix'=> 'Keranjang', 'as'=> 'keranjang.'], function(){
+        Route::controller(KeranjangController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/store/{barang_id}', 'create')->name('create');
+            Route::put('/update/{id}', 'update')->name('update');
+            Route::get('/destory/{id}', 'destroy')->name('destroy');
+        });
+    });
     //--selesai route staff--//
 
 

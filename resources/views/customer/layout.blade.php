@@ -49,39 +49,54 @@
         </div>
         <div class="container">
             <div class="inner-header">
-                <!-- Breadcrumb Section Begin -->
-                <div class="breacrumb-section">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-7">
-                                <div class="breadcrumb-text product-more">
-                                    <a href="{{ route('Customer.Index') }}"><i class="fa fa-home"></i> Home</a>
-                                    <a href="{{ route('Customer.allproduk') }}"><i class="fa fa-shopping-bag"></i>
-                                        Produk</a>
-                                    <a href="{{ route('Customer.potongan') }}"><i class="fa fa-credit-card"></i> Promo</a>
-                                    <a href="{{ route('Customer.Index') }}"><i class="fa fa-info-circle"></i> Tentang
-                                        Kami</a>
-                                </div>
-                            </div>
-                            <div class="col-lg-5">
-                                <div class="breadcrumb-text product-more">
-                                    @cannot('Anggota')
-                                    <a href="{{ route('dashboardUser') }}"> <i class="fa fa-home"></i> Dashboard</a>
-                                    <a href="{{ route('daftar-anggota') }}"> <i class="fa fa-id-card"></i>  Daftar Anggota</a>
-                                    @endcannot
-                                    @can('Anggota')
-                                    <a href="{{ route('index-anggota') }}"> <i class="fa fa-id-card"></i>  Dashboard Anggota</a>
+                <div class="row">
 
-                                    @endcan
-                                </div>
-                            </div>
+                    <div class="col-lg-7 col-md-7"></div>
+                    <div class="col-lg-3 text-right col-md-3">
+                        <ul class="nav-right">
+                            <li class="cart-icon">
+                                Keranjang Belanja &nbsp;
+                                <a href="{{ route('keranjang.index') }}">
+                                    <i class="icon_bag_alt"></i>
+                                    {{-- <span>3</span> --}}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+          <!-- Breadcrumb Section Begin -->
+          <div class="breacrumb-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="breadcrumb-text product-more">
+                            <a href="{{ route('Customer.Index') }}"><i class="fa fa-home"></i> Home</a>
+                            <a href="{{ route('Customer.allproduk') }}"><i class="fa fa-shopping-bag"></i>
+                                Produk</a>
+                            <a href="{{ route('Customer.potongan') }}"><i class="fa fa-credit-card"></i> Promo</a>
+                            <a href="{{ route('Customer.Index') }}"><i class="fa fa-info-circle"></i> Tentang
+                                Kami</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="breadcrumb-text product-more">
+                            @cannot('Anggota')
+                            <a href="{{ route('dashboardUser') }}"> <i class="fa fa-home"></i> Dashboard</a>
+                            <a href="{{ route('daftar-anggota') }}"> <i class="fa fa-id-card"></i>  Daftar Anggota</a>
+                            @endcannot
+                            @can('Anggota')
+                            <a href="{{ route('index-anggota') }}"> <i class="fa fa-id-card"></i>  Dashboard Anggota</a>
+
+                            @endcan
                         </div>
                     </div>
                 </div>
-                <!-- Breadcrumb Section Begin -->
-
             </div>
         </div>
+        <!-- Breadcrumb Section Begin -->
+
     </header>
     <!-- Header End -->
     @include('sweetalert::alert')

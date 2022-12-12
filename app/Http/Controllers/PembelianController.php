@@ -91,7 +91,7 @@ class PembelianController extends Controller
      */
     public function store(Request $request)
     {
-        $book_id = 0;
+        $kode = 0;
         $data = Pinjam::max('kode_peminjaman');
         if ($data == null) {
             $book_id = 'BB-001';
@@ -101,9 +101,9 @@ class PembelianController extends Controller
         $urutan = (int) substr($data, 3, 3);
         $urutan++;
         if ($urutan < 10) {
-            $book_id = $huruf . '-00' . $urutan;
+            $kode = $huruf . '-00' . $urutan;
         } else {
-            $book_id = $huruf . '-' . $urutan;
+            $kode = $huruf . '-' . $urutan;
         }
 
     }

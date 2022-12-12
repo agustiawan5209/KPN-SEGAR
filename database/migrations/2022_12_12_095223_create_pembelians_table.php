@@ -16,6 +16,7 @@ class CreatePembeliansTable extends Migration
         Schema::create('pembelians', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();
+            $table->string('kode',50);
             $table->string('nama',50);
             $table->string('email',50);
             $table->string('alamat',50);

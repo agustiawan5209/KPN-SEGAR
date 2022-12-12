@@ -443,6 +443,7 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
             Route::get('/store/{barang_id}', 'create')->name('create');
             Route::get('/update/{id}', 'update')->name('update');
             Route::get('/destory/{id}', 'destroy')->name('destroy');
+            Route::get('/CekJumlahBarang/{id}', 'cekJumlahBarang')->name('cekJumlahBarang');
         });
     });
     //--selesai route staff--//

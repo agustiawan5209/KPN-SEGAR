@@ -106,15 +106,15 @@
                                 <ul>
                                     <li class="subtotal">ID Transaction <span>{{ $kode }}</span></li>
                                     <li class="subtotal mt-3">Subtotal
-                                        <span>{{ Str::currency(array_sum($sub_total)) }}</span></li>
+                                        <span id="textTotal">{{ Str::currency(array_sum($sub_total)) }}</span></li>
                                     <li class="subtotal mt-3">Pajak <span>10%</span></li>
                                     @php
                                         $pajak = array_sum($sub_total) / 10;
                                         $total_biaya = array_sum($sub_total) + $pajak;
                                     @endphp
-                                    <li class="subtotal mt-3">Total Biaya <span>{{ Str::currency($total_biaya) }}</span>
+                                    <li class="subtotal mt-3">Total Biaya <span id="textTotalBiaya">{{ Str::currency($total_biaya) }}</span>
                                     </li>
-                                    <input type="hidden" name="sub_total" value="{{ $total_biaya }}">
+                                    <input type="hidden" name="sub_total" id="SUb_total" value="{{ $total_biaya }}">
                                     <li class="subtotal mt-3">Bank Transfer <span>Mandiri</span></li>
                                     <li class="subtotal mt-3">No. Rekening <span>2208 1996 1403</span></li>
                                     <li class="subtotal mt-3">Nama Penerima <span>KPN SEGAR</span></li>

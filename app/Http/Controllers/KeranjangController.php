@@ -76,13 +76,23 @@ class KeranjangController extends Controller
     public function update(Request $request, $id)
     {
         $keranjang = Keranjang::find($id);
-        if(Auth::user()->id == $keranjang->user_id){
-            $keranjang->update([
-                'jumlah'=> $request->jumlah,
-                'sub_total'=> $request->sub_total,
-            ]);
+        $barang = Barang::find($keranjang->barang_id);
+        if($barang->jumlah >= $request->jumlah){
+            if(Auth::user()->id == $keranjang->user_id){
+                $keranjang->update([
+                    'jumlah'=> $request->jumlah,
+                    'sub_total'=> $request->sub_total,
+                ]);
+            }
         }
-        return $request;
+        $sub_total = Keranjang::sum('sub_total');
+
+        return $sub_total;
+    }
+    public function cekJumlahBarang($id){
+        $keranjang = Keranjang::find($id);
+        $barang = Barang::find($keranjang->barang_id);
+        return $barang->jumlah;
     }
 
     /**

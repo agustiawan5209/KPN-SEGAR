@@ -246,43 +246,69 @@
         quntityMain.on('click', '.qtybtn', function () {
             var $button = $(this);
             var oldValue = $button.parent().find('input').val();
-            if ($button.hasClass('inc')) {
-                var newVal = parseFloat(oldValue) + 1;
-            } else {
-                // Don't allow decrementing below zero
-                if (oldValue > 0) {
-                    var newVal = parseFloat(oldValue) - 1;
-                } else {
-                    newVal = 0;
-                }
-            }
-            $button.parent().find('input').val(newVal);
-            var harga = $(elem).find(".item-harga").val();
-            var hasil = newVal * harga;
-          $(elem).find(".total-price").val(hasil);
-            const data = {
-                'jumlah': newVal,
-                'sub_total': hasil,
-            }
-            //    Update Table Keranjang
             const keranjang_id = $(elem).find('#keranjang_id').val();
+            var jumlah = 0;
             $.ajax({
                 type: "GET",
-                url: "/Keranjang/update/"+ keranjang_id,
-                data: data,
-                contentType: 'application/json',
+                url: "/Keranjang/CekJumlahBarang/" + keranjang_id,
                 success: function (response) {
-                    console.log(response)
-                },
-                error: function (request,msg,error) {
-                    console.log(request)
-                    console.log(msg)
-                    console.log(error)
-                 }
+                    let newVal = oldValue;
+                    jumlah = response;
+                    console.log(jumlah);
+                    if ($button.hasClass('inc')) {
+                        if (newVal < parseFloat(jumlah)) {
+                            newVal = parseFloat(oldValue) + 1;
+                        } else {
+                            newVal = jumlah;
+                        }
+                    } else {
+                        // Don't allow decrementing below zero
+                        if (oldValue > 0) {
+                            newVal = parseFloat(oldValue) - 1;
+                        } else {
+                            newVal = 0;
+                        }
+                    }
+                    $button.parent().find('input').val(newVal);
+                    var harga = $(elem).find(".item-harga").val();
+                    var hasil = newVal * harga;
+                    $(elem).find(".total-price").val(hasil);
+                    const data = {
+                        'jumlah': newVal,
+                        'sub_total': hasil,
+                    }
+                    //    Update Table Keranjang
+                    $.ajax({
+                        type: "GET",
+                        url: "/Keranjang/update/" + keranjang_id,
+                        data: data,
+                        contentType: 'application/json',
+                        success: function (response) {
+                            let total = parseFloat(response);
+                            let totalBiaya = parseFloat(total + (total / 10));
+                            console.log(total)
+
+                            $("#textTotal").html(`Rp. ${rupiah(total)}`)
+                            $("#textTotalBiaya").html(`Rp. ${rupiah(totalBiaya)}`)
+                            $("#SUb_total").val(totalBiaya)
+                        },
+                        error: function (request, msg, error) {
+                            console.log(request)
+                            console.log(msg)
+                            console.log(error)
+                        }
+                    });
+                    // format number javscript
+
+
+                }
             });
+
+
         })
     })
 
-
-
+    function rupiah(angka) {
+        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(angka)
+    }
 })(jQuery);

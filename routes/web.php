@@ -98,6 +98,7 @@ Route::group(['auth', 'check.role:2'], function () {
         'edit' => 'id',
         'destroy' => 'id',
     ])->name('*', 'Pembelian.');
+    Route::get('Pembelian-success', [PembelianController::class, 'success'])->name('Pembelian.success');
     Route::get('Pembelian-Riwayat', [PembelianController::class, 'riwayat'])->name('Pembelian.riwayat');
     Route::get('Pembelian-cekdata', [PembelianController::class, 'cekdata'])->name('Pembelian.cekdata');
     Route::get('Pembelian-detail/{id}', [PembelianController::class, 'detail'])->name('Pembelian.detail');
@@ -440,7 +441,7 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
         Route::controller(KeranjangController::class)->group(function(){
             Route::get('/', 'index')->name('index');
             Route::get('/store/{barang_id}', 'create')->name('create');
-            Route::put('/update/{id}', 'update')->name('update');
+            Route::get('/update/{id}', 'update')->name('update');
             Route::get('/destory/{id}', 'destroy')->name('destroy');
         });
     });

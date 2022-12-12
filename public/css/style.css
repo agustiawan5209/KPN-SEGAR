@@ -2656,7 +2656,7 @@ ol {
 -----------------------*/
 
 .shopping-cart {
-    padding-top: 80px;
+    padding-top: 20px;
     padding-bottom: 60px;
 }
 
@@ -2671,7 +2671,7 @@ ol {
 }
 
 .cart-table table tr th {
-    font-size: 16px;
+    font-size: 13px;
     color: #252525;
     font-weight: 700;
     border-bottom: 1px solid #ebebeb;
@@ -2692,7 +2692,7 @@ ol {
 
 .cart-table table tr td.cart-pic {
     width: 20%;
-    padding-left: 20px;
+    padding-left: 10px;
 }
 
 .cart-table table tr td.cart-title {
@@ -2713,7 +2713,24 @@ ol {
     font-size: 16px;
     font-weight: 700;
 }
+.cart-table table tr td .total-price {
+    border: none;
+    outline: none;
+    width: 80%;
+    color: #6f96ff;
+    font-size: 16px;
+    font-weight: 700;
 
+}
+.cart-table table tr td .item-harga {
+    border: none;
+    outline: none;
+    width: 80%;
+    color: #6f96ff;
+    font-size: 16px;
+    font-weight: 700;
+
+}
 .cart-table table tr td.qua-col {
     width: 16%;
 }
@@ -2869,6 +2886,7 @@ ol {
 }
 
 .proceed-checkout .proceed-btn {
+    width: 100%;
     font-size: 14px;
     font-weight: 700;
     color: #ffffff;

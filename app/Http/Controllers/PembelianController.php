@@ -12,6 +12,8 @@ use App\Models\JenisBarang;
 use Illuminate\Http\Request;
 use App\Models\DataJenisAset;
 use App\Models\DataAsalPerolehan;
+use App\Models\DetailPembelian;
+use App\Models\Keranjang;
 use App\Models\Pembelian;
 use App\Notifications\NotifPinjam;
 use Illuminate\Support\Facades\Auth;
@@ -84,6 +86,20 @@ class PembelianController extends Controller
         ]);
     }
 
+    public function kodeTransaksi(){
+        $data = Pembelian::max('kode');
+        if ($data == null) {
+            $kode = '#KP001';
+        } else {
+            // dd($data);
+            $huruf = '#KP';
+            $urutan = (int) substr($data, 2, 3);
+            $urutan++;
+            $kode = $huruf . sprintf('%03s', $urutan);
+        }
+        return $kode;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -95,26 +111,19 @@ class PembelianController extends Controller
         $this->validate($request,  [
             'nama' => ['required', 'string'],
             'alamat' => ['required', 'string'],
-            'no_hp' => ['required', 'numeric', 'max:20'],
+            'no_hp' => ['required', 'numeric', 'min:12'],
             'email' => ['required', 'email'],
             'bukti'=> ['required', 'image'],
             'tgl_transaksi'=> ['required', 'date'],
         ]);
-        dd($request->all());
-        $kode = '';
-        $data = Pembelian::max('kode');
-        if ($data == null) {
-            $kode = 'BB-001';
-        } else {
-            // dd($data);
-            $huruf = 'BB';
-            $urutan = (int) substr($data, 3, 3);
-            $urutan++;
-            $kode = $huruf . sprintf('%03s', $urutan);
-        }
+        $kode = $this->kodeTransaksi();
+        dd($request->all(), $kode);
+
         $file = $request->bukti->getClientOriginalName();
         $request->bukti->move('bukti_pembelian/', $file);
         $nama_bukti = $file;
+        $potongan = 0;
+        $sub_total = $request->sub_total;
         $pembelian = Pembelian::create([
             'kode'=> $kode,
             'nama' => $request->nama,
@@ -124,8 +133,26 @@ class PembelianController extends Controller
             'bank'=> $request->bank,
             'tgl_transaksi'=> $request->tgl_transaksi,
             'bukti'=> $nama_bukti,
+            'potongan'=> $potongan,
+            'sub_total'=> $sub_total,
         ]);
-
+        $keranjang = $request->keranjang;
+        $jumlah = $request->jumlah;
+        for ($i=0; $i < count($keranjang); $i++) {
+            $barang_keranjang = Keranjang::find($keranjang[$i]);
+            $barang = Barang::find($barang_keranjang->barang->id);
+            $potongan = 0;
+            $total = 0;
+            DetailPembelian::create([
+                'pembelian_id'=> $pembelian->id,
+                'nama_barang'=>$barang->nama_barang,
+                'harga'=>$barang->harga,
+                'jumlah'=>$jumlah[$i],
+                'potongan'=> $potongan,
+                'total'=> $total,
+            ]);
+        }
+        return redirect()->route('Pembelian.success');
     }
 
     public function success(){

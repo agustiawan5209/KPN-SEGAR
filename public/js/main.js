@@ -238,23 +238,51 @@
     /*-------------------
 		Quantity change
 	--------------------- */
-    var proQty = $('.pro-qty');
-    proQty.prepend('<span class="dec qtybtn">-</span>');
-    proQty.append('<span class="inc qtybtn">+</span>');
-    proQty.on('click', '.qtybtn', function () {
-        var $button = $(this);
-        var oldValue = $button.parent().find('input').val();
-        if ($button.hasClass('inc')) {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
+    var cartmain = $(".itemcart").each(function (index, elem) {
+        var input = $(this).find('input')
+        var quntityMain = $(elem).find('.qua-col .pro-qty')
+        quntityMain.prepend('<span class="dec qtybtn">-</span>');
+        quntityMain.append('<span class="inc qtybtn">+</span>');
+        quntityMain.on('click', '.qtybtn', function () {
+            var $button = $(this);
+            var oldValue = $button.parent().find('input').val();
+            if ($button.hasClass('inc')) {
+                var newVal = parseFloat(oldValue) + 1;
             } else {
-                newVal = 0;
+                // Don't allow decrementing below zero
+                if (oldValue > 0) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 0;
+                }
             }
-        }
-        $button.parent().find('input').val(newVal);
-    });
+            $button.parent().find('input').val(newVal);
+            var harga = $(elem).find(".item-harga").val();
+            var hasil = newVal * harga;
+          $(elem).find(".total-price").val(hasil);
+            const data = {
+                'jumlah': newVal,
+                'sub_total': hasil,
+            }
+            //    Update Table Keranjang
+            const keranjang_id = $(elem).find('#keranjang_id').val();
+            $.ajax({
+                type: "GET",
+                url: "/Keranjang/update/"+ keranjang_id,
+                data: data,
+                contentType: 'application/json',
+                success: function (response) {
+                    console.log(response)
+                },
+                error: function (request,msg,error) {
+                    console.log(request)
+                    console.log(msg)
+                    console.log(error)
+                 }
+            });
+        })
+    })
+
+
 
 })(jQuery);

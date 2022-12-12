@@ -96,7 +96,6 @@ Route::group(['auth', 'check.role:2'], function () {
     ])->name('*', 'jenis-bunga');
     Route::resource('Pembelian', PembelianController::class)->parameters([
         'edit' => 'id',
-        'store' => 'id',
         'destroy' => 'id',
     ])->name('*', 'Pembelian.');
     Route::get('Pembelian-Riwayat', [PembelianController::class, 'riwayat'])->name('Pembelian.riwayat');

@@ -12,6 +12,7 @@ use App\Models\JenisBarang;
 use Illuminate\Http\Request;
 use App\Models\DataJenisAset;
 use App\Models\DataAsalPerolehan;
+use App\Models\Pembelian;
 use App\Notifications\NotifPinjam;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -32,8 +33,8 @@ class PembelianController extends Controller
         $inputbarang = Barang::all();
         $akun = User::all();
         $pinjam = Pinjam::whereNull('ket')
-        ->where('jenis_peminjaman', '=', "Beli")
-        ->get();
+            ->where('jenis_peminjaman', '=', "Beli")
+            ->get();
         $status = Status::all();
         $trxstatus = TrxStatus::all();
         return view('pembelian.index', [
@@ -64,9 +65,9 @@ class PembelianController extends Controller
         $inputbarang = Barang::all();
         $akun = User::all();
         $pinjam = Pinjam::whereNull('ket')
-        ->whereNotNull('barangs_id')
-        ->where('jenis_peminjaman', '=', 'Beli')
-        ->where('users_id', Auth::user()->id)->get();
+            ->whereNotNull('barangs_id')
+            ->where('jenis_peminjaman', '=', 'Beli')
+            ->where('users_id', Auth::user()->id)->get();
         $status = Status::all();
         $trxstatus = TrxStatus::all();
         return view('pembelian.form', [
@@ -91,21 +92,44 @@ class PembelianController extends Controller
      */
     public function store(Request $request)
     {
-        $kode = 0;
-        $data = Pinjam::max('kode_peminjaman');
+        $this->validate($request,  [
+            'nama' => ['required', 'string'],
+            'alamat' => ['required', 'string'],
+            'no_hp' => ['required', 'numeric', 'max:20'],
+            'email' => ['required', 'email'],
+            'bukti'=> ['required', 'image'],
+            'tgl_transaksi'=> ['required', 'date'],
+        ]);
+        dd($request->all());
+        $kode = '';
+        $data = Pembelian::max('kode');
         if ($data == null) {
-            $book_id = 'BB-001';
-        }
-        // dd($data);
-        $huruf = 'BB';
-        $urutan = (int) substr($data, 3, 3);
-        $urutan++;
-        if ($urutan < 10) {
-            $kode = $huruf . '-00' . $urutan;
+            $kode = 'BB-001';
         } else {
-            $kode = $huruf . '-' . $urutan;
+            // dd($data);
+            $huruf = 'BB';
+            $urutan = (int) substr($data, 3, 3);
+            $urutan++;
+            $kode = $huruf . sprintf('%03s', $urutan);
         }
+        $file = $request->bukti->getClientOriginalName();
+        $request->bukti->move('bukti_pembelian/', $file);
+        $nama_bukti = $file;
+        $pembelian = Pembelian::create([
+            'kode'=> $kode,
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+            'email' => $request->email,
+            'bank'=> $request->bank,
+            'tgl_transaksi'=> $request->tgl_transaksi,
+            'bukti'=> $nama_bukti,
+        ]);
 
+    }
+
+    public function success(){
+        return view('customer.keranjang.success');
     }
 
     /**

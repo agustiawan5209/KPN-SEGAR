@@ -58,7 +58,10 @@
                                 Keranjang Belanja &nbsp;
                                 <a href="{{ route('keranjang.index') }}">
                                     <i class="icon_bag_alt"></i>
-                                    {{-- <span>3</span> --}}
+                                    @php
+                                        $keranjang = \App\Models\Keranjang::where('user_id', Auth::user()->id)->get();
+                                    @endphp
+                                    <span>{{ $keranjang->count() }}</span>
                                 </a>
                             </li>
                         </ul>

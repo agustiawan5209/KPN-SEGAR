@@ -15,6 +15,12 @@ class CreateDetailPembeliansTable extends Migration
     {
         Schema::create('detail_pembelians', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("pembelian_id")->constrained('pembelians')->onDelete('cascade');
+            $table->string('nama_barang');
+            $table->string('harga');
+            $table->string('jumlah');
+            $table->string('potongan');
+            $table->string('total');
             $table->timestamps();
         });
     }

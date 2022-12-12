@@ -105,49 +105,7 @@ class PembelianController extends Controller
         } else {
             $book_id = $huruf . '-' . $urutan;
         }
-        $b = Barang::where('id', $request->barangs_id)->first();
-        if ($b->jumlah < $request->jumlah_pinjam) {
-            return redirect()
-                ->back()
-                ->with('warning', 'Maaf jumlah barang yang anda pinjam melebihi dari sisa stok yang ada');
-        } else {
-            $pinjam = new Pinjam();
-            $pinjam->kode_peminjaman = $book_id;
-            $pinjam->barangs_id = $request->barangs_id;
-            $pinjam->users_id = $request->users_id;
-            $pinjam->nama_peminjam = $request->nama_peminjam;
-            $pinjam->jenis_peminjaman = "Beli";
-            $pinjam->tujuan = $request->tujuan;
-            $pinjam->tgl_pengajuan = $request->tgl_pengajuan;
-            // $pinjam->tgl_pinjam = $request->tgl_pengajuan;
-            $pinjam->tgl_kembali = $request->tgl_kembali;
-            $pinjam->jumlah_pinjam = $request->total;
 
-            $pinjam->save();
-            $trxstatus = new TrxStatus();
-            $trxstatus->kode_peminjaman = $book_id;
-            $trxstatus->users_id = $request->input('users_id');
-            $trxstatus->pinjams_id = $pinjam->id;
-            $trxstatus->status_id = 5;
-            $trxstatus->save();
-            // User
-            $user = User::find($request->input('users_id'));
-
-            // Barang
-            $brg = Barang::where('id', $request->barangs_id)->first();
-            // dd(intval($brg->jumlah - $request->jumlah_pinjam));
-            $brg->update([
-                'jumlah' => intval($brg->jumlah - $request->jumlah_pinjam),
-            ]);
-            Notification::send($pinjam, new NotifPinjam([
-                'nama' => $user->name,
-                'barang' => $brg->kode . ',' . $brg->nama_barang . ', ',
-                'jumlah' => $request->jumlah_pinjam,
-            ]));
-            return redirect()
-                ->route('Pembelian.index')
-                ->with('success', 'Pengajuan Peminjaman Sukses');
-        }
     }
 
     /**

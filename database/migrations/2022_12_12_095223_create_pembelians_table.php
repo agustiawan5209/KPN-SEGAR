@@ -21,6 +21,8 @@ class CreatePembeliansTable extends Migration
             $table->string('alamat',50);
             $table->string('no_hp',50);
             $table->string('bank');
+            $table->date('tgl_transaksi');
+            $table->string('bukti', 200);
             $table->string('sub_total', 20);
             $table->timestamps();
         });

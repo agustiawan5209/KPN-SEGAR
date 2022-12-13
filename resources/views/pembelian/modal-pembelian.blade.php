@@ -33,7 +33,7 @@
                                                 Kode Pembelian
                                             </div>
                                             <div class="col-lg-7 col-md-8">
-                                                :{{ $data->kode_peminjaman }}
+                                                :{{ $data->kode }}
                                             </div>
                                         </div>
 
@@ -41,42 +41,45 @@
                                             <div class="col-lg-5 col-md-4 label">
                                                 Nama Pembeli </div>
                                             <div class="col-lg-7 col-md-8">
-                                                :{{ $data->nama_peminjam }}
+                                                :{{ $data->nama }}
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-5 col-md-4 label">
-                                                jenis Pembelian
-                                            </div>
+                                                email Pembeli </div>
                                             <div class="col-lg-7 col-md-8">
-                                                :{{ $data->jenis_peminjaman }}
+                                                :{{ $data->email }}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-5 col-md-4 label">
+                                                alamat Pembeli </div>
+                                            <div class="col-lg-7 col-md-8">
+                                                :{{ $data->alamat }}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-5 col-md-4 label">
+                                                Nomor Pembeli </div>
+                                            <div class="col-lg-7 col-md-8">
+                                                :{{ $data->no_hp }}
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-5 col-md-4 label">
                                                 Tanggal Pembelian </div>
                                             <div class="col-lg-7 col-md-8">
-                                                :{{ $data->tgl_pengajuan }}
+                                                :{{ $data->tgl_transaksi }}
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-lg-5 col-md-4 label">
-                                              Detail  Barang </div>
-                                            <div class="col-lg-7 col-md-8">
-                                                :
-                                                {{ $data->barangs->kode }}
-                                                {{ $data->barangs->jenis_barangs->jenis_barang }}
-                                                {{ $data->barangs->nama_barang }}
-                                            </div>
-                                        </div>
 
                                         <div class="row">
                                             <div class="col-lg-5 col-md-4 label">
                                                 Jumlah Pembelian </div>
                                             <div class="col-lg-7 col-md-8">
                                                 :
-                                                {{ $data->jumlah_pinjam }}
+                                                {{ Str::currency($data->sub_total) }}
                                             </div>
                                         </div>
 

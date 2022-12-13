@@ -102,6 +102,9 @@ Route::group(['auth', 'check.role:2'], function () {
     Route::get('Pembelian-Riwayat', [PembelianController::class, 'riwayat'])->name('Pembelian.riwayat');
     Route::get('Pembelian-cekdata', [PembelianController::class, 'cekdata'])->name('Pembelian.cekdata');
     Route::get('Pembelian-detail/{id}', [PembelianController::class, 'detail'])->name('Pembelian.detail');
+    Route::get('Pembelian-Konfirmasi/{id}', [PembelianController::class, 'KonfirmasiPembelian'])->name('Pembelian.Konfirmasi');
+    Route::post('Pembelian-Tolak/{id}', [PembelianController::class, 'TolakPembelian'])->name('Pembelian.Tolak');
+    Route::get('Pembelian-status/{id}', [PembelianController::class, 'status'])->name('Pembelian.status');
     Route::get('RiwayatPembelian', [PembelianController::class, 'dataPembelian'])->name('Pembelian.data');
 });
 

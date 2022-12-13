@@ -644,6 +644,7 @@ class ComposerStaticInit43dc8076c6bc5017979feabe1ecad41f
         'App\\Models\\Simpanan' => __DIR__ . '/../..' . '/app/Models/Simpanan.php',
         'App\\Models\\Status' => __DIR__ . '/../..' . '/app/Models/Status.php',
         'App\\Models\\StatusKonfirmasi' => __DIR__ . '/../..' . '/app/Models/StatusKonfirmasi.php',
+        'App\\Models\\StatusPembelian' => __DIR__ . '/../..' . '/app/Models/StatusPembelian.php',
         'App\\Models\\StatusPeminjaman' => __DIR__ . '/../..' . '/app/Models/StatusPeminjaman.php',
         'App\\Models\\StatusUser' => __DIR__ . '/../..' . '/app/Models/StatusUser.php',
         'App\\Models\\Tahun' => __DIR__ . '/../..' . '/app/Models/Tahun.php',

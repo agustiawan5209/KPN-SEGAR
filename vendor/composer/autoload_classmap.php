@@ -108,6 +108,7 @@ return array(
     'App\\Models\\Simpanan' => $baseDir . '/app/Models/Simpanan.php',
     'App\\Models\\Status' => $baseDir . '/app/Models/Status.php',
     'App\\Models\\StatusKonfirmasi' => $baseDir . '/app/Models/StatusKonfirmasi.php',
+    'App\\Models\\StatusPembelian' => $baseDir . '/app/Models/StatusPembelian.php',
     'App\\Models\\StatusPeminjaman' => $baseDir . '/app/Models/StatusPeminjaman.php',
     'App\\Models\\StatusUser' => $baseDir . '/app/Models/StatusUser.php',
     'App\\Models\\Tahun' => $baseDir . '/app/Models/Tahun.php',

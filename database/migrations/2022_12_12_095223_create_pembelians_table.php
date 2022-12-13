@@ -25,6 +25,7 @@ class CreatePembeliansTable extends Migration
             $table->date('tgl_transaksi');
             $table->string('bukti', 200);
             $table->string('sub_total', 20);
+            $table->integer('status');
             $table->timestamps();
         });
     }

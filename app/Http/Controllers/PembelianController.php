@@ -3,21 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Promo;
 use App\Models\Barang;
 use App\Models\Pinjam;
 use App\Models\Satuan;
 use App\Models\Status;
+use App\Models\Keranjang;
+use App\Models\Pembelian;
+use App\Models\PromoUser;
 use App\Models\TrxStatus;
 use App\Models\JenisBarang;
 use Illuminate\Http\Request;
 use App\Models\DataJenisAset;
-use App\Models\DataAsalPerolehan;
 use App\Models\DetailPembelian;
-use App\Models\Keranjang;
-use App\Models\Pembelian;
+use App\Models\DataAsalPerolehan;
+use App\Models\StatusPembelian;
+use App\Models\Voucher;
+use App\Models\VoucherUser;
 use App\Notifications\NotifPinjam;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PembelianController extends Controller
 {
@@ -34,9 +40,11 @@ class PembelianController extends Controller
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
         $akun = User::all();
-        $pinjam = Pinjam::whereNull('ket')
-            ->where('jenis_peminjaman', '=', "Beli")
-            ->get();
+        if(Auth::user()->roles_id == 2){
+            $pinjam = Pembelian::where('user_id', Auth::user()->id)->orderBy('status', 'asc')->get();
+        }else{
+            $pinjam = Pembelian::orderBy('status', 'asc')->get();
+        }
         $status = Status::all();
         $trxstatus = TrxStatus::all();
         return view('pembelian.index', [
@@ -86,20 +94,73 @@ class PembelianController extends Controller
         ]);
     }
 
-    public function kodeTransaksi(){
+    public function kodeTransaksi()
+    {
         $data = Pembelian::max('kode');
         if ($data == null) {
             $kode = '#KP001';
         } else {
             // dd($data);
             $huruf = '#KP';
-            $urutan = (int) substr($data, 2, 3);
+            $urutan = (int) substr($data, 3,3);
             $urutan++;
             $kode = $huruf . sprintf('%03s', $urutan);
         }
         return $kode;
     }
 
+    /**
+     * CekPromo
+     * Pengecakan Jika user memiliki promo
+     * @param  mixed $harga
+     */
+    public function CekPromo($harga = 0)
+    {
+        $potongan = array(0);
+        $user_id = Auth::user()->id;
+        $promo_user = PromoUser::where(['user_id' => $user_id, 'status' => '1'])->get();
+        if ($promo_user->count() > 0) {
+            foreach ($promo_user as $item) {
+                $promo = Promo::find($item->promo_id);
+                if ($promo->jenis_promo == 1) {
+                    $potongan[] = $promo->potongan;
+                } else if ($promo->jenis_promo == 2) {
+                    $potongan[] = ($promo->potongan / 100) * $harga;
+                }
+                PromoUser::find($item->id)->update(['status' => '2']);
+            }
+        }
+        return array_sum($potongan);
+    }
+    /**
+     * CekVoucher
+     * Cek Voucher User Jika Ada
+     * @param  mixed $harga
+     */
+    public function CekVoucher($harga)
+    {
+        $user_id = Auth::user()->id;
+        $voucher_user = VoucherUser::where(['user_id' => $user_id, 'status' => '1'])->get();
+        $potongan = array(0);
+        if ($voucher_user->count() > 0) {
+            foreach ($voucher_user as $item) {
+                $voucher = Voucher::find($item->voucher_id);
+                $potongan[] = ($voucher->potongan / 100) * $harga;
+                VoucherUser::find($item->id)->update(['status' => '2']);
+            }
+        }
+        return array_sum($potongan);
+    }
+    public function diskon($barang_id, $harga)
+    {
+        $diskon = 0;
+        $potongan = 0;
+        $barang = Barang::find($barang_id);
+        $diskon = $barang->diskon->diskon / 100;
+        $potongan = $harga * $diskon;
+
+        return $potongan;
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -113,50 +174,88 @@ class PembelianController extends Controller
             'alamat' => ['required', 'string'],
             'no_hp' => ['required', 'numeric', 'min:12'],
             'email' => ['required', 'email'],
-            'bukti'=> ['required', 'image'],
-            'tgl_transaksi'=> ['required', 'date'],
+            'bukti' => ['required', 'image'],
+            'tgl_transaksi' => ['required', 'date'],
         ]);
         $kode = $this->kodeTransaksi();
-        dd($request->all(), $kode);
 
         $file = $request->bukti->getClientOriginalName();
         $request->bukti->move('bukti_pembelian/', $file);
         $nama_bukti = $file;
-        $potongan = 0;
-        $sub_total = $request->sub_total;
+        $promo = $this->CekPromo($request->sub_total);
+        $voucher = $this->CekVoucher($request->sub_total);
+        $potongan =   $promo + $voucher;
+        $sub_total = abs($request->sub_total - $potongan);
         $pembelian = Pembelian::create([
-            'kode'=> $kode,
+            'kode' => $kode,
+            'user_id' => Auth::user()->id,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'no_hp' => $request->no_hp,
             'email' => $request->email,
-            'bank'=> $request->bank,
-            'tgl_transaksi'=> $request->tgl_transaksi,
-            'bukti'=> $nama_bukti,
-            'potongan'=> $potongan,
-            'sub_total'=> $sub_total,
+            'bank' => "Mandiri",
+            'tgl_transaksi' => $request->tgl_transaksi,
+            'bukti' => $nama_bukti,
+            'potongan' => $potongan,
+            'sub_total' => $sub_total,
         ]);
         $keranjang = $request->keranjang;
         $jumlah = $request->jumlah;
-        for ($i=0; $i < count($keranjang); $i++) {
+        for ($i = 0; $i < count($keranjang); $i++) {
             $barang_keranjang = Keranjang::find($keranjang[$i]);
             $barang = Barang::find($barang_keranjang->barang->id);
-            $potongan = 0;
-            $total = 0;
+            $potongan = $barang->diskon == null ? 0 : $barang->diskon->diskon;
+            $total = ($jumlah[$i] * $barang->harga) - $potongan;
             DetailPembelian::create([
-                'pembelian_id'=> $pembelian->id,
-                'nama_barang'=>$barang->nama_barang,
-                'harga'=>$barang->harga,
-                'jumlah'=>$jumlah[$i],
-                'potongan'=> $potongan,
-                'total'=> $total,
+                'pembelian_id' => $pembelian->id,
+                'nama_barang' => $barang->nama_barang,
+                'harga' => $barang->harga,
+                'jumlah' => $jumlah[$i],
+                'potongan' => $potongan,
+                'total' => $total,
             ]);
+            Keranjang::find($keranjang[$i])->delete();
         }
         return redirect()->route('Pembelian.success');
     }
 
-    public function success(){
+    public function success()
+    {
         return view('customer.keranjang.success');
+    }
+    public function konfirmasiPembelian($id, Request $request){
+        $pembelian = Pembelian::find($id);
+        $status = StatusPembelian::create([
+            'pembelian_id'=> $pembelian->id,
+            'status'=> $request->status,
+            'ket'=> $request->ket,
+        ]);
+        $pembelian->update(['status'=> '1']);
+        Alert::success('Berhasil Di Konfirmasi');
+        return redirect()->back();
+    }
+    public function StatusPembelian($id, Request $request){
+        $pembelian = Pembelian::find($id);
+        $status = StatusPembelian::create([
+            'pembelian_id'=> $pembelian->id,
+            'status'=> $request->status,
+            'ket'=> $request->ket,
+        ]);
+        Alert::success('Berhasil Di Update');
+
+        return redirect()->back();
+
+    }
+    public function tolakPembelian($id, Request $request){
+        $pembelian = Pembelian::find($id);
+        $status = StatusPembelian::create([
+            'pembelian_id'=> $pembelian->id,
+            'status'=> $request->status,
+            'ket'=> $request->ket,
+        ]);
+        $pembelian->update(['status'=> '2']);
+        Alert::error('Pembelian Di Tolak');
+        return redirect()->back();
     }
 
     /**
@@ -188,26 +287,9 @@ class PembelianController extends Controller
     }
     public function detail($id)
     {
-        $dataasalperolehan = DataAsalPerolehan::all();
-        $datajenisaset = DataJenisAset::all();
-        $jenisbarang = JenisBarang::all();
-        $datasatuan = Satuan::all();
-        $inputbarang = Barang::all();
-        $akun = User::all();
-        $pinjam = Pinjam::whereNull('ket')->whereNotNull('barangs_id')->where('users_id', Auth::user()->id)->get();
-        $status = Status::all();
-        $trxstatus = TrxStatus::all();
+        $pembelian = Pembelian::find($id);
         return view('pembelian.edit', [
-            'title' => 'pengajuan',
-            'jenisbarang' => $jenisbarang,
-            'jenisaset' => $datajenisaset,
-            'dataasalperolehan' => $dataasalperolehan,
-            'datasatuan' => $datasatuan,
-            'inputbarang' => $inputbarang,
-            'status' => $status,
-            'pinjam' => $pinjam,
-            'akun' => $akun,
-            'trxstatus' => $trxstatus,
+            'pembelian'=> $pembelian,
         ]);
     }
 

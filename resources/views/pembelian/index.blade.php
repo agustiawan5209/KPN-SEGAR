@@ -37,15 +37,15 @@
                                 <table class="table datatable">
                                     <thead>
                                         <tr>
-                                            <th scope="col sm">No</th>
-                                            <th scope="col">Kode </th>
-                                            <th scope="col">Nama </th>
-                                            <th scope="col">Tgl Pembelian</th>
-                                            <th scope="col">Total </th>
-                                            <th scope="col">Detail</th>
-                                            <th scope="col">Status</th>
-                                            @can ('Pengurus',)
-                                                <th scope="col">Aksi</th>
+                                            <x-th scope="col sm">No</x-th>
+                                            <x-th scope="col">Kode </x-th>
+                                            <x-th scope="col">Nama </x-th>
+                                            <x-th scope="col">Tgl Pembelian</x-th>
+                                            <x-th scope="col">Total </x-th>
+                                            <x-th scope="col">Detail</x-th>
+                                            <x-th scope="col">Status</x-th>
+                                            @can('Pengurus')
+                                            <x-th scope="col">Aksi</x-th>
                                             @endcan
                                         </tr>
                                     </thead>
@@ -56,202 +56,240 @@
                                         ?>
                                         @foreach ($pinjam as $data)
                                             <tr role="row">
-                                                <td class=" border">{{ $loop->iteration }}</td>
-                                                <td class=" border"> {{ $data->kode_peminjaman }}</td>
-                                                <td class=" border"> {{ $data->nama_peminjam }}</td>
-                                                <td class=" border">
-                                                    <?php echo date('d F Y', strtotime($data->tgl_pengajuan)); ?>
-                                                </td>
-                                                <td class=" border">
-                                                    @if ($data->barangs_id == null)
-                                                        Rp {{ number_format($data->jumlah_pinjam) }}
-                                                    @else
-                                                        {{ $data->jumlah_pinjam }}
+                                                <x-td class=" border">{{ $loop->iteration }}</x-td>
+                                                <x-td class=" border"> {{ $data->kode }}</x-td>
+                                                <x-td class=" border"> {{ $data->nama }}</x-td>
+                                                <x-td class=" border">
+                                                    {{ $data->tgl_transaksi }}
+                                                </x-td>
+                                                <x-td class=" border">
+                                                    {{ Str::currency($data->sub_total) }}
+                                                </x-td>
+                                                <x-td class=" border">
+                                                    <a href="{{ route('Pembelian.detail', ['id'=> $data->id]) }}" class="btn btn-info"><i class='bi bi-eye-fill'></i></a>
+                                                </x-td>
+
+                                                <x-td>
+                                                    @if ($data->status == 0)
+                                                        <span class=" badge bg-danger">Belum Di konfirmasi</span>
+                                                    @elseif($data->status == 1)
+                                                        <span class="badge bg-primary">Telah Dikonfirmasi</span>
+                                                    @elseif($data->status == 2)
+                                                        <span class="badge bg-warning">Telah Di Tolak</span>
                                                     @endif
-                                                </td>
-                                                @if ($data->jenis_peminjaman == 'Beli')
-                                                    <td class=" border">
-                                                        @include('pembelian.modal-pembelian')
-                                                    </td>
-                                                @endif
+                                                </x-td>
 
+                                                @can('Pengurus')
+                                                    <x-td>
+                                                        <!--STATUS BARANG DIAMBIL-->
+                                                        @php
+                                                            $statuss = App\Models\StatusPembelian::where('pembelian_id', $data->id)
+                                                                ->orderBy('id', 'desc') //status dimana id nya terakhir dnegan kdoe tersebut
+                                                                ->first();
+                                                        @endphp
+                                                        @if ($data->status == 1 && Auth::user()->roles_id == 1)
+                                                            <button type="button" class="btn btn-info btn-sm"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#statuspembelian{{ $data->id }}">
+                                                                <i class="bi bi-person-check-fill"></i>
+                                                            </button>
 
-                                                <td class=" border">
-                                                    @include('status')
-                                                </td>
+                                                            <div class="modal fade"
+                                                                id="statuspembelian{{ $data->id }}" tabindex="-1">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
 
-                                               @can('Pengurus')
-                                               <td>
-                                                <!--STATUS BARANG DIAMBIL-->
-                                                @php
-                                                    $statuss = App\Models\Trxstatus::where('kode_peminjaman', $data->kode_peminjaman)
-                                                        ->orderBy('id', 'desc') //status dimana id nya terakhir dnegan kdoe tersebut
-                                                        ->first();
-                                                    $pinjam_status = App\Models\Pinjam::where('kode_peminjaman', '=', $statuss->kode_peminjaman)->first();
-                                                @endphp
-                                                @if ($statuss->status_id == 3 && Auth::user()->roles_id == 2)
-                                                    <button type="button" class="btn btn-info btn-sm"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#statuspengembalian{{ $data->id }}">
-                                                        <i class="bi bi-person-check-fill"></i>
-                                                    </button>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form
+                                                                                action="{{ route('Pembelian.status', ['id' => $data->id]) }}}}"
+                                                                                method="GET"
+                                                                                enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <div class="row mb-3">
+                                                                                    <center>
+                                                                                        <h5 style="align-content: center"
+                                                                                            class="card-title">Keterangan
+                                                                                            Pengiriman
+                                                                                        </h5>
+                                                                                        <center>
+                                                                                            <div class="col-sm-10">
+                                                                                                <input type="text"
+                                                                                                    id="validationTooltip03"
+                                                                                                    name="status"
+                                                                                                    class="form-control"
+                                                                                                    placeholder="Isikan Status Pembelian">
+                                                                                                <div
+                                                                                                    class="invalid-feedback">
+                                                                                                    Harus di isi
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-10">
+                                                                                                <input type="text"
+                                                                                                    id="validationTooltip03"
+                                                                                                    name="ket"
+                                                                                                    class="form-control"
+                                                                                                    placeholder="Isikan keterangan">
+                                                                                                <div
+                                                                                                    class="invalid-feedback">
+                                                                                                    Harus di isi
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <br>
+                                                                                            <button type="submit"
+                                                                                                class="btn btn btn-sm"
+                                                                                                style=" float :right; background-color:   #012970; color:#FFFFFF">submit</button>
 
-                                                    <div class="modal fade"
-                                                        id="statuspengembalian{{ $data->id }}" tabindex="-1">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
+                                                                                </div>
 
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form
-                                                                        action="/mengembalikan/{{ $data->id }}"
-                                                                        method="GET"
-                                                                        enctype="multipart/form-data">
-                                                                        @csrf
-                                                                        <input type="text" name="kode_peminjaman"
-                                                                            value={{ $data->kode_peminjaman }}
-                                                                            hidden>
-                                                                        <input type="hidden" name="users_id"
-                                                                            value={{ Auth::user()->id }}>
-                                                                        <input type="hidden" name="status_id"
-                                                                            value="4">
-                                                                        <div class="row mb-3">
-                                                                            <center>
-                                                                                <h5 style="align-content: center"
-                                                                                    class="card-title">Keterangan
-                                                                                    Pengiriman
-                                                                                </h5>
-                                                                                <center>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text"
-                                                                                            id="validationTooltip03"
-                                                                                            name="ket"
-                                                                                            class="form-control"
-                                                                                            placeholder="Isikan keterangan">
-                                                                                        <div
-                                                                                            class="invalid-feedback">
-                                                                                            Harus di isi
-                                                                                        </div>
-                                                                                    </div><br>
-
-
-                                                                                    <button type="submit"
-                                                                                        value=""
-                                                                                        class="btn btn btn-sm"
-                                                                                        style=" float :right; background-color:   #012970; color:#FFFFFF">submit</button>
-
+                                                                            </form>
                                                                         </div>
 
-                                                                    </form>
+                                                                    </div>
                                                                 </div>
+                                                            </div><!-- End Basic Modal-->
+                                                        @endif
+                                                        @if ($data->status == 0 && Auth::user()->roles_id == 1)
+                                                            <button type="button" class="btn btn-success btn-sm"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#statuspengembalian{{ $data->id }}">
+                                                                <i class="bi bi-check"></i>
+                                                            </button>
 
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- End Basic Modal-->
-                                                @endif
-                                                @if ($statuss->status_id == 4 || ($statuss->status_id == 6 && Auth::user()->roles_id == 2))
-                                                    <span
-                                                        class="badge border-dark border-1 text-dark small fst-italic"
-                                                        style="color:#012970;">peminjaman
-                                                        selesai</span>
-                                                @endif
-                                                {{-- @dd($data) --}}
-                                                @if ($statuss->status_id == 5 && Auth::user()->roles_id == 1)
-                                                    <form action="/menyetujui/{{ $data->id }}" method="GET"
-                                                        enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="text" name="kode_peminjaman"
-                                                            value={{ $data->kode_peminjaman }} hidden>
-                                                        <input type="text" name="users_id"
-                                                            value={{ Auth::user()->id }} hidden>
+                                                            <div class="modal fade"
+                                                                id="statuspengembalian{{ $data->id }}" tabindex="-1">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
 
-                                                        <button name="status_id" value="1"
-                                                            class="btn btn-success btn-sm"> <i
-                                                                class="bi bi-check-lg"></i></button>
-                                                    </form>
-                                                    <!--STATUS DI TOLAK -->
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form
+                                                                                action="{{ route('Pembelian.Konfirmasi', ['id' => $data->id]) }}}}"
+                                                                                method="GET"
+                                                                                enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <div class="row mb-3">
+                                                                                    <center>
+                                                                                        <h5 style="align-content: center"
+                                                                                            class="card-title">Keterangan Konfirmasi Pembelian
+                                                                                        </h5>
+                                                                                        <center>
+                                                                                            <div class="col-sm-10">
+                                                                                                <input type="text"
+                                                                                                    id="validationTooltip03"
+                                                                                                    name="status"
+                                                                                                    class="form-control"
+                                                                                                    placeholder="Isikan Status Pembelian">
+                                                                                                <div
+                                                                                                    class="invalid-feedback">
+                                                                                                    Harus di isi
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-10">
+                                                                                                <input type="text"
+                                                                                                    id="validationTooltip03"
+                                                                                                    name="ket"
+                                                                                                    class="form-control"
+                                                                                                    placeholder="Isikan keterangan">
+                                                                                                <div
+                                                                                                    class="invalid-feedback">
+                                                                                                    Harus di isi
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <br>
+                                                                                            <button type="submit"
+                                                                                                class="btn btn btn-sm"
+                                                                                                style=" float :right; background-color:   #012970; color:#FFFFFF">submit</button>
 
-                                                    <!-- Basic Modal -->
-                                                    <button type="button" class="btn btn-danger btn-sm"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#statustolak{{ $data->kode_peminjaman }}">
-                                                        <i class="bi bi-x"></i>
-                                                    </button>
+                                                                                </div>
 
-                                                    <div class="modal fade"
-                                                        id="statustolak{{ $data->kode_peminjaman }}"
-                                                        tabindex="-1">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="/insertstatus" method="POST"
-                                                                        enctype="multipart/form-data">
-                                                                        @csrf
-                                                                        <input type="hidden" name="kode_peminjaman"
-                                                                            value={{ $data->kode_peminjaman }}>
-                                                                        <input type="hidden" name="users_id"
-                                                                            value={{ Auth::user()->id }}>
-                                                                        <input type="hidden" name="status_id"
-                                                                            value="2">
-                                                                        <input type="hidden" name="barang_id"
-                                                                            value="{{ $data->barangs_id }}">
-                                                                        <div class="row mb-3">
-                                                                            <center>
-                                                                                <h5 style="align-content: center"
-                                                                                    class="card-title">Keterangan
-                                                                                    Penolakan
-
-                                                                                </h5>
-                                                                                <center>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text"
-                                                                                            id="validationTooltip03"
-                                                                                            name="ket"
-                                                                                            class="form-control"
-                                                                                            placeholder="Isikan keterangan">
-                                                                                        <div
-                                                                                            class="invalid-feedback">
-                                                                                            Harus di isi
-                                                                                        </div>
-                                                                                    </div><br>
-
-
-                                                                                    <button type="submit"
-                                                                                        value=""
-                                                                                        class="btn btn btn-sm"
-                                                                                        style=" float :right; background-color:   #012970; color:#FFFFFF">submit</button>
-
+                                                                            </form>
                                                                         </div>
 
-                                                                    </form>
+                                                                    </div>
                                                                 </div>
+                                                            </div><!-- End Basic Modal-->
+                                                        @endif
+                                                        @if ($data->status == 0 && Auth::user()->roles_id == 1)
 
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- End Basic Modal-->
-                                                @else
-                                                    <span
-                                                        class="badge border-dark border-1 text-dark small fst-italic text-wrap"
-                                                        style="color:#012970;">
-                                                        sudah
-                                                        diverifikasi</span>
-                                                @endif
+                                                            <!-- Basic Modal -->
+                                                            <button type="button" class="btn btn-danger btn-sm"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#statustolak{{ $data->kode_peminjaman }}">
+                                                                <i class="bi bi-x"></i>
+                                                            </button>
+
+                                                            <div class="modal fade"
+                                                                id="statustolak{{ $data->kode_peminjaman }}"
+                                                                tabindex="-1">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form action="{{ route('Pembelian.Tolak', ['id'=> $data->id]) }}" method="POST"
+                                                                                enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <input type="hidden" name="status"
+                                                                                    value='Pembelian Di Tolak'>
+                                                                                <input type="hidden" name="barang_id"
+                                                                                    value="{{ $data->barangs_id }}">
+                                                                                <div class="row mb-3">
+                                                                                    <center>
+                                                                                        <h5 style="align-content: center"
+                                                                                            class="card-title">Keterangan
+                                                                                            Penolakan
+
+                                                                                        </h5>
+                                                                                        <center>
+                                                                                            <div class="col-sm-10">
+                                                                                                <input type="text"
+                                                                                                    id="validationTooltip03"
+                                                                                                    name="ket"
+                                                                                                    class="form-control"
+                                                                                                    placeholder="Isikan keterangan">
+                                                                                                <div
+                                                                                                    class="invalid-feedback">
+                                                                                                    Harus di isi
+                                                                                                </div>
+                                                                                            </div><br>
 
 
-                                            </td>
+                                                                                            <button type="submit"
+                                                                                                value=""
+                                                                                                class="btn btn btn-sm"
+                                                                                                style=" float :right; background-color:   #012970; color:#FFFFFF">submit</button>
+
+                                                                                </div>
+
+                                                                            </form>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div><!-- End Basic Modal-->
+                                                        @else
+                                                            <span
+                                                                class="badge border-dark border-1 text-dark small fst-italic text-wrap"
+                                                                style="color:#012970;">
+                                                                {{$statuss->status}}</span>
+                                                        @endif
 
 
-                                               @endcan
+                                                    </x-td>
+                                                @endcan
 
                                             </tr>
                                         @endforeach

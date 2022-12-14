@@ -19,7 +19,7 @@ class TrxStatus extends Model
 
     public function status() // relasi tabel posisi ke kryawan
     {
-        return $this->belongsTo(Pinjam::class, 'status_id'); //1 trx mempunyai banyak status
+        return $this->belongsTo(Status::class, 'status_id'); //1 trx mempunyai banyak status
     }
 
     public function pinjams() // relasi tabel posisi ke kryawan

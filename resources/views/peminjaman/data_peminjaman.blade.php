@@ -7,14 +7,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            {{-- <h1>Data Jenis Aset</h1> --}}
-            {{-- <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">Data</li>
-        </ol>
-      </nav> --}}
+
         </div><!-- End Page Title -->
 
         <section class="section">
@@ -28,86 +21,64 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title"> Detail Peminjaman Barang </h5>
-
-
-                            @foreach ($peminjaman as $p)
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label "> 1. Kode Peminjaman</div>
-                                    <div class="col-lg-7 col-md-8"> :{{ $p->kode_peminjaman }} </div>
+                                    <div class="col-lg-7 col-md-8"> :{{ $pinjam->kode_peminjaman }} </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label "> 2. Nama peminjam </div>
-                                    <div class="col-lg-7 col-md-8"> :{{ $p->nama_peminjam }} </div>
+                                    <div class="col-lg-7 col-md-8"> :{{ $pinjam->anggota->detail_anggota->nama_lengkap }} </div>
                                 </div>
 
-
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label "> 3. Jenis peminjam </div>
-                                    <div class="col-lg-7 col-md-8"> : {{ $p->jenis_peminjaman }} </div>
-                                </div>
 
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label "> 4. Tanggal pengajuan</div>
                                     <div class="col-lg-7 col-md-8">
-                                        <td>: <?php echo date('d F Y', strtotime($p->tgl_pengajuan)); ?> </td>
+                                        <td>: <?php echo date('d F Y', strtotime($pinjam->tgl_pengajuan)); ?> </td>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label "> 5. Tanggal peminjaman </div>
                                     <div class="col-lg-7 col-md-8">
-                                        <td> :<?php echo date('d F Y', strtotime($p->tgl_pinjam)); ?> </td>
+                                        <td> :<?php echo date('d F Y', strtotime($pinjam->tgl_pinjam)); ?> </td>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label "> 6. Tanggal pengembalian</div>
                                     <div class="col-lg-7 col-md-8">
-                                        <td> : <?php echo date('d F Y', strtotime($p->tgl_kembali)); ?> </td>
+                                        <td> : <?php echo date('d F Y', strtotime($pinjam->tgl_kembali)); ?> </td>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label "> 7. Surat Pengantar</div>
-                                    <div class="col-lg-7 col-md-8"> <a href="{{ url('/download', $p->bukti_pinjam) }}"
-                                            style="  background-color:   #012970; color:#FFFFFF" button type="button"
-                                            class="btn btn-sm"><i class="ri-printer-line"></i> {{ $p->bukti_pinjam }}</a>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label "> 8. Tanggal ambil barang pinjam :</div>
                                     <div class="col-lg-7 col-md-8">
-                                        <td> :{{ $p->tgl_ambil }} </td>
+                                        <img src="{{ asset('bukti_pinjam/'. $pinjam->bukti_pinjam) }}" />
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label "> 9. Tanggal konfirmasi kembali </div>
                                     <div class="col-lg-7 col-md-8">
-                                        <td> : {{ $p->tgl_konfirmasikembali }}</td>
+                                        <td> : {{ $pinjam->kembali }}</td>
                                     </div>
                                 </div>
-                            @endforeach
 
                             <h5 class="card-title"> Detail Barang </h5>
-                            <?php
-                            $nomor = 1;
-                            ?>
-                            @foreach ($data as $d)
                                 <div class="row">
-                                    <div class="col-lg-5 col-md-4 label"> Barang {{ $nomor++ }} </div>
+                                    <div class="col-lg-5 col-md-4 label"> Barang  </div>
 
-                                    <div class="col-lg-7 col-md-8"> : {{ $d->barangs->kode }} -
-                                        {{ $d->barangs->jenis_barangs->jenis_barang }}
-                                        {{ $d->barangs->nama_barang }}</div>
+                                    <div class="col-lg-7 col-md-8"> : {{ $pinjam->barangs->kode }} -
+                                        {{ $pinjam->barangs->jenis_barangs->jenis_barang }}
+                                        {{ $pinjam->barangs->nama_barang }}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-5 col-md-4 label "> Jumlah item </div>
-                                    <div class="col-lg-7 col-md-8"> : {{ $d->jumlah_pinjam }} </div>
+                                    <div class="col-lg-7 col-md-8"> : {{ $pinjam->jumlah_pinjam }} </div>
                                 </div>
-                            @endforeach
                             <br>
                             <a href="/peminjaman/pengembalian "
                                 style=" float :left; background-color:   #012970; color:#FFFFFF" button type="button"

@@ -433,7 +433,7 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
     Route::get('/peminjaman', [PeminjamanController::class, 'peminjamanstaff'])->name('staff/peminjaman');
     Route::get('/riwayat', [PinjamController::class, 'riwayatstaff'])->name('staff/riwayat'); //
     Route::get('/download/{bukti_pinjam}', [PeminjamanController::class, 'download']);
-    Route::get('/detailbarang/{id}', [PeminjamanController::class, 'detail_barang']);
+    Route::get('/detailbarang/{id}', [PeminjamanController::class, 'detail_barang'])->name('detail_pinjam');
     Route::get('/detailriwayat/{id}', [PeminjamanController::class, 'detail_riwayat']);
 
     //STATUS USER staff
@@ -607,7 +607,7 @@ Route::group(['middleware' => ['auth', 'check.role:2,3']], function () {
             Route::get('/edit/{id}', 'edit')->name('edit');
             Route::put('/update/{id}', 'update')->name('update');
             Route::get('/destroy/{id}', 'destroy')->name('destroy');
-            Route::get('/riwayat', 'riwayatPinjaman')->name('riwayatPinjam');
+            Route::get('/riwayat', 'riwayatPinjaman')->name('riwayatSimpanan');
         });
     });
 });

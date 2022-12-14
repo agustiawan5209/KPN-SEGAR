@@ -207,7 +207,6 @@ class PinjamController extends Controller
         $akun = User::all();
         $pinjam = Pinjam::whereNotNull('ket')
             ->where('jenis_peminjaman', '=', 'Barang')
-            ->OrWhere('jenis_peminjaman', '=', 'Uang')
             ->orderBy('id', 'desc')
             ->latest()
             ->get();
@@ -269,11 +268,9 @@ class PinjamController extends Controller
             $pinjam = new Pinjam();
             $pinjam->kode_peminjaman = $book_id;
             $pinjam->barangs_id = $request->barangs_id;
-            $pinjam->kode_anggota = $request->kode_anggota;
-            $pinjam->nama_peminjam = $anggota->detail->nama_lengkap;
             $pinjam->jenis_peminjaman = "Barang";
+            $pinjam->kode_anggota = $request->kode_anggota;
             $pinjam->tgl_pengajuan = $request->tgl_pengajuan;
-            // $pinjam->tgl_pinjam = $request->tgl_pengajuan;
             $pinjam->bunga = $request->bunga;
             $pinjam->tgl_kembali = $request->tgl_kembali;
             $pinjam->jumlah_pinjam = $request->jumlah_pinjam;

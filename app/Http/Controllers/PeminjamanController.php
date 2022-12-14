@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\JenisBarang;
-use App\Models\Barang;
-use App\Models\DataJenisAset;
-use App\Models\DataAsalPerolehan;
-use App\Models\DetailPeminjaman;
-use App\Models\Peminjaman;
-use App\Models\StatusPeminjaman;
-use App\Models\StatusKonfirmasi;
-use App\Models\Satuan;
 use App\Models\User;
+use App\Models\Barang;
+use App\Models\Pinjam;
+use App\Models\Satuan;
+use App\Models\Status;
+use App\Models\TrxStatus;
+use App\Models\Peminjaman;
+use App\Models\JenisBarang;
+use Illuminate\Http\Request;
+use App\Models\DataJenisAset;
 use Barryvdh\DomPDF\Facade\PDF;
+use App\Models\DetailPeminjaman;
+use App\Models\StatusKonfirmasi;
+use App\Models\StatusPeminjaman;
+use App\Models\DataAsalPerolehan;
+use Illuminate\Support\Facades\DB;
 
 class PeminjamanController extends Controller
 {
@@ -54,8 +57,9 @@ class PeminjamanController extends Controller
         $kode_peminjaman = request()->user();
         // $akun = User::all();
         $akun = request()->user();
-        $peminjaman = Peminjaman::where('users_id' , $akun->id)->latest()->get();
-
+        $peminjaman = Pinjam::where('jenis_peminjaman','=','Barang')->get();
+        $trxStatus = TrxStatus::all();
+        $Status = Status::all();
 
         return view('staff.peminjaman',[
             "title" => "pengajuan",
@@ -65,8 +69,10 @@ class PeminjamanController extends Controller
             "datasatuan" =>$datasatuan,
             "inputbarang"=> $inputbarang,
 
-            "peminjaman"=> $peminjaman,
+            "pinjam"=> $peminjaman,
             "akun"=> $akun,
+            'trxstatus'=> $trxStatus,
+            'status'=> $Status,
 
         ]);
 
@@ -102,15 +108,15 @@ class PeminjamanController extends Controller
 
      public function detail_barang($id)
     {
-        $data = DetailPeminjaman::where('kode_peminjaman', $id)->get(); //kode_peminjaman = $id didapatkan
-        $peminjaman = Peminjaman::where('kode_peminjaman', $id)->get();
-        return view('staff.data_peminjaman',[
+        $pinjam = Pinjam::find($id);
+        return view('peminjaman.data_peminjaman',[
             "title" => "pengajuan",
-            "data" => $data,
-            "peminjaman" => $peminjaman,
+            "pinjam" => $pinjam,
         ]);
 
     }
+
+
 
      public function detail_riwayat($id)
     {

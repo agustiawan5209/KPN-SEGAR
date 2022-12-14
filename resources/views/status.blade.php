@@ -56,15 +56,11 @@
                                                         @endif
                                                     @endforeach
 
-                                                    <?php
-                                                            foreach($akun as $p){
-                                                                if($a->users_id == $p->id){?>
                                                     <div class="w-50 text-black">
                                                         <p>
-                                                            Diverifikasi
-                                                            oleh
+                                                            Nama Anggota
                                                             :
-                                                            {{ $p->name }}<br>
+                                                            {{ $data->anggota->detail_anggota->nama_lengkap }}<br>
                                                             Pada
                                                             Tanggal
                                                             :
@@ -87,9 +83,6 @@
                                                             @endif
                                                         </p>
                                                     </div>
-                                                    <?php }
-}
-                                                                        ?>
 
                                                 </li>
                                             @endif

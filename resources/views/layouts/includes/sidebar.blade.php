@@ -229,7 +229,7 @@
             @can('Anggota')
                 <li class="nav-item flex-column @yield('pembelian')">
                     <a class="nav-link collapsed" data-bs-target="#pembelian" data-bs-toggle="collapse">
-                        <i class="bi bi-menu-button-wide"></i><span>Data Simpanan/Pinjaman</span><i
+                        <i class="bi bi-menu-button-wide"></i><span>Data Simpanan</span><i
                             class="bi bi-chevron-down ms-auto"></i>
                     </a>
                     <ul id="pembelian" class="nav-content collapse @yield('pembelian')" data-bs-parent="#sidebar-nav">
@@ -239,28 +239,28 @@
                             </a>
                         </li>
                         <li>
-                            <a class=" @yield('databunga')" href="{{ route('simpanan.riwayatPinjam') }}">
-                                <i class="bi bi-circle"></i><span>Data Pinjaman</span>
+                            <a class=" @yield('databunga')" href="{{ route('simpanan.riwayatSimpanan') }}">
+                                <i class="bi bi-circle"></i><span>Riwayat Simpanan</span>
                             </a>
                         </li>
                     </ul>
                 </li><!-- End Forms Nav -->
                 <li class="nav-item flex-column">
                     <a class="nav-link collapsed" data-bs-target="#iconss-nav" data-bs-toggle="collapse" href="#">
-                        <i class="bi bi-cart" @yield('iconss-nav')></i><span>Data Transaksi</span><i
+                        <i class="bi bi-cart" @yield('iconss-nav')></i><span>Data Pinjaman</span><i
                             class="bi bi-chevron-down ms-auto"></i>
                     </a>
                     <ul id="iconss-nav" class="nav-content collapse" @yield('iconss-nav') data-bs-parent="#sidebar-nav">
                         <li>
-                            <a class="@yield('riwayat')" href="{{ url('/peminjaman/peminjaman') }}">
-                                <i class="bi bi-circle"></i><span>Angsuran Belum Di Bayar</span>
+                            <a class="@yield('riwayat')" href="{{ route('pinjamUang.riwayat') }}">
+                                <i class="bi bi-circle"></i><span>Riwayat Peminjaman Uang</span>
                             </a>
                         </li>
 
 
                         <li>
-                            <a class="@yield('riwayat')" href="{{ url('/peminjaman/riwayatpinjam') }}">
-                                <i class="bi bi-circle"></i><span>Riwayat Peminjaman</span>
+                            <a class="@yield('riwayat')" href="{{ route('riwayat-peminjaman') }}">
+                                <i class="bi bi-circle"></i><span>Riwayat Peminjaman Barang</span>
                             </a>
                         </li>
 

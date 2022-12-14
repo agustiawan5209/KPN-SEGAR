@@ -9,6 +9,6 @@ class Simpanan extends Model
 {
     use HasFactory;
     protected $table = 'simpanans';
-    protected $fillable = ['kode_simpanan' , 'user_id', 'jumlah_simpanan', 'tgl_simpanan', 'total','kredit','debit'];
+    protected $fillable = ['kode_simpanan', 'kode_anggota', 'nik' , 'user_id', 'jumlah_simpanan', 'tgl_simpanan', 'total','kredit','debit'];
 
 }

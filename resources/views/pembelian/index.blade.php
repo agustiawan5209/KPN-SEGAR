@@ -45,7 +45,7 @@
                                             <x-th scope="col">Detail</x-th>
                                             <x-th scope="col">Status</x-th>
                                             @can('Pengurus')
-                                            <x-th scope="col">Aksi</x-th>
+                                                <x-th scope="col">Aksi</x-th>
                                             @endcan
                                         </tr>
                                     </thead>
@@ -66,7 +66,8 @@
                                                     {{ Str::currency($data->sub_total) }}
                                                 </x-td>
                                                 <x-td class=" border">
-                                                    <a href="{{ route('Pembelian.detail', ['id'=> $data->id]) }}" class="btn btn-info"><i class='bi bi-eye-fill'></i></a>
+                                                    <a href="{{ route('Pembelian.detail', ['id' => $data->id]) }}"
+                                                        class="btn btn-info"><i class='bi bi-eye-fill'></i></a>
                                                 </x-td>
 
                                                 <x-td>
@@ -94,8 +95,8 @@
                                                                 <i class="bi bi-person-check-fill"></i>
                                                             </button>
 
-                                                            <div class="modal fade"
-                                                                id="statuspembelian{{ $data->id }}" tabindex="-1">
+                                                            <div class="modal fade" id="statuspembelian{{ $data->id }}"
+                                                                tabindex="-1">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -179,7 +180,8 @@
                                                                                 <div class="row mb-3">
                                                                                     <center>
                                                                                         <h5 style="align-content: center"
-                                                                                            class="card-title">Keterangan Konfirmasi Pembelian
+                                                                                            class="card-title">Keterangan
+                                                                                            Konfirmasi Pembelian
                                                                                         </h5>
                                                                                         <center>
                                                                                             <div class="col-sm-10">
@@ -219,7 +221,6 @@
                                                             </div><!-- End Basic Modal-->
                                                         @endif
                                                         @if ($data->status == 0 && Auth::user()->roles_id == 1)
-
                                                             <!-- Basic Modal -->
                                                             <button type="button" class="btn btn-danger btn-sm"
                                                                 data-bs-toggle="modal"
@@ -239,7 +240,9 @@
                                                                                 aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form action="{{ route('Pembelian.Tolak', ['id'=> $data->id]) }}" method="POST"
+                                                                            <form
+                                                                                action="{{ route('Pembelian.Tolak', ['id' => $data->id]) }}"
+                                                                                method="POST"
                                                                                 enctype="multipart/form-data">
                                                                                 @csrf
                                                                                 <input type="hidden" name="status"
@@ -284,7 +287,7 @@
                                                             <span
                                                                 class="badge border-dark border-1 text-dark small fst-italic text-wrap"
                                                                 style="color:#012970;">
-                                                                {{$statuss->status}}</span>
+                                                                {{ $statuss->status }}</span>
                                                         @endif
 
 

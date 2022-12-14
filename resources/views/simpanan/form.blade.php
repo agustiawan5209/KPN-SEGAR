@@ -3,11 +3,9 @@
     <main id="main" class="main overflow-hidden">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-center pb-0 fs-5">Formulir Peminjaman Barang</h5></br>
+                <h5 class="card-title text-center pb-0 fs-5">Formulir Simpanan Anggota</h5></br>
 
-                <!-- validation Form Elements -->
-
-                <form id="form-formulir" action="{{ route('pinjamUang.store') }}" method="POST" enctype="multipart/form-data"
+                <form id="form-formulir" action="{{ route('simpanan.store') }}" method="POST" enctype="multipart/form-data"
                     class=" needs-validation" novalidate>
                     @csrf
                     <x-validation-errors />
@@ -27,12 +25,12 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="validationCustom01" class="col-sm-2 col-form-label">Nama Peminjam</label>
+                        <label for="validationCustom01" class="col-sm-2 col-form-label">Kode Anggota</label>
                         <div class="col-sm-10">
                             <select name="kode_anggota" id="" class="form-select">
                                 <option value="">---</option>
-                                @foreach ($user as $anggota)
-                                    <option value="{{ $anggota->kode_anggota }}">{{ $anggota->kode_anggota }} - @if ($anggota->user != null)
+                                @foreach ($anggota as $anggota)
+                                    <option value="{{ $anggota->kode_anggota }}" {{ $anggota->kode_anggota == $kode_anggota ? 'selected':'' }}>{{ $anggota->kode_anggota }} - @if ($anggota->user != null)
                                             {{ $anggota->user->name }}
                                         @endif
                                     </option>
@@ -44,10 +42,20 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="validationTooltip02" class="col-sm-2 col-form-label"> Jumlah Pinjaman </label>
+                        <label for="validationTooltip02" class="col-sm-2 col-form-label"> Jumlah Debit  </label>
                         <div class="col-sm-10">
-                            <input type="number" id="validationTooltip02" name="jumlah_pinjam" id="jumlah_pinjam"
-                                class="form-control jumlah_pinjam" required placeholder="0000000000">
+                            <input type="number" id="validationTooltip02" name="debit" id="debit"
+                                class="form-control debit" required placeholder="0000000000">
+                            <div class="invalid-feedback">
+                                Harus di isi
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="validationTooltip02" class="col-sm-2 col-form-label"> Jumlah Kredit  </label>
+                        <div class="col-sm-10">
+                            <input type="number" id="validationTooltip02" name="kredit" id="kredit"
+                                class="form-control kredit" required placeholder="0000000000">
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>
@@ -55,9 +63,9 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Pengajuan</label>
+                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Simpanan</label>
                         <div class="col-sm-10">
-                            <input type="date" id="tgl_pengajuan" name="tgl_pengajuan" value="<?php echo date('Y-m-d'); ?>"
+                            <input type="date" id="tgl_simpanan" name="tgl_simpanan" value="<?php echo date('Y-m-d'); ?>"
                                 class="form-control" required>
                             <div class="invalid-feedback">
                                 Harus di isi
@@ -65,70 +73,8 @@
                         </div>
                     </div>
 
-
-                    <div class="row mb-3">
-                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Pengembalian</label>
-                        <div class="col-sm-10">
-                            <input type="date" id="tgl_kembali" name="tgl_kembali" class="form-control" required>
-                            <div class="invalid-feedback">
-                                Harus di isi
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="validationTooltip02" class="col-sm-2 col-form-label"> Lama Pinjaman </label>
-                        <div class="col-sm-10">
-                            <input type="text" id="lama_pinjam" name="lama_pinjam" class="form-control" readonly
-                                required>
-
-                            <div class="invalid-feedback">
-                                Harus di isi
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="validationTooltip02" class="col-sm-2 col-form-label"> Bunga </label>
-                        <div class="col-sm-10">
-                            <input type="text" id="bunga" name="bunga" class="form-control bunga" required>
-                            <div class="invalid-feedback">
-                                Harus di isi
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Bukti Pinjaman</label>
-                        <div class="col-sm-10">
-                            <input type="file" id="datefield2" name="bukti_pinjam" class="form-control" required>
-                            <div class="invalid-feedback">
-                                Harus di isi
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Jumlah Angsuran</label>
-                        <div class="col-sm-10">
-                            <input type="number" id="jumlah_angsuran" name="jumlah_angsuran" class="form-control" required>
-                            <div class="invalid-feedback">
-                                Harus di isi
-                            </div>
-                        </div>
-
-                        <div class="col-sm-10" id="angsuran_main">
-                            <label for="validationTooltip05" class="col-sm-12 col-form-label">Mohon isi Tanggal Angsuran dan
-                                jumlah angsuran</label>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label for="validationTooltip05" class="col-sm-2 col-form-label">Keterangan</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="datefield2" name="ket" class="form-control" required>
-                            <div class="invalid-feedback">
-                                Harus di isi
-                            </div>
-                        </div>
-                    </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
+                    <a href="{{ url()->previous() }}" class="btn btn-danger">Kembali</a>
 
                 </form><!-- End General Form Elements -->
             </div>

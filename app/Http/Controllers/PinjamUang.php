@@ -116,9 +116,10 @@ class PinjamUang extends Controller
         $pinjam->save();
         $batas_angsuran = count($request->tgl_angsuran);
         $tgl_angsuran = $request->tgl_angsuran;
-        $jumlah_angsuran = $request->jumlah_angsuran;
-        $jumlah_bayar = $request->jumlah_pinjam / $batas_angsuran;
-        $sisa_bayar = $request->jumlah_pinjam;
+        $bunga =  $request->jumlah_pinjam *(($request->bunga * $batas_angsuran) /100);
+        $jumlah_angsuran = $request->jumlah_angsuran + $bunga;
+        // $jumlah_bayar = $request->jumlah_pinjam / $batas_angsuran;
+        $sisa_bayar = $request->jumlah_pinjam ;
         // dd($request->tgl_angsuran);
         for ($i = 0; $i < $batas_angsuran; $i++) {
             $sisa_bayar -= $jumlah_angsuran[$i];

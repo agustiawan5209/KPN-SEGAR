@@ -595,13 +595,18 @@ Route::middleware(['auth', 'check.role:3'])->group(
 
 
 // Klaim Promo Dan Voucher
-Route::group(['middleware' => ['auth', 'check.role:2']], function () {
+Route::group(['middleware' => ['auth', 'check.role:2,3']], function () {
     Route::get('/KlaimPromo/{promo_id}', [PromoUserController::class, 'store'])->name('Klaim-Promo');
     Route::get('/KlaimVoucher/{voucher_id}', [VoucherUserController::class, 'store'])->name('Klaim-Voucher');
 
     Route::group(['prefix'=> 'Simpanan', 'as'=> 'simpanan.'],function(){
         Route::controller(SimpananController::class)->group(function(){
             Route::get('/', 'index')->name('index');
+            Route::get('/form', 'create')->name('create');
+            Route::post('/store', 'createSimpanan')->name('store');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::put('/update/{id}', 'update')->name('update');
+            Route::get('/destroy/{id}', 'destroy')->name('destroy');
             Route::get('/riwayat', 'riwayatPinjaman')->name('riwayatPinjam');
         });
     });

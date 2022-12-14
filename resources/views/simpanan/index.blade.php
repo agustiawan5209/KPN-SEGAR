@@ -43,7 +43,9 @@
                                     <x-th scope="col">Debit</x-th>
                                     <x-th scope="col">Kredit </x-th>
                                     <x-th scope="col">Total</x-th>
+                                    @can('Bendahara')
                                     <x-th scope="col">Aksi</x-th>
+                                    @endcan
 
                                 </tr>
                             </thead>
@@ -67,7 +69,8 @@
                                             $kredit[] = $data->kredit;
                                             $debit[] = $data->debit;
                                         @endphp
-                                         <td>
+                                        @can('Bendahara')
+                                        <td>
                                             <!--EDIT DATA JENIS ASET-->
                                             <a href="{{route('simpanan.edit', ['id'=> $data->id])}}" type="button" class="btn btn"
                                                 style="background-color: #05b3c3; color:#FFFFFF"><i
@@ -77,6 +80,7 @@
                                                 class="btn btn-danger"><i class="bi bi-trash delete"></i></a>
 
                                         </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                                 <tr>

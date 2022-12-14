@@ -62,7 +62,7 @@
                             <tr>
                                 <x-td>
                                     {{ Str::currency($data->simpanan->sum('total')) }}
-                                    <a href="{{ route('simpanan.index', ['kode_anggota'=> $data->kode_anggota]) }}" class="btn btn-info"><i class="bi bi-eye-fill"></i></a>
+                                    <a href="#" class="btn btn-info"><i class="bi bi-eye-fill"></i></a>
                                 </x-td>
                                 <x-td>
                                     <a href="{{ route('listPinjaman-anggota', ['id'=> $data->user->id]) }}" class="btn btn-info">

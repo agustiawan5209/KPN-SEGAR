@@ -40,32 +40,6 @@
 
 <body>
 
-
-    <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top bg-white ">
-        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-            <a href="index.html" class="logo d-flex align-items-center">
-                {{-- <img src="{{ asset('logo/logo.jpg') }}" alt=""> --}}
-                <span>KPN “SEGAR” POLITEKNIK
-                    PELAYARAN BAROMBONG</span>
-            </a>
-
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a class="nav-link scrollto" href="#hero">Beranda</a></li>
-
-                    </ul>
-                    </li>
-
-
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-
-        </div>
-    </header><!-- End Header -->
-
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="hero d-flex align-items-center">
 

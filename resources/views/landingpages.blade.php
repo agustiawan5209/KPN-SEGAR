@@ -40,8 +40,25 @@
 
 <body>
 
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top bg-white ">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+            <a href="index.html" class="logo d-flex align-items-center">
+
+            </a>
+
+            <nav id="navbar" class="navbar">
+
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+        </div>
+    </header><!-- End Header -->
+
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="hero d-flex align-items-center">
+    <section id="hero" class="hero d-flex align-items-center fixed-top">
 
         <div class="container">
             <div class="row">

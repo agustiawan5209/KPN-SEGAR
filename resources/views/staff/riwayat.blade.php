@@ -45,10 +45,6 @@
                                             <th scope="col">Bunga </th>
                                             <th scope="col">Jumlah Pinjam </th>
                                             <th scope="col">Harga Barang </th>
-                                            <th scope="col">Total</th>
-                                            {{-- <th scope="col">Tujuan</th>
-                                            <th scope="col">barang pinjam</th>
-                                            <th scope="col">jumlah pinjam </th> --}}
                                             <th scope="col">Detail</th>
                                             {{-- <th scope="col">status</th> --}}
 
@@ -58,182 +54,28 @@
                                     </thead>
 
                                     <tbody>
-                                        <?php
-                                        $nomor = 1;
-                                        ?>
-                                        @if ($trxstatus->count() > 0)
-                                            @foreach ($trxstatus as $s)
-                                                @if ($pinjam->count() > 0)
-                                                    @foreach ($pinjam as $data)
-                                                        @if ($data->kode_peminjaman == $s->kode_peminjaman)
-                                                            <tr role="row">
-                                                                <td>{{ $nomor++ }}</td>
-                                                                <td> {{ $data->kode_peminjaman }}</td>
-                                                                <td> {{ $data->nama_peminjam }}</td>
-                                                                <td> <?php echo date('d F Y', strtotime($data->tgl_pengajuan)); ?> </td>
-                                                                <td> <?php echo date('d F Y', strtotime($data->tgl_kembali)); ?></td>
-                                                                <td>{{ $data->bunga }}</td>
-                                                                <td>{{ $data->jumlah_pinjam }}</td>
-                                                                <td>{{ $data->barangs->harga }}</td>
-                                                                <td>
-
-                                                                    <!-- Detail Peminjaman -->
-                                                                    <button type="button" class="btn btn-sm"
-                                                                        style="background-color:  #012970; color:#FFFFFF"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modaldetail{{ $data->id }}">
-                                                                        <i class="bi bi-eye"></i>
-                                                                    </button>
-                                                                    <div class="modal fade"
-                                                                        id="modaldetail{{ $data->id }}"
-                                                                        tabindex="-1">
-                                                                        <div class="modal-dialog">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
-                                                                                    {{-- <h5 class="modal-title">Basic Modal</h5> --}}
-                                                                                    <button type="button"
-                                                                                        class="btn-close"
-                                                                                        data-bs-dismiss="modal"
-                                                                                        aria-label="Close"></button>
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <!-- Card with an image on left -->
-
-
-                                                                                    <div class="card mb-3">
-                                                                                        <div class="row g-0">
-                                                                                            <div class="col-md-4">
-
-
-                                                                                            </div>
-                                                                                            <div class="col-md-12">
-                                                                                                <div class="card-body">
-                                                                                                    <h5
-                                                                                                        class="card-title text-center">
-                                                                                                        Detail Data
-                                                                                                        Peminjaman</h5>
-
-                                                                                                    <p
-                                                                                                        class="card-text">
-                                                                                                    <div class="row">
-                                                                                                        <div
-                                                                                                            class="col-lg-5 col-md-4 label ">
-                                                                                                            Kode
-                                                                                                            peminjaman
-                                                                                                        </div>
-                                                                                                        <div
-                                                                                                            class="col-lg-7 col-md-8">
-                                                                                                            :{{ $data->kode_peminjaman }}
-                                                                                                        </div>
-                                                                                                    </div>
-
-                                                                                                    <div class="row">
-                                                                                                        <div
-                                                                                                            class="col-lg-5 col-md-4 label">
-                                                                                                            Peminjam
-                                                                                                        </div>
-                                                                                                        <div
-                                                                                                            class="col-lg-7 col-md-8">
-                                                                                                            :{{ $data->nama_peminjam }}
-                                                                                                        </div>
-                                                                                                    </div>
-
-                                                                                                    <div class="row">
-                                                                                                        <div
-                                                                                                            class="col-lg-5 col-md-4 label">
-                                                                                                            Bunga
-                                                                                                        </div>
-                                                                                                        <div
-                                                                                                            class="col-lg-7 col-md-8">
-                                                                                                            :{{ $data->bunga }}%
-                                                                                                        </div>
-                                                                                                    </div>
-
-                                                                                                    <div class="row">
-                                                                                                        <div
-                                                                                                            class="col-lg-5 col-md-4 label">
-                                                                                                            Tanggal
-                                                                                                            ajuan
-                                                                                                        </div>
-                                                                                                        <div
-                                                                                                            class="col-lg-7 col-md-8">
-                                                                                                            :{{ $data->tgl_pengajuan }}
-                                                                                                        </div>
-                                                                                                    </div>
-
-                                                                                                    <div class="row">
-                                                                                                        <div
-                                                                                                            class="col-lg-5 col-md-4 label">
-                                                                                                            Tanggal
-                                                                                                            kembali
-                                                                                                            :</div>
-                                                                                                        <div
-                                                                                                            class="col-lg-7 col-md-8">
-                                                                                                            :{{ $data->tgl_kembali }}
-                                                                                                        </div>
-                                                                                                    </div>
-
-                                                                                                    <div class="row">
-                                                                                                        <div
-                                                                                                            class="col-lg-5 col-md-4 label">
-                                                                                                            Barang
-                                                                                                            Pinjam
-                                                                                                        </div>
-                                                                                                        <div
-                                                                                                            class="col-lg-7 col-md-8">
-                                                                                                            :
-                                                                                                            {{ $data->barangs->kode }}
-                                                                                                            {{ $data->barangs->jenis_barangs->jenis_barang }}
-                                                                                                            {{ $data->barangs->nama_barang }}
-                                                                                                        </div>
-                                                                                                    </div>
-
-                                                                                                    <div class="row">
-                                                                                                        <div
-                                                                                                            class="col-lg-5 col-md-4 label">
-                                                                                                            Jumlah
-                                                                                                            Pinjam
-                                                                                                        </div>
-                                                                                                        <div
-                                                                                                            class="col-lg-7 col-md-8">
-                                                                                                            :
-                                                                                                            {{ $data->jumlah_pinjam }}
-                                                                                                        </div>
-                                                                                                    </div>
-
-                                                                                                    </p>
-
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <!-- End Card with an image on left -->
-                                                                                </div>
-                                                                                <div class="modal-footer">
-
-
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div><!-- End Basic Modal-->
-
-                                                                </td>
-                                                                </td>
-                                                                {{-- <td>{{ $data->tujuan }} </td>
-                                                        <td>{{ $data->barangs->kode }}
-                                                            {{ $data->barangs->jenis_barangs->jenis_barang }}
-                                                            {{ $data->barangs->nama_barang }}
-                                                        </td>
-                                                        <td>{{ $data->jumlah_pinjam }} </td> --}}
+                                        @foreach ($pinjam as $data)
+                                        @if ($data->status == 1)
+                                            <tr role="row">
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td> {{ $data->kode_peminjaman }}</td>
+                                                <td> {{ $data->nama_peminjam }}</td>
+                                                <td> <?php echo date('d F Y', strtotime($data->tgl_pengajuan)); ?> </td>
+                                                <td> <?php echo date('d F Y', strtotime($data->tgl_kembali)); ?></td>
+                                                <td>{{ $data->bunga }}</td>
+                                                <td>{{ $data->jumlah_pinjam }}</td>
+                                                <td>{{ $data->barangs->harga }}</td>
+                                                <td>
+                                                    <a href="{{ route('detail_pinjam', ['id'=> $data->id]) }}" class="btn btn-info text-white">
+                                                        <i class="bi bi-eye"></i>
+                                                    </a>
+                                                </td>
 
 
 
-                                                            </tr>
-                                                        @endif
-                                                    @endforeach
-                                                @endif
-                                            @endforeach
+                                            </tr>
                                         @endif
+                                    @endforeach
                                     </tbody>
                                 </table>
                     </div>

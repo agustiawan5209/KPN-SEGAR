@@ -18,7 +18,7 @@ class Pinjam extends Model
         'barangs_id',
         'jenis_id',
         'bunga',
-        // 'detail_peminjamans_id',
+        'status',
         'nama_peminjam',
         'jenis_peminjaman',
         'tujuan',

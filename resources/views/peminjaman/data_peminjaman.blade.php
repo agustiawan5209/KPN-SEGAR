@@ -40,13 +40,6 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-5 col-md-4 label "> 5. Tanggal peminjaman </div>
-                                    <div class="col-lg-7 col-md-8">
-                                        <td> :<?php echo date('d F Y', strtotime($pinjam->tgl_pinjam)); ?> </td>
-                                    </div>
-                                </div>
-
-                                <div class="row">
                                     <div class="col-lg-5 col-md-4 label "> 6. Tanggal pengembalian</div>
                                     <div class="col-lg-7 col-md-8">
                                         <td> : <?php echo date('d F Y', strtotime($pinjam->tgl_kembali)); ?> </td>
@@ -56,13 +49,6 @@
                                     <div class="col-lg-5 col-md-4 label "> 7. Surat Pengantar</div>
                                     <div class="col-lg-7 col-md-8">
                                         <img src="{{ asset('bukti_pinjam/'. $pinjam->bukti_pinjam) }}" />
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-4 label "> 9. Tanggal konfirmasi kembali </div>
-                                    <div class="col-lg-7 col-md-8">
-                                        <td> : {{ $pinjam->kembali }}</td>
                                     </div>
                                 </div>
 

@@ -318,9 +318,9 @@ class PinjamUang extends Controller
         $inputbarang = Barang::all();
         $akun = User::all();
         $pinjam = Pinjam::whereNotNull('ket')
-            ->where('jenis_peminjaman', '=', 'Barang')
-            ->OrWhere('jenis_peminjaman', '=', 'Uang')
+            ->where('jenis_peminjaman', '=', 'Uang')
             ->orderBy('id', 'desc')
+            ->where('status', '1')
             ->latest()
             ->get();
         $status = Status::all();

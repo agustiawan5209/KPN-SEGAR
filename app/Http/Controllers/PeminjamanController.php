@@ -54,10 +54,8 @@ class PeminjamanController extends Controller
         $jenisbarang = JenisBarang::all();
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
-        $kode_peminjaman = request()->user();
-        // $akun = User::all();
         $akun = request()->user();
-        $peminjaman = Pinjam::where('jenis_peminjaman','=','Barang')->get();
+        $peminjaman = Pinjam::where('jenis_peminjaman','=','Barang')->where('status', '=', '0')->get();
         $trxStatus = TrxStatus::all();
         $Status = Status::all();
 

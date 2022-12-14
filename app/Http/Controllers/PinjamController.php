@@ -94,11 +94,11 @@ class PinjamController extends Controller
         if (Auth::user()->roles_id == 3) {
             $pinjam = Pinjam::where('jenis_peminjaman', 'Barang')->get();
         } else {
-            $pinjam = Pinjam::where('kode_anggota', Auth::user()->anggota->kode_anggota)->get();
+            $pinjam = Pinjam::where('kode_anggota', Auth::user()->anggota->kode_anggota)->where('status', '1')->get();
         }
         $status = Status::all();
         $trxstatus = TrxStatus::all();
-        // dd($pinjam);
+        // dd($pinjam)1
         return view('staff.riwayat', [
             'title' => 'pengajuan',
             'jenisbarang' => $jenisbarang,
@@ -207,6 +207,7 @@ class PinjamController extends Controller
         $akun = User::all();
         $pinjam = Pinjam::whereNotNull('ket')
             ->where('jenis_peminjaman', '=', 'Barang')
+            ->where('status', '1')
             ->orderBy('id', 'desc')
             ->latest()
             ->get();
@@ -265,6 +266,10 @@ class PinjamController extends Controller
             $b = Barang::where('id', $request->barangs_id)->first();
             $anggota = Anggota::where('kode_anggota', '=', $request->kode_anggota)->first();
 
+            $nama_bukti = $request->bukti_pinjam->getClientOriginalName();
+            $request->file('bukti_pinjam')->move('bukti_pinjam/', $nama_bukti);
+            $anggota = Anggota::where('kode_anggota', '=', $request->kode_anggota)->first();
+
             $pinjam = new Pinjam();
             $pinjam->kode_peminjaman = $book_id;
             $pinjam->barangs_id = $request->barangs_id;
@@ -274,6 +279,7 @@ class PinjamController extends Controller
             $pinjam->bunga = $request->bunga;
             $pinjam->tgl_kembali = $request->tgl_kembali;
             $pinjam->jumlah_pinjam = $request->jumlah_pinjam;
+            $pinjam->bukti_pinjam = $nama_bukti;
 
             $pinjam->save();
             $trxstatus = new TrxStatus();
@@ -373,9 +379,6 @@ class PinjamController extends Controller
     public function mengembalikan(Request $request, $id)
     {
         $pinjams = Pinjam::where('id', $id)->first();
-        $pinjams->update([
-            'ket' => $request->input('ket'),
-        ]);
         $tgl_sekarang = Carbon::now()->format('Y-m-d');
         if ($tgl_sekarang > $pinjams->tgl_kembali) {
             $trxstatus = new TrxStatus();
@@ -397,6 +400,11 @@ class PinjamController extends Controller
         $brg = Barang::where('id', $pinjams->barangs_id)->first();
         $brg->jumlah += (int) $pinjams->jumlah_pinjam;
         $brg->save();
+        $pinjams->update([
+            'ket'=> $request->ket,
+            'tgl_kembali'=> $request->tgl_kembali,
+            'status'=> '1',
+        ]);
 
         return redirect()
             ->back()

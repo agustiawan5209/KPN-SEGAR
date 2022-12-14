@@ -238,11 +238,6 @@
                                 <i class="bi bi-circle"></i><span>Data Simpanan</span>
                             </a>
                         </li>
-                        <li>
-                            <a class=" @yield('databunga')" href="{{ route('simpanan.riwayatSimpanan') }}">
-                                <i class="bi bi-circle"></i><span>Riwayat Simpanan</span>
-                            </a>
-                        </li>
                     </ul>
                 </li><!-- End Forms Nav -->
                 <li class="nav-item flex-column">

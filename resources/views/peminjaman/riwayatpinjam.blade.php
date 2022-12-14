@@ -40,19 +40,10 @@
                                             <th scope="col sm">No</th>
                                             <th scope="col">Kode </th>
                                             <th scope="col">Nama </th>
-                                            <th scope="col">Jenis peminjaman </th>
-                                            <th scope="col">Tujuan </th>
                                             <th scope="col">Tgl Pengajuan</th>
-                                            <th scope="col">Tgl Peminjaman</th>
                                             <th scope="col">Tgl Pengembalian</th>
-                                            {{-- <th scope="col">Tujuan</th>
-                                            <th scope="col">barang pinjam</th>
-                                            <th scope="col">jumlah pinjam </th> --}}
                                             <th scope="col">Detail</th>
                                             <th scope="col">status</th>
-
-
-
                                         </tr>
                                     </thead>
 
@@ -60,15 +51,12 @@
                                         <?php
                                         $nomor = 1;
                                         ?>
-                                        @foreach ($pinjam as $s)
+                                        @foreach ($pinjam as $data)
                                         <tr role="row">
                                             <td>{{ $nomor++ }}</td>
                                             <td> {{ $data->kode_peminjaman }}</td>
-                                            <td> {{ $data->nama_peminjam }}</td>
-                                            <td> {{ $data->jenis_peminjaman }}</td>
-                                            <td> {{ $data->tujuan }}</td>
+                                            <td> {{ $data->anggota->detail_anggota->nama_lengkap }}</td>
                                             <td> <?php echo date('d F Y', strtotime($data->tgl_pengajuan)); ?> </td>
-                                            <td> <?php echo date('d F Y', strtotime($data->tgl_pinjam)); ?> </td>
                                             <td> <?php echo date('d F Y', strtotime($data->tgl_kembali)); ?></td>
                                             <td>
 

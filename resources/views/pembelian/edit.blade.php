@@ -31,7 +31,7 @@
                                             </x-td>
                                             <x-td colspan='3' class=" text-left font-weight-bold">
                                                 @php
-                                                    $status = \App\Models\Statuspembelian::where('pembelian_id',$pembelian->id)->latest()->first();
+                                                    $status = \App\Models\StatusPembelian::where('pembelian_id',$pembelian->id)->latest()->first();
                                                 @endphp
                                                 <span class=" badge bg-primary">{{ $status->status }}</span> <br>
                                                 Ket: <p>{{ $status->ket }}</p>

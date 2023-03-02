@@ -94,6 +94,7 @@ Route::group(['auth', 'check.role:2'], function () {
         'show' => 'id',
         'destroy' => 'id',
     ])->name('*', 'jenis-bunga');
+
     Route::resource('Pembelian', PembelianController::class)->parameters([
         'edit' => 'id',
         'destroy' => 'id',
@@ -440,8 +441,8 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
 
     //DATA ASET staff
     Route::get('/cekdata', [BarangController::class, 'cekdata'])->name('cekdata');
-    Route::group(['prefix'=> 'Keranjang', 'as'=> 'keranjang.'], function(){
-        Route::controller(KeranjangController::class)->group(function(){
+    Route::group(['prefix' => 'Keranjang', 'as' => 'keranjang.'], function () {
+        Route::controller(KeranjangController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/store/{barang_id}', 'create')->name('create');
             Route::get('/update/{id}', 'update')->name('update');
@@ -599,8 +600,8 @@ Route::group(['middleware' => ['auth', 'check.role:2,3']], function () {
     Route::get('/KlaimPromo/{promo_id}', [PromoUserController::class, 'store'])->name('Klaim-Promo');
     Route::get('/KlaimVoucher/{voucher_id}', [VoucherUserController::class, 'store'])->name('Klaim-Voucher');
 
-    Route::group(['prefix'=> 'Simpanan', 'as'=> 'simpanan.'],function(){
-        Route::controller(SimpananController::class)->group(function(){
+    Route::group(['prefix' => 'Simpanan', 'as' => 'simpanan.'], function () {
+        Route::controller(SimpananController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/form', 'create')->name('create');
             Route::post('/store', 'createSimpanan')->name('store');

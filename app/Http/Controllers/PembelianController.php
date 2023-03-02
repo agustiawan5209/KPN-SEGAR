@@ -274,6 +274,7 @@ class PembelianController extends Controller
         $inputbarang = Barang::all();
         $jenisbarang = JenisBarang::all();
         $inputbarang = Barang::find($id);
+        $pembelian = Pembelian::find($id);
         return view('pembelian.edit', [
             'title' => ' ',
             'jenisbarang' => $jenisbarang,
@@ -283,6 +284,7 @@ class PembelianController extends Controller
             'inputbarang' => $inputbarang,
             'jenisbarang' => $jenisbarang,
             'pinjam' => $pinjam,
+            'pembelian'=> $pembelian,
         ]);
     }
     public function detail($id)
@@ -301,7 +303,7 @@ class PembelianController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

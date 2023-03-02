@@ -237,7 +237,8 @@ class PinjamUang extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pinjam::find($id);
+        return redirect()->back();
     }
 
     public function getJenis($id)

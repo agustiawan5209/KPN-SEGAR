@@ -105,7 +105,7 @@ class PinjamUang extends Controller
         $pinjam = new Pinjam();
         $pinjam->kode_peminjaman = $book_id;
         $pinjam->kode_anggota = $request->kode_anggota;
-        $pinjam->nama_peminjam = $anggota->detail->nama_lengkap;
+        $pinjam->nama_peminjam = $anggota->detail_anggota->nama_lengkap;
         $pinjam->jenis_peminjaman = "Uang";
         $pinjam->bunga = $request->bunga;
         $pinjam->tgl_pengajuan = $request->tgl_pengajuan;

@@ -42,7 +42,7 @@ class BarangKeluarController extends Controller
         $jenisbarang = JenisBarang::all();
         $datasatuan = Satuan::all();
         $inputbarang = Barang::all();
-        $barangkeluar = Barangkeluar::all();
+        $barangkeluar = BarangKeluar::all();
         return view('barangkeluar.index',[
             "title" => "barangkeluar",
             "jenisbarang" => $jenisbarang,

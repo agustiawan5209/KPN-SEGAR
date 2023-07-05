@@ -28,7 +28,7 @@
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    <a href="{{ url('/laporan/asetbergerak') }}">
+                                    <a class="text-black" href="{{ url('/laporan/asetbergerak') }}">
                                         <span>Barang</span>
                                     </a><br>
                                 </div>
@@ -45,11 +45,11 @@
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
 
-                                    <a href="{{ url('/laporan/barangkeluar') }}">
+                                    <a class="text-black" href="{{ url('/laporan/barangkeluar') }}">
                                         <span> 1. Data Barang Keluar</span>
                                     </a><br>
 
-                                    <a href="{{ url('/laporan/barangmasuk') }}">
+                                    <a class="text-black" href="{{ url('/laporan/barangmasuk') }}">
                                         <span> 2. Data Barang Masuk</span>
                                     </a>
 
@@ -67,13 +67,13 @@
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     {{-- <div class="col-lg-5 col-md-4 label">Riwayat Pembelian :</div> --}}
-                                    <a href="{{ url('/laporan/peminjaman') }}">
+                                    <a class=" text-black" href="{{ url('/laporan/peminjaman') }}">
                                         <span> Data Riwayat Pembelian </span>
                                     </a><br>
-                                    <a href="{{ url('/laporan/peminjaman') }}">
+                                    <a class=" text-black" href="{{ url('/laporan/peminjaman') }}">
                                         <span> Data Riwayat Peminjaman Uang </span>
                                     </a><br>
-                                    <a href="{{ url('/laporan/peminjaman') }}">
+                                    <a class=" text-black" href="{{ url('/laporan/peminjaman') }}">
                                         <span> Data Riwayat Peminjaman Barang </span>
                                     </a><br>
 

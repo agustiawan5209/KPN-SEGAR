@@ -38,6 +38,12 @@
                 </ul>
             </li><!-- End Forms Nav -->
             <li class="nav-item flex-column">
+                <a class="nav-link collapsed" @yield('asetbergerak') href="{{ route('jenis-barang') }}">
+                    <i class="bi bi-journal-text"></i><span>Katalog Barang</span>
+                </a>
+            </li><!-- End Forms Nav -->
+            </li><!-- End Forms Nav -->
+            <li class="nav-item flex-column">
                 <a class="nav-link collapsed" @yield('asetbergerak') href="{{ route('barang') }}">
                     <i class="bi bi-journal-text"></i><span>Kelola Barang</span>
                 </a>
@@ -235,11 +241,6 @@
                     <ul id="pembelian" class="nav-content collapse @yield('pembelian')" data-bs-parent="#sidebar-nav">
                         <li>
                             <a class=" @yield('databunga')" href="{{ route('simpanan.index') }}">
-                                <i class="bi bi-circle"></i><span>Data Simpanan</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class=" @yield('databunga')" href="{{ route('simpanan.create') }}">
                                 <i class="bi bi-circle"></i><span>Data Simpanan</span>
                             </a>
                         </li>

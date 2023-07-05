@@ -20,7 +20,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Edit Data Jenis Barang</h5>
+                            <h5 class="card-title">Edit Data Katalog Barang</h5>
 
                             <!-- validation Form Elements -->
 

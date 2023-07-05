@@ -45,11 +45,11 @@
 
 
                             <div class="row mb-3">
-                                <label for="validationTooltip06" class="col-sm-2 col-form-label">Nama Barang</label>
+                                <label for="validationTooltip06" class="col-sm-2 col-form-label">Katalog Barang</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" name="jenis_barangs_id" id=" "
                                         aria-label="Default select example">
-                                        {{-- <option selected>Pilih Nama Barang</option> --}}
+                                        {{-- <option selected>Pilih Katalog Barang</option> --}}
 
                                         <?php
                                         foreach ($jenisbarang as $data) {
@@ -70,7 +70,7 @@
 
                             <div class="row mb-3">
                                 <label for="validationTooltip02"
-                                    class="col-sm-2 col-form-label">Tipe/nama_barang</label>
+                                    class="col-sm-2 col-form-label">Nama Barang</label>
                                 <div class="col-sm-10">
                                     <input type="text" value="{{ $inputbarang->nama_barang }}" name="nama_barang"
                                         class="form-control" required>

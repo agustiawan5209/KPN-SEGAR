@@ -22,7 +22,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body  overflow-scroll">
-                    <h5 class="card-title">Data Jenis Barang</h5>
+                    <h5 class="card-title">Data Katalog Barang</h5>
                     {{-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p> --}}
 
                     <!-- Basic Modal -->
@@ -35,7 +35,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" style="text-align: center">Input Jenis Barang</h5>
+                                    <h5 class="modal-title" style="text-align: center">Input Katalog Barang</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -49,7 +49,7 @@
                                         <div class="col-12">
                                             {{-- <label for="inputNanme4" class="form-label">Nama Jenis Aset</label> --}}
                                             <input type="text" class="form-control" name="jenis_barang"
-                                                placeholder="Masukan nama jenis barang"id="jenis_barang" required>
+                                                placeholder="Masukan nama Katalog Barang"id="jenis_barang" required>
                                             <div class="invalid-feedback">
                                                 Harus di isi
                                             </div>
@@ -73,7 +73,7 @@
                             <tr>
                                 <th scope="col">No</th>
                                 {{-- <th scope="col">ID</th> --}}
-                                <th scope="col">Nama Jenis Barang</th>
+                                <th scope="col">Nama Katalog Barang</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>

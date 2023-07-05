@@ -48,7 +48,7 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nama Barang</th>
+                            <th scope="col">Katalog Barang</th>
                             <th scope="col">Sisa Barang</th>
                             <th scope="col">Jumlah</th>
                         </tr>

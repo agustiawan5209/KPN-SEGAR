@@ -76,7 +76,7 @@
                                         <th scope="col">Tgl Pengajuan</th>
                                         <th scope="col">Tgl Peminjaman </th>
                                         <th scope="col">Tgl Pengembalian</th>
-                                        <th scope="col">Nama barang</th>
+                                        <th scope="col">Katalog Barang</th>
                                         <th scope="col">Jumlah</th>
                                         <th scope="col">Ket</th>
 

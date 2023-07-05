@@ -27,7 +27,8 @@ class Pinjam extends Model
         'tgl_kembali',
         // 'bukti_pinjam',
         'jumlah_pinjam',
-        'ket'
+        'ket',
+        'status'
 
     ];
 

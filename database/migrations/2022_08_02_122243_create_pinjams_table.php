@@ -28,6 +28,8 @@ class CreatePinjamsTable extends Migration
             $table->date('tgl_kembali')->nullable();
             $table->string('bukti_pinjam')->nullable();
             $table->string('ket')->nullable();
+            $table->string('status')->nullable();
+
             $table->timestamps();
         });
     }

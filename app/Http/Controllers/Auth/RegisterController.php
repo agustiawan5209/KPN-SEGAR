@@ -56,7 +56,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'roles_id' => ['required', 'string', 'max:255'],
+            // 'roles_id' => ['required', 'string', 'max:255'],
             'alamat' => ['required', 'string', 'max:255'],
             'telephone' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -81,12 +81,12 @@ class RegisterController extends Controller
             'status'=> '1',
             'password' => Hash::make($data['password']),
         ]);
-        $voucher = Voucher::where('status', '=', '1')->orderBy('id', 'desc')->first();
+        $voucher = Voucher::where('jenis_voucher', '=', '1')->orderBy('id', 'desc')->first();
         if($voucher != null){
             VoucherUser::create([
                 'voucher_id' => $voucher->id,
                 'user_id' => $user->id,
-                'status' => '1',
+                'jenis_voucher' => '1',
             ]);
         }
         return $user;

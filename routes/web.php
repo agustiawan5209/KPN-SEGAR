@@ -278,9 +278,9 @@ Route::middleware(['auth', 'check.role:1,2,3'])->group(function () {
     Route::post('/datasatuan/update/{id}', 'App\Http\Controllers\DataSatuanController@updatesatuan')->name('updatesatuan');
     Route::get('/datasatuan/hapussatuan/{id}', 'App\Http\Controllers\DataSatuanController@hapussatuan')->name('hapussatuan');
 
-    //DATA Jenis Barang
+    //DATA Katalog Barang
     Route::POST('inputjenisbarang', 'App\Http\Controllers\JenisBarangController@inputjenisbarang')->name('inputjenisbarang');
-    Route::get('/jenisbarang', [JenisBarangController::class, 'index']);
+    Route::get('/jenisbarang', [JenisBarangController::class, 'index'])->name('jenis-barang');
     Route::get('/jenisbarang/edit/{id}', 'App\Http\Controllers\JenisBarangController@editjenisbarang')->name('editjenisbarang');
     Route::post('/jenisbarang/update/{id}', 'App\Http\Controllers\JenisBarangController@updatejenisbarang')->name('updatejenisbarang');
     Route::get('/jenisbarang/hapusjenisbarang/{id}', 'App\Http\Controllers\JenisBarangController@hapusjenisbarang')->name('hapusjenisbarang');

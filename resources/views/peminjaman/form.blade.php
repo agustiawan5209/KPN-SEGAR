@@ -474,7 +474,7 @@
 
 
                                 <div class="form-group form-floating-label">
-                                    <label>Jenis Barang</label>
+                                    <label>Katalog Barang</label>
                                     <select name="select_jenisbarang" class="form-control input-lg dynamic"
                                         id="select_jenisbarang">
                                         <option value=""></option>
@@ -492,7 +492,7 @@
                                                 name="barangs_id[]" id="barangs_id[]"
                                                 aria-label="Default select example">
 
-                                                <option selected>Pilih Nama Barang</option>
+                                                <option selected>Pilih Katalog Barang</option>
 
                                                 @foreach ($inputbarang as $data)
                                                     @if (($data->jenis_asets_id == 1 || $data->jenis_asets_id == 3 || $data->jenis_asets_id == 4) && $data->jumlah > 0)

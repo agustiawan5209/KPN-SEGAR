@@ -68,7 +68,7 @@
 
 
                             {{-- <div class="row mb-3">
-                  <label for="validationTooltip02" class="col-sm-2 col-form-label">Tipe/nama_barang</label>
+                  <label for="validationTooltip02" class="col-sm-2 col-form-label">Nama Barang</label>
                   <div class="col-sm-10">
                     <input type="text" id="validationTooltip02" name="nama_barang" class="form-control"  required>
                     <div class="invalid-feedback">

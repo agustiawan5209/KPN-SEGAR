@@ -7,26 +7,43 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 ">
                             <div class="product-pic-zoom">
-                                <img class="product-big-img" src="{{asset('fotobarang/'.$barang->foto)}}" alt="" />
+                                <img class="product-big-img h-50" src="{{asset('fotobarang/'.$barang->foto)}}" alt="" />
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="product-details">
                                 <div class="pd-title">
-                                    <span>{{$barang->jenis_barangs->jenis_barang}}</span>
+                                    <span>Katalog :{{$barang->jenis_barangs->jenis_barang}}</span>
                                     <h3>{{$barang->nama_barang}}</h3>
                                 </div>
                                 <div class="pd-desc">
+
+                                    <p>Satuan : {{$barang->satuans->nama_satuan}}</p>
+                                    @php
+                                        $harga = 0;
+                                        if($barang->diskon == null){
+                                            $harga = $barang->harga;
+                                        }else{
+                                            $harga = $barang->harga * ($barang->diskon->diskon /100);
+                                        }
+                                    @endphp
+                                    <h4>Harga : Rp. {{number_format($barang->harga,0,2)}} @if ($barang->diskon !== null)
+                                         <span>{{ $harga }}</span>
+                                    @endif</h4>
+                                    <br>
+                                    @if ($barang->diskon !== null)
+                                    <h6 class="text-danger">Diskon {{ $barang->diskon->diskon }}%</h6>
+                                    @endif
+                                        <br>
+                                        <h6>Deskripsi Produk :</h6>
                                     <p>
                                         {{$barang->ket}}
                                     </p>
-                                    <p>Satuan : {{$barang->satuans->nama_satuan}}</p>
-                                    <h4>Rp. {{number_format($barang->harga,0,2)}}</h4>
                                 </div>
                                 <div class="quantity">
-                                    <a href="{{route('Pembelian.detail', ['id'=> $barang->id])}}" class="primary-btn pd-cart border-right">Beli</a>
+                                    <a href="{{route('keranjang.create', ['barang_id'=> $barang->id])}}" class="primary-btn pd-cart border-right">Keranjang</a>
 
                                 </div>
                             </div>
@@ -44,100 +61,38 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Related Products</h2>
+                        <h2 class=" border-bottom">Rekomendasi Barang</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="img/products/women-1.jpg" alt="" />
-                            <ul>
-                                <li class="w-icon active">
-                                    <a href="#"><i class="icon_bag_alt"></i></a>
-                                </li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Coat</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
+                @foreach ($relate_barang as $item)
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{{asset('fotobarang/'.$item->foto)}}" alt="" />
+                                <ul>
+                                    <li class="w-icon active">
+                                        <a href="#"><i class="icon_bag_alt"></i></a>
+                                    </li>
+                                    <li class="quick-view"><a href="{{ route('Customer.detail', ['id'=> $item->id]) }}">+ Detail</a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">{{ $item->nama_barang }}</div>
+                                <a href="#">
+                                    <h5>{{ $item->jenis_barangs->jenis_barang }}</h5>
+                                </a>
+                                <div class="product-price">
+                                    {{ number_format($item->harga,0,2) }}
+                                    @if ($item->diskon !== null)
+                                        <span>{{ ($item->harga * ($item->diskon->diskon / 100)) }}</span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="img/products/women-2.jpg" alt="" />
-                            <ul>
-                                <li class="w-icon active">
-                                    <a href="#"><i class="icon_bag_alt"></i></a>
-                                </li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Shoes</div>
-                            <a href="#">
-                                <h5>Guangzhou sweater</h5>
-                            </a>
-                            <div class="product-price">
-                                $13.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="img/products/women-3.jpg" alt="" />
-                            <ul>
-                                <li class="w-icon active">
-                                    <a href="#"><i class="icon_bag_alt"></i></a>
-                                </li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="img/products/women-4.jpg" alt="" />
-                            <ul>
-                                <li class="w-icon active">
-                                    <a href="#"><i class="icon_bag_alt"></i></a>
-                                </li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Converse Shoes</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

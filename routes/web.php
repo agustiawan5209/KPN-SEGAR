@@ -380,6 +380,18 @@ Route::middleware(['auth', 'check.role:1,2,3'])->group(function () {
 
 //-- SEMUA ROUTE ROLE BENDAHARA ( ROLE 3)--//
 
+//DATA ASET staff
+Route::get('/cekdata', [BarangController::class, 'cekdata'])->name('cekdata');
+Route::group(['prefix' => 'Keranjang', 'as' => 'keranjang.'], function () {
+    Route::controller(KeranjangController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/store/{barang_id}', 'create')->name('create');
+        Route::get('/update/{id}', 'update')->name('update');
+        Route::get('/destory/{id}', 'destroy')->name('destroy');
+        Route::get('/CekJumlahBarang/{id}', 'cekJumlahBarang')->name('cekJumlahBarang');
+    });
+});
+//--selesai route staff--//
 Route::middleware(['auth', 'check.role:2,3'])->group(function () {
     //Daftar Anggota
     Route::get('Daftar-Anggota', [AnggotaController::class, 'daftar'])->name('daftar-anggota');
@@ -400,6 +412,7 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
     });
 
     //PINJAM NEW
+
     Route::group(['prefix' => 'PinjamUang', 'as' => 'pinjamUang.'], function () {
         Route::controller(PinjamUang::class)->group(function () {
             Route::get('/pinjamUang', 'index')->name('index');
@@ -439,18 +452,6 @@ Route::middleware(['auth', 'check.role:2,3'])->group(function () {
 
     //STATUS USER staff
 
-    //DATA ASET staff
-    Route::get('/cekdata', [BarangController::class, 'cekdata'])->name('cekdata');
-    Route::group(['prefix' => 'Keranjang', 'as' => 'keranjang.'], function () {
-        Route::controller(KeranjangController::class)->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/store/{barang_id}', 'create')->name('create');
-            Route::get('/update/{id}', 'update')->name('update');
-            Route::get('/destory/{id}', 'destroy')->name('destroy');
-            Route::get('/CekJumlahBarang/{id}', 'cekJumlahBarang')->name('cekJumlahBarang');
-        });
-    });
-    //--selesai route staff--//
 
 
     Route::get('/data-user', function () {

@@ -1,7 +1,7 @@
 @extends('customer.layout')
 @section('content')
     <!-- Hero Section Begin -->
-    <section class="hero-section">
+    <section class="hero-section container h-75">
         <div class="hero-items owl-carousel">
             <div class="single-hero-items set-bg" data-setbg="{{asset('img/hero-1.jpg')}}">
                 <div class="container">

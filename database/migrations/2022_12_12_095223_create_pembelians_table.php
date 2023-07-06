@@ -26,6 +26,7 @@ class CreatePembeliansTable extends Migration
             $table->string('bukti', 200);
             $table->string('sub_total', 20);
             $table->integer('status');
+            $table->string('potongan',100)->nullable();
             $table->timestamps();
         });
     }

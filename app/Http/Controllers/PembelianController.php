@@ -185,6 +185,7 @@ class PembelianController extends Controller
         $promo = $this->CekPromo($request->sub_total);
         $voucher = $this->CekVoucher($request->sub_total);
         $potongan =   $promo + $voucher;
+
         $sub_total = abs($request->sub_total - $potongan);
         $pembelian = Pembelian::create([
             'kode' => $kode,
@@ -197,6 +198,7 @@ class PembelianController extends Controller
             'tgl_transaksi' => $request->tgl_transaksi,
             'bukti' => $nama_bukti,
             'potongan' => $potongan,
+            'status'=> '1',
             'sub_total' => $sub_total,
         ]);
         $keranjang = $request->keranjang;
@@ -204,7 +206,8 @@ class PembelianController extends Controller
         for ($i = 0; $i < count($keranjang); $i++) {
             $barang_keranjang = Keranjang::find($keranjang[$i]);
             $barang = Barang::find($barang_keranjang->barang->id);
-            $potongan = $barang->diskon == null ? 0 : $barang->diskon->diskon;
+            $potongan = $this->diskon($barang->id, $barang->harga);
+
             $total = ($jumlah[$i] * $barang->harga) - $potongan;
             DetailPembelian::create([
                 'pembelian_id' => $pembelian->id,

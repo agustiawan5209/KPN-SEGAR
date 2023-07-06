@@ -19,8 +19,10 @@ class CustomerViewController extends Controller
     public function detail($id)
     {
         $barang = Barang::find($id);
+        $barang_relate  = Barang::orderBy('id', 'desc')->paginate(8);
         return view('customer.product', [
             'barang' => $barang,
+            'relate_barang'=> $barang_relate,
         ]);
     }
 

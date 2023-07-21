@@ -1163,6 +1163,7 @@ ol {
 
 .product-item {
     margin-bottom: 26px;
+    height: max-content !important;
 }
 
 .product-item:hover .pi-pic .icon {

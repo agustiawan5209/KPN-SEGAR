@@ -223,9 +223,9 @@
                                     <label for="validationTooltip04"
                                         class="col-sm-2 col-form-label">Keterangan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" value="{{ $inputbarang->ket }}" id=" "
+                                        <textarea type="text" value="{{ $inputbarang->ket }}" id=" "
                                             name="ket" class="form-control"required>
-                                        <div class="invalid-feedback">
+                                        <div class="invalid-feedback"></textarea>
                                             Harus di isi
                                         </div>
                                     </div>

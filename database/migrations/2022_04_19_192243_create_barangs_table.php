@@ -29,7 +29,7 @@ class CreateBarangsTable extends Migration
             //  $table->string('jumlah_awal');
             $table->string('jumlah');
             $table->string('kondisi');
-            $table->string('ket');
+            $table->longText('ket');
             $table->timestamps();
         });
     }

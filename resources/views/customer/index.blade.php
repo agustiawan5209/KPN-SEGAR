@@ -44,7 +44,8 @@
     <section class="women-banner spad">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12 mt-5">
+                <div class="col-lg-12 ">
+                    <h3 class="text-center"><span>Produk Terbaru</span></h3>
                     <div class="product-slider owl-carousel">
                         @foreach ($barang as $item)
                             <div class="product-item">
@@ -61,6 +62,9 @@
                                 </div>
                                 <div class="pi-text">
                                     <div class="catagory-name">{{ $item->jenis_barangs->jenis_barang }} </div>
+                                    <a href="#">
+                                        <h5>{{ $item->jenis_barangs->jenis_barang }}</h5>
+                                    </a>
                                     <div class="product-price">
                                         Rp. {{ $item->harga }}
                                         @if ($item->diskon != null)

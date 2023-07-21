@@ -59,10 +59,6 @@
                                                 <td>
                                                     @include('pembelian.modal-pembelian')
                                                 </td>
-
-
-
-
                                                 <td>
                                                     @include('status')
                                                 </td>

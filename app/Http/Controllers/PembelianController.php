@@ -156,8 +156,10 @@ class PembelianController extends Controller
         $diskon = 0;
         $potongan = 0;
         $barang = Barang::find($barang_id);
+       if($barang->diskon !== null){
         $diskon = $barang->diskon->diskon / 100;
         $potongan = $harga * $diskon;
+       }
 
         return $potongan;
     }
@@ -198,7 +200,7 @@ class PembelianController extends Controller
             'tgl_transaksi' => $request->tgl_transaksi,
             'bukti' => $nama_bukti,
             'potongan' => $potongan,
-            'status'=> '1',
+            'status'=> '0',
             'sub_total' => $sub_total,
         ]);
         $keranjang = $request->keranjang;

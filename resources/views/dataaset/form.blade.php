@@ -296,8 +296,8 @@
                                     <label for="validationTooltip04"
                                         class="col-sm-2 col-form-label">Keterangan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" id="validationTooltip04" name="ket"
-                                            class="form-control"required>
+                                        <textarea type="text" id="validationTooltip04" name="ket"
+                                            class="form-control"required></textarea>
                                         <div class="invalid-feedback">
                                             Harus di isi
                                         </div>

@@ -10,7 +10,7 @@ use App\Models\DataJenisAset;
 use App\Models\DataAsalPerolehan;
 use App\Models\Satuan;
 use App\Models\JenisBarang;
-use App\Models\Barangkeluar;
+use App\Models\BarangKeluar;
 use Barryvdh\DomPDF\Facade\PDF;
 use App\Models\BarangKeluar as ModelsBarangKeluar;
 

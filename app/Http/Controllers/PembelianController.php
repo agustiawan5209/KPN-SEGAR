@@ -176,7 +176,7 @@ class PembelianController extends Controller
             'alamat' => ['required', 'string'],
             'no_hp' => ['required', 'numeric', 'min:12'],
             'email' => ['required', 'email'],
-            'bukti' => ['required', 'image'],
+            'bukti' => ['required', 'image', 'mimes:jpg,png,svg,bmp'],
             'tgl_transaksi' => ['required', 'date'],
         ]);
         $kode = $this->kodeTransaksi();

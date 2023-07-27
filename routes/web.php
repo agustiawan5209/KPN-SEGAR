@@ -174,9 +174,7 @@ Route::middleware(['auth', 'check.role:1,2,3'])->group(function () {
         return view('dataasetbergerak.index');
     });
 
-    Route::get('/barang/form', function () {
-        return view('dataasetbergerak.form');
-    });
+
 
     Route::get('/data-peralatan', function () {
         return view('dataperalatan.index');

@@ -33,8 +33,10 @@
                                                 @php
                                                     $status = \App\Models\StatusPembelian::where('pembelian_id',$pembelian->id)->latest()->first();
                                                 @endphp
-                                                <span class=" badge bg-primary">{{ $status->status }}</span> <br>
-                                                Ket: <p>{{ $status->ket }}</p>
+                                               @if ($status !== null)
+                                                 <span class=" badge bg-primary">{{ $status->status }}</span> <br>
+                                                 Ket: <p>{{ $status->ket }}</p>
+                                               @endif
                                             </x-td>
                                         </tr>
                                         <tr>

@@ -41,7 +41,15 @@
                         <h5 class="card-title">Formulir Input Data</h5>
 
                         <!-- validation Form Elements -->
-
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                         <form action="{{ route('create') }}" method="POST"
                             enctype="multipart/form-data"class=" needs-validation" novalidate>
                             @csrf

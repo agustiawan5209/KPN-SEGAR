@@ -372,7 +372,7 @@ class BarangController extends Controller
         $validate = $this->validate($request, [
             'jenis_asets_id' => 'required',
             'asal_perolehans_id' => 'required',
-            'jenis_barang' => 'required',
+            // 'jenis_barang' => 'required',
             'satuans_id' => 'required',
             'kode' => 'required',
             'nama_barang' => 'required',
@@ -494,6 +494,17 @@ class BarangController extends Controller
     //UPDATE DATA
     public function update(Request $request, $id)
     {
+        $validate = $this->validate($request, [
+            // 'jenis_asets_id' => 'required',
+            'asal_perolehans_id' => 'required',
+            // 'jenis_barang' => 'required',
+            'satuans_id' => 'required',
+            'kode' => 'required',
+            'nama_barang' => 'required',
+            'kondisi' => 'required',
+            'ket' => 'required',
+            'harga' => ['required', 'numeric'],
+        ]);
         $inputbarang = \App\Models\Barang::find($id);
 
         // $inputbarang->update($request);
@@ -507,15 +518,15 @@ class BarangController extends Controller
                 'kode' => $request->input('kode'),
                 'nama_barang' => $request->input('nama_barang'),
                 //  'foto' => $request->input ('foto'),
-                'kegunaan' => $request->input('kegunaan'),
+                // 'kegunaan' => $request->input('kegunaan'),
                 'tanggal_perolehan' => $request->input('tanggal_perolehan'),
                 // 'nilai_perolehan' => $request->input('nilai_perolehan'),
-                'legalitas' => $request->input('legalitas'),
-                'luas' => $request->input('luas'),
-                'beban_penyusutan' => $request->input('beban_penyusutan'),
-                'nilai_buku' => $request->input('nilai_buku'),
-                'lokasi' => $request->input('lokasi'),
-                'penanggung_jawab' => $request->input('penanggung_jawab'),
+                // 'legalitas' => $request->input('legalitas'),
+                // 'luas' => $request->input('luas'),
+                // 'beban_penyusutan' => $request->input('beban_penyusutan'),
+                // 'nilai_buku' => $request->input('nilai_buku'),
+                // 'lokasi' => $request->input('lokasi'),
+                // 'penanggung_jawab' => $request->input('penanggung_jawab'),
                 // 'jumlah_awal' => $request->input('jumlah_awal'),
                 'jumlah' => $request->input('jumlah'),
                 'kondisi' => $request->input('kondisi'),

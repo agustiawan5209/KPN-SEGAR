@@ -22,9 +22,17 @@
                         <h5 class="card-title">Formulir Edit Data Aset Bergerak</h5>
 
                         <!-- validation Form Elements -->
-
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                         <form action="/data-asetbergerak/update/{{ $inputbarang->id }}" method="POST"
-                            enctype="multipart/form-data" needs-validation" novalidate>
+                            enctype="multipart/form-data" needs-validation novalidate>
                             @csrf
                             <div class="row mb-3">
                                 <label for="validationCustom01" class="col-sm-2 col-form-label">Kode</label>
@@ -128,6 +136,17 @@
 
 
                                     </select>
+                                    <div class="invalid-feedback">
+                                        Harus di isi
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="validationTooltip04" class="col-sm-2 col-form-label">Harga Barang</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="validationTooltip04" name="harga"
+                                        class="form-control" required value="{{ $inputbarang->harga }}">
                                     <div class="invalid-feedback">
                                         Harus di isi
                                     </div>

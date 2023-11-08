@@ -49,7 +49,7 @@
                 </a>
             </li><!-- End Forms Nav -->
 
-            <li class="nav-item flex-column">
+            {{-- <li class="nav-item flex-column">
                 <a class="nav-link collapsed" data-bs-target="#potongan-nav" data-bs-toggle="collapse"
                     href="@yield('potongan-nav')">
                     <i class="bi bi-person"></i><span>Data Diskon/Promo</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -71,7 +71,8 @@
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Forms Nav -->
+            </li> --}}
+            <!-- End Forms Nav -->
 
             <li class="nav-item flex-column">
                 <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse"

@@ -78,7 +78,7 @@
                             <a href="{{ route('Customer.Index') }}"><i class="fa fa-home"></i> Home</a>
                             <a href="{{ route('Customer.allproduk') }}"><i class="fa fa-shopping-bag"></i>
                                 Produk</a>
-                            <a href="{{ route('Customer.potongan') }}"><i class="fa fa-credit-card"></i> Promo</a>
+                            {{-- <a href="{{ route('Customer.potongan') }}"><i class="fa fa-credit-card"></i> Promo</a> --}}
                             <a href="{{ route('Customer.Index') }}"><i class="fa fa-info-circle"></i> Tentang
                                 Kami</a>
                         </div>

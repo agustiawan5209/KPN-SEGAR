@@ -33,9 +33,9 @@
                                          <span>{{ $harga }}</span>
                                     @endif</h4>
                                     <br>
-                                    @if ($barang->diskon !== null)
+                                    {{-- @if ($barang->diskon !== null)
                                     <h6 class="text-danger">Diskon {{ $barang->diskon->diskon }}%</h6>
-                                    @endif
+                                    @endif --}}
                                         <br>
                                         <h6>Deskripsi Produk :</h6>
                                     <p>

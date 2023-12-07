@@ -82,6 +82,7 @@ class PinjamUang extends Controller
             'tgl_pengajuan' => ['required', 'date'],
             'tgl_kembali' => ['required', 'date'],
             'bunga' => ['required', 'numeric'],
+            'tgl_angsuran' => ['required'],
         ]);
         $book_id = 0;
         $data = Pinjam::max('kode_peminjaman');

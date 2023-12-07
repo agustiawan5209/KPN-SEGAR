@@ -52,7 +52,7 @@ class HomeController extends Controller
 
         //role staff
         if ($role == '2') {
-            return redirect()->route('Customer.Index');
+            return redirect()->route('dashboardUser');
 
         } else {
             return view('dashboard');

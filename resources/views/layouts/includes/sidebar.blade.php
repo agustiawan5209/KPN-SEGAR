@@ -99,7 +99,7 @@
 
                 </ul>
             </li><!-- End Charts Nav -->
-            <li class="nav-item flex-column">
+            {{-- <li class="nav-item flex-column">
                 <a class="nav-link collapsed" data-bs-target="#iconss-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-cart" @yield('iconss-nav')></i><span>Data Transaksi</span><i
                         class="bi bi-chevron-down ms-auto"></i>
@@ -120,7 +120,8 @@
 
 
                 </ul>
-            </li><!-- End Icons Nav -->
+            </li> --}}
+            <!-- End Icons Nav -->
 
 
             <li class="nav-item flex-column {{ request()->is('redirects*') ? 'active' : '' }}">
@@ -220,12 +221,7 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
-            <li class="nav-item flex-column ">
-                <a class="nav-link collapsed" href="{{ url('/dashboard') }}">
-                    <i class="bi bi-grid"></i>
-                    <span>Home</span>
-                </a>
-            </li>
+
             <li class="nav-item flex-column ">
                 <a class="nav-link collapsed" href="{{ route('dashboardUser') }}">
                     <i class="bi bi-grid"></i>
@@ -233,12 +229,12 @@
                 </a>
             </li>
 
-            <li class="nav-item flex-column ">
+            {{-- <li class="nav-item flex-column ">
                 <a class="nav-link collapsed" href="{{ route('Pembelian.index') }}">
                     <i class="bi bi-cart-check-fill"></i>
                     <span> Pembelian</span>
                 </a>
-            </li>
+            </li> --}}
             @can('Anggota')
                 <li class="nav-item flex-column @yield('pembelian')">
                     <a class="nav-link collapsed" data-bs-target="#pembelian" data-bs-toggle="collapse">

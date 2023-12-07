@@ -67,9 +67,9 @@
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     {{-- <div class="col-lg-5 col-md-4 label">Riwayat Pembelian :</div> --}}
-                                    <a class=" text-black" href="{{ url('/laporan/peminjaman') }}">
+                                    {{-- <a class=" text-black" href="{{ url('/laporan/peminjaman') }}">
                                         <span> Data Riwayat Pembelian </span>
-                                    </a><br>
+                                    </a><br> --}}
                                     <a class=" text-black" href="{{ url('/laporan/peminjaman') }}">
                                         <span> Data Riwayat Peminjaman Uang </span>
                                     </a><br>
